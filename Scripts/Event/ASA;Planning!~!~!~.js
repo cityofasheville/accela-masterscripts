@@ -3,6 +3,7 @@
 //copyParcelGisObjects();
 // DISABLED: APP_SA_BRANCH_PLANNING:2
 //br_nch('ES_GET_PARCEL_ATTRIBUTES');
+
 if ((appMatch('Planning/Development/*/*') || appMatch('Planning/Non Development/*/*') || appMatch('Planning/Subdivision/*/*') || appMatch('Planning/Variance/*/*')) && AInfo['ParcelAttribute.RIVER DISTRICT'] == 'Yes') {
 	addAdHocTask('ADHOC TASKS', 'River District Design Review', ' ', 'MCARD');
 }
@@ -31,5 +32,4 @@ if ((appMatch('*/*/Annexation/*') || appMatch('*/*/Landmark/*') || appMatch('*/*
 	addAdHocTask('ADHOC TASKS', 'NC Dept of Cultural Resources', ' ', 'ACOLE');
 }
 
-}
 //end replaced branch: APP_SA_BRANCH_PLANNING;

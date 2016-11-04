@@ -41,4 +41,3 @@ if (wfTask == 'Building' && matches(wfStatus, 'Approved', 'Approved with Conditi
 //	showMessage = true;
 //	comment('<font size=small><b>Conditions Exist:</b></font><br><br>Before Approving please make sure all conditions are met.<br><br>');
 //	cancel = true;
-}
