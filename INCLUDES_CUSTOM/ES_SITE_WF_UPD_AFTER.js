@@ -104,9 +104,9 @@ function ES_SITE_WF_UPD_AFTER() {
 				createPendingInspection('GR-SW CLOSE', 'GR-MULCH LETTER');
 			}
 
-			if (AInfo['Digital As-Built'] == 'Yes') {
-				createPendingInspection('GR-SW CLOSE', 'SW-DIGITAL AS-BUILT');
-			}
+			//if (AInfo['Digital As-Built'] == 'Yes') {
+			//	createPendingInspection('GR-SW CLOSE', 'SW-DIGITAL AS-BUILT');
+			//}
 
 			//if (AInfo['Reproducible As-Built'] == 'Yes') {
 			//	createPendingInspection('GR-SW CLOSE', 'SW-REPRO AS-BUILT');
