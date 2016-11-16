@@ -11,3 +11,9 @@ if (AInfo['Jurisdiction'] == null) {
 	ES_GET_PARCEL_ATTRIBUTES();
 }
 
+
+if (appMatch("Services/*/Fee Calculator/*")) {
+	updateSiteFees();
+	updateCommercialBuildingFees();
+	updateMiscFees();
+}
