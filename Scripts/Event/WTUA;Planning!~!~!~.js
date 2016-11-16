@@ -165,8 +165,8 @@ if (appMatch('Planning/*/*/*') && wfTask == 'Flood Construction' && matches(wfSt
 	closeTask('Flood', 'Completed', 'Closed by Script', '', 'PLN_TRCPROCESS');
 }
 
-// TODO: review with  Diane per email 10/26
-/*
+// TODO: review with  Diane per email 10/26. Completed. Turned on next 4 IF statements
+
 
 if (wfProcess == 'PLN_1STTRCCOMMENTS' && wfStatus == 'Comments Sent') {
 	updateTask('TRC', 'Hold for Revision', 'Set by Script', '', 'PLN_TRC');
@@ -183,7 +183,7 @@ if (wfProcess == 'PLN_2NDTRCCOMMENTS' && wfStatus == 'Hold for Revision') {
 if (wfProcess == 'PLN_2NDTRCCOMMENTS' && wfStatus == 'Comments Sent') {
 	updateTask('Final TRC', 'Hold for Revision', 'Set by Script', '', 'PLN_TRC');
 }
-*/
+
 
 if ((appMatch('Planning/Permits/Level II/NA') || appMatch('Planning/Permits/Level III/NA') || appMatch('Planning/Permits/Conditional Zoning/NA') || appMatch('Planning/Permits/Manufactured Hsg Community/NA') || appMatch('Planning/Permits/Vested Rights/NA') || appMatch('Planning/Subdivision/Major/NA') || appMatch('Planning/Subdivision/Modification/NA')) && wfStatus == 'Amend' && wfTask == 'Partial Permit') {
 	activateTask('Application Process');
@@ -197,8 +197,8 @@ if (wfProcess == 'PLN_LVL2' && wfStatus == 'Hold for Revision') {
 	activateTask('Application Process', 'PLN_LVL2');
 }
 
-// TODO: review with  Diane per email 10/26
-/*
+// TODO: review with  Diane per email 10/26. Done. Turned on next two IF statements
+
 if (wfProcess == 'PLN_2NDTRCCOMMENTS' && wfStatus == 'Comments Sent') {
 	updateTask('Final Review', 'Hold for Revision', 'Set by Script', '', 'PLN_LVL2SUB');
 }
@@ -206,7 +206,7 @@ if (wfProcess == 'PLN_2NDTRCCOMMENTS' && wfStatus == 'Comments Sent') {
 if (wfProcess == 'PLN_1STTRCCOMMENTS' && wfStatus == 'Comments Sent') {
 	updateTask('Level II TRC', 'Hold for Revision', 'Set by Script', '', 'PLN_LVL2SUB');
 }
-*/
+
 
 if (appMatch('Planning/Non Development/*/*') && matches(wfStatus, 'Withdrawn')) {
 	deactivateTask('Planning Review');

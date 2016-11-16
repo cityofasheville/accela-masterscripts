@@ -4,83 +4,83 @@ if (matches(inspResult, 'Approved')) {
 
 	//start replaced branch: ES_SET_WF_FINAL_RELEASE
 	{
-		if ((appMatch('Permits/*/Accessory Structure/*') || appMatch('Permits/*/Demolition/*') || appMatch('Permits/*/Manufactured Home/*') || appMatch('Permits/*/*/Alterations') || appMatch('Permits/*/*/Repair-Replacement') || appMatch('Permits/*/*/Reroof') || appMatch('Permits/*/Reroof/*') || appMatch('Permits/*/Reroof/*') || appMatch('Permits/*/Annual Maintenance/*') || appMatch('Permits/*/Construction Trailer/*') || appMatch('Permits/*/Construction Staging/*')) && isTaskActive('Construction') && matches(inspType, 'BU-FINAL', 'BU-FINAL-REINSP') && matches(inspResult, 'Approved')) {
+		if ((appMatch('Permits/*/Accessory Structure/*') || appMatch('Permits/*/Demolition/*') || appMatch('Permits/*/Manufactured Home/*') || appMatch('Permits/*/*/Alterations') || appMatch('Permits/*/*/Repair-Replacement') || appMatch('Permits/*/*/Reroof') || appMatch('Permits/*/Reroof/*') || appMatch('Permits/*/Reroof/*') || appMatch('Permits/*/Annual Maintenance/*') || appMatch('Permits/*/Construction Trailer/*') || appMatch('Permits/*/Construction Staging/*')) && isTaskActive('Construction') && matches(inspType, 'BU-FINAL', 'BU-FINAL-REINSP')  ) {
 			closeTask('Construction', 'Final Release', 'Updated by IRSA Script');
 		}
 
-		if ((appMatch('Permits/*/Accessory Structure/*') || appMatch('Permits/*/Demolition/*') || appMatch('Permits/*/Manufactured Home/*') || appMatch('Permits/*/*/Alterations') || appMatch('Permits/*/*/Repair-Replacement') || appMatch('Permits/*/*/Reroof') || appMatch('Permits/*/Reroof/*') || appMatch('Permits/*/Reroof/*') || appMatch('Permits/*/Annual Maintenance/*') || appMatch('Permits/*/Construction Trailer/*') || appMatch('Permits/*/Construction Staging/*')) && isTaskActive('Inspections') && matches(inspType, 'BU-FINAL', 'BU-FINAL-REINSP') && matches(inspResult, 'Approved')) {
+		if ((appMatch('Permits/*/Accessory Structure/*') || appMatch('Permits/*/Demolition/*') || appMatch('Permits/*/Manufactured Home/*') || appMatch('Permits/*/*/Alterations') || appMatch('Permits/*/*/Repair-Replacement') || appMatch('Permits/*/*/Reroof') || appMatch('Permits/*/Reroof/*') || appMatch('Permits/*/Reroof/*') || appMatch('Permits/*/Annual Maintenance/*') || appMatch('Permits/*/Construction Trailer/*') || appMatch('Permits/*/Construction Staging/*')) && isTaskActive('Inspections') && matches(inspType, 'BU-FINAL', 'BU-FINAL-REINSP')  ) {
 			closeTask('Inspections', 'Final Release', 'Updated by IRSA Script');
 		}
 
-		if (matches(inspGroup, 'FLOOD') && inspType == 'FL-FINAL' && matches(inspResult, 'Approved')) {
+		if (matches(inspGroup, 'FLOOD') && inspType == 'FL-FINAL' ) {
 			closeTask('Construction', 'Final Release', 'Updated by IRSA Script');
 		}
 
-		if (matches(inspGroup, 'FLOOD') && isTaskActive('Inspections') && inspType == 'FL-FINAL' && matches(inspResult, 'Approved')) {
+		if (matches(inspGroup, 'FLOOD') && isTaskActive('Inspections') && inspType == 'FL-FINAL' ) {
 			closeTask('Inspections', 'Final Release', 'Updated by IRSA Script');
 		}
 
-		if (matches(inspGroup, 'O_OCC') && isTaskActive('Construction') && inspType == 'FP-FIRE MARSHAL' && matches(inspResult, 'Approved')) {
+		if (matches(inspGroup, 'O_OCC') && isTaskActive('Construction') && inspType == 'FP-FIRE MARSHAL' ) {
 			closeTask('Construction', 'Final Release', 'Updated by IRSA Script');
 		}
 
-		if (matches(inspGroup, 'O_OCC') && isTaskActive('Inspections') && inspType == 'FP-FIRE MARSHAL' && matches(inspResult, 'Approved')) {
+		if (matches(inspGroup, 'O_OCC') && isTaskActive('Inspections') && inspType == 'FP-FIRE MARSHAL' ) {
 			closeTask('Inspections', 'Final Release', 'Updated by IRSA Script');
 		}
 
-		if (matches(inspGroup, 'O_FC') && isTaskActive('Construction') && inspType == 'BU-SAFETY' && matches(inspResult, 'Approved')) {
+		if (matches(inspGroup, 'O_FC') && isTaskActive('Construction') && inspType == 'BU-SAFETY' ) {
 			closeTask('Construction', 'Final Release', 'Updated by IRSA Script');
 		}
 
-		if (matches(inspGroup, 'O_FC') && isTaskActive('Inspections') && inspType == 'BU-SAFETY' && matches(inspResult, 'Approved')) {
+		if (matches(inspGroup, 'O_FC') && isTaskActive('Inspections') && inspType == 'BU-SAFETY' ) {
 			closeTask('Inspections', 'Final Release', 'Updated by IRSA Script');
 		}
 
-		if (matches(inspGroup, 'F_OPE') && isTaskActive('Inspections') && inspType == 'OPE-FINAL' && matches(inspResult, 'Approved')) {
+		if (matches(inspGroup, 'F_OPE') && isTaskActive('Inspections') && inspType == 'OPE-FINAL' ) {
 			closeTask('Inspections', 'Final Release', 'Updated by IRSA Script');
 		}
 
-		if (matches(inspGroup, 'ABC') && isTaskActive('Inspections') && inspType == 'BU-FINAL FINAL' && matches(inspResult, 'Approved')) {
+		if (matches(inspGroup, 'ABC') && isTaskActive('Inspections') && inspType == 'BU-FINAL FINAL' ) {
 			closeTask('Inspections', 'Final Release', 'Updated by IRSA Script');
 		}
 
-		if (matches(inspGroup, 'F_CON', 'FA/FS', 'F-S/G', 'REINSP') && isTaskActive('Construction') && matches(inspType, 'FP-FINAL', 'FP-FINAL-REINSP') && matches(inspResult, 'Approved')) {
+		if (matches(inspGroup, 'F_CON', 'FA/FS', 'F-S/G', 'REINSP') && isTaskActive('Construction') && matches(inspType, 'FP-FINAL', 'FP-FINAL-REINSP') ) {
 			closeTask('Construction', 'Final Release', 'Updated by IRSA Script');
 		}
 
-		if (matches(inspGroup, 'F_CON', 'FA/FS', 'F-S/G', 'REINSP') && isTaskActive('Inspections') && matches(inspType, 'FP-FINAL', 'FP-FINAL-REINSP') && matches(inspResult, 'Approved')) {
+		if (matches(inspGroup, 'F_CON', 'FA/FS', 'F-S/G', 'REINSP') && isTaskActive('Inspections') && matches(inspType, 'FP-FINAL', 'FP-FINAL-REINSP') ) {
 			closeTask('Inspections', 'Final Release', 'Updated by IRSA Script');
 		}
 
-		if (matches(inspGroup, 'MULTI', 'SIGN', 'REINSP') && isTaskActive('Construction') && inspType == 'FINAL FINAL' && matches(inspResult, 'Approved')) {
+		if (matches(inspGroup, 'MULTI', 'SIGN', 'REINSP') && isTaskActive('Construction') && inspType == 'FINAL FINAL' ) {
 			closeTask('Construction', 'Final Release', 'Updated by IRSA Script');
 		}
 
-		if (matches(inspGroup, 'MULTI', 'SIGN', 'REINSP') && isTaskActive('Inspections') && inspType == 'FINAL FINAL' && matches(inspResult, 'Approved')) {
+		if (matches(inspGroup, 'MULTI', 'SIGN', 'REINSP') && isTaskActive('Inspections') && inspType == 'FINAL FINAL' ) {
 			closeTask('Inspections', 'Final Release', 'Updated by IRSA Script');
 		}
 
-		if (appMatch('Permits/*/Trade/*') && !appMatch('Permits/*/Trade/Multi-Trade') && isTaskActive('Construction') && matches(inspType, 'EE-FINAL', 'EE-FINAL-REINSP', 'ME-FINAL', 'ME-FINAL-REINSP', 'PL-FINAL', 'PL-FINAL-REINSP', 'GP-FINAL', 'GP-FINAL-REINSP', 'RE-FINAL', 'RE-FINAL-REINSP', 'HO-FINAL', 'HO-FINAL-REINSP') && matches(inspResult, 'Approved')) {
+		if (appMatch('Permits/*/Trade/*') && !appMatch('Permits/*/Trade/Multi-Trade') && isTaskActive('Construction') && matches(inspType, 'EE-FINAL', 'EE-FINAL-REINSP', 'ME-FINAL', 'ME-FINAL-REINSP', 'PL-FINAL', 'PL-FINAL-REINSP', 'GP-FINAL', 'GP-FINAL-REINSP', 'RE-FINAL', 'RE-FINAL-REINSP', 'HO-FINAL', 'HO-FINAL-REINSP') ) {
 			closeTask('Construction', 'Final Release', 'Updated by IRSA Script');
 		}
 
-		if (appMatch('Permits/*/Trade/*') && !appMatch('Permits/*/Trade/Multi-Trade') && isTaskActive('Inspections') && matches(inspType, 'EE-FINAL', 'EE-FINAL-REINSP', 'ME-FINAL', 'ME-FINAL-REINSP', 'PL-FINAL', 'PL-FINAL-REINSP', 'GP-FINAL', 'GP-FINAL-REINSP', 'RE-FINAL', 'RE-FINAL-REINSP', 'HO-FINAL', 'HO-FINAL-REINSP') && matches(inspResult, 'Approved')) {
+		if (appMatch('Permits/*/Trade/*') && !appMatch('Permits/*/Trade/Multi-Trade') && isTaskActive('Inspections') && matches(inspType, 'EE-FINAL', 'EE-FINAL-REINSP', 'ME-FINAL', 'ME-FINAL-REINSP', 'PL-FINAL', 'PL-FINAL-REINSP', 'GP-FINAL', 'GP-FINAL-REINSP', 'RE-FINAL', 'RE-FINAL-REINSP', 'HO-FINAL', 'HO-FINAL-REINSP') ) {
 			closeTask('Inspections', 'Final Release', 'Updated by IRSA Script');
 		}
 
-		if (matches(inspGroup, 'FACE') && isTaskActive('Inspections') && inspType == 'SI-FINAL' && matches(inspResult, 'Approved')) {
+		if (matches(inspGroup, 'FACE') && isTaskActive('Inspections') && inspType == 'SI-FINAL' ) {
 			closeTask('Inspections', 'Final Release', 'Updated by IRSA Script');
 		}
 
-		if (appMatch('Permits/Outdoor Vendor/*/*') && isTaskActive('Inspections') && matches(inspType, 'ZO-FINAL') && matches(inspResult, 'Approved')) {
+		if (appMatch('Permits/Outdoor Vendor/*/*') && isTaskActive('Inspections') && matches(inspType, 'ZO-FINAL') ) {
 			closeTask('Inspections', 'Final Release', 'Updated by IRSA Script');
 		}
 
-		if ((appMatch('Permits/*/New/*') || appMatch('Permits/*/Addition/*') || appMatch('Permits/*/New Building/*') || appMatch('Permits/*/*/Addition') || appMatch('Permits/*/*/Addition') || appMatch('Permits/*/*/Alterations with Addition')) && isTaskActive('Construction') && matches(inspType, 'BU-FINAL FINAL') && matches(inspResult, 'Approved')) {
+		if ((appMatch('Permits/*/New/*') || appMatch('Permits/*/Addition/*') || appMatch('Permits/*/New Building/*') || appMatch('Permits/*/*/Addition') || appMatch('Permits/*/*/Addition') || appMatch('Permits/*/*/Alterations with Addition')) && isTaskActive('Construction') && matches(inspType, 'BU-FINAL FINAL') ) {
 			closeTask('Construction', 'Final Release', 'Updated by IRSA Script');
 		}
 
-		if ((appMatch('Permits/*/New/*') || appMatch('Permits/*/Addition/*') || appMatch('Permits/*/New Building/*') || appMatch('Permits/*/*/Addition') || appMatch('Permits/*/*/Addition') || appMatch('Permits/*/*/Alterations with Addition')) && isTaskActive('Inspections') && matches(inspType, 'BU-FINAL FINAL') && matches(inspResult, 'Approved')) {
+		if ((appMatch('Permits/*/New/*') || appMatch('Permits/*/Addition/*') || appMatch('Permits/*/New Building/*') || appMatch('Permits/*/*/Addition') || appMatch('Permits/*/*/Addition') || appMatch('Permits/*/*/Alterations with Addition')) && isTaskActive('Inspections') && matches(inspType, 'BU-FINAL FINAL') ) {
 			closeTask('Inspections', 'Final Release', 'Updated by IRSA Script');
 		}
 
@@ -180,7 +180,7 @@ if (matches(inspResult, 'Disapproved', 'Disapproved-Level 1 Fee', 'Disapproved-L
 	//end replaced branch: ES_ADD_REINSP;
 }
 
-// TODO:  repeated conditionals, consider refactoring
+// TODO:  repeated conditionals, consider refactoring. Considered, decided not to at this time.
 
 if (matches(inspResult, 'Disapproved-Level 1 Fee', 'Disapproved-Level 2 Fee', 'Disapproved-Level 3 Fee', 'Disapproved-No Plans')) {
 
@@ -330,53 +330,53 @@ if (matches(inspResult, 'Disapproved-Level 1 Fee', 'Disapproved-Level 2 Fee', 'D
 	//end replaced branch: ES_ADD_REINSP_FEE;
 }
 
-// TODO:  repeated conditionals, consider refactoring
+// TODO:  repeated conditionals, consider refactoring. Done.
 
 if (matches(inspResult, 'Disapproved-TCO Fee')) {
 
 	//start replaced branch: ES_ADD_TCO-REINSP_FEE
 	{
-		if (inspType.indexOf('BU') == 0 && matches(inspResult, 'Disapproved-TCO Fee')) {
+		if (inspType.indexOf('BU') == 0 ) {
 			updateFee('BU_INSP', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
 			updateFee('TECH', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
 		}
 
-		if (inspType.indexOf('EE') == 0 && matches(inspResult, 'Disapproved-TCO Fee')) {
+		if (inspType.indexOf('EE') == 0 ) {
 			updateFee('BU_INSP', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
 			updateFee('TECH', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
 		}
 
-		if (inspType.indexOf('ME') == 0 && matches(inspResult, 'Disapproved-TCO Fee')) {
+		if (inspType.indexOf('ME') == 0 ) {
 			updateFee('BU_INSP', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
 			updateFee('TECH', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
 		}
 
-		if (inspType.indexOf('PL') == 0 && matches(inspResult, 'Disapproved-TCO Fee')) {
+		if (inspType.indexOf('PL') == 0 ) {
 			updateFee('BU_INSP', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
 			updateFee('TECH', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
 		}
 
-		if (inspType.indexOf('FP') == 0 && matches(inspResult, 'Disapproved-TCO Fee')) {
+		if (inspType.indexOf('FP') == 0 ) {
 			updateFee('FP_INSP', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
 			updateFee('TECH', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
 		}
 
-		if (inspType.indexOf('ZO') == 0 && matches(inspResult, 'Disapproved-TCO Fee')) {
+		if (inspType.indexOf('ZO') == 0 ) {
 			updateFee('ZO_INSP', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
 			updateFee('TECH', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
 		}
 
-		if (inspType.indexOf('SW') == 0 && matches(inspResult, 'Disapproved-TCO Fee')) {
+		if (inspType.indexOf('SW') == 0 ) {
 			updateFee('SW_INSP', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
 			updateFee('TECH', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
 		}
 
-		if (inspType.indexOf('GR') == 0 && matches(inspResult, 'Disapproved-TCO Fee')) {
+		if (inspType.indexOf('GR') == 0 ) {
 			updateFee('SW_INSP', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
 			updateFee('TECH', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
 		}
 
-		if (inspType.indexOf('FL') == 0 && matches(inspResult, 'Disapproved-TCO Fee')) {
+		if (inspType.indexOf('FL') == 0 ) {
 			updateFee('SW_INSP', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
 			updateFee('TECH', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
 		}
@@ -389,32 +389,32 @@ if (matches(inspResult, 'Disapproved-TU Fee')) {
 
 	//start replaced branch: ES_ADD_TU-REINSP_FEE
 	{
-		if (inspType.indexOf('BU') == 0 && matches(inspResult, 'Disapproved-TU Fee')) {
+		if (inspType.indexOf('BU') == 0 ) {
 			updateFee('BU_INSP', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
 			updateFee('TECH', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
 		}
 
-		if (inspType.indexOf('EE') == 0 && matches(inspResult, 'Disapproved-TU Fee')) {
+		if (inspType.indexOf('EE') == 0 ) {
 			updateFee('BU_INSP', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
 			updateFee('TECH', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
 		}
 
-		if (inspType.indexOf('ME') == 0 && matches(inspResult, 'Disapproved-TU Fee')) {
+		if (inspType.indexOf('ME') == 0 ) {
 			updateFee('BU_INSP', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
 			updateFee('TECH', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
 		}
 
-		if (inspType.indexOf('PL') == 0 && matches(inspResult, 'Disapproved-TU Fee')) {
+		if (inspType.indexOf('PL') == 0 ) {
 			updateFee('BU_INSP', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
 			updateFee('TECH', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
 		}
 
-		if (inspType.indexOf('GP') == 0 && matches(inspResult, 'Disapproved-TU Fee')) {
+		if (inspType.indexOf('GP') == 0 ) {
 			updateFee('BU_INSP', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
 			updateFee('TECH', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
 		}
 
-		if (inspType.indexOf('FP') == 0 && matches(inspResult, 'Disapproved-TU Fee')) {
+		if (inspType.indexOf('FP') == 0 ) {
 			updateFee('FP_INSP', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
 			updateFee('TECH', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
 		}
