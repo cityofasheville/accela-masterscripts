@@ -13,6 +13,7 @@ if (isParent) {
 			newChildID = createChild('Permits', 'Fire', 'Construction', 'Fire Alarm', '');
 			capId = saveCapId;
 			copyAppSpecific(newChildID);
+			//MS Functions around copyOwner, copyGIS to fix issue with tab info not pulling over when creating a child record
 			comment('New child app id = ' + newChildID);
 			t1 = 'Permit ' + capIDString + ' requires a Fire Construction Permit for Fire Alarm & Detection';
 
