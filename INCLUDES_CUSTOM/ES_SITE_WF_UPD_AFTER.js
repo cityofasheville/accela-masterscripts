@@ -104,49 +104,49 @@ function ES_SITE_WF_UPD_AFTER() {
 				createPendingInspection('GR-SW CLOSE', 'GR-MULCH LETTER');
 			}
 
-			if (AInfo['Digital As-Built'] == 'Yes') {
-				createPendingInspection('GR-SW CLOSE', 'SW-DIGITAL AS-BUILT');
-			}
+			//if (AInfo['Digital As-Built'] == 'Yes') {
+			//	createPendingInspection('GR-SW CLOSE', 'SW-DIGITAL AS-BUILT');
+			//}
 
-			if (AInfo['Reproducible As-Built'] == 'Yes') {
-				createPendingInspection('GR-SW CLOSE', 'SW-REPRO AS-BUILT');
-			}
+			//if (AInfo['Reproducible As-Built'] == 'Yes') {
+			//	createPendingInspection('GR-SW CLOSE', 'SW-REPRO AS-BUILT');
+			//}
 
-			if (AInfo['Operations and Maintenance Agreement'] == 'Yes') {
-				createPendingInspection('GR-SW CLOSE', 'SW-O&M AGREEMENT');
-			}
+			//if (AInfo['Operations and Maintenance Agreement'] == 'Yes') {
+			//	createPendingInspection('GR-SW CLOSE', 'SW-O&M AGREEMENT');
+			//}
 
-			if (AInfo['Certificate of Completion - Engineer'] == 'Yes') {
-				createPendingInspection('GR-SW CLOSE', 'SW-CC-ENG');
-			}
+			//if (AInfo['Certificate of Completion - Engineer'] == 'Yes') {
+			//	createPendingInspection('GR-SW CLOSE', 'SW-CC-ENG');
+			//}
 
-			if (AInfo['Certificate of Completion - Owner/Developer'] == 'Yes') {
-				createPendingInspection('GR-SW CLOSE', 'SW-CC-OWNER');
-			}
+			//if (AInfo['Certificate of Completion - Owner/Developer'] == 'Yes') {
+			//	createPendingInspection('GR-SW CLOSE', 'SW-CC-OWNER');
+			//}
 
-			if (AInfo['Certificate of Completion - Contractor'] == 'Yes') {
-				createPendingInspection('GR-SW CLOSE', 'SW-CC-CONTRACTOR');
-			}
+			//if (AInfo['Certificate of Completion - Contractor'] == 'Yes') {
+			//	createPendingInspection('GR-SW CLOSE', 'SW-CC-CONTRACTOR');
+			//}
 
-			if (AInfo['Alternate SW Acceptance Letter'] == 'Yes') {
-				createPendingInspection('GR-SW CLOSE', 'SW-ALT SW LETTER');
-			}
+			//if (AInfo['Alternate SW Acceptance Letter'] == 'Yes') {
+			//	createPendingInspection('GR-SW CLOSE', 'SW-ALT SW LETTER');
+			//}
 
-			if (AInfo['Floodproof Certificate'] == 'Yes') {
-				createPendingInspection('GR-SW CLOSE', 'FLOODPROOF CERTIFICATE');
-			}
+			//if (AInfo['Floodproof Certificate'] == 'Yes') {
+			//	createPendingInspection('GR-SW CLOSE', 'FLOODPROOF CERTIFICATE');
+			//}
 
-			if (AInfo['Post-Construction Elevation Certificate'] == 'Yes') {
-				createPendingInspection('GR-SW CLOSE', 'POST-CONSTRUCTION ELEVATION CERTIFICATE');
-			}
+			//if (AInfo['Post-Construction Elevation Certificate'] == 'Yes') {
+			//	createPendingInspection('GR-SW CLOSE', 'POST-CONSTRUCTION ELEVATION CERTIFICATE');
+			//}
 
-			if (AInfo['Post-Construction No-Rise Certificate'] == 'Yes') {
-				createPendingInspection('GR-SW CLOSE', 'POST-CONSTRUCTION NO-RISE CERTIFICATE');
-			}
+			//if (AInfo['Post-Construction No-Rise Certificate'] == 'Yes') {
+			//	createPendingInspection('GR-SW CLOSE', 'POST-CONSTRUCTION NO-RISE CERTIFICATE');
+			//}
 
-			if (AInfo['Post-Construction LOMR/LOMA'] == 'Yes') {
-				createPendingInspection('GR-SW CLOSE', 'POST-CONSTRUCTION LOMR/LOMA');
-			}
+			//if (AInfo['Post-Construction LOMR/LOMA'] == 'Yes') {
+			//	createPendingInspection('GR-SW CLOSE', 'POST-CONSTRUCTION LOMR/LOMA');
+			//}
 
 		}
 		//end replaced branch: ES_ADD_CLOSEOUT_INSP;
@@ -156,17 +156,17 @@ function ES_SITE_WF_UPD_AFTER() {
 
 		//start replaced branch: ES_ADD_CLOSEOUT_INSP
 		{
-			if (AInfo['ESC Report required?'] == 'Yes') {
-				createPendingInspection('SITE', 'GR-ESC REPORT');
-			}
+			//if (AInfo['ESC Report required?'] == 'Yes') {
+			//	createPendingInspection('SITE', 'GR-ESC REPORT');
+			//}
 
-			if (AInfo['Slope Stability Certificate'] == 'Yes') {
-				createPendingInspection('GR-SW CLOSE', 'GR-SLOPE CERT');
-			}
+			//if (AInfo['Slope Stability Certificate'] == 'Yes') {
+			//	createPendingInspection('GR-SW CLOSE', 'GR-SLOPE CERT');
+			//}
 
-			if (AInfo['Mulch Acceptance Letter'] == 'Yes') {
-				createPendingInspection('GR-SW CLOSE', 'GR-MULCH LETTER');
-			}
+			//if (AInfo['Mulch Acceptance Letter'] == 'Yes') {
+			//	createPendingInspection('GR-SW CLOSE', 'GR-MULCH LETTER');
+			//}
 
 			if (AInfo['Digital As-Built'] == 'Yes') {
 				createPendingInspection('GR-SW CLOSE', 'SW-DIGITAL AS-BUILT');
@@ -196,21 +196,21 @@ function ES_SITE_WF_UPD_AFTER() {
 				createPendingInspection('GR-SW CLOSE', 'SW-ALT SW LETTER');
 			}
 
-			if (AInfo['Floodproof Certificate'] == 'Yes') {
-				createPendingInspection('GR-SW CLOSE', 'FLOODPROOF CERTIFICATE');
-			}
+			//if (AInfo['Floodproof Certificate'] == 'Yes') {
+			//	createPendingInspection('GR-SW CLOSE', 'FLOODPROOF CERTIFICATE');
+			//}
 
-			if (AInfo['Post-Construction Elevation Certificate'] == 'Yes') {
-				createPendingInspection('GR-SW CLOSE', 'POST-CONSTRUCTION ELEVATION CERTIFICATE');
-			}
+			//if (AInfo['Post-Construction Elevation Certificate'] == 'Yes') {
+			//	createPendingInspection('GR-SW CLOSE', 'POST-CONSTRUCTION ELEVATION CERTIFICATE');
+			//}
 
-			if (AInfo['Post-Construction No-Rise Certificate'] == 'Yes') {
-				createPendingInspection('GR-SW CLOSE', 'POST-CONSTRUCTION NO-RISE CERTIFICATE');
-			}
+			//if (AInfo['Post-Construction No-Rise Certificate'] == 'Yes') {
+			//	createPendingInspection('GR-SW CLOSE', 'POST-CONSTRUCTION NO-RISE CERTIFICATE');
+			//}
 
-			if (AInfo['Post-Construction LOMR/LOMA'] == 'Yes') {
-				createPendingInspection('GR-SW CLOSE', 'POST-CONSTRUCTION LOMR/LOMA');
-			}
+			//if (AInfo['Post-Construction LOMR/LOMA'] == 'Yes') {
+			//	createPendingInspection('GR-SW CLOSE', 'POST-CONSTRUCTION LOMR/LOMA');
+			//}
 
 		}
 		//end replaced branch: ES_ADD_CLOSEOUT_INSP;
@@ -220,45 +220,45 @@ function ES_SITE_WF_UPD_AFTER() {
 
 		//start replaced branch: ES_ADD_CLOSEOUT_INSP
 		{
-			if (AInfo['ESC Report required?'] == 'Yes') {
-				createPendingInspection('SITE', 'GR-ESC REPORT');
-			}
+			//if (AInfo['ESC Report required?'] == 'Yes') {
+			//	createPendingInspection('SITE', 'GR-ESC REPORT');
+			//}
 
-			if (AInfo['Slope Stability Certificate'] == 'Yes') {
-				createPendingInspection('GR-SW CLOSE', 'GR-SLOPE CERT');
-			}
+			//if (AInfo['Slope Stability Certificate'] == 'Yes') {
+			//	createPendingInspection('GR-SW CLOSE', 'GR-SLOPE CERT');
+			//}
 
-			if (AInfo['Mulch Acceptance Letter'] == 'Yes') {
-				createPendingInspection('GR-SW CLOSE', 'GR-MULCH LETTER');
-			}
+			//if (AInfo['Mulch Acceptance Letter'] == 'Yes') {
+			//	createPendingInspection('GR-SW CLOSE', 'GR-MULCH LETTER');
+			//}
 
-			if (AInfo['Digital As-Built'] == 'Yes') {
-				createPendingInspection('GR-SW CLOSE', 'SW-DIGITAL AS-BUILT');
-			}
+			//if (AInfo['Digital As-Built'] == 'Yes') {
+			//	createPendingInspection('GR-SW CLOSE', 'SW-DIGITAL AS-BUILT');
+			//}
 
-			if (AInfo['Reproducible As-Built'] == 'Yes') {
-				createPendingInspection('GR-SW CLOSE', 'SW-REPRO AS-BUILT');
-			}
+			//if (AInfo['Reproducible As-Built'] == 'Yes') {
+			//	createPendingInspection('GR-SW CLOSE', 'SW-REPRO AS-BUILT');
+			//}
 
-			if (AInfo['Operations and Maintenance Agreement'] == 'Yes') {
-				createPendingInspection('GR-SW CLOSE', 'SW-O&M AGREEMENT');
-			}
+			//if (AInfo['Operations and Maintenance Agreement'] == 'Yes') {
+			//	createPendingInspection('GR-SW CLOSE', 'SW-O&M AGREEMENT');
+			//}
 
-			if (AInfo['Certificate of Completion - Engineer'] == 'Yes') {
-				createPendingInspection('GR-SW CLOSE', 'SW-CC-ENG');
-			}
+			//if (AInfo['Certificate of Completion - Engineer'] == 'Yes') {
+			//	createPendingInspection('GR-SW CLOSE', 'SW-CC-ENG');
+			//}
 
-			if (AInfo['Certificate of Completion - Owner/Developer'] == 'Yes') {
-				createPendingInspection('GR-SW CLOSE', 'SW-CC-OWNER');
-			}
+			//if (AInfo['Certificate of Completion - Owner/Developer'] == 'Yes') {
+			//	createPendingInspection('GR-SW CLOSE', 'SW-CC-OWNER');
+			//}
 
-			if (AInfo['Certificate of Completion - Contractor'] == 'Yes') {
-				createPendingInspection('GR-SW CLOSE', 'SW-CC-CONTRACTOR');
-			}
+			//if (AInfo['Certificate of Completion - Contractor'] == 'Yes') {
+			//	createPendingInspection('GR-SW CLOSE', 'SW-CC-CONTRACTOR');
+			//}
 
-			if (AInfo['Alternate SW Acceptance Letter'] == 'Yes') {
-				createPendingInspection('GR-SW CLOSE', 'SW-ALT SW LETTER');
-			}
+			//if (AInfo['Alternate SW Acceptance Letter'] == 'Yes') {
+			//	createPendingInspection('GR-SW CLOSE', 'SW-ALT SW LETTER');
+			//}
 
 			if (AInfo['Floodproof Certificate'] == 'Yes') {
 				createPendingInspection('GR-SW CLOSE', 'FLOODPROOF CERTIFICATE');

@@ -1,9 +1,9 @@
 if (matches(currentUserID, 'KHOBDAY', 'DMEEK')) {
 	showDebug = true;
 }
-
+Environment = "DEV";
 // get first address for emails  FOR WTUA and ASA
-var CapAddress = "";
+CapAddress = "";
 capAddressResult1 = aa.address.getAddressByCapId(capId);
 if (capAddressResult1.getSuccess()) {
 	Address = capAddressResult1.getOutput();
