@@ -122,7 +122,7 @@ logGlobals(AInfo);
 
 
 showDebug = false;
-if (appMatch('*/*/*/*') && AInfo['Publically Funded?'] == 'No' && AInfo['Owner Occupied?'] == 'No' && AInfo['Total Project Valuation'] >= 30000) {
+if (appMatch('*/*/*/*') && AInfo['Publically Funded?'] !== 'Yes' && AInfo['Owner Occupied?'] !== 'Yes' && AInfo['Total Project Valuation'] >= 30000) {
 	reqDocs = new Array();
 	reqDocs = getDocReqsEMS();
 	for (x in reqDocs)
