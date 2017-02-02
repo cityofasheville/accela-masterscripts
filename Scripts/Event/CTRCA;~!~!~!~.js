@@ -65,4 +65,4 @@ if (appMatch('Services/Project Inquiry/Meeting Request/NA')) {
 	email('cshort@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Early Assistance' + capIDString + ' Requested', 'A new Early Assistance record ' + capIDString + ' has been created and requires your attention.');
 }
 
-email('rroe@ashevillenc.gov', 'mlipe@ashevillenc.gov', 'noreply@ashevillenc.gov', 'ACA Permit Created', 'The following permit, ' + capIDString + ' was just created in ACA');
+email('mlipe@ashevillenc.gov', 'noreply@ashevillenc.gov', 'ACA Permit Created', 'The following permit, ' + capIDString + ' was just created in ACA');
