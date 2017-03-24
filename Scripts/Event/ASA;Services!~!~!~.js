@@ -5,7 +5,7 @@
 // DISABLED: APP_SA_BRANCH_SERVICES:2
 //br_nch('ES_GET_PARCEL_ATTRIBUTES');
 if (appMatch('Services/Complaint-Enforcement/*/*') && AInfo['ParcelAttribute.RIVER DISTRICT'] == 'Yes') {
-	addAdHocTask('ADHOC TASKS', 'River District Design Review', ' ', 'MCARD');
+	addAdHocTask('ADHOC TASKS', 'River District Design Review', ' ', 'SMONSON');
 }
 
 if (appMatch('Services/Complaint-Enforcement/*/*') && AInfo['ParcelAttribute.DTDR OVERLAY'] == 'Yes') {
@@ -26,6 +26,10 @@ if (appMatch('Services/Complaint-Enforcement/*/*') && AInfo['ParcelAttribute.FLO
 
 if (appMatch('Services/Complaint-Enforcement/*/*')) {
 	scheduleInspectDate('ENF-FOLLOW UP', dateAdd(null, 14), null, null, 'Scheduled by Script');
+}
+
+if (!appMatch('Permits/*/Existing Building/Reroof') && (appMatch('Permits/*/New Building/*') || appMatch('Permits/*/Existing Building/*') || appMatch('*/*/Remodel/*') || appMatch('*/*/Manufactured Home/*') || appMatch('*/*/Demolition/*') || appMatch('*/*/Addition/*') || appMatch('*/*/Accessory Structure/*') || appMatch('Permits/*/New/*') || appMatch('Permits/*/Site Work/*')) && AInfo['ParcelAttribute.RIVER DISTRICT'] == 'Yes') {
+	email('smonson@ashevillenc.gov', 'noreply@ashevillenc.gov', 'River District Design Review Task', 'River District Design Review task assigned. ' + capIDString + ' - Please check Accela and update the record status.');
 }
 
 //end replaced branch: APP_SA_BRANCH_SERVICES;
