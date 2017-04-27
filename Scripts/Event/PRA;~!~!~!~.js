@@ -12,7 +12,7 @@ if (appMatch('Services/Project Inquiry/Meeting Request/NA') && balanceDue == 0) 
 
 //WOID: 94376
 //Description: Send email to Shannon Morgan when an online payment has been made on a homestay permit.
-if (publicuser && appMatch('*/*/*/Home Stay') {
+if (publicuser && appMatch('*/*/*/Home Stay')) {
 	email('smorgan@ashevillenc.gov','noreply@ashevillenc.gov','On- Line Home Stay '+capIDString+' Payment Applied','An on-line payment has been applied on the Home Stay record '+capIDString+' and it requires your attention.');
 	}
 
