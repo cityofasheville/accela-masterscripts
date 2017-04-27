@@ -18,7 +18,7 @@ if (publicuser && appMatch('*/*/*/Home Stay') {
 
 //WOID: 94377
 //Description: Send email to Amy Tesner when an online payment has been made on an event permit.
-if (publicuser && appMatch('Permits/Event-Temporary Use/NA/NA') {
+if (publicuser && appMatch('Permits/Event-Temporary Use/NA/NA')) {
 	email('atesner@ashevillenc.gov','noreply@ashevillenc.gov','On-Line Event '+capIDString+' Payment Applied','An on-line payment has been applied on the Event-Temporary record '+capIDString+' and it requires your attention.');
 	}
 
