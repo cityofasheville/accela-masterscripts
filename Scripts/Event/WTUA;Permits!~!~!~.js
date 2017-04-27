@@ -624,6 +624,17 @@ if (matches(wfTask, 'HRC Overlay') && matches(wfStatus, 'Not Required', 'Minor W
 	email('PAC@ashevillenc.gov', 'noreply@ashevillenc.gov', 'HRC Overlay Task', 'HRC Overlay Review task updated. ' + capIDString + ' - Please check record status and issue if ready.');
 }
 
+// Added as per Diane 3/30/17 -- notifies PAC when River District task is updated to statuses below 
+// (These statuses result in Go To Next Task, e.g. PAC may need to issue permit)
+
+//WOID: 93669
+//Description: 
+// Added as per Diane 3/30/17 -- notifies PAC when River District task is updated to statuses below 
+// (These statuses result in Go To Next Task, e.g. PAC may need to issue permit)
+if (matches(wfTask, 'River District Design Review') && matches(wfStatus, 'Approved', 'Approved with Conditions', 'Not Required')) {
+	email('PAC@ashevillenc.gov', 'noreply@ashevillenc.gov', 'RDDR Task', 'River District Design Review task updated. ' + capIDString + ' - Please check record status and issue if ready.');
+}
+
 if (matches(wfStatus, 'Issue', 'Issue Partial', 'Reissue', 'Amended')) {
 
 	//replaced branch(WORKFLOWTASK_UA_ADD_INSP)
