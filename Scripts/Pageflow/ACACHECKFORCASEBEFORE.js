@@ -162,10 +162,14 @@ if (parcel) {
 	loadParcelAttributesTPS(paArray);
 }
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//WOID: 93659
+//Description:  Inform applicant to call Alex Cole.
 if (!appMatch('Services/*/*/*') && !appMatch('Permits/Sign/*/*') && paArray['ParcelAttribute.HRC OVERLAY'] == 'Yes') {
 	showMessage = true;
-	comment('This application cannot proceed because the parcel is identified in the HRC Overlay.  Please come to the permit center to apply for this permit.');
+	comment('Historic Resource Overlay &mdash; This application may require review by the Historic Resources Department. Please contact 828-259-5638 or Development Services at 828-259-5846 for more information.');
 }
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 if (!appMatch('Services/*/*/*') && !appMatch('Permits/Sign/*/*') && paArray['ParcelAttribute.LANDMARK'] == 'Yes') {
 	showMessage = true;
