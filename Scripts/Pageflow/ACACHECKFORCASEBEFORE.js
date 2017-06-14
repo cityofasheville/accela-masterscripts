@@ -8,8 +8,8 @@
 | Action# : N/A
 |
 | Notes   :This cript was created for Asheville
-|         :Uses custom getRelatedCapsByAddressBefore(appTypeString) function
-|
+|         :Uses custom getRelatedCapsByAddressBefore_TPS(appTypeString) function
+|         : Updated 6-13-17 to handle Address Unit in Check
 /------------------------------------------------------------------------------------------------------*/
 /*------------------------------------------------------------------------------------------------------/
 | START User Configurable Parameters
@@ -127,7 +127,7 @@ showDebug = false;
 
 if (appMatch('Permits/*/*/*')) {
 	AddressValidatedNumber = cap.getAddressModel().getRefAddressId();
-	rfArray = getRelatedCapsByAddressBefore('Permits/Fire/Construction/*');
+	rfArray = getRelatedCapsByAddressBefore_TPS('Permits/Fire/Construction/*');
 }
 
 if (appMatch('Permits/*/*/*') && rfArray != null) {
@@ -167,7 +167,7 @@ if (parcel) {
 //Description:  Inform applicant to call Alex Cole.
 if (!appMatch('Services/*/*/*') && !appMatch('Permits/Sign/*/*') && paArray['ParcelAttribute.HRC OVERLAY'] == 'Yes') {
 	showMessage = true;
-	comment('Historic Resource Overlay &mdash; This application may require review by the Historic Resources Department. Please contact 828-259-5638 or Development Services at 828-259-5846 for more information.');
+	comment('Historic Resource Overlay - This application may require review by the Historic Resources Department. Please contact 828-259-5638 or Development Services at 828-259-5846 for more information.');
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -184,7 +184,7 @@ if (appMatch('Permits/*/*/*') && paArray['ParcelAttribute.JURISDICTION'] != 'Ash
 
 if (appMatch('Permits/*/*/*')) {
 	AddressValidatedNumber = cap.getAddressModel().getRefAddressId();
-	rfArray = getRelatedCapsByAddressBefore('Permits/Commercial/*/*');
+	rfArray = getRelatedCapsByAddressBefore_TPS('Permits/Commercial/*/*');
 }
 
 if (appMatch('Permits/*/*/*') && rfArray != null) {
@@ -210,7 +210,7 @@ if (appMatch('Permits/*/*/*') && rfArray != null) {
 
 if (appMatch('Permits/*/*/*')) {
 	AddressValidatedNumber = cap.getAddressModel().getRefAddressId();
-	rfArray = getRelatedCapsByAddressBefore('Permits/Residential/*/*');
+	rfArray = getRelatedCapsByAddressBefore_TPS('Permits/Residential/*/*');
 }
 
 if (appMatch('Permits/*/*/*') && rfArray != null) {
@@ -4758,6 +4758,10 @@ function getRelatedCapsByAddressBefore(ats)
 	  AddressStreetSuffix = addObj.getStreetSuffix();
 	  AddressZip = addObj.getZip();
 	  AddressStreetDirection = addObj.getStreetDirection();
+
+//keith trying to figure out how to check unit
+//  AddressUnitStart = addObj.getUnitStart();comment("Unit Start = "+AddressUnitStart)
+
 	  }
 
 	 if (AddressStreetDirection == "") AddressStreetDirection = null;
@@ -4782,6 +4786,9 @@ function getRelatedCapsByAddressBefore(ats)
 		// get cap type
 
 		var reltypeArray = relcap.getCapType().toString().split("/");
+//Keith trying to figure out how to check unit
+// var theUnit = relcap.getUnitStart();comment("this unit = "+theUnit)
+
 
 		var isMatch = true;
 		var ata = ats.split("/");
@@ -7643,3 +7650,177 @@ function loadParcelAttributesTPS(thisArr) {
               thisArr["ParcelAttribute.PlanArea"] = fParcelModel.getPlanArea();
            }
 	}
+
+
+function getRelatedCapsByAddressBefore_TPS(ats)
+//
+// returns the capId object of the parent.  Assumes only one parent!
+//
+// Modified 04-26-2016 RS to also check for AddressUnitStart.
+// Requires isNull function.
+{
+    var retArr = new Array();
+
+    // These should be defined from the parameters.
+    useAddressParams = false;
+    logDebug("CapModel: " + aa.env.getValue("CapModel"));
+    if (typeof (AddressValidatedNumber) == "undefined") { AddressValidatedNumber = 0; } else { useAddressParams = true; }
+    if (aa.env.getValue("CapModel")) { useAddressParams = false; AddressValidatedNumber = 0; }  // use Address from CapModel. (ACA Page Flow)
+    if (typeof (AddressHouseNumber) == "undefined") { AddressHouseNumber = 0; }
+    if (typeof (AddressHouseFraction) == "undefined") { AddressHouseFraction = 0; }
+    if (typeof (AddressStreetDirection) == "undefined") { AddressStreetDirection = null; }
+    if (typeof (AddressStreetName) == "undefined") { AddressStreetName = null; }
+    if (typeof (AddressStreetSuffix) == "undefined") { AddressStreetSuffix = null; }
+    if (typeof (AddressUnitNumber) == "undefined") { AddressUnitNumber = null; }
+    if (typeof (AddressCity) == "undefined") { AddressCity = null; }
+    if (typeof (AddressState) == "undefined") { AddressState = null; }
+    if (typeof (AddressZip) == "undefined") { AddressZip = null; }
+    ao = null;
+
+    if (useAddressParams) {
+        logDebug("Checking for records at (AddressParams): " + AddressHouseNumber + " " + AddressStreetDirection + " " + AddressStreetName + " " + AddressStreetSuffix + " " + AddressUnitNumber + ",  " + AddressCity + " " + AddressState + " " + AddressZip);
+    } else if (AddressValidatedNumber > 0) { // get the address info from lookup table if Address Component parameters missing.
+        addObj = aa.address.getRefAddressByPK(parseInt(AddressValidatedNumber)).getOutput();
+        AddressHouseNumber = addObj.getHouseNumberStart();
+        AddressHouseFraction = addObj.getHouseFractionStart();
+        AddressStreetDirection = addObj.getStreetDirection();
+        AddressStreetName = addObj.getStreetName();
+        AddressStreetSuffix = addObj.getStreetSuffix();
+        AddressUnitNumber = addObj.getUnitStart(); // Modified 04-26-2016 RS
+        AddressCity = addObj.getCity();
+        AddressState = addObj.getState();
+        AddressZip = addObj.getZip();
+        ao = addObj; // Modified 04-26-2016 RS
+        logDebug("Checking for records at ( Ref# " + AddressValidatedNumber + "):" + AddressHouseNumber + " " + AddressStreetDirection + " " + AddressStreetName + " " + AddressStreetSuffix + " " + AddressUnitNumber + ",  " + AddressCity + " " + AddressState + " " + AddressZip);
+    } else if (cap.getAddressModel) {        // Derive from capModel.getAddressModels(); // used by ACA Pageflow.
+        // addObj = cap.getCapModel().getAddressModel();
+        addObj = cap.getAddressModel();
+        AddressHouseNumber = addObj.getHouseNumberStart();
+        AddressHouseFraction = addObj.getHouseFractionStart();
+        AddressStreetDirection = addObj.getStreetDirection();
+        AddressStreetName = addObj.getStreetName();
+        AddressStreetSuffix = addObj.getStreetSuffix();
+        AddressUnitNumber = addObj.getUnitStart(); // Modified 04-26-2016 RS
+        AddressCity = addObj.getCity();
+        AddressState = addObj.getState();
+        AddressZip = addObj.getZip();
+        ao = addObj; // Modified 04-26-2016 RS
+        logDebug("Checking for records at (capModel): " + AddressHouseNumber + " " + AddressStreetDirection + " " + AddressStreetName + " " + AddressStreetSuffix + " " + AddressUnitNumber + ",  " + AddressCity + " " + AddressState + " " + AddressZip);
+    } else {
+        logDebug("Checking for records at : " + AddressHouseNumber + " " + AddressStreetDirection + " " + AddressStreetName + " " + AddressStreetSuffix + " " + AddressZip);
+    }
+
+    if (AddressStreetDirection == "") AddressStreetDirection = null;
+    if (AddressHouseNumber == "") AddressHouseNumber = 0;
+    if (AddressStreetSuffix == "") AddressStreetSuffix = null;
+    if (AddressZip == "") AddressZip = null;
+
+    if (AddressHouseNumber == null && AddressStreetName == null)
+    { logDebug("**ERROR: getting addresses: NO Address given."); return false; }
+
+    try {
+        var qf = aa.util.newQueryFormat();
+        // qf.setDataFilter(java.util.List);
+        // qf.setGrouping(java.lang.String);
+        // qf.setQuickQuery(java.util.List);
+        // qf.setStartRow(1);
+        // qf.setEndRow(5);
+        // qf.setMaxRows(5);
+        // qf.getTableName4Filter();
+
+        // logDebug("qf: " + logDebugObjectF(qf, "All", ""));
+
+        // get caps with same address
+        AddressHouseNo = null;
+        if (AddressHouseNumber != null) AddressHouseNo = parseInt(AddressHouseNumber);
+        capAddResult = aa.cap.getCapListByDetailAddress(AddressStreetName, AddressHouseNo, AddressStreetSuffix, AddressZip, AddressStreetDirection, qf);
+        if (capAddResult.getSuccess())
+        { var capIdArray = capAddResult.getOutput(); }
+        else
+        { logDebug("**ERROR: getting similar addresses: " + capAddResult.getErrorMessage()); return false; }
+    } catch (err) {
+        showMessage = true;
+        comment("Error while getting addresses " + AddressValidatedNumber + ", Please contact administrator");
+        logDebug("    Exception message " + err.message);
+        logDebug("    Exception fileName " + err.fileName);
+        logDebug("    Exception lineNumber " + err.lineNumber);
+    }
+
+    if (ao != null)
+        logDebug("Address[" + isNull(ao.getRefAddressId(), "") + "]: " + isNull(ao.getHouseNumberStart(), 0) + " " + isNull(ao.getHouseNumberAlphaEnd(), "") + " " + isNull(ao.getStreetDirection(), "") + " " + isNull(ao.getStreetName(), "") + " " + isNull(ao.getStreetSuffix(), "") + " " + isNull(ao.getUnitStart(), "") + ", " + isNull(ao.getCity(), "") + ", " + isNull(ao.getState(), "") + " " + isNull(ao.getZip(), ""));
+
+    // loop through related caps
+    for (cappy in capIdArray) {
+        // get file date
+        relCapId = capIdArray[cappy].getCapID();
+        relcap = aa.cap.getCap(capIdArray[cappy].getCapID()).getOutput();
+
+        // get cap type
+        var reltypeArray = relcap.getCapType().toString().split("/");
+
+        var isMatch = true;
+        var ata = ats.split("/");
+        if (ata.length != 4)
+            logDebug("**ERROR: The following Application Type String is incorrectly formatted: " + ats);
+        else
+            for (xx in ata)
+            if (!ata[xx].equals(reltypeArray[xx]) && !ata[xx].equals("*"))
+            isMatch = false;
+
+        // Skip if cap type does not match.
+        if (!isMatch) {
+            // logDebug("Skipped " + relCapId.getCustomID() + " Type: " + relcap.getCapType());
+            continue;
+        }
+
+        // Loop thru caps address to see if any exactly match.
+        var skipCap = true;
+        var fcapAddressObj = null;
+        var capAddResult = aa.address.getAddressByCapId(relCapId);
+        if (capAddResult.getSuccess())
+            var fcapAddressObj = capAddResult.getOutput();
+        else {
+            logDebug("**ERROR: Failed to get Address object: " + capAddResult.getErrorType() + ":" + capAddResult.getErrorMessage());
+            return false;
+        }
+
+        for (x in fcapAddressObj) {
+            var ax = fcapAddressObj[x];
+            // if (ao.getRefAddressId() && ao.getRefAddressId() == ax.getRefAddressId()) var skipCap = false;
+            if (isNull(AddressHouseNumber, 0) == isNull(ax.getHouseNumberStart(), 0)
+	            && isNull(AddressStreetDirection, "") == isNull(ax.getStreetDirection(), "")
+	            && isNull(AddressStreetName, "") == isNull(ax.getStreetName(), "")
+	            && isNull(AddressStreetSuffix, "") == isNull(ax.getStreetSuffix(), "")
+	            && isNull(AddressUnitNumber, "") == isNull(ax.getUnitStart(), "")
+
+	            && isNull(AddressHouseFraction, "") == isNull(ax.getHouseFractionStart(), "")
+	            && isNull(AddressCity, "") == isNull(ax.getCity(), "")
+	            && isNull(AddressState, "") == isNull(ax.getState(), "")
+
+	            && isNull(AddressZip, "") == isNull(ax.getZip(), "")) var skipCap = false;
+            if (!skipCap) {
+                logDebug("Found " + relCapId.getCustomID() + " Address[" + isNull(ax.getRefAddressId(), "") + "]: " + isNull(ax.getHouseNumberStart(), 0) + isNull(ax.getHouseFractionStart(), "") + " " + isNull(ax.getHouseNumberAlphaEnd(), "") + " " + isNull(ax.getStreetDirection(), "") + " " + isNull(ax.getStreetName(), "") + " " + isNull(ax.getStreetSuffix(), "") + " " + isNull(ax.getUnitStart(), "") + ", " + isNull(ax.getCity(), "") + ", " + isNull(ax.getState(), "") + " " + isNull(ax.getZip(), ""));
+            } else {
+                // logDebug("Skipped " + relCapId.getCustomID() + " Address[" + isNull(ax.getRefAddressId(), "") + "]: " + isNull(ax.getHouseNumberStart(), 0) + isNull(ax.getHouseFractionStart(), "") + " " + isNull(ax.getHouseNumberAlphaEnd(), "") + " " + isNull(ax.getStreetDirection(), "") + " " + isNull(ax.getStreetName(), "") + " " + isNull(ax.getStreetSuffix(), "") + " " + isNull(ax.getUnitStart(), "") + ", " + isNull(ax.getCity(), "") + ", " + isNull(ax.getState(), "") + " " + isNull(ax.getZip(), ""));
+            }
+        }
+
+        // Skip if address does not completely match.
+        if (skipCap) continue;
+
+        retArr.push(capIdArray[cappy]);
+
+    } // loop through related caps
+
+    if (retArr.length > 0)
+        return retArr;
+    else
+        return null;
+}
+
+function isNull(pTestValue, pNewValue) {
+    if (pTestValue == null || pTestValue == "")
+        return pNewValue;
+    else
+        return pTestValue;
+}
