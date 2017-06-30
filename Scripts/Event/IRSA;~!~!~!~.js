@@ -576,3 +576,101 @@ if (userResult.getSuccess() && inspResult == 'Cancelled') {
 //if (appMatch('Permits/Right of Way/Closures/NA') && isTaskActive('Construction')  && inspType =='SC-FINAL' && matches(inspResult,'Approved')) {
 //	closeTask('Construction','Close','Updateed by Script');
 //	}
+
+// Added by Jerry 6/21/17 -- new reinspection fees have been created. We need to include them here. The above were already done for the BLD and FIRE groups.
+// Now adding Site Engineering, Zoning, Public Works and Water. The new ones are all in the REINSP Fee Schedule
+// Only one level for Signs, three levels for the others
+
+                                if (inspType.indexOf('SI') == 0 && matches(inspResult, 'Disapproved - Reinsp Fee')) {
+                                                updateFee('SIGNREINSP', 'REINSP', 'FINAL', 1, 'Y');
+                                                updateFee('TECH', 'REINSP', 'FINAL', 1, 'Y');
+                                }
+                
+                                if (inspType.indexOf('ZO') == 0 && matches(inspResult, 'Disapproved-Level 1 Fee')) {
+                                                updateFee('REIN_ZOLI', 'REINSP', 'FINAL', 1, 'Y');
+                                                updateFee('TECH', 'REINSP', 'FINAL', 1, 'Y');
+                                }
+                
+                                if (inspType.indexOf('ZO') == 0 && matches(inspResult, 'Disapproved-Level 2 Fee')) {
+                                                updateFee('REIN_ZOLII', 'REINSP', 'FINAL', 1, 'Y');
+                                                updateFee('TECH', 'REINSP', 'FINAL', 1, 'Y');
+                                }
+                                if (inspType.indexOf('ZO') == 0 && matches(inspResult, 'Disapproved-Level 3 Fee')) {
+                                                updateFee('REIN_ZOLIII', 'REINSP', 'FINAL', 1, 'Y');
+                                                updateFee('TECH', 'REINSP', 'FINAL', 1, 'Y');
+                                }
+
+                                if (inspType.indexOf('SID') == 0 && matches(inspResult, 'Disapproved-Level 1 Fee')) {
+                                                updateFee('REIN_PWLI', 'REINSP', 'FINAL', 1, 'Y');
+                                                updateFee('TECH', 'REINSP', 'FINAL', 1, 'Y');
+                                }
+                
+                                if (inspType.indexOf('SID') == 0 && matches(inspResult, 'Disapproved-Level 2 Fee')) {
+                                                updateFee('REIN_PWLII', 'REINSP', 'FINAL', 1, 'Y');
+                                                updateFee('TECH', 'REINSP', 'FINAL', 1, 'Y');
+                                }
+                                if (inspType.indexOf('SID') == 0 && matches(inspResult, 'Disapproved-Level 3 Fee')) {
+                                                updateFee('REIN_PWLIII', 'REINSP', 'FINAL', 1, 'Y');
+                                                updateFee('TECH', 'REINSP', 'FINAL', 1, 'Y');
+                                }
+// MAY NEED TO BREAK OUT DR INTO RES AND COMMERCIAL IF FEES HAVE DIFFERENT CODES -- Leave as is as per Diane 06/28/17
+                                if (inspType.indexOf('DR') == 0 && matches(inspResult, 'Disapproved-Level 1 Fee')) {
+                                                updateFee('REIN_PWLI', 'REINSP', 'FINAL', 1, 'Y');
+                                                updateFee('TECH', 'REINSP', 'FINAL', 1, 'Y');
+                                }
+                
+                                if (inspType.indexOf('DR') == 0 && matches(inspResult, 'Disapproved-Level 2 Fee')) {
+                                                updateFee('REIN_PWLII', 'REINSP', 'FINAL', 1, 'Y');
+                                                updateFee('TECH', 'REINSP', 'FINAL', 1, 'Y');
+                                }
+
+                                if (inspType.indexOf('DR') == 0 && matches(inspResult, 'Disapproved-Level 3 Fee')) {
+                                                updateFee('REIN_PWLIII', 'REINSP', 'FINAL', 1, 'Y');
+                                                updateFee('TECH', 'REINSP', 'FINAL', 1, 'Y');
+                                }
+
+                                if (inspType.indexOf('FL') == 0 && matches(inspResult, 'Disapproved-Level 1 Fee')) {
+                                                updateFee('REIN_SELI', 'REINSP', 'FINAL', 1, 'Y');
+                                                updateFee('TECH', 'REINSP', 'FINAL', 1, 'Y');
+                                }
+                
+                                if (inspType.indexOf('FL') == 0 && matches(inspResult, 'Disapproved-Level 2 Fee')) {
+                                                updateFee('REIN_SELII', 'REINSP', 'FINAL', 1, 'Y');
+                                                updateFee('TECH', 'REINSP', 'FINAL', 1, 'Y');
+                                }
+
+                                if (inspType.indexOf('FL') == 0 && matches(inspResult, 'Disapproved-Level 3 Fee')) {
+                                                updateFee('REIN_SELIII', 'REINSP', 'FINAL', 1, 'Y');
+                                                updateFee('TECH', 'REINSP', 'FINAL', 1, 'Y');
+                                }
+
+                                if (inspType.indexOf('GR') == 0 && matches(inspResult, 'Disapproved-Level 1 Fee')) {
+                                                updateFee('REIN_SELI', 'REINSP', 'FINAL', 1, 'Y');
+                                                updateFee('TECH', 'REINSP', 'FINAL', 1, 'Y');
+                                }
+                
+                                if (inspType.indexOf('GR') == 0 && matches(inspResult, 'Disapproved-Level 2 Fee')) {
+                                                updateFee('REIN_SELII', 'REINSP', 'FINAL', 1, 'Y');
+                                                updateFee('TECH', 'REINSP', 'FINAL', 1, 'Y');
+                                }
+
+                                if (inspType.indexOf('GR') == 0 && matches(inspResult, 'Disapproved-Level 3 Fee')) {
+                                                updateFee('REIN_SELIII', 'REINSP', 'FINAL', 1, 'Y');
+                                                updateFee('TECH', 'REINSP', 'FINAL', 1, 'Y');
+                                }
+
+                                if (inspType.indexOf('SW') == 0 && matches(inspResult, 'Disapproved-Level 1 Fee')) {
+                                                updateFee('REIN_SELI', 'REINSP', 'FINAL', 1, 'Y');
+                                                updateFee('TECH', 'REINSP', 'FINAL', 1, 'Y');
+                                }
+                
+                                if (inspType.indexOf('SW') == 0 && matches(inspResult, 'Disapproved-Level 2 Fee')) {
+                                                updateFee('REIN_SELII', 'REINSP', 'FINAL', 1, 'Y');
+                                                updateFee('TECH', 'REINSP', 'FINAL', 1, 'Y');
+                                }
+
+                                if (inspType.indexOf('SW') == 0 && matches(inspResult, 'Disapproved-Level 3 Fee')) {
+                                                updateFee('REIN_SELIII', 'REINSP', 'FINAL', 1, 'Y');
+                                                updateFee('TECH', 'REINSP', 'FINAL', 1, 'Y');
+                                }
+
