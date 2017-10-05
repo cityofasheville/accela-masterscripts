@@ -3730,7 +3730,7 @@ function email(pToEmail, pFromEmail, pSubject, pText)
 
 function emailContact(mSubj,mText)   // optional: Contact Type, default Applicant
 	{
-	var replyTo = "noreply@accela.com";
+	var replyTo = "noreply@ashevillenc.gov";
 	var contactType = "Applicant"
 	var emailAddress = "";
 
