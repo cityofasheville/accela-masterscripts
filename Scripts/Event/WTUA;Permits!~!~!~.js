@@ -590,6 +590,10 @@ if (matches(wfTask, 'Inspections', 'Power Release', 'Gas Release')) {
 }
 
 if (matches(wfStatus, 'Certificate of Occupancy') && (appMatch('Permits/Commercial/*/*') || appMatch('Permits/Over the Couner/Tenant Occupancy/Like for Like') || appMatch('Permits/Over The Counter/Tenant Occupancy/CO'))) {
+	email('khinz@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Certificate of Occupancy Issued', 'The following location ' + CapAddress + ' has been issued a Certificate of Occupancy for permit ' + capIDString + '. Please coordinate the Occupancy Posting.');
+}
+
+if (matches(wfStatus, 'Certificate of Occupancy') && (appMatch('Permits/Commercial/*/*') || appMatch('Permits/Over the Couner/Tenant Occupancy/Like for Like') || appMatch('Permits/Over The Counter/Tenant Occupancy/CO'))) {
 	email('jpayne@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Certificate of Occupancy Issued', 'The following location ' + CapAddress + ' has been issued a Certificate of Occupancy for permit ' + capIDString + '. Please coordinate the Occupancy Posting.');
 }
 
