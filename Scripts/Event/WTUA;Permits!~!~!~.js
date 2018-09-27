@@ -367,45 +367,75 @@ if (matches(wfTask, 'Inspections', 'Power Release', 'Gas Release')) {
 	//end replaced branch: ES_SET_WF_TU-TCO;
 }
 
-if (matches(wfStatus, 'Certificate of Occupancy') && (appMatch('Permits/Commercial/*/*') || appMatch('Permits/Over the Couner/Tenant Occupancy/Like for Like') || appMatch('Permits/Over The Counter/Tenant Occupancy/CO'))) {
-	email('khinz@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Certificate of Occupancy Issued', 'The following location ' + CapAddress + ' has been issued a Certificate of Occupancy for permit ' + capIDString + '. Please coordinate the Occupancy Posting.');
-}
-
-if (matches(wfStatus, 'Certificate of Occupancy') && (appMatch('Permits/Commercial/*/*') || appMatch('Permits/Over the Couner/Tenant Occupancy/Like for Like') || appMatch('Permits/Over The Counter/Tenant Occupancy/CO'))) {
-	email('jpayne@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Certificate of Occupancy Issued', 'The following location ' + CapAddress + ' has been issued a Certificate of Occupancy for permit ' + capIDString + '. Please coordinate the Occupancy Posting.');
+if (matches(wfStatus, 'Certificate of Occupancy')
+	&& (appMatch('Permits/Commercial/*/*')
+	|| appMatch('Permits/Over the Couner/Tenant Occupancy/Like for Like')
+	|| appMatch('Permits/Over The Counter/Tenant Occupancy/CO'))
+) {
+	email(
+		'khinz@ashevillenc.gov',
+		'noreply@ashevillenc.gov',
+		'Certificate of Occupancy Issued',
+		'The following location ' + CapAddress + ' has been issued a Certificate of Occupancy for permit ' + capIDString + '. Please coordinate the Occupancy Posting.');
+	email(
+		'jpayne@ashevillenc.gov',
+		'noreply@ashevillenc.gov',
+		'Certificate of Occupancy Issued',
+		'The following location ' + CapAddress + ' has been issued a Certificate of Occupancy for permit ' + capIDString + '. Please coordinate the Occupancy Posting.');
 }
 
 // changed from smorgan to talley 05/09/18. Added smorgan back on 5/18
-if (appMatch('Permits/Residential/Home Occupation/Home Stay') && wfTask == 'Application Process' && wfStatus == 'Application Complete') {
+if (appMatch('Permits/Residential/Home Occupation/Home Stay')
+	&& wfTask == 'Application Process'
+	&& wfStatus == 'Application Complete'
+) {
 	email('talley@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Home Stay Application ' + capIDString + ' Received', 'Permit Number: ' + capIDString + ' <br> Location: ' + CapAddress + ' <br> Please begin review of application information. Thank you.');
 	email('smorgan@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Home Stay Application ' + capIDString + ' Received', 'Permit Number: ' + capIDString + ' <br> Location: ' + CapAddress + ' <br> Please begin review of application information. Thank you.');
 }
 
-if (appMatch('Permits/Residential/Home Occupation/Home Stay') && wfTask == 'Zoning Review' && wfStatus == 'Approved') {
+if (appMatch('Permits/Residential/Home Occupation/Home Stay')
+	&& wfTask == 'Zoning Review'
+	&& wfStatus == 'Approved'
+) {
 	scheduleInspectDate('ZO-HOMESTAY', dateAdd(null, 1), null, null, 'Scheduled by Script - Make contact with applicant to confirm inspection availability.');
 }
 
 if ((appMatch('Permits/*/Site Work/NA') || appMatch('Permits/Stormwater/Flood Plain Development/NA'))) {
-
 	//replaced branch(ES_SITE_WF_UPD_AFTER)
 	ES_SITE_WF_UPD_AFTER();
 }
 
-if (matches(wfTask, 'Planning', 'Zoning Review') && matches(wfStatus, 'Approved', 'Approved with Conditions', 'Disapproved', 'Partial Approval') && AInfo['Apply Steep Slope Fee?'] == 'Yes') {
+if (matches(wfTask, 'Planning', 'Zoning Review')
+	&& matches(wfStatus, 'Approved', 'Approved with Conditions', 'Disapproved', 'Partial Approval')
+	&& AInfo['Apply Steep Slope Fee?'] == 'Yes'
+) {
 	updateFee('STEEPSLOPE', 'RES_NEW', 'FINAL', 1, 'Y');
 	updateFee('TECH', 'GENERAL', 'FINAL', 1, 'Y');
 }
 
-if (matches(wfTask, 'Downtown Design Review') && matches(wfStatus, 'Approved', 'Approved with Conditions', 'Not Required')) {
-	email('PAC@ashevillenc.gov', 'noreply@ashevillenc.gov', 'DTDR Task', 'Downtown Design Review task updated. ' + capIDString + ' - Please check record status and issue if ready.');
+if (matches(wfTask, 'Downtown Design Review')
+	&& matches(wfStatus, 'Approved', 'Approved with Conditions', 'Not Required')
+) {
+	email('PAC@ashevillenc.gov',
+		'noreply@ashevillenc.gov',
+		'DTDR Task',
+		'Downtown Design Review task updated. ' + capIDString + ' - Please check record status and issue if ready.');
 }
 
-if (matches(wfTask, 'Landmark') && matches(wfStatus, 'Not Required', 'Major Work Required', 'Minor Work Required')) {
-	email('PAC@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Landmark Task', 'Landmark Review task updated. ' + capIDString + ' - Please check record status and issue if ready.');
+if (matches(wfTask, 'Landmark')
+	&& matches(wfStatus, 'Not Required', 'Major Work Required', 'Minor Work Required')) {
+	email('PAC@ashevillenc.gov',
+		'noreply@ashevillenc.gov',
+		'Landmark Task',
+		'Landmark Review task updated. ' + capIDString + ' - Please check record status and issue if ready.');
 }
 
-if (matches(wfTask, 'HRC Overlay') && matches(wfStatus, 'Not Required', 'Minor Work Required', 'Major Work Required')) {
-	email('PAC@ashevillenc.gov', 'noreply@ashevillenc.gov', 'HRC Overlay Task', 'HRC Overlay Review task updated. ' + capIDString + ' - Please check record status and issue if ready.');
+if (matches(wfTask, 'HRC Overlay')
+	&& matches(wfStatus, 'Not Required', 'Minor Work Required', 'Major Work Required')) {
+	email('PAC@ashevillenc.gov',
+		'noreply@ashevillenc.gov',
+		'HRC Overlay Task',
+		'HRC Overlay Review task updated. ' + capIDString + ' - Please check record status and issue if ready.');
 }
 
 // Added as per Diane 3/30/17 -- notifies PAC when River District task is updated to statuses below
@@ -415,39 +445,44 @@ if (matches(wfTask, 'HRC Overlay') && matches(wfStatus, 'Not Required', 'Minor W
 //Description:
 // Added as per Diane 3/30/17 -- notifies PAC when River District task is updated to statuses below
 // (These statuses result in Go To Next Task, e.g. PAC may need to issue permit)
-if (matches(wfTask, 'River District Design Review') && matches(wfStatus, 'Approved', 'Approved with Conditions', 'Not Required')) {
-	email('PAC@ashevillenc.gov', 'noreply@ashevillenc.gov', 'RDDR Task', 'River District Design Review task updated. ' + capIDString + ' - Please check record status and issue if ready.');
+if (matches(wfTask, 'River District Design Review')
+	&& matches(wfStatus, 'Approved', 'Approved with Conditions', 'Not Required')
+) {
+	email('PAC@ashevillenc.gov',
+		'noreply@ashevillenc.gov',
+		'RDDR Task',
+		'River District Design Review task updated. ' + capIDString + ' - Please check record status and issue if ready.');
 }
 
 if (matches(wfStatus, 'Issue', 'Issue Partial', 'Reissue', 'Amended')) {
-
 	//replaced branch(WORKFLOWTASK_UA_ADD_INSP)
 	WORKFLOWTASK_UA_ADD_INSP();
 }
 
-if (appMatch('*/*/*/Repair-Replacement')) {
+if (appMatch('*/*/*/Repair-Replacement' && matches(wfStatus, 'Hold - See Comment'))) {
 	var profArr = getLicenseProfessional(capId);
-}
-
-if (appMatch('*/*/*/Repair-Replacement') && matches(wfTask, 'Air Quality') && matches(wfStatus, 'Hold - See Comment') && profArr != null) {
-	for (x in profArr)
-		if (profArr[x].getEmail() + '' != '')
-			email(profArr[x].getEmail(), 'noreply@ashevillenc.gov', 'Permit Suspended', 'You are identified as a Licensed Contractor on permit, ' + capIDString + ' This Repair-Replacement permit has been suspended by the WNC Regional Air Quality Agency. Please cease work immediately and contact Mike Matthews at 828-250- 6776 for information regarding next steps.');
-}
-
-if (appMatch('*/*/*/Repair-Replacement') && matches(wfTask, 'Fire Review') && matches(wfStatus, 'Hold - See Comment') && profArr != null) {
-	for (x in profArr)
-		if (profArr[x].getEmail() + '' != '')
+	if (matches(wfTask, 'Fire Review') && profArr != null) {
+		emailContact('Permit Suspended', "You are listed as a contact for permit " + capIDString + " This repair - replacement permit has been suspended by the Fire Marshal ' s Office.Please cease work and contact the permit office at 828 - 259 - 5846 for information regarding next steps.");
+		if (profArr != null) {
+			for (x in profArr)
+			if (profArr[x].getEmail() + '' != '')
 			email(profArr[x].getEmail(), 'noreply@ashevillenc.gov', 'Permit Suspended', "You are identified as a Licensed Contractor on permit,  ' + capIDString + ' This Repair-Replacement permit has been suspended by the Fire Marshal' s Office.Please cease work immediately and contact the permit office at 828 - 259 - 5846 for information regarding next steps.");
+		}
+	}
+	if (matches(wfTask, 'Air Quality')) {
+		if (profArr != null) {
+			for (x in profArr)
+			if (profArr[x].getEmail() + '' != '')
+			email(profArr[x].getEmail(), 'noreply@ashevillenc.gov', 'Permit Suspended', 'You are identified as a Licensed Contractor on permit, ' + capIDString + ' This Repair-Replacement permit has been suspended by the WNC Regional Air Quality Agency. Please cease work immediately and contact Mike Matthews at 828-250- 6776 for information regarding next steps.');
+		}
+		emailContact('Permit Suspended',
+		'You are listed as a contact for permit ' + capIDString + " This repair - replacement permit has been suspended by the WNC Regional Air Quality Agency.Please cease work and contact Mike Matthews at 828 - 250 - 6776 for information regarding next steps.");
+	}
 }
 
-if (appMatch('*/*/*/Repair-Replacement') && matches(wfTask, 'Air Quality') && matches(wfStatus, 'Hold - See Comment')) {
-	emailContact('Permit Suspended', 'You are listed as a contact for permit ' + capIDString + " This repair - replacement permit has been suspended by the WNC Regional Air Quality Agency.Please cease work and contact Mike Matthews at 828 - 250 - 6776 for information regarding next steps.");
-}
 
-if (appMatch('*/*/*/Repair-Replacement') && matches(wfTask, 'Fire Review') && matches(wfStatus, 'Hold - See Comment')) {
-	emailContact('Permit Suspended', "You are listed as a contact for permit " + capIDString + " This repair - replacement permit has been suspended by the Fire Marshal ' s Office.Please cease work and contact the permit office at 828 - 259 - 5846 for information regarding next steps.");
-}
+
+
 
 if ((appMatch('Planning/Development/*/*') || appMatch('Planning/Subdivision/*/*') || appMatch('Permits/*/Site Work/*')) && matches(wfStatus, 'Issue') && AInfo['Issue Grading Permit To'] != 'NA') {
 	emailContact('Grading Preliminary Inspection Required', 'Permit Number: ' + capIDString + ' <br> Location: ' + CapAddress + ' <br> A Grading Permit is being issued for this location contingent upon proper installation of all erosion control devices. <br> The contractor must schedule a GR-PRELIM inspection before commencing work. All approved plans and permits must be on site. Silt Fencing and a Construction Entrance must be installed, and the temporary address must be posted. This inspection is required on individual lots, master sites and also required for individual lots within Subdivisions. Building permit inspections will be delayed until the Grading Preliminary inspection is approved. Thank you.');
