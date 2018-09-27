@@ -213,10 +213,10 @@ if (wfTask == 'Conditions of Approval') {
 if (wfTask == 'Routing') {
 	//start replaced branch: ES_SET_WF_DIVISION REVIEW
 	var divisionReviewSetList = [
-		'Building Review',
-		'Zoning Review',
-		'Fire Review',
 		'Addressing',
+		'Building Review',
+		'Fire Review',
+		'Zoning Review',
 	]
 	for (var divisionReviewIndex = 0; divisionReviewIndex < divisionReviewSetList.length; divisionReviewIndex++) {
 		var divisionReviewCheck = divisionReviewSetList[divisionReviewIndex];
@@ -225,55 +225,32 @@ if (wfTask == 'Routing') {
 		}
 	}
 	//end replaced branch: ES_SET_WF_DIVISION REVIEW;
-
+	function setAllDivisionReviewTimes(numDays, divisionList) {
+		for (var divisionDateSetIndex = 0; divisionDateSetIndex < divisionList.length; divisionDateSetIndex++) {
+			var thisDivision = divisionList[divisionDateSetIndex];
+			editTaskDueDate(thisDivision, dateAdd(null, numDays, 'Y'));
+		}
+	}
 	//start replaced branch: ES_SET_WF_DUEDATE
 	if (AInfo['Expected Timeframe'] === 'Quick Touch - 3 Days') {
-		editTaskDueDate('Building Review', dateAdd(null, 3, 'Y'));
-		editTaskDueDate('Fire Review', dateAdd(null, 3, 'Y'));
-		editTaskDueDate('Zoning Review', dateAdd(null, 3, 'Y'));
-		editTaskDueDate('Addressing', dateAdd(null, 3, 'Y'));
+		setAllDivisionReviewTimes(3, divisionReviewSetList)
 	}
-
 	if (AInfo['Expected Timeframe'] === 'Res. Waiver - 2 Days') {
-		editTaskDueDate('Addressing', dateAdd(null, 2, 'Y'));
-		editTaskDueDate('Building Review', dateAdd(null, 2, 'Y'));
-		editTaskDueDate('Fire Review', dateAdd(null, 2, 'Y'));
-		editTaskDueDate('Zoning Review', dateAdd(null, 2, 'Y'));
+		setAllDivisionReviewTimes(2, divisionReviewSetList)
 	}
-
-	if (AInfo['Expected Timeframe'] === 'Residential - 10 Days') {
-		editTaskDueDate('Building Review', dateAdd(null, 10, 'Y'));
-		editTaskDueDate('Fire Review', dateAdd(null, 10, 'Y'));
-		editTaskDueDate('Zoning Review', dateAdd(null, 10, 'Y'));
-		editTaskDueDate('Addressing', dateAdd(null, 10, 'Y'));
+	if (AInfo['Expected Timeframe'] === 'Residential - 10 Days'
+		|| AInfo['Expected Timeframe'] === 'Small Comm - 10 Days'
+	) {
+		setAllDivisionReviewTimes(10, divisionReviewSetList)
 	}
-
-	if (AInfo['Expected Timeframe'] === 'Small Comm - 10 Days') {
-		editTaskDueDate('Building Review', dateAdd(null, 10, 'Y'));
-		editTaskDueDate('Fire Review', dateAdd(null, 10, 'Y'));
-		editTaskDueDate('Zoning Review', dateAdd(null, 10, 'Y'));
-		editTaskDueDate('Addressing', dateAdd(null, 10, 'Y'));
-	}
-
 	if (AInfo['Expected Timeframe'] === 'Std Level I Comm  - 21 Days') {
-		editTaskDueDate('Building Review', dateAdd(null, 21, 'Y'));
-		editTaskDueDate('Fire Review', dateAdd(null, 21, 'Y'));
-		editTaskDueDate('Zoning Review', dateAdd(null, 21, 'Y'));
-		editTaskDueDate('Addressing', dateAdd(null, 21, 'Y'));
+		setAllDivisionReviewTimes(21, divisionReviewSetList)
 	}
-
 	if (AInfo['Expected Timeframe'] === 'Std Level II or III Comm - 45 Days') {
-		editTaskDueDate('Building Review', dateAdd(null, 45, 'Y'));
-		editTaskDueDate('Fire Review', dateAdd(null, 45, 'Y'));
-		editTaskDueDate('Zoning Review', dateAdd(null, 45, 'Y'));
-		editTaskDueDate('Addressing', dateAdd(null, 45, 'Y'));
+		setAllDivisionReviewTimes(45, divisionReviewSetList)
 	}
-
 	if (AInfo['Expected Timeframe'] === 'Large Comm - 90 Days') {
-		editTaskDueDate('Building Review', dateAdd(null, 90, 'Y'));
-		editTaskDueDate('Fire Review', dateAdd(null, 90, 'Y'));
-		editTaskDueDate('Zoning Review', dateAdd(null, 90, 'Y'));
-		editTaskDueDate('Addressing', dateAdd(null, 90, 'Y'));
+		setAllDivisionReviewTimes(90, divisionReviewSetList)
 	}
 	//end replaced branch: ES_SET_WF_DUEDATE;
 }
@@ -385,12 +362,18 @@ if (matches(wfStatus, 'Certificate of Occupancy')
 }
 
 // changed from smorgan to talley 05/09/18. Added smorgan back on 5/18
+function emailToStartHomeStayReview(emailAddress) {
+	email(emailAddress,
+		'noreply@ashevillenc.gov',
+		'Home Stay Application ' + capIDString + ' Received', 'Permit Number: ' + capIDString + ' <br> Location: ' + CapAddress + ' <br> Please begin review of application information. Thank you.');
+}
+
 if (appMatch('Permits/Residential/Home Occupation/Home Stay')
 	&& wfTask == 'Application Process'
 	&& wfStatus == 'Application Complete'
 ) {
-	email('talley@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Home Stay Application ' + capIDString + ' Received', 'Permit Number: ' + capIDString + ' <br> Location: ' + CapAddress + ' <br> Please begin review of application information. Thank you.');
-	email('smorgan@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Home Stay Application ' + capIDString + ' Received', 'Permit Number: ' + capIDString + ' <br> Location: ' + CapAddress + ' <br> Please begin review of application information. Thank you.');
+	emailToStartHomeStayReview('talley@ashevillenc.gov')
+	emailToStartHomeStayReview('smorgan@ashevillenc.gov')
 }
 
 if (appMatch('Permits/Residential/Home Occupation/Home Stay')
