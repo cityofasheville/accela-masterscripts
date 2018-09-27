@@ -1,50 +1,44 @@
 //start replaced branch: WORKFLOW_UA_PERMITS
 
-
-// MM CHANGE 1: Remove all repetitions of getParent() call
 var currentResultOfGetParent = getParent();
 //start replaced branch: ES_CREATE_FIRE_SIBLING
 var wfTaskFirePreventionOrReview = (wfTask == 'Fire Prevention' || wfTask == 'Fire Review')
 var wfStatusApprovedOrWithConditions = matches(wfStatus, 'Approved', 'Approved with Conditions')
 if (wfTaskFirePreventionOrReview && wfStatusApprovedOrWithConditions) {
+	var preventionOrReviewApprovedOrWithConditionsList = [
+		{
+			// Use permitCat for !hasSibling(capId, 'Permits/Fire/Construction/Fire Alarm')
+			// Also use permitCat for newChildID = createChild('Permits', 'Fire', 'Construction', 'Fire Alarm', '');
+			permitCat: 'Fire Alarm',
+			// Use aInfot1 for AInfo['Fire Alarm & Detection Permit Required'] == 'Yes'
+			// Also use aInfot1
+			aInfot1: 'Fire Alarm & Detection',
+		},
+		{
+			permitCat: 'Sprinkler System',
+			aInfot1: 'Sprinkler System',
+		},
+		{
+			permitCat: 'Hood Suppression',
+			aInfot1: 'Hood Suppression',
+		},
+		{
+			permitCat: 'Compressed Gas',
+			aInfot1: 'Compressed Gas',
+		},
+		{
+			permitCat: 'Other',
+			aInfot1: 'Other Construction',
+		},
+		{
+			permitCat: 'ERRC (Radio Booster)',
+			aInfot1: 'Fire ERRC (Radio Booster)',
+		}
+	]
 	if (currentResultOfGetParent) {
-		// MM CHANGE 2: Call these methods once instead of repeating in every if statement below
-
-			// MM CHANGE 3: Do this once instead of inside each of the if statements below
 			// All of these are Permits/Fire/Construction/[permitCat]
-			var permitList = [
-				{
-					// Use permitCat for !hasSibling(capId, 'Permits/Fire/Construction/Fire Alarm')
-					// Also use permitCat for newChildID = createChild('Permits', 'Fire', 'Construction', 'Fire Alarm', '');
-					permitCat: 'Fire Alarm',
-					// Use aInfot1 for AInfo['Fire Alarm & Detection Permit Required'] == 'Yes'
-					// Also use aInfot1
-					aInfot1: 'Fire Alarm & Detection',
-				},
-				{
-					permitCat: 'Sprinkler System',
-					aInfot1: 'Sprinkler System',
-				},
-				{
-					permitCat: 'Hood Suppression',
-					aInfot1: 'Hood Suppression',
-				},
-				{
-					permitCat: 'Compressed Gas',
-					aInfot1: 'Compressed Gas',
-				},
-				{
-					permitCat: 'Other',
-					aInfot1: 'Other Construction',
-				},
-				{
-					permitCat: 'ERRC (Radio Booster)',
-					aInfot1: 'Fire ERRC (Radio Booster)',
-				}
-			]
-
-			for (var permitListIndex = 0; permitListIndex < permitListIndex.length; permitListIndex++) {
-				var thisPermitCheck = permitList[permitListIndex];
+			for (var permitListIndex = 0; permitListIndex < preventionOrReviewApprovedOrWithConditionsList.length; permitListIndex++) {
+				var thisPermitCheck = preventionOrReviewApprovedOrWithConditionsList[permitListIndex];
 				if (AInfo[thisPermitCheck.aInfot1 + ' Permit Required'] === 'Yes' && !hasSibling(capId, 'Permits/Fire/Construction/' + thisPermitCheck.permitCat)) {
 					saveCapId = capId;
 					pCapId = currentResultOfGetParent;
@@ -64,78 +58,19 @@ if (wfTaskFirePreventionOrReview && wfStatusApprovedOrWithConditions) {
 		//end replaced branch: ES_CREATE_FIRE_SIBLING;
 	} else { // If NOT currentResultOfGetParent
 		//start replaced branch: ES_CREATE_FIRE_CHILD
-		if (AInfo['Fire Alarm & Detection Permit Required'] == 'Yes' && !hasChildren('Permits/Fire/Construction/Fire Alarm')) {
-			newChildID = createChild('Permits', 'Fire', 'Construction', 'Fire Alarm', '');
-			copyAppSpecific(newChildID);
-			comment('New child app id = ' + newChildID);
-			t1 = 'Permit ' + capIDString + ' requires a Fire Construction Permit for Fire Alarm & Detection';
-
-			//replaced branch(ES_BUILD_WORKDESC_CONSTRUCTION)
-			ES_BUILD_WORKDESC_CONSTRUCTION();
-			updateAppStatus('Submittal Required', 'Initial Status set by script', newChildID);
-			editAppSpecific('Cost of Work', '0', newChildID);
+		for (var elsePermitListIndex = 0; elsePermitListIndex < preventionOrReviewApprovedOrWithConditionsList.length, elsePermitListIndex++) {
+			var thisPermitCheckElse = preventionOrReviewApprovedOrWithConditionsList[elsePermitListIndex];
+			if (AInfo[thisPermitCheckElse.aInfot1 + ' Permit Required'] === 'Yes' && !hasChildren('Permits/Fire/Construction/' + thisPermitCheckElse.permitCat)) {
+				newChildID = createChild('Permits', 'Fire', 'Construction', thisPermitCheckElse.permitCat, '');
+				copyAppSpecific(newChildID);
+				comment('New child app id = ' + newChildID);
+				t1 = 'Permit ' + capIDString + ' requires a Fire Construction Permit for a ' + thisPermitCheckElse.aInfot1 + ' Permit';
+				//replaced branch(ES_BUILD_WORKDESC_CONSTRUCTION)
+				ES_BUILD_WORKDESC_CONSTRUCTION();
+				updateAppStatus('Submittal Required', 'Initial Status set by script', newChildID);
+				editAppSpecific('Cost of Work', '0', newChildID);
+			}
 		}
-
-		if (AInfo['Sprinkler System Permit Required'] == 'Yes' && !hasChildren('Permits/Fire/Construction/Sprinkler System')) {
-			newChildID = createChild('Permits', 'Fire', 'Construction', 'Sprinkler System', '');
-			copyAppSpecific(newChildID);
-			comment('New child app id = ' + newChildID);
-			t1 = 'Permit ' + capIDString + ' requires a Fire Construction Permit for Sprinkler a System';
-
-			//replaced branch(ES_BUILD_WORKDESC_CONSTRUCTION)
-			ES_BUILD_WORKDESC_CONSTRUCTION();
-			updateAppStatus('Submittal Required', 'Initial Status set by script', newChildID);
-			editAppSpecific('Cost of Work', '0', newChildID);
-		}
-
-		if (AInfo['Hood Suppression Permit Required'] == 'Yes' && !hasChildren('Permits/Fire/Construction/Hood Suppression')) {
-			newChildID = createChild('Permits', 'Fire', 'Construction', 'Hood Suppression', '');
-			copyAppSpecific(newChildID);
-			comment('New child app id = ' + newChildID);
-			t1 = 'Permit ' + capIDString + ' requires a Fire Construction Permit for a Hood Suppression Permit';
-
-			//replaced branch(ES_BUILD_WORKDESC_CONSTRUCTION)
-			ES_BUILD_WORKDESC_CONSTRUCTION();
-			updateAppStatus('Submittal Required', 'Initial Status set by script', newChildID);
-			editAppSpecific('Cost of Work', '0', newChildID);
-		}
-
-		if (AInfo['Compressed Gas Permit Required'] == 'Yes' && !hasChildren('Permits/Fire/Construction/Compressed Gas')) {
-			newChildID = createChild('Permits', 'Fire', 'Construction', 'Compressed Gas', '');
-			copyAppSpecific(newChildID);
-			comment('New child app id = ' + newChildID);
-			t1 = 'Permit ' + capIDString + ' requires a Fire Construction Permit for a Compressed Gas Permit';
-
-			//replaced branch(ES_BUILD_WORKDESC_CONSTRUCTION)
-			ES_BUILD_WORKDESC_CONSTRUCTION();
-			updateAppStatus('Submittal Required', 'Initial Status set by script', newChildID);
-			editAppSpecific('Cost of Work', '0', newChildID);
-		}
-
-		if (AInfo['Other Construction Permit Required'] == 'Yes' && !hasChildren('Permits/Fire/Construction/Other')) {
-			newChildID = createChild('Permits', 'Fire', 'Construction', 'Other', '');
-			copyAppSpecific(newChildID);
-			comment('New child app id = ' + newChildID);
-			t1 = 'Permit ' + capIDString + ' requires a Fire Construction Permit for an Other Construction Permit';
-
-			//replaced branch(ES_BUILD_WORKDESC_CONSTRUCTION)
-			ES_BUILD_WORKDESC_CONSTRUCTION();
-			updateAppStatus('Application Received ', 'Initial Status set by script', newChildID);
-			editAppSpecific('Cost of Work', '0', newChildID);
-		}
-	//Added 8/31/18 for Fire ERRC
-		if (AInfo['Fire ERRC (Radio Booster) Required'] == 'Yes' && !hasChildren('Permits/Fire/Construction/ERRC (Radio Booster)')) {
-			newChildID = createChild('Permits', 'Fire', 'Construction', 'Other', '');
-			copyAppSpecific(newChildID);
-			comment('New child app id = ' + newChildID);
-			t1 = 'Permit ' + capIDString + ' requires a Fire Construction Permit for a Fire ERRC Radio Booster Permit';
-
-			//replaced branch(ES_BUILD_WORKDESC_CONSTRUCTION)
-			ES_BUILD_WORKDESC_CONSTRUCTION();
-			updateAppStatus('Application Received ', 'Initial Status set by script', newChildID);
-			editAppSpecific('Cost of Work', '0', newChildID);
-		}
-	// end added 8/31/18
 	//end replaced branch: ES_CREATE_FIRE_CHILD;
 	}
 }
