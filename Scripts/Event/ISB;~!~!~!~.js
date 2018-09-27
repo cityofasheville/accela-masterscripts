@@ -1,4 +1,3 @@
-
 if ((appMatch('Permits/*/*/*') || appMatch('Planning/*/*/*')) && !matches(capStatus, 'Issued', 'Reissued', 'Partial Issued', 'TCO Issued', 'Inspections', 'TCO Reissued', 'TCC Issued', 'In Compliance', 'Renewed', 'Amended', 'TCO Issued 30 Days', 'TCO Issued 60 Days', 'TCO Issued 90 Days', 'TCC Issued 30 Days', 'TCC Issued 60 Days', 'TCC Issued 90 Days')) {
 	showMessage = true;
 	comment("<font size=small><b>Permit NOT Issued:</b></font><br><br>Please visit the Development Services Department for re-issuance.<br><br>");
@@ -361,7 +360,8 @@ if (appMatch('Permits/Residential/*/*') && matches(inspType, 'BU-FRAMING')) {
 if (matches(inspType, 'BU-FINAL', 'BU-FINAL-REINSP', 'MH-FINAL')) {
 
 	//start replaced branch: ES_GET_CHILD_FINALS
-	{
+// remove this "else" 7/3/18 -	{
+
 		childrenCapId = getChildren('Permits/*/Trade/*', capId);
 		if (typeof(childrenCapId) == 'object') {
 			for (eachchild in childrenCapId)
@@ -422,7 +422,7 @@ if (matches(inspType, 'BU-FINAL', 'BU-FINAL-REINSP', 'MH-FINAL')) {
 
 			}
 			//end replaced branch: ES_ISB_CHILDFINALS;
-		}
+		// remove this "end" 7/3/18 -}
 
 	}
 	//end replaced branch: ES_GET_CHILD_FINALS;
