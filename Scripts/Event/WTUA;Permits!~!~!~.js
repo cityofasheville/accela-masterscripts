@@ -226,121 +226,54 @@ if (wfTask == 'Routing') {
 	}
 	//end replaced branch: ES_SET_WF_DIVISION REVIEW;
 
-
-
 	//start replaced branch: ES_SET_WF_DUEDATE
-	{
-		if (AInfo['Expected Timeframe'] == 'Quick Touch - 3 Days') {
-			editTaskDueDate('Building Review', dateAdd(null, 3, 'Y'));
-		}
+	if (AInfo['Expected Timeframe'] === 'Quick Touch - 3 Days') {
+		editTaskDueDate('Building Review', dateAdd(null, 3, 'Y'));
+		editTaskDueDate('Fire Review', dateAdd(null, 3, 'Y'));
+		editTaskDueDate('Zoning Review', dateAdd(null, 3, 'Y'));
+		editTaskDueDate('Addressing', dateAdd(null, 3, 'Y'));
+	}
 
-		if (AInfo['Expected Timeframe'] == 'Quick Touch - 3 Days') {
-			editTaskDueDate('Fire Review', dateAdd(null, 3, 'Y'));
-		}
+	if (AInfo['Expected Timeframe'] === 'Res. Waiver - 2 Days') {
+		editTaskDueDate('Addressing', dateAdd(null, 2, 'Y'));
+		editTaskDueDate('Building Review', dateAdd(null, 2, 'Y'));
+		editTaskDueDate('Fire Review', dateAdd(null, 2, 'Y'));
+		editTaskDueDate('Zoning Review', dateAdd(null, 2, 'Y'));
+	}
 
-		if (AInfo['Expected Timeframe'] == 'Quick Touch - 3 Days') {
-			editTaskDueDate('Zoning Review', dateAdd(null, 3, 'Y'));
-		}
+	if (AInfo['Expected Timeframe'] === 'Residential - 10 Days') {
+		editTaskDueDate('Building Review', dateAdd(null, 10, 'Y'));
+		editTaskDueDate('Fire Review', dateAdd(null, 10, 'Y'));
+		editTaskDueDate('Zoning Review', dateAdd(null, 10, 'Y'));
+		editTaskDueDate('Addressing', dateAdd(null, 10, 'Y'));
+	}
 
-		if (AInfo['Expected Timeframe'] == 'Quick Touch - 3 Days') {
-			editTaskDueDate('Addressing', dateAdd(null, 3, 'Y'));
-		}
+	if (AInfo['Expected Timeframe'] === 'Small Comm - 10 Days') {
+		editTaskDueDate('Building Review', dateAdd(null, 10, 'Y'));
+		editTaskDueDate('Fire Review', dateAdd(null, 10, 'Y'));
+		editTaskDueDate('Zoning Review', dateAdd(null, 10, 'Y'));
+		editTaskDueDate('Addressing', dateAdd(null, 10, 'Y'));
+	}
 
-		if (AInfo['Expected Timeframe'] == 'Res. Waiver - 2 Days') {
-			editTaskDueDate('Addressing', dateAdd(null, 2, 'Y'));
-		}
+	if (AInfo['Expected Timeframe'] === 'Std Level I Comm  - 21 Days') {
+		editTaskDueDate('Building Review', dateAdd(null, 21, 'Y'));
+		editTaskDueDate('Fire Review', dateAdd(null, 21, 'Y'));
+		editTaskDueDate('Zoning Review', dateAdd(null, 21, 'Y'));
+		editTaskDueDate('Addressing', dateAdd(null, 21, 'Y'));
+	}
 
-		if (AInfo['Expected Timeframe'] == 'Res. Waiver - 2 Days') {
-			editTaskDueDate('Building Review', dateAdd(null, 2, 'Y'));
-		}
+	if (AInfo['Expected Timeframe'] === 'Std Level II or III Comm - 45 Days') {
+		editTaskDueDate('Building Review', dateAdd(null, 45, 'Y'));
+		editTaskDueDate('Fire Review', dateAdd(null, 45, 'Y'));
+		editTaskDueDate('Zoning Review', dateAdd(null, 45, 'Y'));
+		editTaskDueDate('Addressing', dateAdd(null, 45, 'Y'));
+	}
 
-		if (AInfo['Expected Timeframe'] == 'Res. Waiver - 2 Days') {
-			editTaskDueDate('Fire Review', dateAdd(null, 2, 'Y'));
-		}
-
-		if (AInfo['Expected Timeframe'] == 'Res. Waiver - 2 Days') {
-			editTaskDueDate('Zoning Review', dateAdd(null, 2, 'Y'));
-		}
-
-		if (AInfo['Expected Timeframe'] == 'Residential - 10 Days') {
-			editTaskDueDate('Building Review', dateAdd(null, 10, 'Y'));
-		}
-
-		if (AInfo['Expected Timeframe'] == 'Residential - 10 Days') {
-			editTaskDueDate('Fire Review', dateAdd(null, 10, 'Y'));
-		}
-
-		if (AInfo['Expected Timeframe'] == 'Residential - 10 Days') {
-			editTaskDueDate('Zoning Review', dateAdd(null, 10, 'Y'));
-		}
-
-		if (AInfo['Expected Timeframe'] == 'Residential - 10 Days') {
-			editTaskDueDate('Addressing', dateAdd(null, 10, 'Y'));
-		}
-
-		if (AInfo['Expected Timeframe'] == 'Small Comm - 10 Days') {
-			editTaskDueDate('Building Review', dateAdd(null, 10, 'Y'));
-		}
-
-		if (AInfo['Expected Timeframe'] == 'Small Comm - 10 Days') {
-			editTaskDueDate('Fire Review', dateAdd(null, 10, 'Y'));
-		}
-
-		if (AInfo['Expected Timeframe'] == 'Small Comm - 10 Days') {
-			editTaskDueDate('Zoning Review', dateAdd(null, 10, 'Y'));
-		}
-
-		if (AInfo['Expected Timeframe'] == 'Small Comm - 10 Days') {
-			editTaskDueDate('Addressing', dateAdd(null, 10, 'Y'));
-		}
-
-		if (AInfo['Expected Timeframe'] == 'Std Level I Comm  - 21 Days') {
-			editTaskDueDate('Building Review', dateAdd(null, 21, 'Y'));
-		}
-
-		if (AInfo['Expected Timeframe'] == 'Std Level I Comm  - 21 Days') {
-			editTaskDueDate('Fire Review', dateAdd(null, 21, 'Y'));
-		}
-
-		if (AInfo['Expected Timeframe'] == 'Std Level I Comm  - 21 Days') {
-			editTaskDueDate('Zoning Review', dateAdd(null, 21, 'Y'));
-		}
-
-		if (AInfo['Expected Timeframe'] == 'Std Level I Comm  - 21 Days') {
-			editTaskDueDate('Addressing', dateAdd(null, 21, 'Y'));
-		}
-
-		if (AInfo['Expected Timeframe'] == 'Std Level II or III Comm - 45 Days') {
-			editTaskDueDate('Building Review', dateAdd(null, 45, 'Y'));
-		}
-
-		if (AInfo['Expected Timeframe'] == 'Std Level II or III Comm - 45 Days') {
-			editTaskDueDate('Fire Review', dateAdd(null, 45, 'Y'));
-		}
-
-		if (AInfo['Expected Timeframe'] == 'Std Level II or III Comm - 45 Days') {
-			editTaskDueDate('Zoning Review', dateAdd(null, 45, 'Y'));
-		}
-
-		if (AInfo['Expected Timeframe'] == 'Std Level II or III Comm - 45 Days') {
-			editTaskDueDate('Addressing', dateAdd(null, 45, 'Y'));
-		}
-
-		if (AInfo['Expected Timeframe'] == 'Large Comm - 90 Days') {
-			editTaskDueDate('Building Review', dateAdd(null, 90, 'Y'));
-		}
-
-		if (AInfo['Expected Timeframe'] == 'Large Comm - 90 Days') {
-			editTaskDueDate('Fire Review', dateAdd(null, 90, 'Y'));
-		}
-
-		if (AInfo['Expected Timeframe'] == 'Large Comm - 90 Days') {
-			editTaskDueDate('Zoning Review', dateAdd(null, 90, 'Y'));
-		}
-
-		if (AInfo['Expected Timeframe'] == 'Large Comm - 90 Days') {
-			editTaskDueDate('Addressing', dateAdd(null, 90, 'Y'));
-		}
+	if (AInfo['Expected Timeframe'] === 'Large Comm - 90 Days') {
+		editTaskDueDate('Building Review', dateAdd(null, 90, 'Y'));
+		editTaskDueDate('Fire Review', dateAdd(null, 90, 'Y'));
+		editTaskDueDate('Zoning Review', dateAdd(null, 90, 'Y'));
+		editTaskDueDate('Addressing', dateAdd(null, 90, 'Y'));
 	}
 	//end replaced branch: ES_SET_WF_DUEDATE;
 }
