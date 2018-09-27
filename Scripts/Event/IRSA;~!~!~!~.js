@@ -333,12 +333,12 @@ if (matches(inspResult, 'Disapproved-Level 1 Fee', 'Disapproved-Level 2 Fee', 'D
                                                 updateFee('SIGNREINSP', 'REINSP', 'FINAL', 1, 'Y');
                                                 updateFee('TECH', 'REINSP', 'FINAL', 1, 'Y');
                                 }
-                
+
                                 if (inspType.indexOf('ZO') == 0 && matches(inspResult, 'Disapproved-Level 1 Fee')) {
                                                 updateFee('REIN_ZOLI', 'REINSP', 'FINAL', 1, 'Y');
                                                 updateFee('TECH', 'REINSP', 'FINAL', 1, 'Y');
                                 }
-                
+
                                 if (inspType.indexOf('ZO') == 0 && matches(inspResult, 'Disapproved-Level 2 Fee')) {
                                                 updateFee('REIN_ZOLII', 'REINSP', 'FINAL', 1, 'Y');
                                                 updateFee('TECH', 'REINSP', 'FINAL', 1, 'Y');
@@ -352,7 +352,7 @@ if (matches(inspResult, 'Disapproved-Level 1 Fee', 'Disapproved-Level 2 Fee', 'D
                                                 updateFee('REIN_PWLI', 'REINSP', 'FINAL', 1, 'Y');
                                                 updateFee('TECH', 'REINSP', 'FINAL', 1, 'Y');
                                 }
-                
+
                                 if (inspType.indexOf('SID') == 0 && matches(inspResult, 'Disapproved-Level 2 Fee')) {
                                                 updateFee('REIN_PWLII', 'REINSP', 'FINAL', 1, 'Y');
                                                 updateFee('TECH', 'REINSP', 'FINAL', 1, 'Y');
@@ -366,7 +366,7 @@ if (matches(inspResult, 'Disapproved-Level 1 Fee', 'Disapproved-Level 2 Fee', 'D
                                                 updateFee('REIN_PWLI', 'REINSP', 'FINAL', 1, 'Y');
                                                 updateFee('TECH', 'REINSP', 'FINAL', 1, 'Y');
                                 }
-                
+
                                 if (inspType.indexOf('DR') == 0 && matches(inspResult, 'Disapproved-Level 2 Fee')) {
                                                 updateFee('REIN_PWLII', 'REINSP', 'FINAL', 1, 'Y');
                                                 updateFee('TECH', 'REINSP', 'FINAL', 1, 'Y');
@@ -381,7 +381,7 @@ if (matches(inspResult, 'Disapproved-Level 1 Fee', 'Disapproved-Level 2 Fee', 'D
                                                 updateFee('REIN_SELI', 'REINSP', 'FINAL', 1, 'Y');
                                                 updateFee('TECH', 'REINSP', 'FINAL', 1, 'Y');
                                 }
-                
+
                                 if (inspType.indexOf('FL') == 0 && matches(inspResult, 'Disapproved-Level 2 Fee')) {
                                                 updateFee('REIN_SELII', 'REINSP', 'FINAL', 1, 'Y');
                                                 updateFee('TECH', 'REINSP', 'FINAL', 1, 'Y');
@@ -396,7 +396,7 @@ if (matches(inspResult, 'Disapproved-Level 1 Fee', 'Disapproved-Level 2 Fee', 'D
                                                 updateFee('REIN_SELI', 'REINSP', 'FINAL', 1, 'Y');
                                                 updateFee('TECH', 'REINSP', 'FINAL', 1, 'Y');
                                 }
-                
+
                                 if (inspType.indexOf('GR') == 0 && matches(inspResult, 'Disapproved-Level 2 Fee')) {
                                                 updateFee('REIN_SELII', 'REINSP', 'FINAL', 1, 'Y');
                                                 updateFee('TECH', 'REINSP', 'FINAL', 1, 'Y');
@@ -411,7 +411,7 @@ if (matches(inspResult, 'Disapproved-Level 1 Fee', 'Disapproved-Level 2 Fee', 'D
                                                 updateFee('REIN_SELI', 'REINSP', 'FINAL', 1, 'Y');
                                                 updateFee('TECH', 'REINSP', 'FINAL', 1, 'Y');
                                 }
-                
+
                                 if (inspType.indexOf('SW') == 0 && matches(inspResult, 'Disapproved-Level 2 Fee')) {
                                                 updateFee('REIN_SELII', 'REINSP', 'FINAL', 1, 'Y');
                                                 updateFee('TECH', 'REINSP', 'FINAL', 1, 'Y');
@@ -431,55 +431,89 @@ if (matches(inspResult, 'Disapproved-Level 1 Fee', 'Disapproved-Level 2 Fee', 'D
 if (matches(inspResult, 'Disapproved-TCO Fee')) {
 
 	//start replaced branch: ES_ADD_TCO-REINSP_FEE
-	{
+//	{
+// Modifications 5/24/18  New fee created, TCO-DISAPPRO, that now we need to apply after that inspection result is chosen. But only for Building
+
+	if (appMatch('*/Commercial/*/*')) {
 		if (inspType.indexOf('BU') == 0 ) {
-			updateFee('BU_INSP', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
-			updateFee('TECH', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
+			updateFee('TCO-DISAPPRO', 'TU & TCO', 'FINAL', 1, 'Y');
+			updateFee('TECH', 'TU & TCO', 'FINAL', 1, 'Y');
 		}
 
 		if (inspType.indexOf('EE') == 0 ) {
-			updateFee('BU_INSP', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
-			updateFee('TECH', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
+			updateFee('TCO-DISAPPRO', 'TU & TCO', 'FINAL', 1, 'Y');
+			updateFee('TECH', 'TU & TCO', 'FINAL', 1, 'Y');
 		}
 
 		if (inspType.indexOf('ME') == 0 ) {
-			updateFee('BU_INSP', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
-			updateFee('TECH', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
+			updateFee('TCO-DISAPPRO', 'TU & TCO', 'FINAL', 1, 'Y');
+			updateFee('TECH', 'TU & TCO', 'FINAL', 1, 'Y');
 		}
 
 		if (inspType.indexOf('PL') == 0 ) {
-			updateFee('BU_INSP', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
-			updateFee('TECH', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
+			updateFee('TCO-DISAPPRO', 'TU & TCO', 'FINAL', 1, 'Y');
+			updateFee('TECH', 'TU & TCO', 'FINAL', 1, 'Y');
 		}
 
 		if (inspType.indexOf('FP') == 0 ) {
-			updateFee('FP_INSP', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
-			updateFee('TECH', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
+			updateFee('TCO-DISAPPRO', 'TU & TCO', 'FINAL', 1, 'Y');
+			updateFee('TECH', 'TU & TCO', 'FINAL', 1, 'Y');
 		}
-
-		if (inspType.indexOf('ZO') == 0 ) {
-			updateFee('ZO_INSP', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
-			updateFee('TECH', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
-		}
-
-		if (inspType.indexOf('SW') == 0 ) {
-			updateFee('SW_INSP', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
-			updateFee('TECH', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
-		}
-
-		if (inspType.indexOf('GR') == 0 ) {
-			updateFee('SW_INSP', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
-			updateFee('TECH', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
-		}
-
-		if (inspType.indexOf('FL') == 0 ) {
-			updateFee('SW_INSP', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
-			updateFee('TECH', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
-		}
-
 	}
-	//end replaced branch: ES_ADD_TCO-REINSP_FEE;
 }
+
+// End modifications 5/24/18
+
+//Commented out 5/23/18 -- wasn't running anyway, prob because it used the alias instead of 'TU & TCO'
+
+//		if (inspType.indexOf('BU') == 0 ) {
+//			updateFee('BU_INSP', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
+//			updateFee('TECH', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
+//		}
+//
+//		if (inspType.indexOf('EE') == 0 ) {
+//			updateFee('BU_INSP', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
+//			updateFee('TECH', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
+//		}
+//
+//		if (inspType.indexOf('ME') == 0 ) {
+//			updateFee('BU_INSP', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
+//			updateFee('TECH', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
+//		}
+//
+//		if (inspType.indexOf('PL') == 0 ) {
+//			updateFee('BU_INSP', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
+//			updateFee('TECH', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
+//		}
+//
+//		if (inspType.indexOf('FP') == 0 ) {
+//			updateFee('FP_INSP', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
+//			updateFee('TECH', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
+//		}
+//
+//		if (inspType.indexOf('ZO') == 0 ) {
+//			updateFee('ZO_INSP', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
+//			updateFee('TECH', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
+//		}
+//
+//		if (inspType.indexOf('SW') == 0 ) {
+//			updateFee('SW_INSP', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
+//			updateFee('TECH', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
+//		}
+//
+//		if (inspType.indexOf('GR') == 0 ) {
+//			updateFee('SW_INSP', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
+//			updateFee('TECH', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
+//		}
+//
+//		if (inspType.indexOf('FL') == 0 ) {
+//			updateFee('SW_INSP', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
+//			updateFee('TECH', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
+//		}
+
+//	}
+	//end replaced branch: ES_ADD_TCO-REINSP_FEE;
+//}
 
 if (matches(inspResult, 'Disapproved-TU Fee')) {
 
@@ -608,18 +642,24 @@ if (matches(inspGroup, 'ABC') && matches(inspResult, 'Approved', 'Disapproved', 
 if ((appMatch('Permits/*/Site Work/*') || appMatch('Planning/Development/*/*') || appMatch('Planning/Subdivision/*/*')) && inspType == 'ZO-FINAL' && matches(inspResult, 'Approved')) {
 	email('PAC@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Zoning Final ' + capIDString + ' Approved', 'The Zoning Final inspection for Permit ' + capIDString + ' has been Approved.<br>Inspection Comment: ' + inspComment + ' <br>Please verify if clear for issuance of Certificate of Compliance or Occupancy.');
 }
+// begin 4/18/18 changes. For next three IF-Then's, emails changed from PAC to Tiffany, and added email to Amy
 
 if (inspType == 'GR-FINAL' && matches(inspResult, 'Approved')) {
-	email('PAC@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Grading Final ' + capIDString + ' Approved', 'The Grading Final inspection for Permit ' + capIDString + ' has been Approved.<br>Inspection Comment: ' + inspComment + ' <br>Please verify if clear for issuance of Certificate of Compliance or Occupancy.');
+	email('TGordon@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Grading Final ' + capIDString + ' Approved', 'The Grading Final inspection for Permit ' + capIDString + ' has been Approved.<br>Inspection Comment: ' + inspComment + ' <br>Please verify if clear for issuance of Certificate of Compliance or Occupancy.');
+	email('ATesner@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Grading Final ' + capIDString + ' Approved', 'The Grading Final inspection for Permit ' + capIDString + ' has been Approved.<br>Inspection Comment: ' + inspComment + ' <br>Please verify if clear for issuance of Certificate of Compliance or Occupancy.');
 }
 
 if (inspType == 'SW-FINAL' && matches(inspResult, 'Approved')) {
-	email('PAC@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Storm Water Final ' + capIDString + ' Approved', 'The Stormwater Final inspection for Permit ' + capIDString + ' has been Approved.<br>Inspection Comment: ' + inspComment + ' <br>Please verify if clear for issuance of Certificate of Compliance or Occupancy.');
+	email('TGordon@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Storm Water Final ' + capIDString + ' Approved', 'The Stormwater Final inspection for Permit ' + capIDString + ' has been Approved.<br>Inspection Comment: ' + inspComment + ' <br>Please verify if clear for issuance of Certificate of Compliance or Occupancy.');
+	email('ATesner@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Storm Water Final ' + capIDString + ' Approved', 'The Stormwater Final inspection for Permit ' + capIDString + ' has been Approved.<br>Inspection Comment: ' + inspComment + ' <br>Please verify if clear for issuance of Certificate of Compliance or Occupancy.');
 }
 
 if (inspType == 'FL-FINAL' && matches(inspResult, 'Approved')) {
-	email('PAC@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Flood Final ' + capIDString + ' Approved', 'The Flood Plain Development Final inspection for Permit ' + capIDString + ' has been Approved.<br>Inspection Comment: ' + inspComment + ' <br>Please verify if clear for issuance of Certificate of Compliance or Occupancy.');
+	email('TGordon@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Flood Final ' + capIDString + ' Approved', 'The Flood Plain Development Final inspection for Permit ' + capIDString + ' has been Approved.<br>Inspection Comment: ' + inspComment + ' <br>Please verify if clear for issuance of Certificate of Compliance or Occupancy.');
+	email('ATesner@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Flood Final ' + capIDString + ' Approved', 'The Flood Plain Development Final inspection for Permit ' + capIDString + ' has been Approved.<br>Inspection Comment: ' + inspComment + ' <br>Please verify if clear for issuance of Certificate of Compliance or Occupancy.');
 }
+
+//End 4/18/18 changes
 
 if (inspType == 'ZO-EXPIRATION CHECK' && matches(inspResult, 'Expired')) {
 	updateTask('Application Process', 'Expired', 'Updated by IRSA Script');
