@@ -1,11 +1,10 @@
 //start replaced branch: WORKFLOW_UA_PERMITS
-
 var currentResultOfGetParent = getParent();
 //start replaced branch: ES_CREATE_FIRE_SIBLING
 var wfTaskFirePreventionOrReview = (wfTask == 'Fire Prevention' || wfTask == 'Fire Review')
 var wfStatusApprovedOrWithConditions = matches(wfStatus, 'Approved', 'Approved with Conditions')
 if (wfTaskFirePreventionOrReview && wfStatusApprovedOrWithConditions) {
-	var preventionOrReviewApprovedOrWithConditionsList = [
+	var checkPreventionApprovedCats = [
 		{
 			// Use permitCat for !hasSibling(capId, 'Permits/Fire/Construction/Fire Alarm')
 			// Also use permitCat for newChildID = createChild('Permits', 'Fire', 'Construction', 'Fire Alarm', '');
@@ -36,30 +35,30 @@ if (wfTaskFirePreventionOrReview && wfStatusApprovedOrWithConditions) {
 		}
 	]
 	if (currentResultOfGetParent) {
-			// All of these are Permits/Fire/Construction/[permitCat]
-			for (var permitListIndex = 0; permitListIndex < preventionOrReviewApprovedOrWithConditionsList.length; permitListIndex++) {
-				var thisPermitCheck = preventionOrReviewApprovedOrWithConditionsList[permitListIndex];
-				if (AInfo[thisPermitCheck.aInfot1 + ' Permit Required'] === 'Yes' && !hasSibling(capId, 'Permits/Fire/Construction/' + thisPermitCheck.permitCat)) {
-					saveCapId = capId;
-					pCapId = currentResultOfGetParent;
-					capId = pCapId;
-					newChildID = createChild('Permits', 'Fire', 'Construction', thisPermitCheck.permitCat, '');
-					capId = saveCapId;
-					copyAppSpecific(newChildID);
-					//MS Functions around copyOwner, copyGIS to fix issue with tab info not pulling over when creating a child record
-					comment('New child app id = ' + newChildID);
-					t1 = 'Permit ' + capIDString + ' requires a Fire Construction Permit for a ' + thisPermitCheck.aInfot1 + ' Permit';
-					//replaced branch(ES_BUILD_WORKDESC_CONSTRUCTION)
-					ES_BUILD_WORKDESC_CONSTRUCTION();
-					updateAppStatus('Submittal Required', 'Initial Status set by script', newChildID);
-					editAppSpecific('Cost of Work', '0', newChildID);
-				}
+		// All of these are Permits/Fire/Construction/[permitCat]
+		for (var permitListIndex = 0; permitListIndex < checkPreventionApprovedCats.length; permitListIndex++) {
+			var thisPermitCheck = checkPreventionApprovedCats[permitListIndex];
+			if (AInfo[thisPermitCheck.aInfot1 + ' Permit Required'] === 'Yes' && !hasSibling(capId, 'Permits/Fire/Construction/' + thisPermitCheck.permitCat)) {
+				saveCapId = capId;
+				pCapId = currentResultOfGetParent;
+				capId = pCapId;
+				newChildID = createChild('Permits', 'Fire', 'Construction', thisPermitCheck.permitCat, '');
+				capId = saveCapId;
+				copyAppSpecific(newChildID);
+				//MS Functions around copyOwner, copyGIS to fix issue with tab info not pulling over when creating a child record
+				comment('New child app id = ' + newChildID);
+				t1 = 'Permit ' + capIDString + ' requires a Fire Construction Permit for a ' + thisPermitCheck.aInfot1 + ' Permit';
+				//replaced branch(ES_BUILD_WORKDESC_CONSTRUCTION)
+				ES_BUILD_WORKDESC_CONSTRUCTION();
+				updateAppStatus('Submittal Required', 'Initial Status set by script', newChildID);
+				editAppSpecific('Cost of Work', '0', newChildID);
 			}
+		}
 		//end replaced branch: ES_CREATE_FIRE_SIBLING;
 	} else { // If NOT currentResultOfGetParent
 		//start replaced branch: ES_CREATE_FIRE_CHILD
-		for (var elsePermitListIndex = 0; elsePermitListIndex < preventionOrReviewApprovedOrWithConditionsList.length, elsePermitListIndex++) {
-			var thisPermitCheckElse = preventionOrReviewApprovedOrWithConditionsList[elsePermitListIndex];
+		for (var elsePermitListIndex = 0; elsePermitListIndex < checkPreventionApprovedCats.length, elsePermitListIndex++) {
+			var thisPermitCheckElse = checkPreventionApprovedCats[elsePermitListIndex];
 			if (AInfo[thisPermitCheckElse.aInfot1 + ' Permit Required'] === 'Yes' && !hasChildren('Permits/Fire/Construction/' + thisPermitCheckElse.permitCat)) {
 				newChildID = createChild('Permits', 'Fire', 'Construction', thisPermitCheckElse.permitCat, '');
 				copyAppSpecific(newChildID);
@@ -75,208 +74,159 @@ if (wfTaskFirePreventionOrReview && wfStatusApprovedOrWithConditions) {
 	}
 }
 
-
-
-
-
-
-
 //start replaced branch: ES_SET_EXPIRATION_DATES_PERMITS
 {
-	if (wfTask == 'Application Process' && matches(wfStatus, 'Complete', 'Application Incomplete')) {
+	if (wfTask === 'Application Process'
+		&& matches(wfStatus, 'Complete', 'Application Incomplete')
+	) {
 		editAppSpecific('Application Expiration Date', dateAdd(null, 180));
 	}
 
-	if (!appMatch('Permits/Event-Temporary Use/NA/NA') && !appMatch('Permits/Outdoor Vendor/*/*') && !appMatch('Permits/*/A-Frame/*') && !appMatch('Permits/*/Site Work/NA') && !appMatch('Permits/Stormwater/Flood Plain Development/NA') && wfTask == 'Permit Verification' && matches(wfStatus, 'Issue', 'Reissue', 'Issue Partial', 'Amended')) {
+	if (!appMatch('Permits/Event-Temporary Use/NA/NA')
+		&& !appMatch('Permits/Outdoor Vendor/*/*')
+		&& !appMatch('Permits/*/A-Frame/*')
+		&& !appMatch('Permits/*/Site Work/NA')
+		&& !appMatch('Permits/Stormwater/Flood Plain Development/NA')
+		&& (wfTask == 'Application Process' || wfTask == 'Permit Verification')
+		&& matches(wfStatus, 'Issue', 'Reissue', 'Issue Partial', 'Amended')
+	) {
 		editAppSpecific('Permit Expiration Date', dateAdd(null, 180));
 	}
 
-	if (!appMatch('Permits/Event-Temporary Use/NA/NA') && !appMatch('Permits/Outdoor Vendor/*/*') && !appMatch('Permits/*/A-Frame/*') && !appMatch('Permits/*/Site Work/NA') && !appMatch('Permits/Stormwater/Flood Plain Development/NA') && wfTask == 'Application Process' && matches(wfStatus, 'Issue', 'Reissue', 'Issue Partial', 'Amended')) {
-		editAppSpecific('Permit Expiration Date', dateAdd(null, 180));
-	}
-
-	if ((appMatch('Permits/*/Dining/*') || appMatch('Permits/*/Merchandise/*') || appMatch('Permits/*/A-Frame/*')) && wfTask == 'Issuance' && matches(wfStatus, 'Issue', 'Reissue')) {
-
+	if ((appMatch('Permits/*/Dining/*')
+		|| appMatch('Permits/*/Merchandise/*')
+		|| appMatch('Permits/*/A-Frame/*'))
+		&& wfTask == 'Issuance' && matches(wfStatus, 'Issue', 'Reissue')
+	) {
 		//start replaced branch: ES_SET_EXP_YEAR
-		{
-			theMonth = sysDate.getMonth();
-			theYear = sysDate.getYear();
-			nextYear = sysDate.getYear() + 1;
-			comment('The month is: ' + theMonth);
-			comment('The year is: ' + theYear);
-			if (matches(theMonth, '1', '2', '3', '4', '5', '6')) {
-				theExpDate = '06/30/' + theYear;
-			} else {
-				theExpDate = '06/30/' + nextYear;
-			}
-
-			editAppSpecific('Annual Expiration Date', theExpDate);
-
+		theMonth = sysDate.getMonth();
+		theYear = sysDate.getYear();
+		nextYear = sysDate.getYear() + 1;
+		comment('The month is: ' + theMonth);
+		comment('The year is: ' + theYear);
+		if (matches(theMonth, '1', '2', '3', '4', '5', '6')) {
+			theExpDate = '06/30/' + theYear;
+		} else {
+			theExpDate = '06/30/' + nextYear;
 		}
+		editAppSpecific('Annual Expiration Date', theExpDate);
 		//end replaced branch: ES_SET_EXP_YEAR;
 	}
 
-	if (appMatch('Permits/Sign/Stand Alone/*') && matches(wfStatus, 'Issue', 'Reissue')) {
+	if (appMatch('Permits/Sign/Stand Alone/*')
+		&& matches(wfStatus, 'Issue', 'Reissue')
+	) {
 		editAppSpecific('Permit Expiration Date', dateAdd(null, 365));
 	}
 
-	if (appMatch('Permits/*/Push Cart/*') && wfTask == 'Issuance' && matches(wfStatus, 'Issue', 'Reissue')) {
-
+	if (appMatch('Permits/*/Push Cart/*')
+		&& wfTask == 'Issuance'
+		&& matches(wfStatus, 'Issue', 'Reissue')
+	) {
 		//start replaced branch: ES_SET_EXP_YEAR_MARCH
-		{
-			theMonth = sysDate.getMonth();
-			theYear = sysDate.getYear();
-			nextYear = sysDate.getYear() + 1;
-			comment('The month is: ' + theMonth);
-			comment('The year is: ' + theYear);
-			if (matches(theMonth, '1', '2', '3')) {
-				theExpDate = '03/30/' + theYear;
-			} else {
-				theExpDate = '03/30/' + nextYear;
-			}
-
-			editAppSpecific('Annual Expiration Date', theExpDate);
-
+		theMonth = sysDate.getMonth();
+		theYear = sysDate.getYear();
+		nextYear = sysDate.getYear() + 1;
+		comment('The month is: ' + theMonth);
+		comment('The year is: ' + theYear);
+		if (matches(theMonth, '1', '2', '3')) {
+			theExpDate = '03/30/' + theYear;
+		} else {
+			theExpDate = '03/30/' + nextYear;
 		}
+		editAppSpecific('Annual Expiration Date', theExpDate);
 		//end replaced branch: ES_SET_EXP_YEAR_MARCH;
 	}
 
-	if (appMatch('Permits/Stormwater/Flood Plain Development/NA') && wfTask == 'Permit Verification' && matches(wfStatus, 'Issue', 'Reissue')) {
+	if (appMatch('Permits/Stormwater/Flood Plain Development/NA')
+		&& wfTask == 'Permit Verification'
+		&& matches(wfStatus, 'Issue', 'Reissue')
+	) {
 		editAppSpecific('Permit Expiration Date', dateAdd(null, 365));
 	}
 
-	if (appMatch('Permits/*/Site Work/NA') && matches(wfStatus, 'Issue', 'Reissue') && AInfo['Issue Zoning Permit To'] != 'NA') {
+	if (appMatch('Permits/*/Site Work/NA')
+		&& matches(wfStatus, 'Issue', 'Reissue')
+		&& AInfo['Issue Zoning Permit To'] != 'NA'
+	) {
 		editAppSpecific('Zoning Permit Expires', dateAdd(null, 365));
 	}
 
-	if (appMatch('Permits/*/Site Work/NA') && matches(wfStatus, 'Issue', 'Reissue') && AInfo['Issue Stormwater Permit To'] != 'NA') {
+	if (appMatch('Permits/*/Site Work/NA')
+		&& matches(wfStatus, 'Issue', 'Reissue')
+		&& AInfo['Issue Stormwater Permit To'] != 'NA'
+	) {
 		editAppSpecific('Stormwater Permit Expires', dateAdd(null, 365));
 	}
 
-	if (appMatch('Permits/*/Site Work/NA') && matches(wfStatus, 'Issue', 'Reissue') && AInfo['Issue Grading Permit To'] != 'NA') {
+	if (appMatch('Permits/*/Site Work/NA')
+		&& matches(wfStatus, 'Issue', 'Reissue')
+		&& AInfo['Issue Grading Permit To'] != 'NA'
+	) {
 		editAppSpecific('Grading Permit Expires', dateAdd(null, 365));
 	}
 
-	if (appMatch('Permits/*/Site Work/NA') && matches(wfStatus, 'Issue', 'Reissue') && AInfo['Issue Driveway Permit To'] != 'NA') {
+	if (appMatch('Permits/*/Site Work/NA')
+		&& matches(wfStatus, 'Issue', 'Reissue')
+		&& AInfo['Issue Driveway Permit To'] != 'NA'
+	) {
 		editAppSpecific('Driveway Permit Expires', dateAdd(null, 365));
 	}
-
-	// DISABLED: ES_SET_EXPIRATION_DATES_PERMITS:99
-	//if (appMatch('Permits/Water Availability/Extension/NA') && wfTask == 'Technical Review' && matches(wfStatus,'Issue')) {
-	//	editAppSpecific('LOC Expiration Date',dateAdd(null,365));
-	//	}
-
-	// DISABLED: ES_SET_EXPIRATION_DATES_PERMITS:99
-	//if (appMatch('Permits/Right of Way/Closures/NA') && wfTask == 'Issuance' && matches(wfStatus,'Issue','Reissue')) {
-	//	editAppSpecific('Permit Expiration Date',dateAdd(null,30));
-	//	}
-
 }
 //end replaced branch: ES_SET_EXPIRATION_DATES_PERMITS;
-if (!appMatch('Permits/*/Site Work/NA') && wfTask == 'Flood' && matches(wfStatus, 'FPD Permit Required')) {
+if (!appMatch('Permits/*/Site Work/NA') && wfTask === 'Flood' && matches(wfStatus, 'FPD Permit Required')) {
 	newChildID = createChild('Permits', 'Stormwater', 'Flood Plain Development', 'NA', '');
 	copyAppSpecific(newChildID);
 	comment('New child app id = ' + newChildID);
 	t1 = 'Permit ' + capIDString + ' requires a Flood Plain Development Permit';
-
 	//replaced branch(ES_BUILD_WORKDESC_CONSTRUCTION)
 	ES_BUILD_WORKDESC_CONSTRUCTION();
 	updateAppStatus('Submittal Required', 'Initial Status', newChildID);
 }
 
 if (wfTask == 'Conditions of Approval') {
-
-	//start replaced branch: ES_SET_WF_ADMIN
-	{
-		if (AInfo['Air Quality Approval'] == 'No') {
-			setTask('Air Quality Approval', 'N', 'Y', 'ADMIN');
+	var conditionsOfApprovalCheckList = [
+		'Air Quality Approval',
+		'Cost of Work',
+		'Privilege License',
+		'GC Information',
+		'GC Signature',
+		'Sub-Contractor Info',
+		'Lien Agent Designation',
+		'Proof of Ownership',
+		'Owner Signature',
+		'MSD Approval',
+		'Water Availability',
+		'Cross Connection',
+		'Exemption Form',
+		'Water - Tap and Meter',
+		'Food Service Establishment',
+	]
+	for (var conditionsOfApprovalIndex = 0; conditionsOfApprovalIndex < conditionsOfApprovalCheckList.length; conditionsOfApprovalIndex++) {
+		var condition = conditionsOfApprovalCheckList[conditionsOfApprovalIndex];
+		if (AInfo[condition] == 'No') {
+			setTask(condition, 'N', 'Y', 'ADMIN');
 		}
-
-		if (AInfo['Cost of Work'] == 'No') {
-			setTask('Cost of Work', 'N', 'Y', 'ADMIN');
-		}
-
-		if (AInfo['Privilege License'] == 'No') {
-			setTask('Privilege License', 'N', 'Y', 'ADMIN');
-		}
-
-		if (AInfo['GC Information'] == 'No') {
-			setTask('GC Information', 'N', 'Y', 'ADMIN');
-		}
-
-		if (AInfo['GC Signature'] == 'No') {
-			setTask('GC Signature', 'N', 'Y', 'ADMIN');
-		}
-
-		if (AInfo['Sub-Contractor Info'] == 'No') {
-			setTask('Sub-Contractor Information', 'N', 'Y', 'ADMIN');
-		}
-
-		if (AInfo['Lien Agent Designation'] == 'No') {
-			setTask('Lien Agent Designation', 'N', 'Y', 'ADMIN');
-		}
-
-		if (AInfo['Proof of Ownership'] == 'No') {
-			setTask('Proof of Ownership', 'N', 'Y', 'ADMIN');
-		}
-
-		if (AInfo['Owner Signature'] == 'No') {
-			setTask('Owner Signature', 'N', 'Y', 'ADMIN');
-		}
-
-		if (AInfo['MSD Approval'] == 'No') {
-			setTask('MSD Approval', 'N', 'Y', 'ADMIN');
-		}
-
-		if (AInfo['Water Availability'] == 'No') {
-			setTask('Water Availability', 'N', 'Y', 'ADMIN');
-		}
-
-		if (AInfo['Cross Connection'] == 'No') {
-			setTask('Cross Connection', 'N', 'Y', 'ADMIN');
-		}
-
-		if (AInfo['Exemption Form'] == 'No') {
-			setTask('Exemption Form', 'N', 'Y', 'ADMIN');
-		}
-
-		if (AInfo['Water - Tap and Meter'] == 'No') {
-			setTask('Water - Tap and Meter', 'N', 'Y', 'ADMIN');
-		}
-
-		if (AInfo['Food Service Establishment'] == 'No') {
-			setTask('Food Service Establishment', 'N', 'Y', 'ADMIN');
-		}
-
 	}
-	//end replaced branch: ES_SET_WF_ADMIN;
 }
 
 if (wfTask == 'Routing') {
-
 	//start replaced branch: ES_SET_WF_DIVISION REVIEW
-	{
-		if (AInfo['Building Review'] == 'No') {
-			setTask('Building Review', 'N', 'Y', 'DIVISION REVIEW');
+	var divisionReviewSetList = [
+		'Building Review',
+		'Zoning Review',
+		'Fire Review',
+		'Addressing',
+	]
+	for (var divisionReviewIndex = 0; divisionReviewIndex < divisionReviewSetList.length; divisionReviewIndex++) {
+		var divisionReviewCheck = divisionReviewSetList[divisionReviewIndex];
+		if (AInfo[divisionReviewCheck] == 'No') {
+			setTask(divisionReviewCheck, 'N', 'Y', 'DIVISION REVIEW');
 		}
-
-		if (AInfo['Zoning Review'] == 'No') {
-			setTask('Zoning Review', 'N', 'Y', 'DIVISION REVIEW');
-		}
-
-		if (AInfo['Fire Review'] == 'No') {
-			setTask('Fire Review', 'N', 'Y', 'DIVISION REVIEW');
-		}
-
-		if (AInfo['Addressing'] == 'No') {
-			setTask('Addressing', 'N', 'Y', 'DIVISION REVIEW');
-		}
-
 	}
 	//end replaced branch: ES_SET_WF_DIVISION REVIEW;
-}
 
-if (wfTask == 'Routing') {
+
 
 	//start replaced branch: ES_SET_WF_DUEDATE
 	{
@@ -391,44 +341,15 @@ if (wfTask == 'Routing') {
 		if (AInfo['Expected Timeframe'] == 'Large Comm - 90 Days') {
 			editTaskDueDate('Addressing', dateAdd(null, 90, 'Y'));
 		}
-
-		// DISABLED: ES_SET_WF_DUEDATE:40
-		//if (AInfo['Expected Timeframe'] == 'Revision - 5 Days') {
-		//	editTaskDueDate('Building Review', dateAdd(null,5,'Y'));
-		//	}
-
-		// DISABLED: ES_SET_WF_DUEDATE:41
-		//if (AInfo['Expected Timeframe'] == 'Revision - 5 Days') {
-		//	editTaskDueDate('Fire Review', dateAdd(null,5,'Y'));
-		//	}
-
-		// DISABLED: ES_SET_WF_DUEDATE:42
-		//if (AInfo['Expected Timeframe'] == 'Revision - 5 Days') {
-		//	editTaskDueDate('Zoning Review', dateAdd(null,5,'Y'));
-		//	}
-
-		// DISABLED: ES_SET_WF_DUEDATE:43
-		//if (AInfo['Expected Timeframe'] == 'Revision - 5 Days') {
-		//	editTaskDueDate('Addressing', dateAdd(null,5,'Y'));
-		//	}
-
 	}
 	//end replaced branch: ES_SET_WF_DUEDATE;
 }
-
-// DISABLED: WORKFLOW_UA_PERMITS:9
-//if (wfTask == 'Routing' && taskStatus !='Not Required') {
-//	emailContact('Permit Routed for Review', 'Permit Number: '+capIDString+' <br> Location: '+CapAddress+' <br> Anticipated Review Timeframe: '+wfStatus+' <br>This timeframe is based on work days;
-//	please make adjustments for weekends and holidays. Thank you.');
-//	}
 
 if (wfTask == 'Clearing House' && matches(wfStatus, 'Complete')) {
 	closeTask('Review Process', 'Complete', 'Y');
 }
 
 if (wfTask == 'Holds') {
-
-	//start replaced branch: ES_SET_WF_CLOSEOUT
 	{
 		if (AInfo['MSD Hold'] == 'No') {
 			setTask('MSD Release', 'N', 'Y', 'CLOSE OUT');
