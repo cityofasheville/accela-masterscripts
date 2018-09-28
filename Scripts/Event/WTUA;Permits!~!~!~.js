@@ -439,24 +439,23 @@ if (matches(wfStatus, 'Issue', 'Issue Partial', 'Reissue', 'Amended')) {
 
 var profArr = getLicenseProfessional(capId);
 // For the next two if statements
-console.log(profArr)
 
 if (appMatch('*/*/*/Repair-Replacement' && matches(wfStatus, 'Hold - See Comment'))) {
 	if (matches(wfTask, 'Fire Review') && profArr != null) {
 		emailContact('Permit Suspended', "You are listed as a contact for permit " + capIDString + " This repair - replacement permit has been suspended by the Fire Marshal ' s Office.Please cease work and contact the permit office at 828 - 259 - 5846 for information regarding next steps.");
-		if (profArr != null) {
-			for (x in profArr) {
-				if (profArr[x].getEmail() + '' != '') {
-					email(profArr[x].getEmail(), 'noreply@ashevillenc.gov', 'Permit Suspended', "You are identified as a Licensed Contractor on permit,  ' + capIDString + ' This Repair-Replacement permit has been suspended by the Fire Marshal' s Office.Please cease work immediately and contact the permit office at 828 - 259 - 5846 for information regarding next steps.");
+		if (profArr !== null) {
+			for (var profObj1 in profArr) {
+				if (profObj1.getEmail() + '' !== '') {
+					email(profObj1.getEmail(), 'noreply@ashevillenc.gov', 'Permit Suspended', "You are identified as a Licensed Contractor on permit,  ' + capIDString + ' This Repair-Replacement permit has been suspended by the Fire Marshal' s Office.Please cease work immediately and contact the permit office at 828 - 259 - 5846 for information regarding next steps.");
 				}
 			}
 		}
 	}
 	if (matches(wfTask, 'Air Quality')) {
-		if (profArr != null) {
-			for (x in profArr) {
-				if (profArr[x].getEmail() + '' != '') {
-					email(profArr[x].getEmail(), 'noreply@ashevillenc.gov', 'Permit Suspended', 'You are identified as a Licensed Contractor on permit, ' + capIDString + ' This Repair-Replacement permit has been suspended by the WNC Regional Air Quality Agency. Please cease work immediately and contact Mike Matthews at 828-250- 6776 for information regarding next steps.');
+		if (profArr !== null) {
+			for (var profObj2 in profArr) {
+				if (profObj2.getEmail() + '' !== '') {
+					email(profObj2.getEmail(), 'noreply@ashevillenc.gov', 'Permit Suspended', 'You are identified as a Licensed Contractor on permit, ' + capIDString + ' This Repair-Replacement permit has been suspended by the WNC Regional Air Quality Agency. Please cease work immediately and contact Mike Matthews at 828-250- 6776 for information regarding next steps.');
 				}
 			}
 		}
