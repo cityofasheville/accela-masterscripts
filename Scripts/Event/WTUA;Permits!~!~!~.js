@@ -1,3 +1,10 @@
+
+
+// TODO: DELETE
+if (matches(currentUserID, 'JHEDRICK', 'MMAZANEC')) {
+	showDebug = true;
+}
+
 //start replaced branch: WORKFLOW_UA_PERMITS
 var currentResultOfGetParent = getParent();
 //start replaced branch: ES_CREATE_FIRE_SIBLING
@@ -438,10 +445,11 @@ if (matches(wfStatus, 'Issue', 'Issue Partial', 'Reissue', 'Amended')) {
 }
 
 var profArr = getLicenseProfessional(capId);
+log Debug(profArr)
 // For the next two if statements
 
 if (appMatch('*/*/*/Repair-Replacement' && matches(wfStatus, 'Hold - See Comment'))) {
-	if (matches(wfTask, 'Fire Review') && profArr != null) {
+	if (matches(wfTask, 'Fire Review') && profArr !== null) {
 		emailContact('Permit Suspended', "You are listed as a contact for permit " + capIDString + " This repair - replacement permit has been suspended by the Fire Marshal ' s Office.Please cease work and contact the permit office at 828 - 259 - 5846 for information regarding next steps.");
 		if (profArr !== null) {
 			for (var profObj1 in profArr) {
