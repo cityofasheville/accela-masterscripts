@@ -57,7 +57,7 @@ if (wfTaskFirePreventionOrReview && wfStatusApprovedOrWithConditions) {
 		//end replaced branch: ES_CREATE_FIRE_SIBLING;
 	} else { // If NOT currentResultOfGetParent
 		//start replaced branch: ES_CREATE_FIRE_CHILD
-		for (var elsePermitListIndex = 0; elsePermitListIndex < checkPreventionApprovedCats.length, elsePermitListIndex++) {
+		for (var elsePermitListIndex = 0; elsePermitListIndex < checkPreventionApprovedCats.length; elsePermitListIndex++) {
 			var thisPermitCheckElse = checkPreventionApprovedCats[elsePermitListIndex];
 			if (AInfo[thisPermitCheckElse.aInfot1 + ' Permit Required'] === 'Yes' && !hasChildren('Permits/Fire/Construction/' + thisPermitCheckElse.permitCat)) {
 				newChildID = createChild('Permits', 'Fire', 'Construction', thisPermitCheckElse.permitCat, '');
