@@ -93,15 +93,22 @@ if (wfTaskFirePreventionOrReview && wfStatusApprovedOrWithConditions) {
 		editAppSpecific('Permit Expiration Date', dateAdd(null, 180));
 	}
 
+	if (appMatch('Permits/Sign/Stand Alone/*')
+		&& matches(wfStatus, 'Issue', 'Reissue')
+	) {
+		editAppSpecific('Permit Expiration Date', dateAdd(null, 365));
+	}
+
+	var theMonth = sysDate.getMonth();
+	var theYear = sysDate.getYear();
+	var nextYear = sysDate.getYear() + 1;
+
 	if ((appMatch('Permits/*/Dining/*')
-		|| appMatch('Permits/*/Merchandise/*')
-		|| appMatch('Permits/*/A-Frame/*'))
-		&& wfTask == 'Issuance' && matches(wfStatus, 'Issue', 'Reissue')
+			|| appMatch('Permits/*/Merchandise/*')
+			|| appMatch('Permits/*/A-Frame/*')
+		) && wfTask == 'Issuance' && matches(wfStatus, 'Issue', 'Reissue')
 	) {
 		//start replaced branch: ES_SET_EXP_YEAR
-		theMonth = sysDate.getMonth();
-		theYear = sysDate.getYear();
-		nextYear = sysDate.getYear() + 1;
 		comment('The month is: ' + theMonth);
 		comment('The year is: ' + theYear);
 		if (matches(theMonth, '1', '2', '3', '4', '5', '6')) {
@@ -113,20 +120,11 @@ if (wfTaskFirePreventionOrReview && wfStatusApprovedOrWithConditions) {
 		//end replaced branch: ES_SET_EXP_YEAR;
 	}
 
-	if (appMatch('Permits/Sign/Stand Alone/*')
-		&& matches(wfStatus, 'Issue', 'Reissue')
-	) {
-		editAppSpecific('Permit Expiration Date', dateAdd(null, 365));
-	}
-
 	if (appMatch('Permits/*/Push Cart/*')
 		&& wfTask == 'Issuance'
 		&& matches(wfStatus, 'Issue', 'Reissue')
 	) {
 		//start replaced branch: ES_SET_EXP_YEAR_MARCH
-		theMonth = sysDate.getMonth();
-		theYear = sysDate.getYear();
-		nextYear = sysDate.getYear() + 1;
 		comment('The month is: ' + theMonth);
 		comment('The year is: ' + theYear);
 		if (matches(theMonth, '1', '2', '3')) {
@@ -260,27 +258,20 @@ if (wfTask == 'Clearing House' && matches(wfStatus, 'Complete')) {
 }
 
 if (wfTask == 'Holds') {
-	{
-		if (AInfo['MSD Hold'] == 'No') {
-			setTask('MSD Release', 'N', 'Y', 'CLOSE OUT');
-		}
-
-		if (AInfo['Water Hold'] == 'No') {
-			setTask('Water Release', 'N', 'Y', 'CLOSE OUT');
-		}
-
-		if (AInfo['Backflow Hold'] == 'No') {
-			setTask('Backflow Approval', 'N', 'Y', 'CLOSE OUT');
-		}
-
-		if (AInfo['Master Site Hold'] == 'No') {
-			setTask('Master Site Compliance', 'N', 'Y', 'CLOSE OUT');
-		}
-
-		if (AInfo['Related Record Hold'] == 'No') {
-			setTask('Related Record Compliance', 'N', 'Y', 'CLOSE OUT');
-		}
-
+	if (AInfo['MSD Hold'] == 'No') {
+		setTask('MSD Release', 'N', 'Y', 'CLOSE OUT');
+	}
+	if (AInfo['Water Hold'] == 'No') {
+		setTask('Water Release', 'N', 'Y', 'CLOSE OUT');
+	}
+	if (AInfo['Backflow Hold'] == 'No') {
+		setTask('Backflow Approval', 'N', 'Y', 'CLOSE OUT');
+	}
+	if (AInfo['Master Site Hold'] == 'No') {
+		setTask('Master Site Compliance', 'N', 'Y', 'CLOSE OUT');
+	}
+	if (AInfo['Related Record Hold'] == 'No') {
+		setTask('Related Record Compliance', 'N', 'Y', 'CLOSE OUT');
 	}
 	//end replaced branch: ES_SET_WF_CLOSEOUT;
 }
@@ -354,7 +345,7 @@ function emailAboutCertOfOcc(emailAddress) {
 		'Certificate of Occupancy Issued',
 		'The following location ' + CapAddress + ' has been issued a Certificate of Occupancy for permit ' + capIDString + '. Please coordinate the Occupancy Posting.');
 }
-
+// TODO: also check for process
 if (matches(wfStatus, 'Certificate of Occupancy')
 	&& (appMatch('Permits/Commercial/*/*')
 		|| appMatch('Permits/Over the Counter/Tenant Occupancy/Like for Like')
@@ -470,9 +461,9 @@ if (appMatch('*/*/*/Repair-Replacement' && matches(wfStatus, 'Hold - See Comment
 }
 
 if ((appMatch('Planning/Development/*/*')
-	|| appMatch('Planning/Subdivision/*/*')
-	|| appMatch('Permits/*/Site Work/*'))
-	&& matches(wfStatus, 'Issue')
+		|| appMatch('Planning/Subdivision/*/*')
+		|| appMatch('Permits/*/Site Work/*')
+	) && matches(wfStatus, 'Issue')
 	&& AInfo['Issue Grading Permit To'] != 'NA'
 ) {
 	emailContact('Grading Preliminary Inspection Required', 'Permit Number: ' + capIDString + ' <br> Location: ' + CapAddress + ' <br> A Grading Permit is being issued for this location contingent upon proper installation of all erosion control devices. <br> The contractor must schedule a GR-PRELIM inspection before commencing work. All approved plans and permits must be on site. Silt Fencing and a Construction Entrance must be installed, and the temporary address must be posted. This inspection is required on individual lots, master sites and also required for individual lots within Subdivisions. Building permit inspections will be delayed until the Grading Preliminary inspection is approved. Thank you.');
