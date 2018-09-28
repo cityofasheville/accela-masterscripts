@@ -1,5 +1,3 @@
-
-
 // TODO: DELETE
 if (matches(currentUserID, 'JHEDRICK', 'MMAZANEC')) {
 	showDebug = true;
@@ -445,7 +443,7 @@ if (matches(wfStatus, 'Issue', 'Issue Partial', 'Reissue', 'Amended')) {
 }
 
 var profArr = getLicenseProfessional(capId);
-log Debug(profArr)
+// log Debug(profArr)
 // For the next two if statements
 
 if (appMatch('*/*/*/Repair-Replacement' && matches(wfStatus, 'Hold - See Comment'))) {
