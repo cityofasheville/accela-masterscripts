@@ -344,21 +344,24 @@ if (matches(wfTask, 'Inspections', 'Power Release', 'Gas Release')) {
 	//end replaced branch: ES_SET_WF_TU-TCO;
 }
 
+// Implied that it can be any process
+// We're assuming that when the CO status is chosen, that it will automatically be on a correct process
+// For example, division review can never have a CO status
+function emailAboutCertOfOcc(emailAddress) {
+	email(
+		emailAddress,
+		'noreply@ashevillenc.gov',
+		'Certificate of Occupancy Issued',
+		'The following location ' + CapAddress + ' has been issued a Certificate of Occupancy for permit ' + capIDString + '. Please coordinate the Occupancy Posting.');
+}
+
 if (matches(wfStatus, 'Certificate of Occupancy')
 	&& (appMatch('Permits/Commercial/*/*')
-	|| appMatch('Permits/Over the Couner/Tenant Occupancy/Like for Like')
+	|| appMatch('Permits/Over the Counter/Tenant Occupancy/Like for Like')
 	|| appMatch('Permits/Over The Counter/Tenant Occupancy/CO'))
 ) {
-	email(
-		'khinz@ashevillenc.gov',
-		'noreply@ashevillenc.gov',
-		'Certificate of Occupancy Issued',
-		'The following location ' + CapAddress + ' has been issued a Certificate of Occupancy for permit ' + capIDString + '. Please coordinate the Occupancy Posting.');
-	email(
-		'jpayne@ashevillenc.gov',
-		'noreply@ashevillenc.gov',
-		'Certificate of Occupancy Issued',
-		'The following location ' + CapAddress + ' has been issued a Certificate of Occupancy for permit ' + capIDString + '. Please coordinate the Occupancy Posting.');
+	emailAboutCertOfOcc('khinz@ashevillenc.gov')
+	emailAboutCertOfOcc('jpayne@ashevillenc.gov')
 }
 
 // changed from smorgan to talley 05/09/18. Added smorgan back on 5/18
