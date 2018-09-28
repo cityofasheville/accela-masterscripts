@@ -1,5 +1,5 @@
 // TODO: DELETE
-if (matches(currentUserID, 'JHEDRICK', 'MMAZANEC')) {
+if (matches(currentUserID, 'RHEDRICK', 'MMAZANEC')) {
 	showDebug = true;
 }
 
@@ -442,7 +442,7 @@ if (matches(wfStatus, 'Issue', 'Issue Partial', 'Reissue', 'Amended')) {
 	WORKFLOWTASK_UA_ADD_INSP();
 }
 
-
+// TODO: OLD SCHOOL BELOW THIS LINE-- SEE WHAT'S GOING ON HERE
 if (appMatch('*/*/*/Repair-Replacement')) {
 	var profArr = getLicenseProfessional(capId);
 }
