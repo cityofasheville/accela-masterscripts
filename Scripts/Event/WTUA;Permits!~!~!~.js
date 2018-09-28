@@ -1,5 +1,5 @@
 // TODO: DELETE
-if (matches(currentUserID, 'JHEDRICK', 'MMAZANEC')) {
+if (matches(currentUserID, 'RHEDRICK', 'MMAZANEC')) {
 	showDebug = true;
 }
 
