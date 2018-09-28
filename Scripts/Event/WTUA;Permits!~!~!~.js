@@ -357,8 +357,9 @@ function emailAboutCertOfOcc(emailAddress) {
 
 if (matches(wfStatus, 'Certificate of Occupancy')
 	&& (appMatch('Permits/Commercial/*/*')
-	|| appMatch('Permits/Over the Counter/Tenant Occupancy/Like for Like')
-	|| appMatch('Permits/Over The Counter/Tenant Occupancy/CO'))
+		|| appMatch('Permits/Over the Counter/Tenant Occupancy/Like for Like')
+		|| appMatch('Permits/Over The Counter/Tenant Occupancy/CO')
+	)
 ) {
 	emailAboutCertOfOcc('khinz@ashevillenc.gov')
 	emailAboutCertOfOcc('jpayne@ashevillenc.gov')
