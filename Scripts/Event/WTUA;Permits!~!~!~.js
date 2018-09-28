@@ -1,3 +1,8 @@
+// TODO: DELETE
+if (matches(currentUserID, 'JHEDRICK', 'MMAZANEC')) {
+	showDebug = true;
+}
+
 //start replaced branch: WORKFLOW_UA_PERMITS
 isParent = getParent();
 
