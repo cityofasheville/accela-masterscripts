@@ -442,40 +442,58 @@ if (matches(wfStatus, 'Issue', 'Issue Partial', 'Reissue', 'Amended')) {
 	WORKFLOWTASK_UA_ADD_INSP();
 }
 
-// TODO: OLD SCHOOL BELOW THIS LINE-- SEE WHAT'S GOING ON HERE
-if (appMatch('*/*/*/Repair-Replacement')) {
-	var profArr = getLicenseProfessional(capId);
+// Declared twice below-- why?
+var profArr;
+
+// Changed below as well
+if (appMatch('*/*/*/Repair-Replacement') && matches(wfStatus, 'Hold - See Comment')) {
+	profArr = getLicenseProfessional(capId);
+	if (matches(wfTask, 'Air Quality') && profArr != null) {
+		for (x in profArr) {
+			if (profArr[x].getEmail() + '' != '') {
+				email(profArr[x].getEmail(),
+				'noreply@ashevillenc.gov',
+				'Permit Suspended',
+				'You are identified as a Licensed Contractor on permit, ' + capIDString + ' This Repair-Replacement permit has been suspended by the WNC Regional Air Quality Agency. Please cease work immediately and contact Mike Matthews at 828-250- 6776 for information regarding next steps.');
+			}
+		}
+	}
+
+	if (matches(wfTask, 'Fire Review') && profArr != null) {
+		for (x in profArr) {
+			if (profArr[x].getEmail() + '' != '') {
+				email(profArr[x].getEmail(),
+				'noreply@ashevillenc.gov',
+				'Permit Suspended',
+				"You are identified as a Licensed Contractor on permit,  " + capIDString + " This Repair-Replacement permit has been suspended by the Fire Marshal' s Office.Please cease work immediately and contact the permit office at 828 - 259 - 5846 for information regarding next steps.");
+			}
+		}
+	}
+
+	if (matches(wfTask, 'Air Quality')) {
+		emailContact('Permit Suspended', 'You are listed as a contact for permit ' + capIDString + " This repair - replacement permit has been suspended by the WNC Regional Air Quality Agency.Please cease work and contact Mike Matthews at 828 - 250 - 6776 for information regarding next steps.");
+	}
+
+	if (matches(wfTask, 'Fire Review')) {
+		emailContact('Permit Suspended', "You are listed as a contact for permit " + capIDString + " This repair - replacement permit has been suspended by the Fire Marshal ' s Office.Please cease work and contact the permit office at 828 - 259 - 5846 for information regarding next steps.");
+	}
 }
 
-if (appMatch('*/*/*/Repair-Replacement') && matches(wfTask, 'Air Quality') && matches(wfStatus, 'Hold - See Comment') && profArr != null) {
-	for (x in profArr)
-		if (profArr[x].getEmail() + '' != '')
-			email(profArr[x].getEmail(), 'noreply@ashevillenc.gov', 'Permit Suspended', 'You are identified as a Licensed Contractor on permit, ' + capIDString + ' This Repair-Replacement permit has been suspended by the WNC Regional Air Quality Agency. Please cease work immediately and contact Mike Matthews at 828-250- 6776 for information regarding next steps.');
-}
 
-if (appMatch('*/*/*/Repair-Replacement') && matches(wfTask, 'Fire Review') && matches(wfStatus, 'Hold - See Comment') && profArr != null) {
-	for (x in profArr)
-		if (profArr[x].getEmail() + '' != '')
-			email(profArr[x].getEmail(), 'noreply@ashevillenc.gov', 'Permit Suspended', "You are identified as a Licensed Contractor on permit,  ' + capIDString + ' This Repair-Replacement permit has been suspended by the Fire Marshal' s Office.Please cease work immediately and contact the permit office at 828 - 259 - 5846 for information regarding next steps.");
-}
-
-if (appMatch('*/*/*/Repair-Replacement') && matches(wfTask, 'Air Quality') && matches(wfStatus, 'Hold - See Comment')) {
-	emailContact('Permit Suspended', 'You are listed as a contact for permit ' + capIDString + " This repair - replacement permit has been suspended by the WNC Regional Air Quality Agency.Please cease work and contact Mike Matthews at 828 - 250 - 6776 for information regarding next steps.");
-}
-
-if (appMatch('*/*/*/Repair-Replacement') && matches(wfTask, 'Fire Review') && matches(wfStatus, 'Hold - See Comment')) {
-	emailContact('Permit Suspended', "You are listed as a contact for permit " + capIDString + " This repair - replacement permit has been suspended by the Fire Marshal ' s Office.Please cease work and contact the permit office at 828 - 259 - 5846 for information regarding next steps.");
-}
-
+profArr = getLicenseProfessional(capId);
 if ((appMatch('Planning/Development/*/*') || appMatch('Planning/Subdivision/*/*') || appMatch('Permits/*/Site Work/*')) && matches(wfStatus, 'Issue') && AInfo['Issue Grading Permit To'] != 'NA') {
-	emailContact('Grading Preliminary Inspection Required', 'Permit Number: ' + capIDString + ' <br> Location: ' + CapAddress + ' <br> A Grading Permit is being issued for this location contingent upon proper installation of all erosion control devices. <br> The contractor must schedule a GR-PRELIM inspection before commencing work. All approved plans and permits must be on site. Silt Fencing and a Construction Entrance must be installed, and the temporary address must be posted. This inspection is required on individual lots, master sites and also required for individual lots within Subdivisions. Building permit inspections will be delayed until the Grading Preliminary inspection is approved. Thank you.');
+	emailContact(
+		'Grading Preliminary Inspection Required',
+		'Permit Number: ' + capIDString + ' <br> Location: ' + CapAddress + ' <br> A Grading Permit is being issued for this location contingent upon proper installation of all erosion control devices. <br> The contractor must schedule a GR-PRELIM inspection before commencing work. All approved plans and permits must be on site. Silt Fencing and a Construction Entrance must be installed, and the temporary address must be posted. This inspection is required on individual lots, master sites and also required for individual lots within Subdivisions. Building permit inspections will be delayed until the Grading Preliminary inspection is approved. Thank you.');
+	// Declared above as well
+	if (profArr != null) {
+		for (x in profArr) {
+			if (profArr[x].getEmail() + '' != '') {
+				email(profArr[x].getEmail(),
+					'noreply@ashevillenc.gov',
+					'Grading Preliminary Inspection Required', 'Permit Number: ' + capIDString + ' <br> Location: ' + CapAddress + ' <br> A Grading Permit is being issued for this location contingent upon proper installation of all erosion control devices. <br> The contractor must schedule a GR-PRELIM inspection before commencing work. All approved plans and permits must be on site. Silt Fencing and a Construction Entrance must be installed, and the temporary address must be posted. This inspection is required on individual lots, master sites and also required for individual lots within Subdivisions. Building permit inspections will be delayed until the Grading Preliminary inspection is approved. Thank you.');
+			}
+		}
+	}
 }
-
-var profArr = getLicenseProfessional(capId);
-if ((appMatch('Planning/Development/*/*') || appMatch('Planning/Subdivision/*/*') || appMatch('Permits/*/Site Work/*')) && matches(wfStatus, 'Issue') && AInfo['Issue Grading Permit To'] != 'NA' && profArr != null) {
-	for (x in profArr)
-		if (profArr[x].getEmail() + '' != '')
-			email(profArr[x].getEmail(), 'noreply@ashevillenc.gov', 'Grading Preliminary Inspection Required', 'Permit Number: ' + capIDString + ' <br> Location: ' + CapAddress + ' <br> A Grading Permit is being issued for this location contingent upon proper installation of all erosion control devices. <br> The contractor must schedule a GR-PRELIM inspection before commencing work. All approved plans and permits must be on site. Silt Fencing and a Construction Entrance must be installed, and the temporary address must be posted. This inspection is required on individual lots, master sites and also required for individual lots within Subdivisions. Building permit inspections will be delayed until the Grading Preliminary inspection is approved. Thank you.');
-}
-
 //end replaced branch: WORKFLOW_UA_PERMITS;
