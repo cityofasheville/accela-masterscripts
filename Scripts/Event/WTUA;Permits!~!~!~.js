@@ -1,3 +1,7 @@
+// TODO: DELETE
+if (matches(currentUserID, 'RHEDRICK', 'MMAZANEC')) {
+	showDebug = true;
+}
 
 //start replaced branch: WORKFLOW_UA_PERMITS
 isParent = getParent();
@@ -86,6 +90,23 @@ if (isParent) {
 			updateAppStatus('Application Received ', 'Initial Status set by script', newChildID);
 			editAppSpecific('Cost of Work', '0', newChildID);
 		}
+// Adding 8/31/18 to reflect new Fire ERRC record
+		if ((wfTask == 'Fire Prevention' || wfTask == 'Fire Review') && matches(wfStatus, 'Approved', 'Approved with Conditions') && AInfo['Fire ERRC (Radio Booster) Required'] == 'Yes' && !hasSibling(capId, 'Permits/Fire/Construction/ERRC (Radio Booster)')) {
+			saveCapId = capId;
+			pCapId = getParent();
+			capId = pCapId;
+			newChildID = createChild('Permits', 'Fire', 'Construction', 'ERRC (Radio Booster)', '');
+			capId = saveCapId;
+			copyAppSpecific(newChildID);
+			comment('New child app id = ' + newChildID);
+			t1 = 'Permit ' + capIDString + ' requires a Fire Construction Permit for a Fire ERRC Permit';
+
+			//replaced branch(ES_BUILD_WORKDESC_CONSTRUCTION)
+			ES_BUILD_WORKDESC_CONSTRUCTION();
+			updateAppStatus('Application Received ', 'Initial Status set by script', newChildID);
+			editAppSpecific('Cost of Work', '0', newChildID);
+		}
+// end added 8/31/18
 
 	}
 	//end replaced branch: ES_CREATE_FIRE_SIBLING;
@@ -152,7 +173,19 @@ if (isParent) {
 			updateAppStatus('Application Received ', 'Initial Status set by script', newChildID);
 			editAppSpecific('Cost of Work', '0', newChildID);
 		}
+//Added 8/31/18 for Fire ERRC
+		if ((wfTask == 'Fire Prevention' || wfTask == 'Fire Review') && matches(wfStatus, 'Approved', 'Approved with Conditions') && AInfo['Fire ERRC (Radio Booster) Required'] == 'Yes' && !hasChildren('Permits/Fire/Construction/ERRC (Radio Booster)')) {
+			newChildID = createChild('Permits', 'Fire', 'Construction', 'Other', '');
+			copyAppSpecific(newChildID);
+			comment('New child app id = ' + newChildID);
+			t1 = 'Permit ' + capIDString + ' requires a Fire Construction Permit for a Fire ERRC Radio Booster Permit';
 
+			//replaced branch(ES_BUILD_WORKDESC_CONSTRUCTION)
+			ES_BUILD_WORKDESC_CONSTRUCTION();
+			updateAppStatus('Application Received ', 'Initial Status set by script', newChildID);
+			editAppSpecific('Cost of Work', '0', newChildID);
+		}
+// end added 8/31/18
 	}
 	//end replaced branch: ES_CREATE_FIRE_CHILD;
 }
@@ -597,7 +630,9 @@ if (matches(wfStatus, 'Certificate of Occupancy') && (appMatch('Permits/Commerci
 	email('jpayne@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Certificate of Occupancy Issued', 'The following location ' + CapAddress + ' has been issued a Certificate of Occupancy for permit ' + capIDString + '. Please coordinate the Occupancy Posting.');
 }
 
+// changed from smorgan to talley 05/09/18. Added smorgan back on 5/18
 if (appMatch('Permits/Residential/Home Occupation/Home Stay') && wfTask == 'Application Process' && wfStatus == 'Application Complete') {
+	email('talley@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Home Stay Application ' + capIDString + ' Received', 'Permit Number: ' + capIDString + ' <br> Location: ' + CapAddress + ' <br> Please begin review of application information. Thank you.');
 	email('smorgan@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Home Stay Application ' + capIDString + ' Received', 'Permit Number: ' + capIDString + ' <br> Location: ' + CapAddress + ' <br> Please begin review of application information. Thank you.');
 }
 
@@ -628,12 +663,12 @@ if (matches(wfTask, 'HRC Overlay') && matches(wfStatus, 'Not Required', 'Minor W
 	email('PAC@ashevillenc.gov', 'noreply@ashevillenc.gov', 'HRC Overlay Task', 'HRC Overlay Review task updated. ' + capIDString + ' - Please check record status and issue if ready.');
 }
 
-// Added as per Diane 3/30/17 -- notifies PAC when River District task is updated to statuses below 
+// Added as per Diane 3/30/17 -- notifies PAC when River District task is updated to statuses below
 // (These statuses result in Go To Next Task, e.g. PAC may need to issue permit)
 
 //WOID: 93669
-//Description: 
-// Added as per Diane 3/30/17 -- notifies PAC when River District task is updated to statuses below 
+//Description:
+// Added as per Diane 3/30/17 -- notifies PAC when River District task is updated to statuses below
 // (These statuses result in Go To Next Task, e.g. PAC may need to issue permit)
 if (matches(wfTask, 'River District Design Review') && matches(wfStatus, 'Approved', 'Approved with Conditions', 'Not Required')) {
 	email('PAC@ashevillenc.gov', 'noreply@ashevillenc.gov', 'RDDR Task', 'River District Design Review task updated. ' + capIDString + ' - Please check record status and issue if ready.');

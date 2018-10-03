@@ -266,6 +266,100 @@ if (appMatch('Planning/Development/Signage Plan/*') && matches(wfStatus, 'Denied
 	addParcelCondition(null, 'Planning', 'Applied', 'Signage Plan Detail', 'City Council has denied the proposed signage plan associated with this parcel. The applicant must wait at least 365 days before reapplying for a new signage plan substantially similar to the proposed signage plan.', 'Notice');
 }
 
+// Added 2/27/18 to email PAC that a Pre-con meeting is possible. As per Chris. Permit Verification task exists only for Level I, Level II, Maj Sub, Level III, Cond Zoning -- which are the exact record types this email applies to.
+// 3/9/18 as per Chris and Susannah, changed to Nancy and Caitlyn rather than PAC
+//commented out 5/18/18 -- not in right place, now emailing Thana after individual tasks
+
+//if (wfTask == 'Permit Verification' && matches(wfStatus, 'Issue', 'Issue Partial')) {
+//	email('NWatford@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Pre-Construction Meeting', 'Possible Pre-Construction meeting required. ' + capIDString + ' - Please check record and if pre-con meeting is required, please contact the applicant to schedule.');
+//	email('CShort@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Pre-Construction Meeting', 'Possible Pre-Construction meeting required. ' + capIDString + ' - Please check record and if pre-con meeting is required, please contact the applicant to schedule.');
+//
+//
+//}
+//
+// Changes made 5/18/18 to email Thana/Caitlyn when all of these tasks are completed.
+// 8/22/18 Added Not Required to statuses to check for
+
+if (matches(wfProcess, 'PLN_LVL2', 'PLN_LVL2SUB', 'PLN_TRC', 'PLN_CUP')) {
+	if (wfTask == 'Grading' && matches(wfStatus, 'Approved','Approved with Conditions','Not Required')) {
+		if (isTaskComplete("Stormwater") && isTaskComplete("Driveway") && isTaskComplete("Sidewalk") && isTaskComplete("Addressing") && isTaskComplete("Application Process") && isTaskComplete("Planning Intake") && isTaskComplete("Technical Review") && isTaskComplete("Pre-Application Process")) {
+			email('CShort@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Pre-Construction Meeting', 'Preliminary tasks approved. Possible Pre-Construction meeting required. ' + capIDString + ' - Please check record and if pre-con meeting is required, please contact the applicant to schedule and let Nancy know. If not, please coordinate approvals or take other action to move forward');
+			email('NWatford@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Pre-Construction Meeting', 'Preliminary tasks approved. Possible Pre-Construction meeting required. ' + capIDString + ' - Please check record and if pre-con meeting is required, please contact the applicant to schedule and let Nancy know. If not, please coordinate approvals or take other action to move forward');
+	}
+}
+
+	if (wfTask == 'Stormwater' && matches(wfStatus, 'Approved','Approved with Conditions','Not Required')) {
+		if (isTaskComplete("Grading") && isTaskComplete("Driveway") && isTaskComplete("Sidewalk") && isTaskComplete("Addressing") && isTaskComplete("Application Process") && isTaskComplete("Planning Intake") && isTaskComplete("Technical Review") && isTaskComplete("Pre-Application Process")) {
+			email('CShort@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Pre-Construction Meeting', 'Preliminary tasks approved. Possible Pre-Construction meeting required. ' + capIDString + ' - Please check record and if pre-con meeting is required, please contact the applicant to schedule and let Nancy know. If not, please coordinate approvals or take other action to move forward');
+			email('NWatford@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Pre-Construction Meeting', 'Preliminary tasks approved. Possible Pre-Construction meeting required. ' + capIDString + ' - Please check record and if pre-con meeting is required, please contact the applicant to schedule and let Nancy know. If not, please coordinate approvals or take other action to move forward');
+	}
+}
+
+	if (wfTask == 'Driveway' && matches(wfStatus, 'Approved','Approved with Conditions','Not Required')) {
+		if (isTaskComplete("Stormwater") && isTaskComplete("Grading") && isTaskComplete("Sidewalk") && isTaskComplete("Addressing") && isTaskComplete("Application Process") && isTaskComplete("Planning Intake") && isTaskComplete("Technical Review") && isTaskComplete("Pre-Application Process")) {
+			email('CShort@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Pre-Construction Meeting', 'Preliminary tasks approved. Possible Pre-Construction meeting required. ' + capIDString + ' - Please check record and if pre-con meeting is required, please contact the applicant to schedule and let Nancy know. If not, please coordinate approvals or take other action to move forward');
+			email('NWatford@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Pre-Construction Meeting', 'Preliminary tasks approved. Possible Pre-Construction meeting required. ' + capIDString + ' - Please check record and if pre-con meeting is required, please contact the applicant to schedule and let Nancy know. If not, please coordinate approvals or take other action to move forward');
+	}
+}
+
+	if (wfTask == 'Sidewalk' && matches(wfStatus, 'Approved','Approved with Conditions','Not Required')) {
+		if (isTaskComplete("Stormwater") && isTaskComplete("Driveway") && isTaskComplete("Grading") && isTaskComplete("Addressing") && isTaskComplete("Application Process") && isTaskComplete("Planning Intake") && isTaskComplete("Technical Review") && isTaskComplete("Pre-Application Process")) {
+			email('CShort@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Pre-Construction Meeting', 'Preliminary tasks approved. Possible Pre-Construction meeting required. ' + capIDString + ' - Please check record and if pre-con meeting is required, please contact the applicant to schedule and let Nancy know. If not, please coordinate approvals or take other action to move forward');
+			email('NWatford@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Pre-Construction Meeting', 'Preliminary tasks approved. Possible Pre-Construction meeting required. ' + capIDString + ' - Please check record and if pre-con meeting is required, please contact the applicant to schedule and let Nancy know. If not, please coordinate approvals or take other action to move forward');
+	}
+}
+
+}
+
+if (matches(wfProcess, 'PW_DEV')) {
+	if (wfTask == 'Grading' && matches(wfStatus, 'Approved','Approved with Conditions','Not Required')) {
+		if (isTaskComplete("Stormwater") && isTaskComplete("Driveway") && isTaskComplete("Sidewalk") && isTaskComplete("Addressing") && isTaskComplete("Application Process") && isTaskComplete("Staff Level Site Plan Review") && isTaskComplete("Technical Review") && isTaskComplete("Pre-Application Process")) {
+			email('TAlley@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Pre-Construction Meeting', 'Preliminary tasks approved. Possible Pre-Construction meeting required. ' + capIDString + ' - Please check record and if pre-con meeting is required, please contact the applicant to schedule and let Nancy know. If not, please coordinate approvals or take other action to move forward');
+			email('NWatford@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Pre-Construction Meeting', 'Preliminary tasks approved. Possible Pre-Construction meeting required. ' + capIDString + ' - Please check record and if pre-con meeting is required, please contact the applicant to schedule and let Nancy know. If not, please coordinate approvals or take other action to move forward');
+	}
+}
+
+	if (wfTask == 'Driveway' && matches(wfStatus, 'Approved','Approved with Conditions','Not Required')) {
+		if (isTaskComplete("Stormwater") && isTaskComplete("Grading") && isTaskComplete("Sidewalk") && isTaskComplete("Addressing") && isTaskComplete("Application Process") && isTaskComplete("Staff Level Site Plan Review") && isTaskComplete("Technical Review") && isTaskComplete("Pre-Application Process")) {
+			email('TAlley@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Pre-Construction Meeting', 'Preliminary tasks approved. Possible Pre-Construction meeting required. ' + capIDString + ' - Please check record and if pre-con meeting is required, please contact the applicant to schedule and let Nancy know. If not, please coordinate approvals or take other action to move forward');
+			email('NWatford@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Pre-Construction Meeting', 'Preliminary tasks approved. Possible Pre-Construction meeting required. ' + capIDString + ' - Please check record and if pre-con meeting is required, please contact the applicant to schedule and let Nancy know. If not, please coordinate approvals or take other action to move forward');
+	}
+}
+
+	if (wfTask == 'Stormwater' && matches(wfStatus, 'Approved','Approved with Conditions','Not Required')) {
+		if (isTaskComplete("Grading") && isTaskComplete("Driveway") && isTaskComplete("Sidewalk") && isTaskComplete("Addressing") && isTaskComplete("Application Process") && isTaskComplete("Staff Level Site Plan Review") && isTaskComplete("Technical Review") && isTaskComplete("Pre-Application Process")) {
+			email('TAlley@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Pre-Construction Meeting', 'Preliminary tasks approved. Possible Pre-Construction meeting required. ' + capIDString + ' - Please check record and if pre-con meeting is required, please contact the applicant to schedule and let Nancy know. If not, please coordinate approvals or take other action to move forward');
+			email('NWatford@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Pre-Construction Meeting', 'Preliminary tasks approved. Possible Pre-Construction meeting required. ' + capIDString + ' - Please check record and if pre-con meeting is required, please contact the applicant to schedule and let Nancy know. If not, please coordinate approvals or take other action to move forward');
+	}
+}
+
+	if (wfTask == 'Staff Level Site Plan Review' && matches(wfStatus, 'Approved','Approved with Conditions','Not Required')) {
+		if (isTaskComplete("Stormwater") && isTaskComplete("Driveway") && isTaskComplete("Sidewalk") && isTaskComplete("Addressing") && isTaskComplete("Application Process") && isTaskComplete("Grading") && isTaskComplete("Technical Review") && isTaskComplete("Pre-Application Process")) {
+			email('TAlley@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Pre-Construction Meeting', 'Preliminary tasks approved. Possible Pre-Construction meeting required. ' + capIDString + ' - Please check record and if pre-con meeting is required, please contact the applicant to schedule and let Nancy know. If not, please coordinate approvals or take other action to move forward');
+			email('NWatford@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Pre-Construction Meeting', 'Preliminary tasks approved. Possible Pre-Construction meeting required. ' + capIDString + ' - Please check record and if pre-con meeting is required, please contact the applicant to schedule and let Nancy know. If not, please coordinate approvals or take other action to move forward');
+	}
+}
+
+	if (wfTask == 'Sidewalk' && matches(wfStatus, 'Approved','Approved with Conditions','Not Required')) {
+		if (isTaskComplete("Stormwater") && isTaskComplete("Driveway") && isTaskComplete("Grading") && isTaskComplete("Addressing") && isTaskComplete("Application Process") && isTaskComplete("Grading") && isTaskComplete("Technical Review") && isTaskComplete("Pre-Application Process")) {
+			email('TAlley@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Pre-Construction Meeting', 'Preliminary tasks approved. Possible Pre-Construction meeting required. ' + capIDString + ' - Please check record and if pre-con meeting is required, please contact the applicant to schedule and let Nancy know. If not, please coordinate approvals or take other action to move forward');
+			email('NWatford@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Pre-Construction Meeting', 'Preliminary tasks approved. Possible Pre-Construction meeting required. ' + capIDString + ' - Please check record and if pre-con meeting is required, please contact the applicant to schedule and let Nancy know. If not, please coordinate approvals or take other action to move forward');
+	}
+}
+
+}
+
+// Added below 5/23/18 to send email to primary contact. this is for records that may be created online to alert the customer their permit can be printed out.
+
+if (wfTask == 'Permit Verification' && matches(wfStatus, 'Issue', 'Reissue', 'Issue Partial')) {
+	emailContact('Your Permit Has Been Issued -- Important Instructions Inside', 'Permit Number: ' + capIDString + ' <br> Location: ' + CapAddress + ' <br> Your permit has been issued at this location. If you have not received your permit and plans already, before starting work, please follow the steps below to prepare the permit and plans for this project.<br><br> --Visit Develop.AshevilleNC.Gov<br> --Click Access Permits and Inspections<br> --Search for the above record number in the top-right corner of the page.<br> --Click the arrow down next to Record Info and select Attachments<br> --Click the name of the approved plans and permit to download<br><br>The project permit must be posted at the work site. Approved plans must be available on-site.');
+
+}
+// End added 5/23
+
+
+
+
 if (wfTask == 'Permit Verification' && matches(wfStatus, 'Issue', 'Issue Partial')) {
 
 	//replaced branch(WORKFLOWTASK_UA_ADD_INSP)
