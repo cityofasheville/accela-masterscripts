@@ -82,47 +82,15 @@ if (matches(inspType, 'PL-FINAL')) {
 }
 
 if (matches(inspType, 'EE-FINAL')) {
-
-	//start replaced branch: ES_ISB_ELEC
-	{
-		if (checkInspectionResult('EE-ROUGH IN', 'Pending')) {
-			showMessage = true;
-			comment("<font size=small><b>Can't schedule Final:</b></font><br><br>Can't schedule Final until Rough-In is scheduled. Inspections not required by scope will be marked NotApplicable by the inspector.<br><br>");
-			cancel = true;
-		}
-
-		if (checkInspectionResult('EE-UNDER SLAB', 'Pending')) {
-			showMessage = true;
-			comment("<font size=small><b>Can't schedule Final:</b></font><br><br>UNDER SLAB Inspection is not scheduled. Inspections not required by scope will be marked NotApplicable by the inspector.<br><br>");
-			cancel = true;
-		}
-
-		if (checkInspectionResult('EE-TEMPORARY SAW SERVICE', 'Pending')) {
-			showMessage = true;
-			comment("<font size=small><b>Can't schedule Final:</b></font><br><br>TEMPORARY SAW SERVICE Inspection is not scheduled. Inspections not required by scope will be marked NotApplicable by the inspector.<br><br>");
-			cancel = true;
-		}
-
-		if (checkInspectionResult('EE-ABOVE CEILING', 'Pending')) {
-			showMessage = true;
-			comment("<font size=small><b>Can't schedule Final:</b></font><br><br>ABOVE CEILING Inspection is not scheduled. Inspections not required by scope will be marked NotApplicable by the inspector.<br><br>");
-			cancel = true;
-		}
-
-		if (checkInspectionResult('EE-OTHER', 'Pending')) {
-			showMessage = true;
-			comment("<font size=small><b>Can't schedule Final:</b></font><br><br>OTHER Inspection is not scheduled. Inspections not required by scope will be marked NotApplicable by the inspector.<br><br>");
-			cancel = true;
-		}
-
-		if (checkInspectionResult('EE-REINSP', 'Pending')) {
-			showMessage = true;
-			comment("<font size=small><b>Can't schedule Final:</b></font><br><br>EE-REINSP Re-inspection is not scheduled. Inspections not required by scope will be marked NotApplicable by the inspector.<br><br>");
-			cancel = true;
-		}
-
-	}
-	//end replaced branch: ES_ISB_ELEC;
+	var eeInspectionTypes = [
+		'ROUGH IN',
+		'UNDER SLAB',
+		'TEMPORARY SAW SERVICE',
+		'ABOVE CEILING',
+		'OTHER',
+		'REINSP',
+	]
+	denyFinalInspections('EE', eeInspectionTypes)
 }
 
 if (matches(inspType, 'HO-FINAL')) {
