@@ -80,51 +80,51 @@ if (matches(inspType, 'PL-FINAL')) {
 
 	//start replaced branch: ES_ISB_PLUM
 	{
-		if (inspType == 'PL-FINAL' && checkInspectionResult('PL-ROUGH IN', 'Pending')) {
+		if (checkInspectionResult('PL-ROUGH IN', 'Pending')) {
 			showMessage = true;
 			comment("<font size=small><b>Can't schedule Final:</b></font><br><br>Can't schedule Final until Rough-In is scheduled. Inspections not required by scope will be marked NotApplicable by the inspector.<br><br>");
 			cancel = true;
 		}
 
-		if (inspType == 'PL-FINAL' && checkInspectionResult('PL-UNDER SLAB', 'Pending')) {
+		if (checkInspectionResult('PL-UNDER SLAB', 'Pending')) {
 			showMessage = true;
 			comment("<font size=small><b>Can't schedule Final:</b></font><br><br>UNDER SLAB Inspection is not scheduled. Inspections not required by scope will be marked NotApplicable by the inspector.<br><br>");
 			cancel = true;
 		}
 
 		// DISABLED: ES_ISB_PLUM:3
-		//if (inspType == 'PL-FINAL' && checkInspectionResult('PL-SHOWER PAN','Pending')) {
+		//if (checkInspectionResult('PL-SHOWER PAN','Pending')) {
 		//	showMessage = true;
 		//	comment("<font size=small><b>Can't schedule Final:</b></font><br><br>SHOWER PAN Inspection is not scheduled.<br><br>");
 		//	cancel = true;
 		//	}
 
-		if (inspType == 'PL-FINAL' && checkInspectionResult('PL-WATER LINE', 'Pending')) {
+		if (checkInspectionResult('PL-WATER LINE', 'Pending')) {
 			showMessage = true;
 			comment("<font size=small><b>Can't schedule Final:</b></font><br><br>WATER LINE Inspection is not scheduled. Inspections not required by scope will be marked NotApplicable by the inspector.<br><br>");
 			cancel = true;
 		}
 
-		if (inspType == 'PL-FINAL' && checkInspectionResult('PL-SEWER LINE', 'Pending')) {
+		if (checkInspectionResult('PL-SEWER LINE', 'Pending')) {
 			showMessage = true;
 			comment("<font size=small><b>Can't schedule Final:</b></font><br><br>SEWER LINE Inspection is not scheduled. Inspections not required by scope will be marked NotApplicable by the inspector.<br><br>");
 			cancel = true;
 		}
 
-		if (inspType == 'PL-FINAL' && checkInspectionResult('PL-BACKFLOW', 'Pending')) {
+		if (checkInspectionResult('PL-BACKFLOW', 'Pending')) {
 			showMessage = true;
 			comment("<font size=small><b>Can't schedule Final:</b></font><br><br>BACKFLOW Inspection is not scheduled. Inspections not required by scope will be marked NotApplicable by the inspector.<br><br>");
 			cancel = true;
 		}
 
 		// DISABLED: ES_ISB_PLUM:7
-		//if (inspType == 'PL-FINAL' && checkInspectionResult('PL-OTHER','Pending')) {
+		//if (checkInspectionResult('PL-OTHER','Pending')) {
 		//	showMessage = true;
 		//	comment("<font size=small><b>Can't schedule Final:</b></font><br><br>OTHER Inspection is not scheduled.<br><br>");
 		//	cancel = true;
 		//	}
 
-		if (inspType == 'PL-FINAL' && checkInspectionResult('PL-REINSP', 'Pending')) {
+		if (checkInspectionResult('PL-REINSP', 'Pending')) {
 			showMessage = true;
 			comment("<font size=small><b>Can't schedule Final:</b></font><br><br>PL-REINSP Re-inspection is not scheduled. Inspections not required by scope will be marked NotApplicable by the inspector.<br><br>");
 			cancel = true;
@@ -138,37 +138,37 @@ if (matches(inspType, 'EE-FINAL')) {
 
 	//start replaced branch: ES_ISB_ELEC
 	{
-		if (inspType == 'EE-FINAL' && checkInspectionResult('EE-ROUGH IN', 'Pending')) {
+		if (checkInspectionResult('EE-ROUGH IN', 'Pending')) {
 			showMessage = true;
 			comment("<font size=small><b>Can't schedule Final:</b></font><br><br>Can't schedule Final until Rough-In is scheduled. Inspections not required by scope will be marked NotApplicable by the inspector.<br><br>");
 			cancel = true;
 		}
 
-		if (inspType == 'EE-FINAL' && checkInspectionResult('EE-UNDER SLAB', 'Pending')) {
+		if (checkInspectionResult('EE-UNDER SLAB', 'Pending')) {
 			showMessage = true;
 			comment("<font size=small><b>Can't schedule Final:</b></font><br><br>UNDER SLAB Inspection is not scheduled. Inspections not required by scope will be marked NotApplicable by the inspector.<br><br>");
 			cancel = true;
 		}
 
-		if (inspType == 'EE-FINAL' && checkInspectionResult('EE-TEMPORARY SAW SERVICE', 'Pending')) {
+		if (checkInspectionResult('EE-TEMPORARY SAW SERVICE', 'Pending')) {
 			showMessage = true;
 			comment("<font size=small><b>Can't schedule Final:</b></font><br><br>TEMPORARY SAW SERVICE Inspection is not scheduled. Inspections not required by scope will be marked NotApplicable by the inspector.<br><br>");
 			cancel = true;
 		}
 
-		if (inspType == 'EE-FINAL' && checkInspectionResult('EE-ABOVE CEILING', 'Pending')) {
+		if (checkInspectionResult('EE-ABOVE CEILING', 'Pending')) {
 			showMessage = true;
 			comment("<font size=small><b>Can't schedule Final:</b></font><br><br>ABOVE CEILING Inspection is not scheduled. Inspections not required by scope will be marked NotApplicable by the inspector.<br><br>");
 			cancel = true;
 		}
 
-		if (inspType == 'EE-FINAL' && checkInspectionResult('EE-OTHER', 'Pending')) {
+		if (checkInspectionResult('EE-OTHER', 'Pending')) {
 			showMessage = true;
 			comment("<font size=small><b>Can't schedule Final:</b></font><br><br>OTHER Inspection is not scheduled. Inspections not required by scope will be marked NotApplicable by the inspector.<br><br>");
 			cancel = true;
 		}
 
-		if (inspType == 'EE-FINAL' && checkInspectionResult('EE-REINSP', 'Pending')) {
+		if (checkInspectionResult('EE-REINSP', 'Pending')) {
 			showMessage = true;
 			comment("<font size=small><b>Can't schedule Final:</b></font><br><br>EE-REINSP Re-inspection is not scheduled. Inspections not required by scope will be marked NotApplicable by the inspector.<br><br>");
 			cancel = true;
@@ -182,37 +182,37 @@ if (matches(inspType, 'HO-FINAL')) {
 
 	//start replaced branch: ES_ISB_HOOD
 	{
-		if (inspType == 'HO-FINAL' && checkInspectionResult('HO-ROUGH IN', 'Pending')) {
+		if (checkInspectionResult('HO-ROUGH IN', 'Pending')) {
 			showMessage = true;
 			comment("<font size=small><b>Can't schedule Final:</b></font><br><br>Can't schedule Final until Rough-In is scheduled. Inspections not required by scope will be marked NotApplicable by the inspector.<br><br>");
 			cancel = true;
 		}
 
-		if (inspType == 'HO-FINAL' && checkInspectionResult('HO-ABOVE CEILING', 'Pending')) {
+		if (checkInspectionResult('HO-ABOVE CEILING', 'Pending')) {
 			showMessage = true;
 			comment("<font size=small><b>Can't schedule Final:</b></font><br><br>ABOVE CEILING Inspection is not scheduled. Inspections not required by scope will be marked NotApplicable by the inspector.<br><br>");
 			cancel = true;
 		}
 
-		if (inspType == 'HO-FINAL' && checkInspectionResult('HO-LIGHT TEST', 'Pending')) {
+		if (checkInspectionResult('HO-LIGHT TEST', 'Pending')) {
 			showMessage = true;
 			comment("<font size=small><b>Can't schedule Final:</b></font><br><br>LIGHT TEST Inspection is not scheduled. Inspections not required by scope will be marked NotApplicable by the inspector.<br><br>");
 			cancel = true;
 		}
 
-		if (inspType == 'HO-FINAL' && checkInspectionResult('HO-SMOKE TEST', 'Pending')) {
+		if (checkInspectionResult('HO-SMOKE TEST', 'Pending')) {
 			showMessage = true;
 			comment("<font size=small><b>Can't schedule Final:</b></font><br><br>SMOKE TEST Inspection is not scheduled. Inspections not required by scope will be marked NotApplicable by the inspector.<br><br>");
 			cancel = true;
 		}
 
-		if (inspType == 'HO-FINAL' && checkInspectionResult('HO-DUCT WRAP', 'Pending')) {
+		if (checkInspectionResult('HO-DUCT WRAP', 'Pending')) {
 			showMessage = true;
 			comment("<font size=small><b>Can't schedule Final:</b></font><br><br>DUCT WRAP Inspection is not scheduled. Inspections not required by scope will be marked NotApplicable by the inspector.<br><br>");
 			cancel = true;
 		}
 
-		if (inspType == 'HO-FINAL' && checkInspectionResult('HO-REINSP', 'Pending')) {
+		if (checkInspectionResult('HO-REINSP', 'Pending')) {
 			showMessage = true;
 			comment("<font size=small><b>Can't schedule Final:</b></font><br><br>HO-REINSP Re-inspection is not scheduled. Inspections not required by scope will be marked NotApplicable by the inspector.<br><br>");
 			cancel = true;
@@ -226,26 +226,26 @@ if (matches(inspType, 'RE-FINAL')) {
 
 	//start replaced branch: ES_ISB_REFR
 	{
-		if (inspType == 'RE-FINAL' && checkInspectionResult('RE-ROUGH IN', 'Pending')) {
+		if (checkInspectionResult('RE-ROUGH IN', 'Pending')) {
 			showMessage = true;
 			comment("<font size=small><b>Can't schedule Final:</b></font><br><br>Can't schedule Final until Rough-In is scheduled. Inspections not required by scope will be marked NotApplicable by the inspector.<br><br>");
 			cancel = true;
 		}
 
-		if (inspType == 'RE-FINAL' && checkInspectionResult('RE-ABOVE CEILING', 'Pending')) {
+		if (checkInspectionResult('RE-ABOVE CEILING', 'Pending')) {
 			showMessage = true;
 			comment("<font size=small><b>Can't schedule Final:</b></font><br><br>ABOVE CEILING Inspection is not scheduled. Inspections not required by scope will be marked NotApplicable by the inspector.<br><br>");
 			cancel = true;
 		}
 
 		// DISABLED: ES_ISB_REFR:3
-		//if (inspType == 'RE-FINAL' && checkInspectionResult('RE-OTHER','Pending')) {
+		//if (checkInspectionResult('RE-OTHER','Pending')) {
 		//	showMessage = true;
 		//	comment("<font size=small><b>Can't schedule Final:</b></font><br><br>OTHER Inspection is not scheduled.<br><br>");
 		//	cancel = true;
 		//	}
 
-		if (inspType == 'RE-FINAL' && checkInspectionResult('RE-REINSP', 'Pending')) {
+		if (checkInspectionResult('RE-REINSP', 'Pending')) {
 			showMessage = true;
 			comment("<font size=small><b>Can't schedule Final:</b></font><br><br>RE-REINSP Re-inspection is not scheduled. Inspections not required by scope will be marked NotApplicable by the inspector.<br><br>");
 			cancel = true;
@@ -259,13 +259,13 @@ if (matches(inspType, 'GP-FINAL')) {
 
 	//start replaced branch: ES_ISB_GASP
 	{
-		if (inspType == 'GP-FINAL' && checkInspectionResult('GP-ROUGH IN', 'Pending')) {
+		if (checkInspectionResult('GP-ROUGH IN', 'Pending')) {
 			showMessage = true;
 			comment("<font size=small><b>Can't schedule Final:</b></font><br><br>Can't schedule Final until Rough-In is scheduled. Inspections not required by scope will be marked NotApplicable by the inspector.<br><br>");
 			cancel = true;
 		}
 
-		if (inspType == 'GP-FINAL' && checkInspectionResult('GP-REINSP', 'Pending')) {
+		if (checkInspectionResult('GP-REINSP', 'Pending')) {
 			showMessage = true;
 			comment("<font size=small><b>Can't schedule Final:</b></font><br><br>GP-REINSP Re-inspection is not scheduled. Inspections not required by scope will be marked NotApplicable by the inspector.<br><br>");
 			cancel = true;
@@ -275,87 +275,88 @@ if (matches(inspType, 'GP-FINAL')) {
 	//end replaced branch: ES_ISB_GASP;
 }
 
-if (matches(inspType, 'BU-FRAMING') && checkInspectionResult('BU-FOOTING', 'Pending')) {
-	showMessage = true;
-	comment("<font size=small><b>BU-FRAMING Inspection Not Allowed:</b></font><br><br>The BU-FOOTING inspection must be scheduled.Inspections not required by scope will be marked NotApplicable by the inspector.<br><br>");
-	cancel = true;
-}
-
-if (matches(inspType, 'BU-FRAMING') && checkInspectionResult('PL-ROUGH IN', 'Pending')) {
-	showMessage = true;
-	comment("<font size=small><b>Can't schedule Framing Inspection:</b></font><br><br>Can't schedule Framing Inspection until Plumbing Rough-In is scheduled.<br><br>");
-	cancel = true;
-}
-
-if (matches(inspType, 'BU-FRAMING') && checkInspectionResult('ME-ROUGH IN', 'Pending')) {
-	showMessage = true;
-	comment("<font size=small><b>Can't schedule Framing Inspection:</b></font><br><br>Can't schedule Framing Inspection until Mechanical Rough-In is scheduled.<br><br>");
-	cancel = true;
-}
-
-if (matches(inspType, 'BU-FRAMING') && checkInspectionResult('EE-ROUGH IN', 'Pending')) {
-	showMessage = true;
-	comment("<font size=small><b>Can't schedule Framing Inspection:</b></font><br><br>Can't schedule Framing Inspection until Electrical Rough-In is scheduled.<br><br>");
-	cancel = true;
-}
-
-if (matches(inspType, 'BU-FRAMING') && checkInspectionResult('GP-ROUGH IN', 'Pending')) {
-	showMessage = true;
-	comment("<font size=small><b>Can't schedule Framing Inspection:</b></font><br><br>Can't schedule Framing Inspection until Gas Piping Rough-In is scheduled.<br><br>");
-	cancel = true;
-}
-
-if (appMatch('Permits/Residential/*/*') && matches(inspType, 'BU-FRAMING')) {
-
-	//start replaced branch: ES_GET_CHILDREN_ROUGH
-	{
-		childrenCapId = getChildren('Permits/*/Trade/*', capId);
-		if (typeof(childrenCapId) == 'object') {
-			for (eachchild in childrenCapId)
-				//start replaced branch: ES_ISB_ROUGH
-			{
-				eachChildCapId = childrenCapId[eachchild];
-				cCapObj = aa.cap.getCap(eachChildCapId);
-				cCap = cCapObj.getOutput();
-				cStatus = cCap.getCapStatus();
-				cCapType = cCap.getCapType();
-				comment('The Child Status is: ' + cStatus);
-				comment('The Child Type is: ' + cCapType);
-				saveCapId = capId;
-				capId = eachChildCapId;
-				if (checkInspectionResult('PL-ROUGH IN', 'Pending')) {
-					showMessage = true;
-					comment("<font size=small><b>Can't schedule Framing Inspection:</b></font><br><br>Can't schedule Framing Inspection until Plumbing Rough-In is scheduled.<br><br>");
-					cancel = true;
-				}
-
-				if (checkInspectionResult('ME-ROUGH IN', 'Pending')) {
-					showMessage = true;
-					comment("<font size=small><b>Can't schedule Framing Inspection:</b></font><br><br>Can't schedule Framing Inspection until Mechanical Rough-In is scheduled.<br><br>");
-					cancel = true;
-				}
-
-				if (checkInspectionResult('EE-ROUGH IN', 'Pending')) {
-					showMessage = true;
-					comment("<font size=small><b>Can't schedule Framing Inspection:</b></font><br><br>Can't schedule Framing Inspection until Electrical Rough-In is scheduled.<br><br>");
-					cancel = true;
-				}
-
-				if (checkInspectionResult('GP-ROUGH IN', 'Pending')) {
-					showMessage = true;
-					comment("<font size=small><b>Can't schedule Framing Inspection:</b></font><br><br>Can't schedule Framing Inspection until Gas Piping Rough-In is scheduled.<br><br>");
-					cancel = true;
-				}
-
-				capId = saveCapId;
-
-			}
-			//end replaced branch: ES_ISB_ROUGH;
-		}
-
+if (matches(inspType, 'BU-FRAMING')) {
+	if (checkInspectionResult('BU-FOOTING', 'Pending')) {
+		showMessage = true;
+		comment("<font size=small><b>BU-FRAMING Inspection Not Allowed:</b></font><br><br>The BU-FOOTING inspection must be scheduled.Inspections not required by scope will be marked NotApplicable by the inspector.<br><br>");
+		cancel = true;
 	}
-	//end replaced branch: ES_GET_CHILDREN_ROUGH;
+
+	if (checkInspectionResult('PL-ROUGH IN', 'Pending')) {
+		showMessage = true;
+		comment("<font size=small><b>Can't schedule Framing Inspection:</b></font><br><br>Can't schedule Framing Inspection until Plumbing Rough-In is scheduled.<br><br>");
+		cancel = true;
+	}
+
+	if (checkInspectionResult('ME-ROUGH IN', 'Pending')) {
+		showMessage = true;
+		comment("<font size=small><b>Can't schedule Framing Inspection:</b></font><br><br>Can't schedule Framing Inspection until Mechanical Rough-In is scheduled.<br><br>");
+		cancel = true;
+	}
+
+	if (checkInspectionResult('EE-ROUGH IN', 'Pending')) {
+		showMessage = true;
+		comment("<font size=small><b>Can't schedule Framing Inspection:</b></font><br><br>Can't schedule Framing Inspection until Electrical Rough-In is scheduled.<br><br>");
+		cancel = true;
+	}
+
+	if (checkInspectionResult('GP-ROUGH IN', 'Pending')) {
+		showMessage = true;
+		comment("<font size=small><b>Can't schedule Framing Inspection:</b></font><br><br>Can't schedule Framing Inspection until Gas Piping Rough-In is scheduled.<br><br>");
+		cancel = true;
+	}
+
+	if (appMatch('Permits/Residential/*/*')) {
+
+		//start replaced branch: ES_GET_CHILDREN_ROUGH
+		{
+			childrenCapId = getChildren('Permits/*/Trade/*', capId);
+			if (typeof(childrenCapId) == 'object') {
+				for (eachchild in childrenCapId)
+				//start replaced branch: ES_ISB_ROUGH
+				{
+					eachChildCapId = childrenCapId[eachchild];
+					cCapObj = aa.cap.getCap(eachChildCapId);
+					cCap = cCapObj.getOutput();
+					cStatus = cCap.getCapStatus();
+					cCapType = cCap.getCapType();
+					comment('The Child Status is: ' + cStatus);
+					comment('The Child Type is: ' + cCapType);
+					saveCapId = capId;
+					capId = eachChildCapId;
+					if (checkInspectionResult('PL-ROUGH IN', 'Pending')) {
+						showMessage = true;
+						comment("<font size=small><b>Can't schedule Framing Inspection:</b></font><br><br>Can't schedule Framing Inspection until Plumbing Rough-In is scheduled.<br><br>");
+						cancel = true;
+					}
+
+					if (checkInspectionResult('ME-ROUGH IN', 'Pending')) {
+						showMessage = true;
+						comment("<font size=small><b>Can't schedule Framing Inspection:</b></font><br><br>Can't schedule Framing Inspection until Mechanical Rough-In is scheduled.<br><br>");
+						cancel = true;
+					}
+
+					if (checkInspectionResult('EE-ROUGH IN', 'Pending')) {
+						showMessage = true;
+						comment("<font size=small><b>Can't schedule Framing Inspection:</b></font><br><br>Can't schedule Framing Inspection until Electrical Rough-In is scheduled.<br><br>");
+						cancel = true;
+					}
+
+					if (checkInspectionResult('GP-ROUGH IN', 'Pending')) {
+						showMessage = true;
+						comment("<font size=small><b>Can't schedule Framing Inspection:</b></font><br><br>Can't schedule Framing Inspection until Gas Piping Rough-In is scheduled.<br><br>");
+						cancel = true;
+					}
+
+					capId = saveCapId;
+				}
+				//end replaced branch: ES_ISB_ROUGH;
+			}
+		}
+		//end replaced branch: ES_GET_CHILDREN_ROUGH;
+	}
 }
+
 
 if (matches(inspType, 'BU-FINAL', 'BU-FINAL-REINSP', 'MH-FINAL')) {
 
@@ -594,43 +595,43 @@ if (matches(inspType, 'SW-FINAL')) {
 
 	//start replaced branch: ES_ISB_SW_CLOSEOUT
 	{
-		if (inspType == 'SW-FINAL' && checkInspectionResult('SW-DIGITAL AS-BUILT', 'Scheduled') && checkInspectionResult('SW-DIGITAL AS-BUILT', 'Pending') && checkInspectionResult('SW-DIGITAL AS-BUILT', 'In Review') && checkInspectionResult('SW-DIGITAL AS-BUILT', 'Revisions Required')) {
+		if (checkInspectionResult('SW-DIGITAL AS-BUILT', 'Scheduled') && checkInspectionResult('SW-DIGITAL AS-BUILT', 'Pending') && checkInspectionResult('SW-DIGITAL AS-BUILT', 'In Review') && checkInspectionResult('SW-DIGITAL AS-BUILT', 'Revisions Required')) {
 			showMessage = true;
 			comment("<font size=small><b>Can't schedule Final:</b></font><br><br>Close Out Documents not approved.<br><br>");
 			cancel = true;
 		}
 
-		if (inspType == 'SW-FINAL' && checkInspectionResult('SW-REPRO AS-BUILT', 'Scheduled') && checkInspectionResult('SW-REPRO AS-BUILT', 'Pending') && checkInspectionResult('SW-REPRO AS-BUILT', 'In Review') && checkInspectionResult('SW-REPRO AS-BUILT', 'Revisions Required')) {
+		if (checkInspectionResult('SW-REPRO AS-BUILT', 'Scheduled') && checkInspectionResult('SW-REPRO AS-BUILT', 'Pending') && checkInspectionResult('SW-REPRO AS-BUILT', 'In Review') && checkInspectionResult('SW-REPRO AS-BUILT', 'Revisions Required')) {
 			showMessage = true;
 			comment("<font size=small><b>Can't schedule Final:</b></font><br><br>Close Out Documents not approved.<br><br>");
 			cancel = true;
 		}
 
-		if (inspType == 'SW-FINAL' && checkInspectionResult('SW-O&M AGREEMENT', 'Scheduled') && checkInspectionResult('SW-O&M AGREEMENT', 'In Review') && checkInspectionResult('SW-O&M AGREEMENT', 'Revisions Required')) {
+		if (checkInspectionResult('SW-O&M AGREEMENT', 'Scheduled') && checkInspectionResult('SW-O&M AGREEMENT', 'In Review') && checkInspectionResult('SW-O&M AGREEMENT', 'Revisions Required')) {
 			showMessage = true;
 			comment("<font size=small><b>Can't schedule Final:</b></font><br><br>Close Out Documents not approved.<br><br>");
 			cancel = true;
 		}
 
-		if (inspType == 'SW-FINAL' && checkInspectionResult('SW-CC-ENG', 'Scheduled') && checkInspectionResult('SW-CC-ENG', 'Pending') && checkInspectionResult('SW-CC-ENG', 'In Review') && checkInspectionResult('SW-CC-ENG', 'Revisions Required')) {
+		if (checkInspectionResult('SW-CC-ENG', 'Scheduled') && checkInspectionResult('SW-CC-ENG', 'Pending') && checkInspectionResult('SW-CC-ENG', 'In Review') && checkInspectionResult('SW-CC-ENG', 'Revisions Required')) {
 			showMessage = true;
 			comment("<font size=small><b>Can't schedule Final:</b></font><br><br>Close Out Documents not approved.<br><br>");
 			cancel = true;
 		}
 
-		if (inspType == 'SW-FINAL' && checkInspectionResult('SW-CC-OWNER', 'Scheduled') && checkInspectionResult('SW-CC-OWNER', 'Pending') && checkInspectionResult('SW-CC-OWNER', 'In Review') && checkInspectionResult('SW-CC-OWNER', 'Revisions Required')) {
+		if (checkInspectionResult('SW-CC-OWNER', 'Scheduled') && checkInspectionResult('SW-CC-OWNER', 'Pending') && checkInspectionResult('SW-CC-OWNER', 'In Review') && checkInspectionResult('SW-CC-OWNER', 'Revisions Required')) {
 			showMessage = true;
 			comment("<font size=small><b>Can't schedule Final:</b></font><br><br>Close Out Documents not approved.<br><br>");
 			cancel = true;
 		}
 
-		if (inspType == 'SW-FINAL' && checkInspectionResult('SW-CC-CONTRACTOR', 'Scheduled') && checkInspectionResult('SW-CC-CONTRACTOR', 'Pending') && checkInspectionResult('SW-CC-CONTRACTOR', 'In Review') && checkInspectionResult('SW-CC-CONTRACTOR', 'Revisions Required')) {
+		if (checkInspectionResult('SW-CC-CONTRACTOR', 'Scheduled') && checkInspectionResult('SW-CC-CONTRACTOR', 'Pending') && checkInspectionResult('SW-CC-CONTRACTOR', 'In Review') && checkInspectionResult('SW-CC-CONTRACTOR', 'Revisions Required')) {
 			showMessage = true;
 			comment("<font size=small><b>Can't schedule Final:</b></font><br><br>Close Out Documents not approved.<br><br>");
 			cancel = true;
 		}
 
-		if (inspType == 'SW-FINAL' && checkInspectionResult('SW-ALT SW LETTER', 'Scheduled') && checkInspectionResult('SW-ALT SW LETTER', 'Pending') && checkInspectionResult('SW-ALT SW LETTER', 'In Review') && checkInspectionResult('SW-ALT SW LETTER', 'Revisions Required')) {
+		if (checkInspectionResult('SW-ALT SW LETTER', 'Scheduled') && checkInspectionResult('SW-ALT SW LETTER', 'Pending') && checkInspectionResult('SW-ALT SW LETTER', 'In Review') && checkInspectionResult('SW-ALT SW LETTER', 'Revisions Required')) {
 			showMessage = true;
 			comment("<font size=small><b>Can't schedule Final:</b></font><br><br>Close Out Documents not approved.<br><br>");
 			cancel = true;
@@ -650,25 +651,25 @@ if (matches(inspType, 'FL-FINAL')) {
 
 	//start replaced branch: ES_ISB_FL_CLOSEOUT
 	{
-		if (inspType == 'FL-FINAL' && checkInspectionResult('FLOODPROOF CERTIFICATE', 'Scheduled') && checkInspectionResult('FLOODPROOF CERTIFICATE', 'Pending') && checkInspectionResult('FLOODPROOF CERTIFICATE', 'In Review') && checkInspectionResult('FLOODPROOF CERTIFICATE', 'Revisions Required')) {
+		if (checkInspectionResult('FLOODPROOF CERTIFICATE', 'Scheduled') && checkInspectionResult('FLOODPROOF CERTIFICATE', 'Pending') && checkInspectionResult('FLOODPROOF CERTIFICATE', 'In Review') && checkInspectionResult('FLOODPROOF CERTIFICATE', 'Revisions Required')) {
 			showMessage = true;
 			comment("<font size=small><b>Can't schedule Final:</b></font><br><br>Close Out Documents not approved.<br><br>");
 			cancel = true;
 		}
 
-		if (inspType == 'FL-FINAL' && checkInspectionResult('POST-CONSTRUCTION ELEVATION CERTIFICATE', 'Scheduled') && checkInspectionResult('POST-CONSTRUCTION ELEVATION CERTIFICATE', 'Pending') && checkInspectionResult('POST-CONSTRUCTION ELEVATION CERTIFICATE', 'In Review') && checkInspectionResult('POST-CONSTRUCTION ELEVATION CERTIFICATE', 'Revisions Required')) {
+		if (checkInspectionResult('POST-CONSTRUCTION ELEVATION CERTIFICATE', 'Scheduled') && checkInspectionResult('POST-CONSTRUCTION ELEVATION CERTIFICATE', 'Pending') && checkInspectionResult('POST-CONSTRUCTION ELEVATION CERTIFICATE', 'In Review') && checkInspectionResult('POST-CONSTRUCTION ELEVATION CERTIFICATE', 'Revisions Required')) {
 			showMessage = true;
 			comment("<font size=small><b>Can't schedule Final:</b></font><br><br>Close Out Documents not approved.<br><br>");
 			cancel = true;
 		}
 
-		if (inspType == 'FL-FINAL' && checkInspectionResult('POST-CONSTRUCTION NO-RISE CERTIFICATE', 'Scheduled') && checkInspectionResult('POST-CONSTRUCTION NO-RISE CERTIFICATE', 'Pending') && checkInspectionResult('POST-CONSTRUCTION NO-RISE CERTIFICATE', 'In Review') && checkInspectionResult('POST-CONSTRUCTION NO-RISE CERTIFICATE', 'Revisions Required')) {
+		if (checkInspectionResult('POST-CONSTRUCTION NO-RISE CERTIFICATE', 'Scheduled') && checkInspectionResult('POST-CONSTRUCTION NO-RISE CERTIFICATE', 'Pending') && checkInspectionResult('POST-CONSTRUCTION NO-RISE CERTIFICATE', 'In Review') && checkInspectionResult('POST-CONSTRUCTION NO-RISE CERTIFICATE', 'Revisions Required')) {
 			showMessage = true;
 			comment("<font size=small><b>Can't schedule Final:</b></font><br><br>Close Out Documents not approved.<br><br>");
 			cancel = true;
 		}
 
-		if (inspType == 'FL-FINAL' && checkInspectionResult('POST-CONSTRUCTION LOMR/LOMA', 'Scheduled') && checkInspectionResult('POST-CONSTRUCTION LOMR/LOMA', 'Pending') && checkInspectionResult('POST-CONSTRUCTION LOMR/LOMA', 'In Review') && checkInspectionResult('POST-CONSTRUCTION LOMR/LOMA', 'Revisions Required')) {
+		if (checkInspectionResult('POST-CONSTRUCTION LOMR/LOMA', 'Scheduled') && checkInspectionResult('POST-CONSTRUCTION LOMR/LOMA', 'Pending') && checkInspectionResult('POST-CONSTRUCTION LOMR/LOMA', 'In Review') && checkInspectionResult('POST-CONSTRUCTION LOMR/LOMA', 'Revisions Required')) {
 			showMessage = true;
 			comment("<font size=small><b>Can't schedule Final:</b></font><br><br>Close Out Documents not approved.<br><br>");
 			cancel = true;
@@ -688,7 +689,7 @@ if (matches(inspType, 'ZO-FINAL') && (appMatch('Permits/Commercial/Site Work/NA'
 
 	//start replaced branch: ES_ISB_ZONG
 	{
-		if (inspType == 'ZO-FINAL' && checkInspectionResult('FP-SITE FINAL', 'Pending')) {
+		if (checkInspectionResult('FP-SITE FINAL', 'Pending')) {
 			showMessage = true;
 			comment("<font size=small><b>Can't schedule Final:</b></font><br><br>Can't schedule Final until FP-SITE FINAL is scheduled.<br><br>");
 			cancel = true;
