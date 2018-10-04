@@ -1,7 +1,6 @@
-// TODO: DELETE
-if (matches(currentUserID, 'RHEDRICK', 'MMAZANEC')) {
-	showDebug = true;
-}
+// if (matches(currentUserID, 'RHEDRICK', 'MMAZANEC')) {
+// 	showDebug = true;
+// }
 
 //start replaced branch: WORKFLOW_UA_PERMITS
 var currentResultOfGetParent = getParent();
