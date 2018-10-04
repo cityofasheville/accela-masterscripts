@@ -39,82 +39,46 @@ if (inspType.indexOf('BU') === 0) {
 	//end replaced branch: checkFootingInspection;
 }
 
+
+function denyFinalInspections(currentInspectionType, inspectionTypeList) {
+	// currentInspectionType is ME, PL, etc
+	// inspectionTypeList is ROUGH IN, UNDER SLAB, etc
+	for (var inspectionTypeIndex = 0; inspectionTypeIndex < meInspectionTypes.length; inspectionTypeIndex++) {
+		var thisInspectionType = inspectionTypeList[inspectionTypeIndex];
+		if (checkInspectionResult(currentInspectionType + '-' + thisInspectionType, 'Pending')) {
+			showMessage = true;
+			if (thisInspectionType === 'ROUGH IN') {
+				comment("<font size=small><b>Can't schedule Final:</b></font><br><br>Can't schedule Final until Rough-In is scheduled. Inspections not required by scope will be marked NotApplicable by the inspector.<br><br>");
+			} else {
+				comment("<font size=small><b>Can't schedule final: </b></font><br><br>" + thisInspectionType + " inspection is not scheduled. Inspections not required by scope will be marked NotApplicable by the inspector.<br><br>");
+			}
+			cancel = true;
+		}
+	}
+}
+
+
 if (matches(inspType, 'ME-FINAL')) {
-	//start replaced branch: ES_ISB_MECH
-	var inspectionTypes = [
+	var meInspectionTypes = [
 		'ROUGH IN',
 		'UNDER SLAB',
 		'FIRE DAMPER',
 		'ABOVE CEILING',
 		'REINSP',
 	]
-	for (var inspectionTypeIndex = 0; inspectionTypeIndex < inspectionTypes.length; inspectionTypeIndex++) {
-		var thisInspectionType = inspectiontypes[inspectionTypeIndex];
-		if (checkInspectionResult('ME-' + thisInspectionType, 'Pending')) {
-			showMessage = true;
-			comment("<font size=small><b>Can't schedule final: </b></font><br><br>" + thisInspectionType + " inspection is not scheduled. Inspections not required by scope will be marked NotApplicable by the inspector.<br><br>");
-			cancel = true;
-		}
-	}
-	//end replaced branch: ES_ISB_MECH;
+	denyFinalInspections('ME', meInspectionTypes)
 }
 
 if (matches(inspType, 'PL-FINAL')) {
-
-	//start replaced branch: ES_ISB_PLUM
-	{
-		if (checkInspectionResult('PL-ROUGH IN', 'Pending')) {
-			showMessage = true;
-			comment("<font size=small><b>Can't schedule Final:</b></font><br><br>Can't schedule Final until Rough-In is scheduled. Inspections not required by scope will be marked NotApplicable by the inspector.<br><br>");
-			cancel = true;
-		}
-
-		if (checkInspectionResult('PL-UNDER SLAB', 'Pending')) {
-			showMessage = true;
-			comment("<font size=small><b>Can't schedule Final:</b></font><br><br>UNDER SLAB Inspection is not scheduled. Inspections not required by scope will be marked NotApplicable by the inspector.<br><br>");
-			cancel = true;
-		}
-
-		// DISABLED: ES_ISB_PLUM:3
-		//if (checkInspectionResult('PL-SHOWER PAN','Pending')) {
-		//	showMessage = true;
-		//	comment("<font size=small><b>Can't schedule Final:</b></font><br><br>SHOWER PAN Inspection is not scheduled.<br><br>");
-		//	cancel = true;
-		//	}
-
-		if (checkInspectionResult('PL-WATER LINE', 'Pending')) {
-			showMessage = true;
-			comment("<font size=small><b>Can't schedule Final:</b></font><br><br>WATER LINE Inspection is not scheduled. Inspections not required by scope will be marked NotApplicable by the inspector.<br><br>");
-			cancel = true;
-		}
-
-		if (checkInspectionResult('PL-SEWER LINE', 'Pending')) {
-			showMessage = true;
-			comment("<font size=small><b>Can't schedule Final:</b></font><br><br>SEWER LINE Inspection is not scheduled. Inspections not required by scope will be marked NotApplicable by the inspector.<br><br>");
-			cancel = true;
-		}
-
-		if (checkInspectionResult('PL-BACKFLOW', 'Pending')) {
-			showMessage = true;
-			comment("<font size=small><b>Can't schedule Final:</b></font><br><br>BACKFLOW Inspection is not scheduled. Inspections not required by scope will be marked NotApplicable by the inspector.<br><br>");
-			cancel = true;
-		}
-
-		// DISABLED: ES_ISB_PLUM:7
-		//if (checkInspectionResult('PL-OTHER','Pending')) {
-		//	showMessage = true;
-		//	comment("<font size=small><b>Can't schedule Final:</b></font><br><br>OTHER Inspection is not scheduled.<br><br>");
-		//	cancel = true;
-		//	}
-
-		if (checkInspectionResult('PL-REINSP', 'Pending')) {
-			showMessage = true;
-			comment("<font size=small><b>Can't schedule Final:</b></font><br><br>PL-REINSP Re-inspection is not scheduled. Inspections not required by scope will be marked NotApplicable by the inspector.<br><br>");
-			cancel = true;
-		}
-
-	}
-	//end replaced branch: ES_ISB_PLUM;
+	var plInspectionTypes = [
+		'ROUGH-IN',
+		'UNDER SLAB',
+		'WATER LINE',
+		'SEWER LINE',
+		'BACKFLOW',
+		'REINSP',
+	]
+	denyFinalInspections('PL', plInspectionTypes)
 }
 
 if (matches(inspType, 'EE-FINAL')) {
