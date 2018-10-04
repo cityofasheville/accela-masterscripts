@@ -1,77 +1,60 @@
-if ((appMatch('Permits/*/*/*') || appMatch('Planning/*/*/*')) && !matches(capStatus, 'Issued', 'Reissued', 'Partial Issued', 'TCO Issued', 'Inspections', 'TCO Reissued', 'TCC Issued', 'In Compliance', 'Renewed', 'Amended', 'TCO Issued 30 Days', 'TCO Issued 60 Days', 'TCO Issued 90 Days', 'TCC Issued 30 Days', 'TCC Issued 60 Days', 'TCC Issued 90 Days')) {
+if ((appMatch('Permits/*/*/*') || appMatch('Planning/*/*/*'))
+	&& !matches(
+		capStatus,
+		'Issued',
+		'Reissued',
+		'Partial Issued',
+		'TCO Issued',
+		'Inspections',
+		'TCO Reissued',
+		'TCC Issued',
+		'In Compliance',
+		'Renewed',
+		'Amended',
+		'TCO Issued 30 Days',
+		'TCO Issued 60 Days',
+		'TCO Issued 90 Days',
+		'TCC Issued 30 Days',
+		'TCC Issued 60 Days',
+		'TCC Issued 90 Days',
+	)
+) {
 	showMessage = true;
+	// TODO: STYLE THIS SO IT LOOKS NICE, USE THIS FOR EVERYTHING
 	comment("<p style='font-size:0.75em;font-weight:bold;'>Permit NOT Issued:</p><br><br>Please visit the Development Services Department for re-issuance.<br><br>");
 	cancel = true;
 }
 
-if (inspType.indexOf('BU') == 0) {
-
+if (inspType.indexOf('BU') === 0) {
 	//start replaced branch: checkFootingInspection
-	{
-		doCancel = false;
-		if (hasChildren('Planning/Development/*/*') && !doesChildHaveApprovedInspection('Planning/Development/*/*', 'GR-PRELIMINARY')) {
-			doCancel = true;
-		}
-
-		if (hasChildren('Planning/Subdivision/*/*') && !doesChildHaveApprovedInspection('Planning/Subdivision/*/*', 'GR-PRELIMINARY')) {
-			doCancel = true;
-		}
-
-		if (hasChildren('Permits/*/Site Work/*') && !doesChildHaveApprovedInspection('Permits/*/Site Work/*', 'GR-PRELIMINARY')) {
-			doCancel = true;
-		}
-
-		if (doCancel) {
-			cancel = true;
-			showMessage = true;
-			logMessage('Site Work Record must have approved GR-PRELIMINARY inspection. Please return to the bottom of the record screen and navigate to the list of Related Records to find the associated Site record.');
-		}
-
+	if (
+		(hasChildren('Planning/Development/*/*') && !doesChildHaveApprovedInspection('Planning/Development/*/*', 'GR-PRELIMINARY'))
+		|| (hasChildren('Planning/Subdivision/*/*') && !doesChildHaveApprovedInspection('Planning/Subdivision/*/*', 'GR-PRELIMINARY'))
+		|| (hasChildren('Permits/*/Site Work/*') && !doesChildHaveApprovedInspection('Permits/*/Site Work/*', 'GR-PRELIMINARY'))
+	) {
+		cancel = true;
+		showMessage = true;
+		logMessage('Site Work Record must have approved GR-PRELIMINARY inspection. Please return to the bottom of the record screen and navigate to the list of Related Records to find the associated Site record.');
 	}
 	//end replaced branch: checkFootingInspection;
 }
 
 if (matches(inspType, 'ME-FINAL')) {
-
 	//start replaced branch: ES_ISB_MECH
-	{
-		if (checkInspectionResult('ME-ROUGH IN', 'Pending')) {
+	var inspectionTypes = [
+		'ROUGH IN',
+		'UNDER SLAB',
+		'FIRE DAMPER',
+		'ABOVE CEILING',
+		'REINSP',
+	]
+	for (var inspectionTypeIndex = 0; inspectionTypeIndex < inspectionTypes.length; inspectionTypeIndex++) {
+		var thisInspectionType = inspectiontypes[inspectionTypeIndex];
+		if (checkInspectionResult('ME-' + thisInspectionType, 'Pending')) {
 			showMessage = true;
-			comment("<font size=small><b>Can't schedule Final:</b></font><br><br>Can't schedule Final until Rough-In is scheduled. Inspections not required by scope will be marked NotApplicable by the inspector.<br><br>");
+			comment("<font size=small><b>Can't schedule final: </b></font><br><br>" + thisInspectionType + " inspection is not scheduled. Inspections not required by scope will be marked NotApplicable by the inspector.<br><br>");
 			cancel = true;
 		}
-
-		if (checkInspectionResult('ME-UNDER SLAB', 'Pending')) {
-			showMessage = true;
-			comment("<font size=small><b>Can't schedule Final:</b></font><br><br>UNDER SLAB Inspection is not scheduled. Inspections not required by scope will be marked NotApplicable by the inspector.<br><br>");
-			cancel = true;
-		}
-
-		if (checkInspectionResult('ME-FIRE DAMPER', 'Pending')) {
-			showMessage = true;
-			comment("<font size=small><b>Can't schedule Final:</b></font><br><br>FIRE DAMPER Inspection is not scheduled. Inspections not required by scope will be marked NotApplicable by the inspector.<br><br>");
-			cancel = true;
-		}
-
-		if (checkInspectionResult('ME-ABOVE CEILING', 'Pending')) {
-			showMessage = true;
-			comment("<font size=small><b>Can't schedule Final:</b></font><br><br>ABOVE CEILING Inspection is not scheduled. Inspections not required by scope will be marked NotApplicable by the inspector.<br><br>");
-			cancel = true;
-		}
-
-		// DISABLED: ES_ISB_MECH:5
-		//if (checkInspectionResult('ME-OTHER','Pending')) {
-		//	showMessage = true;
-		//	comment("<font size=small><b>Can't schedule Final:</b></font><br><br>OTHER Inspection is not scheduled. Inspections not required by scope will be marked NotApplicable by the inspector.<br><br>");
-		//	cancel = true;
-		//	}
-
-		if (checkInspectionResult('ME-REINSP', 'Pending')) {
-			showMessage = true;
-			comment("<font size=small><b>Can't schedule Final:</b></font><br><br>ME-REINSP Re-inspection is not scheduled. Inspections not required by scope will be marked NotApplicable by the inspector.<br><br>");
-			cancel = true;
-		}
-
 	}
 	//end replaced branch: ES_ISB_MECH;
 }
