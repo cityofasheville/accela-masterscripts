@@ -41,8 +41,12 @@ if ((appMatch('Permits/*/*/*') || appMatch('Planning/*/*/*'))
 }
 
 /* Abbreviation key - index types
-BU: building inspection
-TODO: SEE KEY SPREADSHEET FROM JERRY'S CUBICLE, MAKE NOTES
+Buiding: RE, HO, GP, PL, MH, ME, EE, BU
+Site Engineering: FLOODPROOF CERTIFICATE, FL, DR (residential only), POST, GR, SW
+Planning - Zoning: SI, ZO
+Public Works: DR (commercial only), SID
+Fire Inspections: OPE, FP
+Enforcement: ENF
 */
 
 if (inspType.indexOf('BU') === 0) {
