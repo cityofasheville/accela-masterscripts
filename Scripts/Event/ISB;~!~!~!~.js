@@ -279,7 +279,10 @@ if (matches(inspType, 'BU-FINAL', 'BU-FINAL-REINSP', 'MH-FINAL')) {
 	//end replaced branch: ES_GET_CHILD_FINALS;
 }
 
-if (matches(inspType, 'BU-INSULATION') && checkInspectionResult('BU-FRAMING', 'Pending') && !appMatch('Permits/Commercial/*/*')) {
+if (matches(inspType, 'BU-INSULATION')
+	&& checkInspectionResult('BU-FRAMING', 'Pending')
+	&& !appMatch('Permits/Commercial/*/*')
+) {
 	showMessage = true;
 	comment("<font size=small><b>The BU-INSULATION Inspection cannot be scheduled until the BU-FRAMING Inspection is scheduled:</b></font><br><br>Please Schedule the BU-FRAMING inspection first. Inspections not required by scope will be marked NotApplicable by the inspector.<br><br>");
 	cancel = true;
@@ -331,43 +334,57 @@ if (matches(inspType, 'BU-FINAL', 'BU-FINAL-REINSP', 'MH-FINAL')) {
 			cancel = true;
 		}
 
-		if (checkInspectionResult('EE-FINAL', 'Pending') && checkInspectionResult('EE-FINAL-REINSP', 'Pending')) {
+		if (checkInspectionResult('EE-FINAL', 'Pending')
+			&& checkInspectionResult('EE-FINAL-REINSP', 'Pending')
+		) {
 			showMessage = true;
 			comment("<font size=small><b>Can't schedule Final Inspection:</b></font><br><br>Can't schedule Final Inspection until Electrical Final is scheduled. Inspections not required by scope will be marked NotApplicable by the inspector.<br><br>");
 			cancel = true;
 		}
 
-		if (checkInspectionResult('ME-FINAL', 'Pending') && checkInspectionResult('ME-FINAL-REINSP', 'Pending')) {
+		if (checkInspectionResult('ME-FINAL', 'Pending')
+			&& checkInspectionResult('ME-FINAL-REINSP', 'Pending')
+		) {
 			showMessage = true;
 			comment("<font size=small><b>Can't schedule Final Inspection:</b></font><br><br>Can't schedule Final Inspection until Mechanical Final is scheduled. Inspections not required by scope will be marked NotApplicable by the inspector.<br><br>");
 			cancel = true;
 		}
 
-		if (checkInspectionResult('PL-FINAL', 'Pending') && checkInspectionResult('PL-FINAL-REINSP', 'Pending')) {
+		if (checkInspectionResult('PL-FINAL', 'Pending')
+			&& checkInspectionResult('PL-FINAL-REINSP', 'Pending')
+		) {
 			showMessage = true;
 			comment("<font size=small><b>Can't schedule Final Inspection:</b></font><br><br>Can't schedule Final Inspection until Plumbing Final is scheduled. Inspections not required by scope will be marked NotApplicable by the inspector.<br><br>");
 			cancel = true;
 		}
 
-		if (checkInspectionResult('GP-FINAL', 'Pending') && checkInspectionResult('GP-FINAL-REINSP', 'Pending')) {
+		if (checkInspectionResult('GP-FINAL', 'Pending')
+			&& checkInspectionResult('GP-FINAL-REINSP', 'Pending')
+		) {
 			showMessage = true;
 			comment("<font size=small><b>Can't schedule Final Inspection:</b></font><br><br>Can't schedule Final Inspection until Gas Piping Final is scheduled. Inspections not required by scope will be marked NotApplicable by the inspector.<br><br>");
 			cancel = true;
 		}
 
-		if (checkInspectionResult('HO-FINAL', 'Pending') && checkInspectionResult('HO-FINAL-REINSP', 'Pending')) {
+		if (checkInspectionResult('HO-FINAL', 'Pending')
+			&& checkInspectionResult('HO-FINAL-REINSP', 'Pending')
+		) {
 			showMessage = true;
 			comment("<font size=small><b>Can't schedule Final Inspection:</b></font><br><br>Can't schedule Final Inspection until Exhaust Hood Final is scheduled. Inspections not required by scope will be marked NotApplicable by the inspector.<br><br>");
 			cancel = true;
 		}
 
-		if (checkInspectionResult('RE-FINAL', 'Pending') && checkInspectionResult('RE-FINAL-REINSP', 'Pending')) {
+		if (checkInspectionResult('RE-FINAL', 'Pending')
+			& checkInspectionResult('RE-FINAL-REINSP', 'Pending')
+		) {
 			showMessage = true;
 			comment("<font size=small><b>Can't schedule Final Inspection:</b></font><br><br>Can't schedule Final Inspection until Refrigeration Final is scheduled. Inspections not required by scope will be marked NotApplicable by the inspector.<br><br>");
 			cancel = true;
 		}
 
-		if (checkInspectionResult('FP-FINAL', 'Pending') && checkInspectionResult('FP-FINAL-REINSP', 'Pending')) {
+		if (checkInspectionResult('FP-FINAL', 'Pending')
+			&& checkInspectionResult('FP-FINAL-REINSP', 'Pending')
+		) {
 			showMessage = true;
 			comment("<font size=small><b>Can't schedule Final Inspection:</b></font><br><br>Can't schedule Final Inspection until Fire Prevention Final is scheduled. Inspections not required by scope will be marked NotApplicable by the inspector.<br><br>");
 			cancel = true;
@@ -379,8 +396,6 @@ if (matches(inspType, 'BU-FINAL', 'BU-FINAL-REINSP', 'MH-FINAL')) {
 			cancel = true;
 		}
 
-		// DISABLED: ES_ISB_BU_NEW:16
-		//br_nch('ES_GET_CHILDREN_TRADEFINALS');
 		if (checkInspectionResult('MH-REINSP', 'Pending')) {
 			showMessage = true;
 			comment("<font size=small><b>Can't schedule Final:</b></font><br><br>REINSP Inspection is not scheduled. Inspections not required by scope will be marked NotApplicable by the inspector.<br><br>");
@@ -409,130 +424,76 @@ if (matches(inspType, 'BU-FINAL', 'BU-FINAL-REINSP', 'MH-FINAL')) {
 	//end replaced branch: ES_ISB_BU_NEW;
 }
 
-if (matches(inspType, 'GR-FINAL')) {
-
-	//start replaced branch: ES_ISB_GR_CLOSEOUT
+/********** CLOSEOUT STUFF **********/
+var closeOutObjects = [
 	{
-		if (inspType == 'GR-FINAL' && checkInspectionResult('GR-ESC REPORT', 'Scheduled') && checkInspectionResult('GR-ESC REPORT', 'Pending') && checkInspectionResult('GR-ESC REPORT', 'In Review') && checkInspectionResult('GR-ESC REPORT', 'Revisions Required')) {
-			showMessage = true;
-			comment("<font size=small><b>Can't schedule Final:</b></font><br><br>Close Out Documents not approved.<br><br>");
-			cancel = true;
-		}
+		inspectionType: 'SW-FINAL',
+		closeOuts: [
+			'SW-DIGITAL AS-BUILT',
+			'SW-REPRO AS-BUILT',
+			'SW-O&M AGREEMENT',
+			'SW-CC-ENG',
+			'SW-CC-OWNER',
+			'SW-CC-CONTRACTOR',
+			'SW-ALT SW LETTER',
+		]
+	},
+	{
+		inspectionType: 'FL-FINAL',
+		closeOuts: [
+			'FLOODPROOF CERTIFICATE',
+			'POST-CONSTRUCTION ELEVATION CERTIFICATE',
+			'POST-CONSTRUCTION NO-RISE CERTIFICATE',
+			'POST-CONSTRUCTION LOMR/LOMA',
+		]
+	},
+	{
+		inspectionType: 'GR-FINAL',
+		closeOuts: [
+			'GR-ESC REPORT',
+			'GR-SLOPE CERT',
+			'GR-MULCH LETTER',
+		]
+	},
+]
 
-		if (inspType == 'GR-FINAL' && checkInspectionResult('GR-SLOPE CERT', 'Scheduled') && checkInspectionResult('GR-SLOPE CERT', 'Pending') && checkInspectionResult('GR-SLOPE CERT', 'In Review') && checkInspectionResult('GR-SLOPE CERT', 'Revisions Required')) {
-			showMessage = true;
-			comment("<font size=small><b>Can't schedule Final:</b></font><br><br>Close Out Documents not approved.<br><br>");
-			cancel = true;
-		}
+function checkForCloseOutDocuments(inspectionToCheck) {
+	// Should these be && ? They all need to be true in order to send this?
+	// That doesn't seem to make sense
+	var closeOutResultsToCheck = [
+		'Scheduled',
+		'Pending',
+		'In Review',
+		'Revisions Required',
+	]
+	var sendThing = true;
+	for (var i = 0; i < closeOutResultsToCheck.length; i++) {
+		sendThing = sendThing && checkInspectionResult(inspectionToCheck, closeOutResultsToCheck[i])
+	}
+	if (sendThing) {
+		showMessage = true;
+		comment("<font size=small><b>Can't schedule Final:</b></font><br><br>Close Out Documents not approved.<br><br>");
+		cancel = true;
+	}
+}
 
-		if (inspType == 'GR-FINAL' && checkInspectionResult('GR-MULCH LETTER', 'Scheduled') && checkInspectionResult('GR-MULCH LETTER', 'Pending') && checkInspectionResult('GR-MULCH LETTER', 'In Review') && checkInspectionResult('GR-MULCH LETTER', 'Revisions Required')) {
-			showMessage = true;
-			comment("<font size=small><b>Can't schedule Final:</b></font><br><br>Close Out Documents not approved.<br><br>");
-			cancel = true;
+function checkCloseOutDocCompleteness(inspectionToCheck) {
+	if (matches(inspType, inspectionToCheck.inspectionType)) {
+		for (var closeOutIndex = 0; closeOutIndex < inspectionToCheck.closeOuts.length; closeOutIndex++) {
+			checkForCloseOutDocuments(inspectionToCheck.closeOuts[closeOutIndex])
 		}
-
 		if (isTaskActive('Close Out Document Review')) {
 			cancel = true;
 			showMessage = true;
 			logMessage('Final inspection cannot be scheduled until close out documents are complete');
 		}
-
-	}
-	//end replaced branch: ES_ISB_GR_CLOSEOUT;
-}
-
-if (matches(inspType, 'SW-FINAL')) {
-
-	//start replaced branch: ES_ISB_SW_CLOSEOUT
-	if (checkInspectionResult('SW-DIGITAL AS-BUILT', 'Scheduled') && checkInspectionResult('SW-DIGITAL AS-BUILT', 'Pending') && checkInspectionResult('SW-DIGITAL AS-BUILT', 'In Review') && checkInspectionResult('SW-DIGITAL AS-BUILT', 'Revisions Required')) {
-		showMessage = true;
-		comment("<font size=small><b>Can't schedule Final:</b></font><br><br>Close Out Documents not approved.<br><br>");
-		cancel = true;
-	}
-
-	if (checkInspectionResult('SW-REPRO AS-BUILT', 'Scheduled') && checkInspectionResult('SW-REPRO AS-BUILT', 'Pending') && checkInspectionResult('SW-REPRO AS-BUILT', 'In Review') && checkInspectionResult('SW-REPRO AS-BUILT', 'Revisions Required')) {
-		showMessage = true;
-		comment("<font size=small><b>Can't schedule Final:</b></font><br><br>Close Out Documents not approved.<br><br>");
-		cancel = true;
-	}
-
-	if (checkInspectionResult('SW-O&M AGREEMENT', 'Scheduled') && checkInspectionResult('SW-O&M AGREEMENT', 'In Review') && checkInspectionResult('SW-O&M AGREEMENT', 'Revisions Required')) {
-		showMessage = true;
-		comment("<font size=small><b>Can't schedule Final:</b></font><br><br>Close Out Documents not approved.<br><br>");
-		cancel = true;
-	}
-
-	if (checkInspectionResult('SW-CC-ENG', 'Scheduled') && checkInspectionResult('SW-CC-ENG', 'Pending') && checkInspectionResult('SW-CC-ENG', 'In Review') && checkInspectionResult('SW-CC-ENG', 'Revisions Required')) {
-		showMessage = true;
-		comment("<font size=small><b>Can't schedule Final:</b></font><br><br>Close Out Documents not approved.<br><br>");
-		cancel = true;
-	}
-
-	if (checkInspectionResult('SW-CC-OWNER', 'Scheduled') && checkInspectionResult('SW-CC-OWNER', 'Pending') && checkInspectionResult('SW-CC-OWNER', 'In Review') && checkInspectionResult('SW-CC-OWNER', 'Revisions Required')) {
-		showMessage = true;
-		comment("<font size=small><b>Can't schedule Final:</b></font><br><br>Close Out Documents not approved.<br><br>");
-		cancel = true;
-	}
-
-	if (checkInspectionResult('SW-CC-CONTRACTOR', 'Scheduled') && checkInspectionResult('SW-CC-CONTRACTOR', 'Pending') && checkInspectionResult('SW-CC-CONTRACTOR', 'In Review') && checkInspectionResult('SW-CC-CONTRACTOR', 'Revisions Required')) {
-		showMessage = true;
-		comment("<font size=small><b>Can't schedule Final:</b></font><br><br>Close Out Documents not approved.<br><br>");
-		cancel = true;
-	}
-
-	if (checkInspectionResult('SW-ALT SW LETTER', 'Scheduled') && checkInspectionResult('SW-ALT SW LETTER', 'Pending') && checkInspectionResult('SW-ALT SW LETTER', 'In Review') && checkInspectionResult('SW-ALT SW LETTER', 'Revisions Required')) {
-		showMessage = true;
-		comment("<font size=small><b>Can't schedule Final:</b></font><br><br>Close Out Documents not approved.<br><br>");
-		cancel = true;
-	}
-
-	if (isTaskActive('Close Out Document Review')) {
-		cancel = true;
-		showMessage = true;
-		logMessage('Final inspection cannot be scheduled until close out documents are complete');
-	}
-	//end replaced branch: ES_ISB_SW_CLOSEOUT;
-}
-
-if (matches(inspType, 'FL-FINAL')) {
-	// TODO: SHOULD THESE BE && OR || ?
-	var closeOutInspectionsToCheck = [
-		'FLOODPROOF CERTIFICATE',
-		'POST-CONSTRUCTION ELEVATION CERTIFICATE',
-		'POST-CONSTRUCTION NO-RISE CERTIFICATE',
-		'POST-CONSTRUCTION LOMR/LOMA',
-	]
-
-	function checkForCloseOutDocuments(inspectionToCheck) {
-		// Should these be && ? They all need to be true in order to send this?
-		// That doesn't seem to make sense
-		var closeOutResultsToCheck = [
-			'Scheduled',
-			'Pending',
-			'In Review',
-			'Revisions Required',
-		]
-		var sendThing = true;
-		for (var i = 0; i < closeOutResultsToCheck.length; i++) {
-			sendThing = sendThing && checkInspectionResult(inspectionToCheck, closeOutResultsToCheck[i])
-		}
-		if (sendThing) {
-			showMessage = true;
-			comment("<font size=small><b>Can't schedule Final:</b></font><br><br>Close Out Documents not approved.<br><br>");
-			cancel = true;
-		}
-	}
-
-	for (var closeOutIndex = 0; closeOutIndex < closeOutInspectionsToCheck.length; closeOutIndex++) {
-		checkForCloseOutDocuments(closeOutInspectionsToCheck[closeOutIndex])
-	}
-
-	if (isTaskActive('Close Out Document Review')) {
-		cancel = true;
-		showMessage = true;
-		logMessage('Final inspection cannot be scheduled until close out documents are complete');
 	}
 }
+
+for (var closeOutObjectIndex = 0; closeOutObjectIndex < closeOutObjects.length; closeOutObjectIndex++) {
+	checkCloseOutDocCompleteness(closeOutObjects[closeOutObjectIndex])
+}
+/********** end CLOSEOUT STUFF **********/
 
 if (matches(inspType, 'ZO-FINAL') && (appMatch('Permits/Commercial/Site Work/NA') || appMatch('Planning/Development/*/*') || appMatch('Planning/Subdivision/*/*'))) {
 
