@@ -47,6 +47,7 @@ function denyFinalInspections(currentInspectionType, inspectionTypeList) {
 		var thisInspectionType = inspectionTypeList[inspectionTypeIndex];
 		if (checkInspectionResult(currentInspectionType + '-' + thisInspectionType, 'Pending')) {
 			showMessage = true;
+			// TODO: USE DIFFERENT TEXT FOR REINSPECTION
 			if (thisInspectionType === 'ROUGH IN') {
 				comment("<font size=small><b>Can't schedule Final:</b></font><br><br>Can't schedule Final until Rough-In is scheduled. Inspections not required by scope will be marked NotApplicable by the inspector.<br><br>");
 			} else {
@@ -94,100 +95,32 @@ if (matches(inspType, 'EE-FINAL')) {
 }
 
 if (matches(inspType, 'HO-FINAL')) {
-
-	//start replaced branch: ES_ISB_HOOD
-	{
-		if (checkInspectionResult('HO-ROUGH IN', 'Pending')) {
-			showMessage = true;
-			comment("<font size=small><b>Can't schedule Final:</b></font><br><br>Can't schedule Final until Rough-In is scheduled. Inspections not required by scope will be marked NotApplicable by the inspector.<br><br>");
-			cancel = true;
-		}
-
-		if (checkInspectionResult('HO-ABOVE CEILING', 'Pending')) {
-			showMessage = true;
-			comment("<font size=small><b>Can't schedule Final:</b></font><br><br>ABOVE CEILING Inspection is not scheduled. Inspections not required by scope will be marked NotApplicable by the inspector.<br><br>");
-			cancel = true;
-		}
-
-		if (checkInspectionResult('HO-LIGHT TEST', 'Pending')) {
-			showMessage = true;
-			comment("<font size=small><b>Can't schedule Final:</b></font><br><br>LIGHT TEST Inspection is not scheduled. Inspections not required by scope will be marked NotApplicable by the inspector.<br><br>");
-			cancel = true;
-		}
-
-		if (checkInspectionResult('HO-SMOKE TEST', 'Pending')) {
-			showMessage = true;
-			comment("<font size=small><b>Can't schedule Final:</b></font><br><br>SMOKE TEST Inspection is not scheduled. Inspections not required by scope will be marked NotApplicable by the inspector.<br><br>");
-			cancel = true;
-		}
-
-		if (checkInspectionResult('HO-DUCT WRAP', 'Pending')) {
-			showMessage = true;
-			comment("<font size=small><b>Can't schedule Final:</b></font><br><br>DUCT WRAP Inspection is not scheduled. Inspections not required by scope will be marked NotApplicable by the inspector.<br><br>");
-			cancel = true;
-		}
-
-		if (checkInspectionResult('HO-REINSP', 'Pending')) {
-			showMessage = true;
-			comment("<font size=small><b>Can't schedule Final:</b></font><br><br>HO-REINSP Re-inspection is not scheduled. Inspections not required by scope will be marked NotApplicable by the inspector.<br><br>");
-			cancel = true;
-		}
-
-	}
-	//end replaced branch: ES_ISB_HOOD;
+	var hoInspectionTypes = [
+		'ROUGH IN',
+		'ABOVE CEILING',
+		'LIGHT TEST',
+		'SMOKE TEST',
+		'DUCT WRAP',
+		'REINSP',
+	]
+	denyFinalInspections('HO', hoInspectionTypes)
 }
 
 if (matches(inspType, 'RE-FINAL')) {
-
-	//start replaced branch: ES_ISB_REFR
-	{
-		if (checkInspectionResult('RE-ROUGH IN', 'Pending')) {
-			showMessage = true;
-			comment("<font size=small><b>Can't schedule Final:</b></font><br><br>Can't schedule Final until Rough-In is scheduled. Inspections not required by scope will be marked NotApplicable by the inspector.<br><br>");
-			cancel = true;
-		}
-
-		if (checkInspectionResult('RE-ABOVE CEILING', 'Pending')) {
-			showMessage = true;
-			comment("<font size=small><b>Can't schedule Final:</b></font><br><br>ABOVE CEILING Inspection is not scheduled. Inspections not required by scope will be marked NotApplicable by the inspector.<br><br>");
-			cancel = true;
-		}
-
-		// DISABLED: ES_ISB_REFR:3
-		//if (checkInspectionResult('RE-OTHER','Pending')) {
-		//	showMessage = true;
-		//	comment("<font size=small><b>Can't schedule Final:</b></font><br><br>OTHER Inspection is not scheduled.<br><br>");
-		//	cancel = true;
-		//	}
-
-		if (checkInspectionResult('RE-REINSP', 'Pending')) {
-			showMessage = true;
-			comment("<font size=small><b>Can't schedule Final:</b></font><br><br>RE-REINSP Re-inspection is not scheduled. Inspections not required by scope will be marked NotApplicable by the inspector.<br><br>");
-			cancel = true;
-		}
-
-	}
-	//end replaced branch: ES_ISB_REFR;
+	var reInspectionTypes = [
+		'ROUGH IN',
+		'ABOVE CEILING',
+		'REINSP',
+	]
+	denyFinalInspections('RE', reInspectionTypes)
 }
 
 if (matches(inspType, 'GP-FINAL')) {
-
-	//start replaced branch: ES_ISB_GASP
-	{
-		if (checkInspectionResult('GP-ROUGH IN', 'Pending')) {
-			showMessage = true;
-			comment("<font size=small><b>Can't schedule Final:</b></font><br><br>Can't schedule Final until Rough-In is scheduled. Inspections not required by scope will be marked NotApplicable by the inspector.<br><br>");
-			cancel = true;
-		}
-
-		if (checkInspectionResult('GP-REINSP', 'Pending')) {
-			showMessage = true;
-			comment("<font size=small><b>Can't schedule Final:</b></font><br><br>GP-REINSP Re-inspection is not scheduled. Inspections not required by scope will be marked NotApplicable by the inspector.<br><br>");
-			cancel = true;
-		}
-
-	}
-	//end replaced branch: ES_ISB_GASP;
+	var gpInspectionTypes = [
+		'ROUGH IN',
+		'REINSP',
+	]
+	denyFinalInspections('GP', gpInspectionTypes)
 }
 
 if (matches(inspType, 'BU-FRAMING')) {
