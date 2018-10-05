@@ -1,11 +1,26 @@
+/*
+Inspection schedule before: prevent people from jumping to the final inspection
+without doing preliminaries
+*/
+
+// TODO: IMPLEMENT THIS INSTEAD OF ALL THAT OTHER STUFF
+function makeComment(title, text) {
+	showMessage = true;
+	// TODO: STYLE THIS SO IT LOOKS NICE, USE THIS FOR EVERYTHING
+	comment("<p style='font-size:0.75em;font-weight:bold;'>Permit NOT Issued:</p><br><br>Please visit the Development Services Department for re-issuance.<br><br>");
+	cancel = true;
+}
+
+// Does not apply to services module
 if ((appMatch('Permits/*/*/*') || appMatch('Planning/*/*/*'))
+	// Don't run if it's already issued
 	&& !matches(
 		capStatus,
 		'Issued',
 		'Reissued',
 		'Partial Issued',
 		'TCO Issued',
-		'Inspections',
+		'Inspections', // TODO: WHAT IS THIS?
 		'TCO Reissued',
 		'TCC Issued',
 		'In Compliance',
@@ -25,28 +40,41 @@ if ((appMatch('Permits/*/*/*') || appMatch('Planning/*/*/*'))
 	cancel = true;
 }
 
+/* Abbreviation key - index types
+BU: building inspection
+TODO: SEE KEY SPREADSHEET FROM JERRY'S CUBICLE, MAKE NOTES
+*/
+
 if (inspType.indexOf('BU') === 0) {
-	//start replaced branch: checkFootingInspection
+	/*
+		Planning records tend to be children of permit records
+		Planning starts first, becomes a child of permit
+		These three record types are the ones that need to have preliminary grading inspections
+		If someone tries to schedule while only these types of children do not have approved grading inspection,
+		this script should reject them
+		TODO: use array of strings, loop for these record types
+	*/
 	if (
 		(hasChildren('Planning/Development/*/*') && !doesChildHaveApprovedInspection('Planning/Development/*/*', 'GR-PRELIMINARY'))
 		|| (hasChildren('Planning/Subdivision/*/*') && !doesChildHaveApprovedInspection('Planning/Subdivision/*/*', 'GR-PRELIMINARY'))
 		|| (hasChildren('Permits/*/Site Work/*') && !doesChildHaveApprovedInspection('Permits/*/Site Work/*', 'GR-PRELIMINARY'))
 	) {
+		// TODO: WHY THIS ORDER, WHAT IS THE DIFFERENCE BETWEEN LOG MESSAGE AND COMMENT???
 		cancel = true;
 		showMessage = true;
 		logMessage('Site Work Record must have approved GR-PRELIMINARY inspection. Please return to the bottom of the record screen and navigate to the list of Related Records to find the associated Site record.');
 	}
-	//end replaced branch: checkFootingInspection;
 }
 
-function denyFinalInspections(currentInspectionType, inspectionResultList) {
-	// currentInspectionType is ME, PL, etc
-	// inspectionResultList is ROUGH IN, UNDER SLAB, etc
-	for (var inspectionResultIndex = 0; inspectionResultIndex < meInspectionTypes.length; inspectionResultIndex++) {
-		var thisInspectionType = inspectionResultList[inspectionResultIndex];
-		if (checkInspectionResult(currentInspectionType + '-' + thisInspectionType, 'Pending')) {
+function denyFinalInspections(currentInspectionGroup, inspectionTypeList) {
+	// currentInspectionGroup is ME, PL, etc
+	// inspectionTypeList is ROUGH IN, UNDER SLAB, etc
+	for (var typeIndex = 0; typeIndex < inspectionTypeList.length; typeIndex++) {
+		var thisInspectionType = inspectionTypeList[typeIndex];
+		if (checkInspectionResult(currentInspectionGroup + '-' + thisInspectionType, 'Pending')) {
 			showMessage = true;
 			// TODO: USE DIFFERENT TEXT FOR REINSPECTION
+			// TODO: change this message when we change styling/write that function
 			if (thisInspectionType === 'ROUGH IN') {
 				comment("<font size=small><b>Can't schedule Final:</b></font><br><br>Can't schedule Final until Rough-In is scheduled. Inspections not required by scope will be marked NotApplicable by the inspector.<br><br>");
 			} else {
@@ -57,10 +85,10 @@ function denyFinalInspections(currentInspectionType, inspectionResultList) {
 	}
 }
 
-var inspectionTypesToCheck = [
+var buildingInspectionTypesToCheck = [
 	{
-		type: 'ME',
-		subTypes: [
+		group: 'ME',
+		types: [
 			'ROUGH IN',
 			'UNDER SLAB',
 			'FIRE DAMPER',
@@ -69,8 +97,8 @@ var inspectionTypesToCheck = [
 		],
 	},
 	{
-		type: 'PL',
-		subTypes: [
+		group: 'PL',
+		types: [
 			'ROUGH IN',
 			'UNDER SLAB',
 			'WATER LINE',
@@ -80,8 +108,8 @@ var inspectionTypesToCheck = [
 		]
 	},
 	{
-		type: 'EE',
-		subTypes: [
+		group: 'EE',
+		types: [
 			'ROUGH IN',
 			'UNDER SLAB',
 			'TEMPORARY SAW SERVICE',
@@ -91,8 +119,8 @@ var inspectionTypesToCheck = [
 		]
 	},
 	{
-		type: 'HO',
-		subTypes: [
+		group: 'HO',
+		types: [
 			'ROUGH IN',
 			'ABOVE CEILING',
 			'LIGHT TEST',
@@ -102,30 +130,35 @@ var inspectionTypesToCheck = [
 		]
 	},
 	{
-		type: 'RE',
-		subTypes: [
+		group: 'RE',
+		types: [
 			'ROUGH IN',
 			'ABOVE CEILING',
 			'REINSP',
 		]
 	},
 	{
-		type: 'GP',
-		subTypes: [
+		group: 'GP',
+		types: [
 			'ROUGH IN',
 			'REINSP',
 		]
 	}
 ]
 
-for (var inspectionTypeIndex = 0; inspectionTypeIndex < inspectionTypesToCheck.length; inspectionTypeIndex++) {
-	var thisType = inspectionTypesToCheck[inspectionTypeIndex]
-	if (matches(inspType, thisType.type + '-FINAL')) {
-		denyFinalInspections(thisType.type, thisType.subTypes)
+for (var inspectionTypeIndex = 0; inspectionTypeIndex < buildingInspectionTypesToCheck.length; inspectionTypeIndex++) {
+	var thisType = buildingInspectionTypesToCheck[inspectionTypeIndex]
+	if (matches(inspType, thisType.group + '-FINAL')) {
+		denyFinalInspections(thisType.group, thisType.types)
 	}
 }
 
 if (matches(inspType, 'BU-FRAMING')) {
+	/*
+	Framing inspection is beginning of vertical process
+	This makes sure all of the horizontal/planning type things are done
+	TODO: use message function, make this consistent
+	*/
 	if (checkInspectionResult('BU-FOOTING', 'Pending')) {
 		showMessage = true;
 		comment("<font size=small><b>BU-FRAMING Inspection Not Allowed:</b></font><br><br>The BU-FOOTING inspection must be scheduled.Inspections not required by scope will be marked NotApplicable by the inspector.<br><br>");
