@@ -190,6 +190,12 @@ if (matches(inspType, 'BU-FRAMING')) {
 	}
 
 	if (appMatch('Permits/Residential/*/*')) {
+		/*
+		LEGACY -- DO NOT BOTHER, will be deleted
+		If it's a residential permit, check for child trade permits
+		TODO: check to see if we have any pre-May-2016 res permits are still open
+		if not, remove this section
+		*/
 
 		//start replaced branch: ES_GET_CHILDREN_ROUGH
 		{
@@ -240,11 +246,11 @@ if (matches(inspType, 'BU-FRAMING')) {
 	}
 }
 
-
 if (matches(inspType, 'BU-FINAL', 'BU-FINAL-REINSP', 'MH-FINAL')) {
-
-	//start replaced branch: ES_GET_CHILD_FINALS
-// remove this "else" 7/3/18 -	{
+	/*
+	LEGACY - IGNORE - SEE ABOVE TODO ABOUT POST MAY 2016 STUFF
+	Get trade children - will not exist in future, might not now
+	*/
 
 		childrenCapId = getChildren('Permits/*/Trade/*', capId);
 		if (typeof(childrenCapId) == 'object') {
@@ -315,14 +321,20 @@ if (matches(inspType, 'BU-FINAL', 'BU-FINAL-REINSP', 'MH-FINAL')) {
 if (matches(inspType, 'BU-INSULATION')
 	&& checkInspectionResult('BU-FRAMING', 'Pending')
 	&& !appMatch('Permits/Commercial/*/*')
-) {
+	) {
+	/*
+	Can't do insulation without framing inspection
+	*/
 	showMessage = true;
 	comment("<font size=small><b>The BU-INSULATION Inspection cannot be scheduled until the BU-FRAMING Inspection is scheduled:</b></font><br><br>Please Schedule the BU-FRAMING inspection first. Inspections not required by scope will be marked NotApplicable by the inspector.<br><br>");
 	cancel = true;
 }
 
 if (matches(inspType, 'BU-FINAL', 'BU-FINAL-REINSP', 'MH-FINAL')) {
-
+	/*
+	If they're trying to schedule a final inspection without doing any of this stuff,
+	they should get rejected
+	*/
 	//start replaced branch: ES_ISB_BU_NEW
 	{
 		if (checkInspectionResult('BU-FOOTING', 'Pending')) {
@@ -457,11 +469,15 @@ if (matches(inspType, 'BU-FINAL', 'BU-FINAL-REINSP', 'MH-FINAL')) {
 	//end replaced branch: ES_ISB_BU_NEW;
 }
 
+
 /********** CLOSEOUT STUFF **********/
-var closeOutObjects = [
+/*
+Done with entire project, need documents
+*/
+var closeOutDocuments = [
 	{
 		inspectionType: 'SW-FINAL',
-		closeOuts: [
+		requiredDocuments: [
 			'SW-DIGITAL AS-BUILT',
 			'SW-REPRO AS-BUILT',
 			'SW-O&M AGREEMENT',
@@ -473,7 +489,7 @@ var closeOutObjects = [
 	},
 	{
 		inspectionType: 'FL-FINAL',
-		closeOuts: [
+		requiredDocuments: [
 			'FLOODPROOF CERTIFICATE',
 			'POST-CONSTRUCTION ELEVATION CERTIFICATE',
 			'POST-CONSTRUCTION NO-RISE CERTIFICATE',
@@ -482,7 +498,7 @@ var closeOutObjects = [
 	},
 	{
 		inspectionType: 'GR-FINAL',
-		closeOuts: [
+		requiredDocuments: [
 			'GR-ESC REPORT',
 			'GR-SLOPE CERT',
 			'GR-MULCH LETTER',
@@ -512,8 +528,8 @@ function checkForCloseOutDocuments(inspectionToCheck) {
 
 function checkCloseOutDocCompleteness(inspectionToCheck) {
 	if (matches(inspType, inspectionToCheck.inspectionType)) {
-		for (var closeOutIndex = 0; closeOutIndex < inspectionToCheck.closeOuts.length; closeOutIndex++) {
-			checkForCloseOutDocuments(inspectionToCheck.closeOuts[closeOutIndex])
+		for (var closeOutIndex = 0; closeOutIndex < inspectionToCheck.requiredDocuments.length; closeOutIndex++) {
+			checkForCloseOutDocuments(inspectionToCheck.requiredDocuments[closeOutIndex])
 		}
 		if (isTaskActive('Close Out Document Review')) {
 			cancel = true;
@@ -523,8 +539,8 @@ function checkCloseOutDocCompleteness(inspectionToCheck) {
 	}
 }
 
-for (var closeOutObjectIndex = 0; closeOutObjectIndex < closeOutObjects.length; closeOutObjectIndex++) {
-	checkCloseOutDocCompleteness(closeOutObjects[closeOutObjectIndex])
+for (var closeOutObjectIndex = 0; closeOutObjectIndex < closeOutDocuments.length; closeOutObjectIndex++) {
+	checkCloseOutDocCompleteness(closeOutDocuments[closeOutObjectIndex])
 }
 /********** end CLOSEOUT STUFF **********/
 
