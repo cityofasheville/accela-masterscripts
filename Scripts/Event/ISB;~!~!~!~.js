@@ -534,6 +534,7 @@ function checkCloseOutDocCompleteness(inspectionToCheck) {
 		if (isTaskActive('Close Out Document Review')) {
 			cancel = true;
 			showMessage = true;
+			// TODO: see other log message, check documentation
 			logMessage('Final inspection cannot be scheduled until close out documents are complete');
 		}
 	}
