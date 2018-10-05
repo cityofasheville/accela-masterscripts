@@ -39,12 +39,11 @@ if (inspType.indexOf('BU') === 0) {
 	//end replaced branch: checkFootingInspection;
 }
 
-
-function denyFinalInspections(currentInspectionType, inspectionTypeList) {
+function denyFinalInspections(currentInspectionType, inspectionResultList) {
 	// currentInspectionType is ME, PL, etc
-	// inspectionTypeList is ROUGH IN, UNDER SLAB, etc
-	for (var inspectionTypeIndex = 0; inspectionTypeIndex < meInspectionTypes.length; inspectionTypeIndex++) {
-		var thisInspectionType = inspectionTypeList[inspectionTypeIndex];
+	// inspectionResultList is ROUGH IN, UNDER SLAB, etc
+	for (var inspectionResultIndex = 0; inspectionResultIndex < meInspectionTypes.length; inspectionResultIndex++) {
+		var thisInspectionType = inspectionResultList[inspectionResultIndex];
 		if (checkInspectionResult(currentInspectionType + '-' + thisInspectionType, 'Pending')) {
 			showMessage = true;
 			// TODO: USE DIFFERENT TEXT FOR REINSPECTION
@@ -58,69 +57,72 @@ function denyFinalInspections(currentInspectionType, inspectionTypeList) {
 	}
 }
 
+var inspectionTypesToCheck = [
+	{
+		type: 'ME',
+		results: [
+			'ROUGH IN',
+			'UNDER SLAB',
+			'FIRE DAMPER',
+			'ABOVE CEILING',
+			'REINSP',
+		],
+	},
+	{
+		type: 'PL',
+		results: [
+			'ROUGH IN',
+			'UNDER SLAB',
+			'WATER LINE',
+			'SEWER LINE',
+			'BACKFLOW',
+			'REINSP',
+		]
+	},
+	{
+		type: 'EE',
+		results: [
+			'ROUGH IN',
+			'UNDER SLAB',
+			'TEMPORARY SAW SERVICE',
+			'ABOVE CEILING',
+			'OTHER',
+			'REINSP',
+		]
+	},
+	{
+		type: 'HO',
+		results: [
+			'ROUGH IN',
+			'ABOVE CEILING',
+			'LIGHT TEST',
+			'SMOKE TEST',
+			'DUCT WRAP',
+			'REINSP',
+		]
+	},
+	{
+		type: 'RE',
+		results: [
+			'ROUGH IN',
+			'ABOVE CEILING',
+			'REINSP',
+		]
+	},
+	{
+		type: 'GP',
+		results: [
+			'ROUGH IN',
+			'REINSP',
+		]
+	}
+]
 
-if (matches(inspType, 'ME-FINAL')) {
-	var meInspectionTypes = [
-		'ROUGH IN',
-		'UNDER SLAB',
-		'FIRE DAMPER',
-		'ABOVE CEILING',
-		'REINSP',
-	]
-	denyFinalInspections('ME', meInspectionTypes)
-}
-
-if (matches(inspType, 'PL-FINAL')) {
-	var plInspectionTypes = [
-		'ROUGH-IN',
-		'UNDER SLAB',
-		'WATER LINE',
-		'SEWER LINE',
-		'BACKFLOW',
-		'REINSP',
-	]
-	denyFinalInspections('PL', plInspectionTypes)
-}
-
-if (matches(inspType, 'EE-FINAL')) {
-	var eeInspectionTypes = [
-		'ROUGH IN',
-		'UNDER SLAB',
-		'TEMPORARY SAW SERVICE',
-		'ABOVE CEILING',
-		'OTHER',
-		'REINSP',
-	]
-	denyFinalInspections('EE', eeInspectionTypes)
-}
-
-if (matches(inspType, 'HO-FINAL')) {
-	var hoInspectionTypes = [
-		'ROUGH IN',
-		'ABOVE CEILING',
-		'LIGHT TEST',
-		'SMOKE TEST',
-		'DUCT WRAP',
-		'REINSP',
-	]
-	denyFinalInspections('HO', hoInspectionTypes)
-}
-
-if (matches(inspType, 'RE-FINAL')) {
-	var reInspectionTypes = [
-		'ROUGH IN',
-		'ABOVE CEILING',
-		'REINSP',
-	]
-	denyFinalInspections('RE', reInspectionTypes)
-}
-
-if (matches(inspType, 'GP-FINAL')) {
-	var gpInspectionTypes = [
-		'ROUGH IN',
-		'REINSP',
-	]
-	denyFinalInspections('GP', gpInspectionTypes)
+for (var inspectionTypeIndex = 0; inspectionTypeIndex < inspectionTypesToCheck.length; inspectionTypeIndex++) {
+	var thisType = inspectionTypesToCheck[inspectionTypeIndex]
+	if (matches(inspType, thisType.type + '-FINAL')) {
+		denyFinalInspections(thisType.type, thisType.results)
+	}
 }
 
 if (matches(inspType, 'BU-FRAMING')) {
