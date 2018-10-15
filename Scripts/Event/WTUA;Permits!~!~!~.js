@@ -234,24 +234,24 @@ if (wfTask == 'Routing') {
 		}
 	}
 	//start replaced branch: ES_SET_WF_DUEDATE
-	if (AInfo['Expected Timeframe'] === 'Quick Touch - 3 Days') {
+	if (AInfo['Expected Timeframe'] == 'Quick Touch - 3 Days') {
 		setAllDivisionReviewTimes(3, divisionReviewSetList)
 	}
-	if (AInfo['Expected Timeframe'] === 'Res. Waiver - 2 Days') {
+	if (AInfo['Expected Timeframe'] == 'Res. Waiver - 2 Days') {
 		setAllDivisionReviewTimes(2, divisionReviewSetList)
 	}
-	if (AInfo['Expected Timeframe'] === 'Residential - 10 Days'
-		|| AInfo['Expected Timeframe'] === 'Small Comm - 10 Days'
+	if (AInfo['Expected Timeframe'] == 'Residential - 10 Days'
+		|| AInfo['Expected Timeframe'] == 'Small Comm - 10 Days'
 	) {
 		setAllDivisionReviewTimes(10, divisionReviewSetList)
 	}
-	if (AInfo['Expected Timeframe'] === 'Std Level I Comm  - 21 Days') {
+	if (AInfo['Expected Timeframe'] == 'Std Level I Comm  - 21 Days') {
 		setAllDivisionReviewTimes(21, divisionReviewSetList)
 	}
-	if (AInfo['Expected Timeframe'] === 'Std Level II or III Comm - 45 Days') {
+	if (AInfo['Expected Timeframe'] == 'Std Level II or III Comm - 45 Days') {
 		setAllDivisionReviewTimes(45, divisionReviewSetList)
 	}
-	if (AInfo['Expected Timeframe'] === 'Large Comm - 90 Days') {
+	if (AInfo['Expected Timeframe'] == 'Large Comm - 90 Days') {
 		setAllDivisionReviewTimes(90, divisionReviewSetList)
 	}
 	//end replaced branch: ES_SET_WF_DUEDATE;
