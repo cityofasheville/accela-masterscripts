@@ -54,7 +54,7 @@ Fire Inspections: OPE, FP
 Enforcement: ENF
 */
 
-if (inspType.indexOf('BU') === 0) {
+if (inspType.indexOf('BU') == 0) {
 	/*
 		Planning records tend to be children of permit records
 		Planning starts first, becomes a child of permit
@@ -83,7 +83,7 @@ function denyFinalInspections(currentInspectionGroup, inspectionTypeList) {
 		if (checkInspectionResult(currentInspectionGroup + '-' + thisInspectionType, 'Pending')) {
 			// TODO: USE DIFFERENT TEXT FOR REINSPECTION
 			// TODO: change this message when we change styling/write that function
-			if (thisInspectionType === 'ROUGH IN') {
+			if (thisInspectionType == 'ROUGH IN') {
 				makeStyledCommentAndCancelProcess(
 					"Can't schedule Final",
 					"Can't schedule Final until Rough-In is scheduled. Inspections not required by scope will be marked NotApplicable by the inspector."
