@@ -5,8 +5,8 @@
 //start replaced branch: WORKFLOW_UA_PERMITS
 var currentResultOfGetParent = getParent();
 //start replaced branch: ES_CREATE_FIRE_SIBLING
-var wfTaskFirePreventionOrReview = (wfTask == 'Fire Prevention' || wfTask == 'Fire Review')
-var wfStatusApprovedOrWithConditions = matches(wfStatus, 'Approved', 'Approved with Conditions')
+var wfTaskFirePreventionOrReview = (wfTask == 'Fire Prevention' || wfTask == 'Fire Review');
+var wfStatusApprovedOrWithConditions = matches(wfStatus, 'Approved', 'Approved with Conditions');
 if (wfTaskFirePreventionOrReview && wfStatusApprovedOrWithConditions) {
 	var checkPreventionApprovedCats = [
 		{
@@ -37,7 +37,7 @@ if (wfTaskFirePreventionOrReview && wfStatusApprovedOrWithConditions) {
 			permitCat: 'ERRC (Radio Booster)',
 			aInfot1: 'Fire ERRC (Radio Booster)',
 		}
-	]
+	];
 	if (currentResultOfGetParent) {
 		// All of these are Permits/Fire/Construction/[permitCat]
 		for (var permitListIndex = 0; permitListIndex < checkPreventionApprovedCats.length; permitListIndex++) {
@@ -203,7 +203,7 @@ if (wfTask == 'Conditions of Approval') {
 		'Exemption Form',
 		'Water - Tap and Meter',
 		'Food Service Establishment',
-	]
+	];
 	for (var conditionsOfApprovalIndex = 0; conditionsOfApprovalIndex < conditionsOfApprovalCheckList.length; conditionsOfApprovalIndex++) {
 		var condition = conditionsOfApprovalCheckList[conditionsOfApprovalIndex];
 		if (AInfo[condition] == 'No') {
@@ -212,14 +212,14 @@ if (wfTask == 'Conditions of Approval') {
 	}
 }
 
-if (wfTask == 'Routing') {
+if (wfTask == 'Routing') { //
 	//start replaced branch: ES_SET_WF_DIVISION REVIEW
 	var divisionReviewSetList = [
 		'Addressing',
 		'Building Review',
 		'Fire Review',
 		'Zoning Review',
-	]
+	];
 	for (var divisionReviewIndex = 0; divisionReviewIndex < divisionReviewSetList.length; divisionReviewIndex++) {
 		var divisionReviewCheck = divisionReviewSetList[divisionReviewIndex];
 		if (AInfo[divisionReviewCheck] == 'No') {
@@ -234,25 +234,25 @@ if (wfTask == 'Routing') {
 		}
 	}
 	//start replaced branch: ES_SET_WF_DUEDATE
-	if (AInfo['Expected Timeframe'] === 'Quick Touch - 3 Days') {
-		setAllDivisionReviewTimes(3, divisionReviewSetList)
+	if (AInfo['Expected Timeframe'] == 'Quick Touch - 3 Days') {
+		setAllDivisionReviewTimes(3, divisionReviewSetList);
 	}
-	if (AInfo['Expected Timeframe'] === 'Res. Waiver - 2 Days') {
-		setAllDivisionReviewTimes(2, divisionReviewSetList)
+	if (AInfo['Expected Timeframe'] == 'Res. Waiver - 2 Days') {
+		setAllDivisionReviewTimes(2, divisionReviewSetList);
 	}
-	if (AInfo['Expected Timeframe'] === 'Residential - 10 Days'
-		|| AInfo['Expected Timeframe'] === 'Small Comm - 10 Days'
+	if (AInfo['Expected Timeframe'] == 'Residential - 10 Days'
+		|| AInfo['Expected Timeframe'] == 'Small Comm - 10 Days'
 	) {
-		setAllDivisionReviewTimes(10, divisionReviewSetList)
+		setAllDivisionReviewTimes(10, divisionReviewSetList);
 	}
-	if (AInfo['Expected Timeframe'] === 'Std Level I Comm  - 21 Days') {
-		setAllDivisionReviewTimes(21, divisionReviewSetList)
+	if (AInfo['Expected Timeframe'] == 'Std Level I Comm  - 21 Days') {
+		setAllDivisionReviewTimes(21, divisionReviewSetList);
 	}
-	if (AInfo['Expected Timeframe'] === 'Std Level II or III Comm - 45 Days') {
-		setAllDivisionReviewTimes(45, divisionReviewSetList)
+	if (AInfo['Expected Timeframe'] == 'Std Level II or III Comm - 45 Days') {
+		setAllDivisionReviewTimes(45, divisionReviewSetList);
 	}
-	if (AInfo['Expected Timeframe'] === 'Large Comm - 90 Days') {
-		setAllDivisionReviewTimes(90, divisionReviewSetList)
+	if (AInfo['Expected Timeframe'] == 'Large Comm - 90 Days') {
+		setAllDivisionReviewTimes(90, divisionReviewSetList);
 	}
 	//end replaced branch: ES_SET_WF_DUEDATE;
 }
@@ -356,8 +356,8 @@ if (matches(wfStatus, 'Certificate of Occupancy')
 		|| appMatch('Permits/Over The Counter/Tenant Occupancy/CO')
 	)
 ) {
-	emailAboutCertOfOcc('khinz@ashevillenc.gov')
-	emailAboutCertOfOcc('jpayne@ashevillenc.gov')
+	emailAboutCertOfOcc('khinz@ashevillenc.gov');
+	emailAboutCertOfOcc('jpayne@ashevillenc.gov');
 }
 
 // changed from smorgan to talley 05/09/18. Added smorgan back on 5/18
@@ -371,8 +371,8 @@ if (appMatch('Permits/Residential/Home Occupation/Home Stay')
 	&& wfTask == 'Application Process'
 	&& wfStatus == 'Application Complete'
 ) {
-	emailToStartHomeStayReview('talley@ashevillenc.gov')
-	emailToStartHomeStayReview('smorgan@ashevillenc.gov')
+	emailToStartHomeStayReview('talley@ashevillenc.gov');
+	emailToStartHomeStayReview('smorgan@ashevillenc.gov');
 }
 
 if (appMatch('Permits/Residential/Home Occupation/Home Stay')
