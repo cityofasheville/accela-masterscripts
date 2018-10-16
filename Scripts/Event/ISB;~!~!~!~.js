@@ -4,7 +4,7 @@ without doing preliminaries
 */
 
 // TODO: IMPLEMENT THIS INSTEAD OF ALL THAT OTHER STUFF
-function makeStyledComment(title, text) {
+function makeStyledCommentAndCancelProcess(title, text) {
 	showMessage = true;
 	// TODO: STYLE THIS SO IT LOOKS NICE, USE THIS FOR EVERYTHING
 	comment("<p style='font-size:0.75em;font-weight:bold;margin-bottom:2em;'>"
@@ -39,7 +39,7 @@ if ((appMatch('Permits/*/*/*') || appMatch('Planning/*/*/*'))
 		'TCC Issued 90 Days',
 	)
 ) {
-	makeStyledComment(
+	makeStyledCommentAndCancelProcess(
 		'Permit NOT Issued',
 		'Please visit the Development Services Department for re-issuance.'
 	);
@@ -68,10 +68,10 @@ if (inspType.indexOf('BU') === 0) {
 		|| (hasChildren('Planning/Subdivision/*/*') && !doesChildHaveApprovedInspection('Planning/Subdivision/*/*', 'GR-PRELIMINARY'))
 		|| (hasChildren('Permits/*/Site Work/*') && !doesChildHaveApprovedInspection('Permits/*/Site Work/*', 'GR-PRELIMINARY'))
 	) {
-		// TODO: WHY THIS ORDER, WHAT IS THE DIFFERENCE BETWEEN LOG MESSAGE AND COMMENT???
-		cancel = true;
-		showMessage = true;
-		logMessage('Site Work Record must have approved GR-PRELIMINARY inspection. Please return to the bottom of the record screen and navigate to the list of Related Records to find the associated Site record.');
+		makeStyledCommentAndCancelProcess(
+			"Site Work Record must have approved GR-PRELIMINARY inspection.",
+			"Please return to the bottom of the record screen and navigate to the list of Related Records to find the associated Site record.",
+		)
 	}
 }
 
@@ -84,12 +84,12 @@ function denyFinalInspections(currentInspectionGroup, inspectionTypeList) {
 			// TODO: USE DIFFERENT TEXT FOR REINSPECTION
 			// TODO: change this message when we change styling/write that function
 			if (thisInspectionType === 'ROUGH IN') {
-				makeStyledComment(
+				makeStyledCommentAndCancelProcess(
 					"Can't schedule Final",
 					"Can't schedule Final until Rough-In is scheduled. Inspections not required by scope will be marked NotApplicable by the inspector."
 				);
 			} else {
-				makeStyledComment(
+				makeStyledCommentAndCancelProcess(
 					"Can't schedule final",
 					thisInspectionType + " inspection is not scheduled. Inspections not required by scope will be marked NotApplicable by the inspector."
 				);
@@ -173,35 +173,35 @@ if (matches(inspType, 'BU-FRAMING')) {
 	TODO: use message function, make this consistent
 	*/
 	if (checkInspectionResult('BU-FOOTING', 'Pending')) {
-		makeStyledComment(
+		makeStyledCommentAndCancelProcess(
 			'BU-FRAMING Inspection Not Allowed',
 			'The BU-FOOTING inspection must be scheduled.Inspections not required by scope will be marked NotApplicable by the inspector.'
 		)
 	}
 
 	if (checkInspectionResult('PL-ROUGH IN', 'Pending')) {
-		makeStyledComment(
+		makeStyledCommentAndCancelProcess(
 			"Can\'t schedule Framing Inspection",
 			"Can't schedule Framing Inspection until Plumbing Rough-In is scheduled.",
 		)
 	}
 
 	if (checkInspectionResult('ME-ROUGH IN', 'Pending')) {
-		makeStyledComment(
+		makeStyledCommentAndCancelProcess(
 			"Can't schedule Framing Inspection",
 			"Can't schedule Framing Inspection until Mechanical Rough-In is scheduled.",
 		)
 	}
 
 	if (checkInspectionResult('EE-ROUGH IN', 'Pending')) {
-		makeStyledComment(
+		makeStyledCommentAndCancelProcess(
 			"Can't schedule Framing Inspection",
 			"Can't schedule Framing Inspection until Electrical Rough-In is scheduled.",
 		)
 	}
 
 	if (checkInspectionResult('GP-ROUGH IN', 'Pending')) {
-		makeStyledComment(
+		makeStyledCommentAndCancelProcess(
 			"Can't schedule Framing Inspection",
 			"Can't schedule Framing Inspection until Gas Piping Rough-In is scheduled.",
 		)
@@ -232,28 +232,28 @@ if (matches(inspType, 'BU-FRAMING')) {
 					saveCapId = capId;
 					capId = eachChildCapId;
 					if (checkInspectionResult('PL-ROUGH IN', 'Pending')) {
-						makeStyledComment(
+						makeStyledCommentAndCancelProcess(
 							"Can't schedule Framing Inspection",
 							"Can't schedule Framing Inspection until Plumbing Rough-In is scheduled.",
 						)
 					}
 
 					if (checkInspectionResult('ME-ROUGH IN', 'Pending')) {
-						makeStyledComment(
+						makeStyledCommentAndCancelProcess(
 							"Can't schedule Framing Inspection",
 							"Can't schedule Framing Inspection until Mechanical Rough-In is scheduled.",
 						)
 					}
 
 					if (checkInspectionResult('EE-ROUGH IN', 'Pending')) {
-						makeStyledComment(
+						makeStyledCommentAndCancelProcess(
 							"Can't schedule Framing Inspection",
 							"Can't schedule Framing Inspection until Electrical Rough-In is scheduled."
 						)
 					}
 
 					if (checkInspectionResult('GP-ROUGH IN', 'Pending')) {
-						makeStyledComment(
+						makeStyledCommentAndCancelProcess(
 							"Can't schedule Framing Inspection",
 							"Can't schedule Framing Inspection until Gas Piping Rough-In is scheduled.",
 						)
@@ -289,49 +289,49 @@ if (matches(inspType, 'BU-FINAL', 'BU-FINAL-REINSP', 'MH-FINAL')) {
 				saveCapId = capId;
 				capId = eachChildCapId;
 				if (checkInspectionResult('PL-FINAL', 'Pending')) {
-					makeStyledComment(
+					makeStyledCommentAndCancelProcess(
 						"Can't schedule FINAL Inspection",
 						"Can't schedule FINAL Inspection until Plumbing Final is scheduled.See related records.",
 					)
 				}
 
 				if (checkInspectionResult('ME-FINAL', 'Pending')) {
-					makeStyledComment(
+					makeStyledCommentAndCancelProcess(
 						"Can't schedule FINAL Inspection",
 						"Can't schedule FINAL Inspection until Mechanical Final is scheduled.See related records.",
 					)
 				}
 
 				if (checkInspectionResult('EE-FINAL', 'Pending')) {
-					makeStyledComment(
+					makeStyledCommentAndCancelProcess(
 						"Can't schedule FINAL Inspection",
 						"Can't schedule FINAL Inspection until Electrical Final is scheduled.See related records.",
 					)
 				}
 
 				if (checkInspectionResult('GP-FINAL', 'Pending')) {
-					makeStyledComment(
+					makeStyledCommentAndCancelProcess(
 						"Can't schedule FINAL Inspection",
 						"Can't schedule FINAL Inspection until Gas Piping Final is scheduled.See related records.",
 					)
 				}
 
 				if (checkInspectionResult('HO-FINAL', 'Pending')) {
-					makeStyledComment(
+					makeStyledCommentAndCancelProcess(
 						"Can't schedule FINAL Inspection",
 						"Can't schedule FINAL Inspection until Exhaust Hood Final is scheduled.See related records.",
 					)
 				}
 
 				if (checkInspectionResult('RE-FINAL', 'Pending')) {
-					makeStyledComment(
+					makeStyledCommentAndCancelProcess(
 						"Can't schedule FINAL Inspection",
 						"Can't schedule FINAL Inspection until Refrigeration Final is scheduled.See related records.",
 					)
 				}
 
 				if (checkInspectionResult('FP-FINAL', 'Pending')) {
-					makeStyledComment(
+					makeStyledCommentAndCancelProcess(
 						"Can't schedule FINAL Inspection",
 						"Can't schedule FINAL Inspection until Fire Prevention Final is scheduled.See related records.",
 					)
@@ -353,7 +353,7 @@ if (matches(inspType, 'BU-INSULATION')
 	/*
 	Can't do insulation without framing inspection
 	*/
-	makeStyledComment(
+	makeStyledCommentAndCancelProcess(
 		"The BU-INSULATION Inspection cannot be scheduled until the BU-FRAMING Inspection is scheduled",
 		"Please Schedule the BU-FRAMING inspection first. Inspections not required by scope will be marked NotApplicable by the inspector.",
 	)
@@ -549,7 +549,7 @@ function checkForCloseOutDocuments(inspectionToCheck) {
 		sendThing = sendThing && checkInspectionResult(inspectionToCheck, closeOutResultsToCheck[i])
 	}
 	if (sendThing) {
-		makeStyledComment(
+		makeStyledCommentAndCancelProcess(
 			"Can't schedule Final",
 			"Close Out Documents not approved.",
 		)
@@ -562,10 +562,10 @@ function checkCloseOutDocCompleteness(inspectionToCheck) {
 			checkForCloseOutDocuments(inspectionToCheck.requiredDocuments[closeOutIndex])
 		}
 		if (isTaskActive('Close Out Document Review')) {
-			cancel = true;
-			showMessage = true;
-			// TODO: see other log message, check documentation
-			logMessage('Final inspection cannot be scheduled until close out documents are complete');
+			makeStyledCommentAndCancelProcess(
+				'Final inspection cannot be scheduled',
+				'Close out documents must be complete.',
+			)
 		}
 	}
 }
@@ -583,7 +583,7 @@ if (matches(inspType, 'ZO-FINAL')
 ) {
 	//start replaced branch: ES_ISB_ZONG
 	if (checkInspectionResult('FP-SITE FINAL', 'Pending')) {
-		makeStyledComment(
+		makeStyledCommentAndCancelProcess(
 			"Can't schedule Final",
 			"Can't schedule Final until FP-SITE FINAL is scheduled.",
 		)
@@ -600,7 +600,7 @@ if (pCapId) {
 	pBalanceDue = pCapDetail.getBalance();
 	comment('Balance is ' + pBalanceDue);
 	if (pBalanceDue > 0) {
-		makeStyledComment(
+		makeStyledCommentAndCancelProcess(
 			"Parent Permit Has Balance Due",
 			"The parent permit has a balance due of $" + pBalanceDue + ".  Inspections cannot be scheduled.",
 		)
@@ -609,7 +609,7 @@ if (pCapId) {
 }
 
 if (balanceDue > 0) {
-	makeStyledComment(
+	makeStyledCommentAndCancelProcess(
 		"Balance Due",
 		"Inspection cannot be scheduled because there is a balance due for this Record.",
 	)
