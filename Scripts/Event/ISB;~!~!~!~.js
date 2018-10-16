@@ -4,10 +4,15 @@ without doing preliminaries
 */
 
 // TODO: IMPLEMENT THIS INSTEAD OF ALL THAT OTHER STUFF
-function makeComment(title, text) {
+function makeStyledComment(title, text) {
 	showMessage = true;
 	// TODO: STYLE THIS SO IT LOOKS NICE, USE THIS FOR EVERYTHING
-	comment("<p style='font-size:0.75em;font-weight:bold;'>Permit NOT Issued:</p><br><br>Please visit the Development Services Department for re-issuance.<br><br>");
+	comment("<p style='font-size:0.75em;font-weight:bold;margin-bottom:2em;'>"
+			+ title
+			+ "</p><p style='font-size:0.75em;margin-bottom:2em;'>"
+			+ text
+			+ "</p>"
+		);
 	cancel = true;
 }
 
@@ -34,10 +39,10 @@ if ((appMatch('Permits/*/*/*') || appMatch('Planning/*/*/*'))
 		'TCC Issued 90 Days',
 	)
 ) {
-	showMessage = true;
-	// TODO: STYLE THIS SO IT LOOKS NICE, USE THIS FOR EVERYTHING
-	comment("<p style='font-size:0.75em;font-weight:bold;'>Permit NOT Issued:</p><br><br>Please visit the Development Services Department for re-issuance.<br><br>");
-	cancel = true;
+	makeStyledComment(
+		'Permit NOT Issued',
+		'Please visit the Development Services Department for re-issuance.'
+	);
 }
 
 /* Abbreviation key - index types
@@ -76,15 +81,19 @@ function denyFinalInspections(currentInspectionGroup, inspectionTypeList) {
 	for (var typeIndex = 0; typeIndex < inspectionTypeList.length; typeIndex++) {
 		var thisInspectionType = inspectionTypeList[typeIndex];
 		if (checkInspectionResult(currentInspectionGroup + '-' + thisInspectionType, 'Pending')) {
-			showMessage = true;
 			// TODO: USE DIFFERENT TEXT FOR REINSPECTION
 			// TODO: change this message when we change styling/write that function
 			if (thisInspectionType === 'ROUGH IN') {
-				comment("<font size=small><b>Can't schedule Final:</b></font><br><br>Can't schedule Final until Rough-In is scheduled. Inspections not required by scope will be marked NotApplicable by the inspector.<br><br>");
+				makeStyledComment(
+					"Can't schedule Final",
+					"Can't schedule Final until Rough-In is scheduled. Inspections not required by scope will be marked NotApplicable by the inspector."
+				);
 			} else {
-				comment("<font size=small><b>Can't schedule final: </b></font><br><br>" + thisInspectionType + " inspection is not scheduled. Inspections not required by scope will be marked NotApplicable by the inspector.<br><br>");
+				makeStyledComment(
+					"Can't schedule final",
+					thisInspectionType + " inspection is not scheduled. Inspections not required by scope will be marked NotApplicable by the inspector."
+				);
 			}
-			cancel = true;
 		}
 	}
 }
@@ -164,33 +173,38 @@ if (matches(inspType, 'BU-FRAMING')) {
 	TODO: use message function, make this consistent
 	*/
 	if (checkInspectionResult('BU-FOOTING', 'Pending')) {
-		showMessage = true;
-		comment("<font size=small><b>BU-FRAMING Inspection Not Allowed:</b></font><br><br>The BU-FOOTING inspection must be scheduled.Inspections not required by scope will be marked NotApplicable by the inspector.<br><br>");
-		cancel = true;
+		makeStyledComment(
+			'BU-FRAMING Inspection Not Allowed',
+			'The BU-FOOTING inspection must be scheduled.Inspections not required by scope will be marked NotApplicable by the inspector.'
+		)
 	}
 
 	if (checkInspectionResult('PL-ROUGH IN', 'Pending')) {
-		showMessage = true;
-		comment("<font size=small><b>Can't schedule Framing Inspection:</b></font><br><br>Can't schedule Framing Inspection until Plumbing Rough-In is scheduled.<br><br>");
-		cancel = true;
+		makeStyledComment(
+			"Can\'t schedule Framing Inspection",
+			"Can't schedule Framing Inspection until Plumbing Rough-In is scheduled.",
+		)
 	}
 
 	if (checkInspectionResult('ME-ROUGH IN', 'Pending')) {
-		showMessage = true;
-		comment("<font size=small><b>Can't schedule Framing Inspection:</b></font><br><br>Can't schedule Framing Inspection until Mechanical Rough-In is scheduled.<br><br>");
-		cancel = true;
+		makeStyledComment(
+			"Can't schedule Framing Inspection",
+			"Can't schedule Framing Inspection until Mechanical Rough-In is scheduled.",
+		)
 	}
 
 	if (checkInspectionResult('EE-ROUGH IN', 'Pending')) {
-		showMessage = true;
-		comment("<font size=small><b>Can't schedule Framing Inspection:</b></font><br><br>Can't schedule Framing Inspection until Electrical Rough-In is scheduled.<br><br>");
-		cancel = true;
+		makeStyledComment(
+			"Can't schedule Framing Inspection",
+			"Can't schedule Framing Inspection until Electrical Rough-In is scheduled.",
+		)
 	}
 
 	if (checkInspectionResult('GP-ROUGH IN', 'Pending')) {
-		showMessage = true;
-		comment("<font size=small><b>Can't schedule Framing Inspection:</b></font><br><br>Can't schedule Framing Inspection until Gas Piping Rough-In is scheduled.<br><br>");
-		cancel = true;
+		makeStyledComment(
+			"Can't schedule Framing Inspection",
+			"Can't schedule Framing Inspection until Gas Piping Rough-In is scheduled.",
+		)
 	}
 
 	if (appMatch('Permits/Residential/*/*')) {
@@ -218,27 +232,31 @@ if (matches(inspType, 'BU-FRAMING')) {
 					saveCapId = capId;
 					capId = eachChildCapId;
 					if (checkInspectionResult('PL-ROUGH IN', 'Pending')) {
-						showMessage = true;
-						comment("<font size=small><b>Can't schedule Framing Inspection:</b></font><br><br>Can't schedule Framing Inspection until Plumbing Rough-In is scheduled.<br><br>");
-						cancel = true;
+						makeStyledComment(
+							"Can't schedule Framing Inspection",
+							"Can't schedule Framing Inspection until Plumbing Rough-In is scheduled.",
+						)
 					}
 
 					if (checkInspectionResult('ME-ROUGH IN', 'Pending')) {
-						showMessage = true;
-						comment("<font size=small><b>Can't schedule Framing Inspection:</b></font><br><br>Can't schedule Framing Inspection until Mechanical Rough-In is scheduled.<br><br>");
-						cancel = true;
+						makeStyledComment(
+							"Can't schedule Framing Inspection",
+							"Can't schedule Framing Inspection until Mechanical Rough-In is scheduled.",
+						)
 					}
 
 					if (checkInspectionResult('EE-ROUGH IN', 'Pending')) {
-						showMessage = true;
-						comment("<font size=small><b>Can't schedule Framing Inspection:</b></font><br><br>Can't schedule Framing Inspection until Electrical Rough-In is scheduled.<br><br>");
-						cancel = true;
+						makeStyledComment(
+							"Can't schedule Framing Inspection",
+							"Can't schedule Framing Inspection until Electrical Rough-In is scheduled."
+						)
 					}
 
 					if (checkInspectionResult('GP-ROUGH IN', 'Pending')) {
-						showMessage = true;
-						comment("<font size=small><b>Can't schedule Framing Inspection:</b></font><br><br>Can't schedule Framing Inspection until Gas Piping Rough-In is scheduled.<br><br>");
-						cancel = true;
+						makeStyledComment(
+							"Can't schedule Framing Inspection",
+							"Can't schedule Framing Inspection until Gas Piping Rough-In is scheduled.",
+						)
 					}
 
 					capId = saveCapId;
@@ -271,47 +289,53 @@ if (matches(inspType, 'BU-FINAL', 'BU-FINAL-REINSP', 'MH-FINAL')) {
 				saveCapId = capId;
 				capId = eachChildCapId;
 				if (checkInspectionResult('PL-FINAL', 'Pending')) {
-					showMessage = true;
-					comment("<font size=small><b>Can't schedule FINAL Inspection:</b></font><br><br>Can't schedule FINAL Inspection until Plumbing Final is scheduled.See related records.<br><br>");
-					cancel = true;
+					makeStyledComment(
+						"Can't schedule FINAL Inspection",
+						"Can't schedule FINAL Inspection until Plumbing Final is scheduled.See related records.",
+					)
 				}
 
 				if (checkInspectionResult('ME-FINAL', 'Pending')) {
-					showMessage = true;
-					comment("<font size=small><b>Can't schedule FINAL Inspection:</b></font><br><br>Can't schedule FINAL Inspection until Mechanical Final is scheduled.See related records.<br><br>");
-					cancel = true;
+					makeStyledComment(
+						"Can't schedule FINAL Inspection",
+						"Can't schedule FINAL Inspection until Mechanical Final is scheduled.See related records.",
+					)
 				}
 
 				if (checkInspectionResult('EE-FINAL', 'Pending')) {
-					showMessage = true;
-					comment("<font size=small><b>Can't schedule FINAL Inspection:</b></font><br><br>Can't schedule FINAL Inspection until Electrical Final is scheduled.See related records.<br><br>");
-					cancel = true;
+					makeStyledComment(
+						"Can't schedule FINAL Inspection",
+						"Can't schedule FINAL Inspection until Electrical Final is scheduled.See related records.",
+					)
 				}
 
 				if (checkInspectionResult('GP-FINAL', 'Pending')) {
-					showMessage = true;
-					comment("<font size=small><b>Can't schedule FINAL Inspection:</b></font><br><br>Can't schedule FINAL Inspection until Gas Piping Final is scheduled.See related records.<br><br>");
-					cancel = true;
+					makeStyledComment(
+						"Can't schedule FINAL Inspection",
+						"Can't schedule FINAL Inspection until Gas Piping Final is scheduled.See related records.",
+					)
 				}
 
 				if (checkInspectionResult('HO-FINAL', 'Pending')) {
-					showMessage = true;
-					comment("<font size=small><b>Can't schedule FINAL Inspection:</b></font><br><br>Can't schedule FINAL Inspection until Exhaust Hood Final is scheduled.See related records.<br><br>");
-					cancel = true;
+					makeStyledComment(
+						"Can't schedule FINAL Inspection",
+						"Can't schedule FINAL Inspection until Exhaust Hood Final is scheduled.See related records.",
+					)
 				}
 
 				if (checkInspectionResult('RE-FINAL', 'Pending')) {
-					showMessage = true;
-					comment("<font size=small><b>Can't schedule FINAL Inspection:</b></font><br><br>Can't schedule FINAL Inspection until Refrigeration Final is scheduled.See related records.<br><br>");
-					cancel = true;
+					makeStyledComment(
+						"Can't schedule FINAL Inspection",
+						"Can't schedule FINAL Inspection until Refrigeration Final is scheduled.See related records.",
+					)
 				}
 
 				if (checkInspectionResult('FP-FINAL', 'Pending')) {
-					showMessage = true;
-					comment("<font size=small><b>Can't schedule FINAL Inspection:</b></font><br><br>Can't schedule FINAL Inspection until Fire Prevention Final is scheduled.See related records.<br><br>");
-					cancel = true;
+					makeStyledComment(
+						"Can't schedule FINAL Inspection",
+						"Can't schedule FINAL Inspection until Fire Prevention Final is scheduled.See related records.",
+					)
 				}
-
 				capId = saveCapId;
 
 			}
@@ -329,9 +353,10 @@ if (matches(inspType, 'BU-INSULATION')
 	/*
 	Can't do insulation without framing inspection
 	*/
-	showMessage = true;
-	comment("<font size=small><b>The BU-INSULATION Inspection cannot be scheduled until the BU-FRAMING Inspection is scheduled:</b></font><br><br>Please Schedule the BU-FRAMING inspection first. Inspections not required by scope will be marked NotApplicable by the inspector.<br><br>");
-	cancel = true;
+	makeStyledComment(
+		"The BU-INSULATION Inspection cannot be scheduled until the BU-FRAMING Inspection is scheduled",
+		"Please Schedule the BU-FRAMING inspection first. Inspections not required by scope will be marked NotApplicable by the inspector.",
+	)
 }
 
 if (matches(inspType, 'BU-FINAL', 'BU-FINAL-REINSP', 'MH-FINAL')) {
@@ -524,9 +549,10 @@ function checkForCloseOutDocuments(inspectionToCheck) {
 		sendThing = sendThing && checkInspectionResult(inspectionToCheck, closeOutResultsToCheck[i])
 	}
 	if (sendThing) {
-		showMessage = true;
-		comment("<font size=small><b>Can't schedule Final:</b></font><br><br>Close Out Documents not approved.<br><br>");
-		cancel = true;
+		makeStyledComment(
+			"Can't schedule Final",
+			"Close Out Documents not approved.",
+		)
 	}
 }
 
@@ -557,9 +583,10 @@ if (matches(inspType, 'ZO-FINAL')
 ) {
 	//start replaced branch: ES_ISB_ZONG
 	if (checkInspectionResult('FP-SITE FINAL', 'Pending')) {
-		showMessage = true;
-		comment("<font size=small><b>Can't schedule Final:</b></font><br><br>Can't schedule Final until FP-SITE FINAL is scheduled.<br><br>");
-		cancel = true;
+		makeStyledComment(
+			"Can't schedule Final",
+			"Can't schedule Final until FP-SITE FINAL is scheduled.",
+		)
 	}
 	//end replaced branch: ES_ISB_ZONG;
 }
@@ -573,15 +600,17 @@ if (pCapId) {
 	pBalanceDue = pCapDetail.getBalance();
 	comment('Balance is ' + pBalanceDue);
 	if (pBalanceDue > 0) {
-		showMessage = true;
-		comment("<font size=small><b>Parent Permit Has Balance Due:</b></font><br><br>The parent permit has a balance due of $" + pBalanceDue + ".  Inspections cannot be scheduled.<br><br>");
-		cancel = true;
+		makeStyledComment(
+			"Parent Permit Has Balance Due",
+			"The parent permit has a balance due of $" + pBalanceDue + ".  Inspections cannot be scheduled.",
+		)
 	}
 	//end replaced branch: ES_CHECK_FOR_BALANCE_ON_PARENT;
 }
 
 if (balanceDue > 0) {
-	showMessage = true;
-	comment("<font size=small><b>Balance Due:</b></font><br><br>Inspection cannot be scheduled because there is a balance due for this Record.<br><br>");
-	cancel = true;
+	makeStyledComment(
+		"Balance Due",
+		"Inspection cannot be scheduled because there is a balance due for this Record.",
+	)
 }
