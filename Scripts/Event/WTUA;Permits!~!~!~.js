@@ -42,7 +42,7 @@ if (wfTaskFirePreventionOrReview && wfStatusApprovedOrWithConditions) {
 		// All of these are Permits/Fire/Construction/[permitCat]
 		for (var permitListIndex = 0; permitListIndex < checkPreventionApprovedCats.length; permitListIndex++) {
 			var thisPermitCheck = checkPreventionApprovedCats[permitListIndex];
-			if (AInfo[thisPermitCheck.aInfot1 + ' Permit Required'] == 'Yes' && !hasSibling(capId, 'Permits/Fire/Construction/' + thisPermitCheck.permitCat)) {
+			if (AInfo[thisPermitCheck.aInfot1 + ' Permit Required'] === 'Yes' && !hasSibling(capId, 'Permits/Fire/Construction/' + thisPermitCheck.permitCat)) {
 				saveCapId = capId;
 				pCapId = currentResultOfGetParent;
 				capId = pCapId;
@@ -63,7 +63,7 @@ if (wfTaskFirePreventionOrReview && wfStatusApprovedOrWithConditions) {
 		//start replaced branch: ES_CREATE_FIRE_CHILD
 		for (var elsePermitListIndex = 0; elsePermitListIndex < checkPreventionApprovedCats.length; elsePermitListIndex++) {
 			var thisPermitCheckElse = checkPreventionApprovedCats[elsePermitListIndex];
-			if (AInfo[thisPermitCheckElse.aInfot1 + ' Permit Required'] == 'Yes' && !hasChildren('Permits/Fire/Construction/' + thisPermitCheckElse.permitCat)) {
+			if (AInfo[thisPermitCheckElse.aInfot1 + ' Permit Required'] === 'Yes' && !hasChildren('Permits/Fire/Construction/' + thisPermitCheckElse.permitCat)) {
 				newChildID = createChild('Permits', 'Fire', 'Construction', thisPermitCheckElse.permitCat, '');
 				copyAppSpecific(newChildID);
 				comment('New child app id = ' + newChildID);
@@ -80,7 +80,7 @@ if (wfTaskFirePreventionOrReview && wfStatusApprovedOrWithConditions) {
 
 //start replaced branch: ES_SET_EXPIRATION_DATES_PERMITS
 {
-	if (wfTask == 'Application Process'
+	if (wfTask === 'Application Process'
 		&& matches(wfStatus, 'Complete', 'Application Incomplete')
 	) {
 		editAppSpecific('Application Expiration Date', dateAdd(null, 180));
@@ -176,7 +176,7 @@ if (wfTaskFirePreventionOrReview && wfStatusApprovedOrWithConditions) {
 	}
 }
 //end replaced branch: ES_SET_EXPIRATION_DATES_PERMITS;
-if (!appMatch('Permits/*/Site Work/NA') && wfTask == 'Flood' && matches(wfStatus, 'FPD Permit Required')) {
+if (!appMatch('Permits/*/Site Work/NA') && wfTask === 'Flood' && matches(wfStatus, 'FPD Permit Required')) {
 	newChildID = createChild('Permits', 'Stormwater', 'Flood Plain Development', 'NA', '');
 	copyAppSpecific(newChildID);
 	comment('New child app id = ' + newChildID);
@@ -193,7 +193,7 @@ if (wfTask == 'Conditions of Approval') {
 		'Privilege License',
 		'GC Information',
 		'GC Signature',
-		'Sub-Contractor Info',
+		'Sub-Contractor Information',
 		'Lien Agent Designation',
 		'Proof of Ownership',
 		'Owner Signature',
