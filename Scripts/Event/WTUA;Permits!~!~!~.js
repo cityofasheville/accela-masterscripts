@@ -193,7 +193,7 @@ if (wfTask == 'Conditions of Approval') {
 		'Privilege License',
 		'GC Information',
 		'GC Signature',
-		'Sub-Contractor Info',
+		'Sub-Contractor Information',
 		'Lien Agent Designation',
 		'Proof of Ownership',
 		'Owner Signature',
