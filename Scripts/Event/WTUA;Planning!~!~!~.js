@@ -66,7 +66,7 @@
 		editAppSpecific('Last Date to Appeal', dateAdd(null, 30));
 	}
 
-
+	// TODO: GROUP
 	if (appMatch('Planning/Subdivision/Modification/NA') && wfTask == 'PZC' && matches(wfStatus, 'Approved', 'Approved with Conditions')) {
 		editAppSpecific('PZC Approval Expires', dateAdd(null, 30));
 	}
@@ -84,11 +84,12 @@
 		editAppSpecific('Approval Expiration Date', dateAdd(null, 30));
 	}
 
-
 	if (appMatch('Planning/Subdivision/Recombination/NA') && wfTask == 'Verification' && matches(wfStatus, 'Project Approved')) {
 		editAppSpecific('Approval Expiration Date', dateAdd(null, 30));
 	}
 
+
+	// TODO: GROUP
 	if (appMatch('Planning/Development/Signage Plan/NA') && wfTask == 'City Council' && matches(wfStatus, 'Approved', 'Approved with Conditions')) {
 		editAppSpecific('Approval Expiration Date', dateAdd(null, 365));
 	}
@@ -98,6 +99,7 @@
 	}
 
 
+	// TODO: GROUP
 	if (appMatch('Planning/HRC/Major Work/NA') && wfTask == 'Issuance' && matches(wfStatus, 'Issue', 'Reissue')) {
 		editAppSpecific('Approval Expiration Date', dateAdd(null, 365));
 	}
@@ -110,6 +112,7 @@
 		editAppSpecific('Approval Expiration Date', dateAdd(null, 365));
 	}
 
+
 	if (appMatch('Planning/Variance/*/*') && wfTask == 'Commission Review' && matches(wfStatus, 'Approved', 'Approved with Conditions', 'Denied', 'Recommended Denial')) {
 		editAppSpecific('Last Date to Appeal', dateAdd(null, 30));
 	}
@@ -118,6 +121,8 @@
 		editAppSpecific('Last Date to Appeal', dateAdd(null, 30));
 	}
 
+
+	// TODO: GROUP
 	if (appMatch('Planning/Development/*/*') || appMatch('Planning/Subdivision/*/*') && matches(wfStatus, 'Issue', 'Reissue') && AInfo['Issue Zoning Permit To'] != 'NA') {
 		editAppSpecific('Zoning Permit Expires', dateAdd(null, 365));
 	}
@@ -133,6 +138,7 @@
 	if (appMatch('Planning/Development/*/*') || appMatch('Planning/Subdivision/*/*') && matches(wfStatus, 'Issue', 'Reissue') && AInfo['Issue Driveway Permit To'] != 'NA') {
 		editAppSpecific('Driveway Permit Expires', dateAdd(null, 365));
 	}
+
 
 }
 //end replaced branch: ES_SET_EXPIRATION_DATES;
@@ -193,7 +199,16 @@ if (wfProcess == 'PLN_2NDTRCCOMMENTS' && wfStatus == 'Comments Sent') {
 }
 
 
-if ((appMatch('Planning/Permits/Level II/NA') || appMatch('Planning/Permits/Level III/NA') || appMatch('Planning/Permits/Conditional Zoning/NA') || appMatch('Planning/Permits/Manufactured Hsg Community/NA') || appMatch('Planning/Permits/Vested Rights/NA') || appMatch('Planning/Subdivision/Major/NA') || appMatch('Planning/Subdivision/Modification/NA')) && wfStatus == 'Amend' && wfTask == 'Partial Permit') {
+if ((
+		appMatch('Planning/Permits/Level II/NA') ||
+		appMatch('Planning/Permits/Level III/NA') ||
+		appMatch('Planning/Permits/Conditional Zoning/NA') ||
+		appMatch('Planning/Permits/Manufactured Hsg Community/NA') ||
+		appMatch('Planning/Permits/Vested Rights/NA') ||
+		appMatch('Planning/Subdivision/Major/NA') ||
+		appMatch('Planning/Subdivision/Modification/NA')
+	) && wfStatus == 'Amend' && wfTask == 'Partial Permit')
+{
 	activateTask('Application Process');
 }
 
@@ -271,7 +286,14 @@ if (matches(wfProcess, 'PLN_HRCMINOR', 'PLN_SUBMINOR', 'PW_DEV') && wfStatus == 
 }
 
 if (appMatch('Planning/Development/Signage Plan/*') && matches(wfStatus, 'Denied')) {
-	addParcelCondition(null, 'Planning', 'Applied', 'Signage Plan Detail', 'City Council has denied the proposed signage plan associated with this parcel. The applicant must wait at least 365 days before reapplying for a new signage plan substantially similar to the proposed signage plan.', 'Notice');
+	addParcelCondition(
+		null,
+		'Planning',
+		'Applied',
+		'Signage Plan Detail',
+		'City Council has denied the proposed signage plan associated with this parcel. The applicant must wait at least 365 days before reapplying for a new signage plan substantially similar to the proposed signage plan.',
+		'Notice'
+	);
 }
 
 // Added 2/27/18 to email PAC that a Pre-con meeting is possible. As per Chris. Permit Verification task exists only for Level I, Level II, Maj Sub, Level III, Cond Zoning -- which are the exact record types this email applies to.
