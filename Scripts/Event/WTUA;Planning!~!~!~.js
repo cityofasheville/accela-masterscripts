@@ -1,21 +1,21 @@
-//start replaced branch: WORKFLOW_UA_PLANNING
+if (wfTask == 'Application Process' && matches(wfStatus, 'Complete', 'Application Incomplete')) {
+	editAppSpecific('Application Expiration Date', dateAdd(null, 180));
+}
 
-//start replaced branch: ES_SET_EXPIRATION_DATES
-{
-	if (wfTask == 'Application Process' && matches(wfStatus, 'Complete', 'Application Incomplete')) {
-		editAppSpecific('Application Expiration Date', dateAdd(null, 180));
+if (
+	(appMatch('Planning/Development/Conditional Use/NA') || appMatch('Planning/Development/Conditional Zoning/NA'))
+	&& wfTask == 'City Council'
+) {
+	if (matches(wfStatus, 'Approved', 'Approved with Conditions')) {
+		editAppSpecific('Council Approval Expires', dateAdd(null, 730));
 	}
-
-	if ((appMatch('Planning/Development/Conditional Use/NA') || appMatch('Planning/Development/Conditional Zoning/NA')) && wfTask == 'City Council') {
-		 if (matches(wfStatus, 'Approved', 'Approved with Conditions')) {
-			 editAppSpecific('Council Approval Expires', dateAdd(null, 730));
-		 }
-		 if (matches(wfStatus, 'Approved', 'Approved with Conditions', 'Denied')) {
-			 editAppSpecific('Last Date to Appeal', dateAdd(null, 30));
-		 }
+	if (matches(wfStatus, 'Approved', 'Approved with Conditions', 'Denied')) {
+		editAppSpecific('Last Date to Appeal', dateAdd(null, 30));
 	}
+}
 
-	if (appMatch('Planning/Development/Level II/NA') && wfTask == 'PZC') {
+if (appMatch('Planning/Development/Level II/NA')) {
+	if (wfTask == 'PZC') {
 		if (matches(wfStatus, 'Approved', 'Approved with Conditions')) {
 			editAppSpecific('PZC Approval Expires', dateAdd(null, 365));
 		}
@@ -23,16 +23,17 @@
 			editAppSpecific('Last Date to Appeal', dateAdd(null, 30));
 		}
 	}
-
-	if (
-		appMatch('Planning/Development/Level II/NA') &&
-		wfTask == 'Appeal to City Council' &&
-		matches(wfStatus, 'Denial Upheld', 'Approval Overturned')
-	) {
+	if (wfTask == 'Appeal to City Council' && matches(wfStatus, 'Denial Upheld', 'Approval Overturned')) {
 		editAppSpecific('Last Date to Appeal', dateAdd(null, 30));
 	}
+}
 
-	if (appMatch('Planning/Development/Level III/NA') && wfTask == 'City Council') {
+if (wfTask == 'City Council') {
+	if (
+		appMatch('Planning/Development/Level III/NA') ||
+		appMatch('Planning/Development/Manufactured Hsg Community/NA') ||
+		appMatch('Planning/Development/Vested Rights/NA')
+	) {
 		if (matches(wfStatus, 'Approved', 'Approved with Conditions')) {
 			editAppSpecific('Council Approval Expires', dateAdd(null, 730));
 		}
@@ -40,24 +41,10 @@
 			editAppSpecific('Last Date to Appeal', dateAdd(null, 30));
 		}
 	}
+}
 
-	if (appMatch('Planning/Development/Manufactured Hsg Community/NA') && wfTask == 'City Council') {
-		if (matches(wfStatus, 'Approved', 'Approved with Conditions')) {
-			editAppSpecific('Council Approval Expires', dateAdd(null, 730));
-		}
-		if (matches(wfStatus, 'Approved', 'Approved with Conditions', 'Denied')) {
-			editAppSpecific('Last Date to Appeal', dateAdd(null, 30));
-		}
-	}
 
-	if (appMatch('Planning/Development/Vested Rights/NA') && wfTask == 'City Council') {
-		if (matches(wfStatus, 'Approved', 'Approved with Conditions')) {
-			editAppSpecific('Council Approval Expires', dateAdd(null, 730));
-		}
-		if (matches(wfStatus, 'Approved', 'Approved with Conditions', 'Denied')) {
-			editAppSpecific('Last Date to Appeal', dateAdd(null, 30));
-		}
-	}
+{
 
 	if (appMatch('Planning/Subdivision/Major/NA')) {
 		if (wfTask == 'PZC') {
