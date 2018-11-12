@@ -303,11 +303,17 @@ var checkForAllLevelTwoEtc = checkForAllPwDevTasks.concat([
 	'Planning Intake',
 ]);
 
+var checkIndex = 0;
+var currentTask;
+var checkTasks;
+var spliceIndex;
+
 if (matches(wfProcess, 'PLN_LVL2', 'PLN_LVL2SUB', 'PLN_TRC', 'PLN_CUP') && matches(wfStatus, 'Approved','Approved with Conditions','Not Required')) {
-	for (var levelTwoIndex = 0; levelTwoIndex < levelTwoTrcCupTasksToCheck.length; levelTwoIndex++) {
-		var currentLevelTwoTask = levelTwoTrcCupTasksToCheck[levelTwoIndex];
-		var checkTasks = levelTwoTrcCupTasksToCheck.concat(checkForAllLevelTwoEtc);
-		var spliceIndex = checkTasks.indexOf(currentLevelTwoTask);
+	for (checkIndex = 0; checkIndex < levelTwoTrcCupTasksToCheck.length; checkIndex++) {
+		currentTask = levelTwoTrcCupTasksToCheck[checkIndex];
+		checkTasks = levelTwoTrcCupTasksToCheck.concat(checkForAllLevelTwoEtc);
+		spliceIndex = checkTasks.indexOf(currentTask);
+
 		checkTasks.splice(spliceIndex, 1);
 		if (areTasksComplete(checkTasks)) {
 			emailAboutPreConstructionMeeting('CShort@ashevillenc.gov');
@@ -317,10 +323,11 @@ if (matches(wfProcess, 'PLN_LVL2', 'PLN_LVL2SUB', 'PLN_TRC', 'PLN_CUP') && match
 }
 
 if (matches(wfProcess, 'PW_DEV') && matches(wfStatus, 'Approved','Approved with Conditions','Not Required')) {
-	for (var pwIndex = 0; pwIndex < pwDevTasksToCheck.length; pwIndex++) {
-		var currentPwDevTask = pwDevTasksToCheck[pwIndex];
-		var checkTasks = pwDevTasksToCheck.concat(checkForAllPwDevTasks);
-		var spliceIndex = checkTasks.indexOf(currentPwDevTask);
+	for (checkIndex = 0; checkIndex < pwDevTasksToCheck.length; checkIndex++) {
+		currentTask = pwDevTasksToCheck[checkIndex];
+		checkTasks = pwDevTasksToCheck.concat(checkForAllPwDevTasks);
+		spliceIndex = checkTasks.indexOf(currentTask);
+
 		checkTasks.splice(spliceIndex, 1);
 		if (areTasksComplete(checkTasks)) {
 			emailAboutPreConstructionMeeting('TAlley@ashevillenc.gov');
