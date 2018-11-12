@@ -349,12 +349,12 @@ if (wfTask == 'Permit Verification' && matches(wfStatus, 'Issue', 'Reissue', 'Is
 		'Location: ' + CapAddress +
 		'<br>' +
 		'Your permit has been issued at this location. ' +
-		'If you have not received your permit and plans already, before starting work, please follow the steps below to prepare the permit and plans for this project.' +
+		'If you have not received your permit and plans already, please follow the steps below to prepare the permit and plans for this project before starting work.' +
 		'<br>' +
 		'<ul>' +
 			'<li>Visit Develop.AshevilleNC.Gov</li>' +
 			'<li>Click "Access Permits and Inspections"</li>' +
-			'<li>Search for record number ' + capIDString + ' in the top-right corner of the page.</li>' +
+			'<li>Search by typing or pasting your record number, ' + capIDString + ', in the top-right corner of the page.</li>' +
 			'<li>Click the arrow down next to "Record Info" and select "Attachments"</li>' +
 			'<li>Click the name of the approved plans and permit to download</li>' +
 		'/ul' +
