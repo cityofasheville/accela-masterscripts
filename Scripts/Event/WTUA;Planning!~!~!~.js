@@ -284,7 +284,7 @@ function areTasksComplete(taskArray) {
 }
 
 var levelTwoTrcCupTasksToCheck = [
-	'Grading'
+	'Grading',
 	'Stormwater',
 	'Driveway',
 	'Sidewalk',
