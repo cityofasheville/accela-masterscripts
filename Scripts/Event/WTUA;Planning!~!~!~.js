@@ -275,69 +275,61 @@ function emailAboutPreConstructionMeeting (emailAddress) {
 	);
 }
 
+function areTasksComplete(taskArray) {
+	var returnValue = true;
+	for (var i = 0; i < taskArray.length; i++) {
+		returnValue = returnValue && isTaskComplete(taskArray[i]);
+	}
+	return returnValue;
+}
+
+var levelTwoTrcCupTasksToCheck = [
+	'Grading'
+	'Stormwater',
+	'Driveway',
+	'Sidewalk',
+];
+var pwDevTasksToCheck = level2TrcCupTasksToCheck.concat([
+	'Staff Level Site Plan Review'
+]);
+
+var checkForAllPwDevTasks = [
+	'Addressing',
+	'Application Process',
+	'Technical Review',
+	'Pre-Application Process',
+];
+var checkForAllLevelTwoEtc = checkForAllPwDevTasks.concat([
+	'Planning Intake',
+]);
+
 if (matches(wfProcess, 'PLN_LVL2', 'PLN_LVL2SUB', 'PLN_TRC', 'PLN_CUP') && matches(wfStatus, 'Approved','Approved with Conditions','Not Required')) {
-	if (wfTask == 'Grading') {
-		if (isTaskComplete("Stormwater") && isTaskComplete("Driveway") && isTaskComplete("Sidewalk") && isTaskComplete("Addressing") && isTaskComplete("Application Process") && isTaskComplete("Planning Intake") && isTaskComplete("Technical Review") && isTaskComplete("Pre-Application Process")) {
-			emailAboutPreConstructionMeeting('CShort@ashevillenc.gov');
-			emailAboutPreConstructionMeeting('NWatford@ashevillenc.gov');
-		}
-	}
-
-	if (wfTask == 'Stormwater') {
-		if (isTaskComplete("Grading") && isTaskComplete("Driveway") && isTaskComplete("Sidewalk") && isTaskComplete("Addressing") && isTaskComplete("Application Process") && isTaskComplete("Planning Intake") && isTaskComplete("Technical Review") && isTaskComplete("Pre-Application Process")) {
-			emailAboutPreConstructionMeeting('CShort@ashevillenc.gov');
-			emailAboutPreConstructionMeeting('NWatford@ashevillenc.gov');
-		}
-	}
-
-	if (wfTask == 'Driveway') {
-		if (isTaskComplete("Stormwater") && isTaskComplete("Grading") && isTaskComplete("Sidewalk") && isTaskComplete("Addressing") && isTaskComplete("Application Process") && isTaskComplete("Planning Intake") && isTaskComplete("Technical Review") && isTaskComplete("Pre-Application Process")) {
-			emailAboutPreConstructionMeeting('CShort@ashevillenc.gov');
-			emailAboutPreConstructionMeeting('NWatford@ashevillenc.gov');
-		}
-	}
-
-	if (wfTask == 'Sidewalk') {
-		if (isTaskComplete("Stormwater") && isTaskComplete("Driveway") && isTaskComplete("Grading") && isTaskComplete("Addressing") && isTaskComplete("Application Process") && isTaskComplete("Planning Intake") && isTaskComplete("Technical Review") && isTaskComplete("Pre-Application Process")) {
+	for (var levelTwoIndex = 0; levelTwoIndex < levelTwoTrcCupTasksToCheck.length; levelTwoIndex++) {
+		var currentLevelTwoTask = levelTwoTrcCupTasksToCheck[levelTwoIndex];
+		var checkTasks = levelTwoTrcCupTasksToCheck.concat(checkForAllLevelTwoEtc);
+		var spliceIndex = checkTasks.indexOf(currentLevelTwoTask);
+		checkTasks.splice(spliceIndex, 1);
+		if (areTasksComplete(checkTasks)) {
 			emailAboutPreConstructionMeeting('CShort@ashevillenc.gov');
 			emailAboutPreConstructionMeeting('NWatford@ashevillenc.gov');
 		}
 	}
 }
-
 
 if (matches(wfProcess, 'PW_DEV') && matches(wfStatus, 'Approved','Approved with Conditions','Not Required')) {
-	if (wfTask == 'Grading') {
-		if (isTaskComplete("Stormwater") && isTaskComplete("Driveway") && isTaskComplete("Sidewalk") && isTaskComplete("Addressing") && isTaskComplete("Application Process") && isTaskComplete("Staff Level Site Plan Review") && isTaskComplete("Technical Review") && isTaskComplete("Pre-Application Process")) {
+	for (var pwIndex = 0; pwIndex < pwDevTasksToCheck.length; pwIndex++) {
+		var currentPwDevTask = pwDevTasksToCheck[pwIndex];
+		var checkTasks = pwDevTasksToCheck.concat(checkForAllPwDevTasks);
+		var spliceIndex = checkTasks.indexOf(currentPwDevTask);
+		checkTasks.splice(spliceIndex, 1);
+		if (areTasksComplete(checkTasks)) {
 			emailAboutPreConstructionMeeting('TAlley@ashevillenc.gov');
 			emailAboutPreConstructionMeeting('NWatford@ashevillenc.gov');
 		}
 	}
-	if (wfTask == 'Driveway') {
-		if (isTaskComplete("Stormwater") && isTaskComplete("Grading") && isTaskComplete("Sidewalk") && isTaskComplete("Addressing") && isTaskComplete("Application Process") && isTaskComplete("Staff Level Site Plan Review") && isTaskComplete("Technical Review") && isTaskComplete("Pre-Application Process")) {
-			emailAboutPreConstructionMeeting('TAlley@ashevillenc.gov');
-			emailAboutPreConstructionMeeting('NWatford@ashevillenc.gov');
-		}
-	}
-	if (wfTask == 'Stormwater') {
-		if (isTaskComplete("Grading") && isTaskComplete("Driveway") && isTaskComplete("Sidewalk") && isTaskComplete("Addressing") && isTaskComplete("Application Process") && isTaskComplete("Staff Level Site Plan Review") && isTaskComplete("Technical Review") && isTaskComplete("Pre-Application Process")) {
-			emailAboutPreConstructionMeeting('TAlley@ashevillenc.gov');
-			emailAboutPreConstructionMeeting('NWatford@ashevillenc.gov');
-		}
-	}
-	if (wfTask == 'Staff Level Site Plan Review') {
-		if (isTaskComplete("Stormwater") && isTaskComplete("Driveway") && isTaskComplete("Sidewalk") && isTaskComplete("Addressing") && isTaskComplete("Application Process") && isTaskComplete("Grading") && isTaskComplete("Technical Review") && isTaskComplete("Pre-Application Process")) {
-			emailAboutPreConstructionMeeting('TAlley@ashevillenc.gov');
-			emailAboutPreConstructionMeeting('NWatford@ashevillenc.gov');
-		}
-	}
-	if (wfTask == 'Sidewalk') {
-		if (isTaskComplete("Stormwater") && isTaskComplete("Driveway") && isTaskComplete("Grading") && isTaskComplete("Addressing") && isTaskComplete("Application Process") && isTaskComplete("Grading") && isTaskComplete("Technical Review") && isTaskComplete("Pre-Application Process")) {
-			emailAboutPreConstructionMeeting('TAlley@ashevillenc.gov');
-			emailAboutPreConstructionMeeting('NWatford@ashevillenc.gov');
-		}
-	}
+	// TODO: no staff level site plan review for sidewalk??
 }
+
 
 // Added below 5/23/18 to send email to primary contact. this is for records that may be created online to alert the customer their permit can be printed out.
 
