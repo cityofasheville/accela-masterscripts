@@ -342,20 +342,37 @@ if (matches(wfProcess, 'PW_DEV') && matches(wfStatus, 'Approved','Approved with 
 // Added below 5/23/18 to send email to primary contact. this is for records that may be created online to alert the customer their permit can be printed out.
 
 if (wfTask == 'Permit Verification' && matches(wfStatus, 'Issue', 'Reissue', 'Issue Partial')) {
-	emailContact('Your Permit Has Been Issued -- Important Instructions Inside', 'Permit Number: ' + capIDString + ' <br> Location: ' + CapAddress + ' <br> Your permit has been issued at this location. If you have not received your permit and plans already, before starting work, please follow the steps below to prepare the permit and plans for this project.<br><br> --Visit Develop.AshevilleNC.Gov<br> --Click Access Permits and Inspections<br> --Search for the above record number in the top-right corner of the page.<br> --Click the arrow down next to Record Info and select Attachments<br> --Click the name of the approved plans and permit to download<br><br>The project permit must be posted at the work site. Approved plans must be available on-site.');
-
+	emailContact(
+		'Your Permit Has Been Issued -- Important Instructions Inside',
+		'Permit Number: ' + capIDString +
+		'<br>' +
+		'Location: ' + CapAddress +
+		'<br>' +
+		'Your permit has been issued at this location. ' +
+		'If you have not received your permit and plans already, before starting work, please follow the steps below to prepare the permit and plans for this project.' +
+		'<br>' +
+		'<ul>' +
+			'<li>Visit Develop.AshevilleNC.Gov</li>' +
+			'<li>Click "Access Permits and Inspections"</li>' +
+			'<li>Search for record number ' + capIDString + ' in the top-right corner of the page.</li>' +
+			'<li>Click the arrow down next to "Record Info" and select "Attachments"</li>' +
+			'<li>Click the name of the approved plans and permit to download</li>' +
+		'/ul' +
+		'<br>' +
+		'The project permit must be posted at the work site. Approved plans must be available on-site.');
 }
-// End added 5/23
-
 
 if (wfTask == 'Permit Verification' && matches(wfStatus, 'Issue', 'Issue Partial')) {
-
-	//replaced branch(WORKFLOWTASK_UA_ADD_INSP)
 	WORKFLOWTASK_UA_ADD_INSP();
 }
 
 if (matches(wfTask, 'HRC Review') && matches(wfStatus, 'Approved', 'Approved with Conditions')) {
-	email('PAC@ashevillenc.gov', 'noreply@ashevillenc.gov', 'HRC Overlay Task', 'HRC Overlay Review task updated. ' + capIDString + ' - Please check record status and issue if ready.');
+	email(
+		'PAC@ashevillenc.gov',
+		'noreply@ashevillenc.gov',
+		'HRC Overlay Task',
+		'HRC Overlay Review task updated. ' + capIDString + ' - Please check record status and issue if ready.'
+	);
 }
 
 
@@ -391,6 +408,3 @@ if (
 		)
 	}
 }
-
-
-//end replaced branch: WORKFLOW_UA_PLANNING;
