@@ -99,82 +99,82 @@ if ((
 	editAppSpecific('Last Date to Appeal', dateAdd(null, 30));
 }
 
-
-{
-	// TODO: GROUP
-	if (appMatch('Planning/Development/*/*') || appMatch('Planning/Subdivision/*/*') && matches(wfStatus, 'Issue', 'Reissue') && AInfo['Issue Zoning Permit To'] != 'NA') {
+if (appMatch('Planning/Development/*/*') || appMatch('Planning/Subdivision/*/*') && matches(wfStatus, 'Issue', 'Reissue')) {
+	if (AInfo['Issue Zoning Permit To'] != 'NA') {
 		editAppSpecific('Zoning Permit Expires', dateAdd(null, 365));
 	}
 
-	if (appMatch('Planning/Development/*/*') || appMatch('Planning/Subdivision/*/*') && matches(wfStatus, 'Issue', 'Reissue') && AInfo['Issue Stormwater Permit To'] != 'NA') {
+	if (AInfo['Issue Stormwater Permit To'] != 'NA') {
 		editAppSpecific('Stormwater Permit Expires', dateAdd(null, 365));
 	}
 
-	if (appMatch('Planning/Development/*/*') || appMatch('Planning/Subdivision/*/*') && matches(wfStatus, 'Issue', 'Reissue') && AInfo['Issue Grading Permit To'] != 'NA') {
+	if (AInfo['Issue Grading Permit To'] != 'NA') {
 		editAppSpecific('Grading Permit Expires', dateAdd(null, 365));
 	}
 
-	if (appMatch('Planning/Development/*/*') || appMatch('Planning/Subdivision/*/*') && matches(wfStatus, 'Issue', 'Reissue') && AInfo['Issue Driveway Permit To'] != 'NA') {
+	if (AInfo['Issue Driveway Permit To'] != 'NA') {
 		editAppSpecific('Driveway Permit Expires', dateAdd(null, 365));
 	}
 }
 
-//end replaced branch: ES_SET_EXPIRATION_DATES;
 if ((appMatch('Planning/Development/*/*') || appMatch('Planning/Subdivision/*/*'))) {
-	//replaced branch(ES_SITE_WF_UPD_AFTER)
 	ES_SITE_WF_UPD_AFTER();
 }
 
 if (wfTask == 'Addressing' && matches(wfStatus, 'Approved - Fees Due')) {
-
-	//replaced branch(ES_ADDRESSING_FEES)
 	ES_ADDRESSING_FEES();
 }
 
-if (matches(wfTask, 'Planning', 'Staff Level Site Plan Review', 'Final TRC', 'Technical Review') && matches(wfStatus, 'Approved', 'Approved with Conditions', 'Disapproved', 'Partial Approval') && AInfo['Apply Steep Slope Fee?'] == 'Yes') {
+if (
+	matches(wfTask, 'Planning', 'Staff Level Site Plan Review', 'Final TRC', 'Technical Review') &&
+	matches(wfStatus, 'Approved', 'Approved with Conditions', 'Disapproved', 'Partial Approval') &&
+	AInfo['Apply Steep Slope Fee?'] == 'Yes'
+) {
 	updateFee('STEEPSLOPE', 'RES_NEW', 'FINAL', 1, 'Y');
 	updateFee('TECH', 'GENERAL', 'FINAL', 1, 'Y');
 }
 
-if (appMatch('Planning/*/*/*') && wfTask == 'Planning Construction' && matches(wfStatus, 'Final Approved', 'Expired')) {
-	closeTask('Planning', 'Completed', 'Closed by Script', '', 'PLN_TRCPROCESS');
+if (appMatch('Planning/*/*/*') && matches(wfStatus, 'Final Approved', 'Expired')) {
+	if (wfTask == 'Planning Construction') {
+		closeTask('Planning', 'Completed', 'Closed by Script', '', 'PLN_TRCPROCESS');
+	}
+
+	if (wfTask == 'Grading Construction') {
+		closeTask('Grading', 'Completed', 'Closed by Script', '', 'PLN_TRCPROCESS');
+	}
+
+	if (wfTask == 'Driveway Construction') {
+		closeTask('Driveway', 'Completed', 'Closed by Script', '', 'PLN_TRCPROCESS');
+	}
+
+	if (wfTask == 'Stormwater Construction') {
+		closeTask('Stormwater', 'Completed', 'Closed by Script', '', 'PLN_TRCPROCESS');
+	}
+
+	if (wfTask == 'Flood Construction') {
+		closeTask('Flood', 'Completed', 'Closed by Script', '', 'PLN_TRCPROCESS');
+	}
 }
 
-if (appMatch('Planning/*/*/*') && wfTask == 'Grading Construction' && matches(wfStatus, 'Final Approved', 'Expired')) {
-	closeTask('Grading', 'Completed', 'Closed by Script', '', 'PLN_TRCPROCESS');
+if (wfProcess == 'PLN_1STTRCCOMMENTS') {
+	if (wfStatus == 'Comments Sent') {
+		updateTask('TRC', 'Hold for Revision', 'Set by Script', '', 'PLN_TRC');
+		updateTask('Level II TRC', 'Hold for Revision', 'Set by Script', '', 'PLN_LVL2SUB');
+	}
+	if (wfStatus == 'Hold for Revision') {
+		activateTask('Resubmittal', 'PLN_1STTRCCOMMENTS');
+	}
 }
 
-if (appMatch('Planning/*/*/*') && wfTask == 'Driveway Construction' && matches(wfStatus, 'Final Approved', 'Expired')) {
-	closeTask('Driveway', 'Completed', 'Closed by Script', '', 'PLN_TRCPROCESS');
+if (wfProcess == 'PLN_2NDTRCCOMMENTS') {
+	if (wfStatus == 'Hold for Revision') {
+		activateTask('Resubmittal', 'PLN_2NDTRCCOMMENTS');
+	}
+	if (wfStatus == 'Comments Sent') {
+		updateTask('Final TRC', 'Hold for Revision', 'Set by Script', '', 'PLN_TRC');
+		updateTask('Final Review', 'Hold for Revision', 'Set by Script', '', 'PLN_LVL2SUB');
+	}
 }
-
-if (appMatch('Planning/*/*/*') && wfTask == 'Stormwater Construction' && matches(wfStatus, 'Final Approved', 'Expired')) {
-	closeTask('Stormwater', 'Completed', 'Closed by Script', '', 'PLN_TRCPROCESS');
-}
-
-if (appMatch('Planning/*/*/*') && wfTask == 'Flood Construction' && matches(wfStatus, 'Final Approved', 'Expired')) {
-	closeTask('Flood', 'Completed', 'Closed by Script', '', 'PLN_TRCPROCESS');
-}
-
-// TODO: review with  Diane per email 10/26. Completed. Turned on next 4 IF statements
-
-
-if (wfProcess == 'PLN_1STTRCCOMMENTS' && wfStatus == 'Comments Sent') {
-	updateTask('TRC', 'Hold for Revision', 'Set by Script', '', 'PLN_TRC');
-}
-
-if (wfProcess == 'PLN_1STTRCCOMMENTS' && wfStatus == 'Hold for Revision') {
-	activateTask('Resubmittal', 'PLN_1STTRCCOMMENTS');
-}
-
-if (wfProcess == 'PLN_2NDTRCCOMMENTS' && wfStatus == 'Hold for Revision') {
-	activateTask('Resubmittal', 'PLN_2NDTRCCOMMENTS');
-}
-
-if (wfProcess == 'PLN_2NDTRCCOMMENTS' && wfStatus == 'Comments Sent') {
-	updateTask('Final TRC', 'Hold for Revision', 'Set by Script', '', 'PLN_TRC');
-}
-
 
 if ((
 		appMatch('Planning/Permits/Level II/NA') ||
@@ -197,15 +197,7 @@ if (wfProcess == 'PLN_LVL2' && wfStatus == 'Hold for Revision') {
 	activateTask('Application Process', 'PLN_LVL2');
 }
 
-// TODO: review with  Diane per email 10/26. Done. Turned on next two IF statements
 
-if (wfProcess == 'PLN_2NDTRCCOMMENTS' && wfStatus == 'Comments Sent') {
-	updateTask('Final Review', 'Hold for Revision', 'Set by Script', '', 'PLN_LVL2SUB');
-}
-
-if (wfProcess == 'PLN_1STTRCCOMMENTS' && wfStatus == 'Comments Sent') {
-	updateTask('Level II TRC', 'Hold for Revision', 'Set by Script', '', 'PLN_LVL2SUB');
-}
 
 
 if (appMatch('Planning/Non Development/*/*') && matches(wfStatus, 'Withdrawn')) {
@@ -221,11 +213,6 @@ if (appMatch('Planning/*/Conditional Use/*') && wfTask == 'City Council' && matc
 	activateTask('Downtown Commission');
 }
 
-// DISABLED: WORKFLOW_UA_PLANNING:22
-//if (appMatch('Planning/*/Conditional Use/*') && matches(wfStatus,'Recommend Approval to DC','Recommend APC to DC')) {
-//	activateTask('Downtown Commission');
-//	}
-
 if (appMatch('Planning/*/Conditional Use/*') && matches(wfStatus, 'Appeal Received')) {
 	activateTask('PZC Appeal');
 	deactivateTask('Initial TRC');
@@ -238,13 +225,6 @@ if (wfProcess == 'PLN_CUP' && wfStatus == 'Hold for Revision') {
 if (appMatch('Planning/*/Conditional Use/*') && wfStatus == 'Amend' && wfTask == 'Partial Permit') {
 	activateTask('Project Intake');
 }
-
-// DISABLED: WORKFLOW_UA_PLANNING:26
-//if (wfTask == 'Application Process' && matches(wfStatus,'Application Complete') && AInfo['Create a Residential Site Work permit?'] == 'Yes') {
-//	newChildID = createChild('Permits','Residential','Site Work','NA','');
-//	copyAppSpecific(newChildID);
-//	comment('New child app id = '+ newChildID);
-//	}
 
 if (wfProcess == 'PLN_LEVEL1COMMENTS' && wfStatus == 'Hold for Revision') {
 	activateTask('Resubmittal', 'PLN_LEVEL1COMMENTS');
