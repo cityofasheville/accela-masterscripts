@@ -189,16 +189,6 @@ if ((
 	activateTask('Application Process');
 }
 
-if (wfProcess == 'PLN_HRCMINOR' && wfStatus == 'Hold for Revision') {
-	activateTask('Amendment Routing', 'PLN_HRCMINOR');
-}
-
-if (wfProcess == 'PLN_LVL2' && wfStatus == 'Hold for Revision') {
-	activateTask('Application Process', 'PLN_LVL2');
-}
-
-
-
 
 if (appMatch('Planning/Non Development/*/*') && matches(wfStatus, 'Withdrawn')) {
 	deactivateTask('Planning Review');
@@ -208,39 +198,48 @@ if (appMatch('Planning/HRC/Major Work/NA') && matches(wfStatus, 'Expired', 'Revo
 	deactivateTask('Issuance');
 }
 
-if (appMatch('Planning/*/Conditional Use/*') && wfTask == 'City Council' && matches(wfStatus, 'Remand to DC')) {
-	deactivateTask('City Council');
-	activateTask('Downtown Commission');
+if (appMatch('Planning/*/Conditional Use/*')) {
+	if (wfTask == 'City Council' && matches(wfStatus, 'Remand to DC')) {
+		deactivateTask('City Council');
+		activateTask('Downtown Commission');
+	}
+
+	if (matches(wfStatus, 'Appeal Received')) {
+		activateTask('PZC Appeal');
+		deactivateTask('Initial TRC');
+	}
+
+	if (wfStatus == 'Amend' && wfTask == 'Partial Permit') {
+		activateTask('Project Intake');
+	}
 }
 
-if (appMatch('Planning/*/Conditional Use/*') && matches(wfStatus, 'Appeal Received')) {
-	activateTask('PZC Appeal');
-	deactivateTask('Initial TRC');
+if (wfStatus == 'Hold for Revision') {
+	if (wfProcess == 'PLN_HRCMINOR') {
+		activateTask('Amendment Routing', 'PLN_HRCMINOR');
+	}
+	if (wfProcess == 'PLN_LVL2') {
+		activateTask('Application Process', 'PLN_LVL2');
+	}
+	if (wfProcess == 'PLN_CUP') {
+		activateTask('Project Intake', 'PLN_CUP');
+	}
+	if (wfProcess == 'PLN_LEVEL1COMMENTS') {
+		activateTask('Resubmittal', 'PLN_LEVEL1COMMENTS');
+	}
+	if (wfProcess == 'PLN_TEMP-OCC') {
+		activateTask('Amendment Routing', 'PLN_TEMP-OCC');
+	}
+	if (matches(wfProcess, 'PLN_TRC', 'PLN_LVL2')) {
+		activateTask('Application Process');
+	}
+	if (matches(wfProcess, 'PLN_HRCMINOR', 'PLN_SUBMINOR', 'PW_DEV')) {
+		activateTask('Amendment Routing');
+	}
 }
 
-if (wfProcess == 'PLN_CUP' && wfStatus == 'Hold for Revision') {
-	activateTask('Project Intake', 'PLN_CUP');
-}
 
-if (appMatch('Planning/*/Conditional Use/*') && wfStatus == 'Amend' && wfTask == 'Partial Permit') {
-	activateTask('Project Intake');
-}
 
-if (wfProcess == 'PLN_LEVEL1COMMENTS' && wfStatus == 'Hold for Revision') {
-	activateTask('Resubmittal', 'PLN_LEVEL1COMMENTS');
-}
-
-if (wfProcess == 'PLN_TEMP-OCC' && wfStatus == 'Hold for Revision') {
-	activateTask('Amendment Routing', 'PLN_TEMP-OCC');
-}
-
-if (matches(wfProcess, 'PLN_TRC', 'PLN_LVL2') && wfStatus == 'Hold for Revision') {
-	activateTask('Application Process');
-}
-
-if (matches(wfProcess, 'PLN_HRCMINOR', 'PLN_SUBMINOR', 'PW_DEV') && wfStatus == 'Hold for Revision') {
-	activateTask('Amendment Routing');
-}
 
 if (appMatch('Planning/Development/Signage Plan/*') && matches(wfStatus, 'Denied')) {
 	addParcelCondition(
