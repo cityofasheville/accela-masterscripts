@@ -585,7 +585,7 @@ if (matches(inspType, 'ZO-FINAL')
 	if (checkInspectionResult('FP-SITE FINAL', 'Pending')) {
 		makeStyledCommentAndCancelProcess(
 			"Can't schedule Final",
-			"Can't schedule Final until FP-SITE FINAL is scheduled.",
+			"Can't schedule Final until FP-SITE FINAL is scheduled."
 		)
 	}
 	//end replaced branch: ES_ISB_ZONG;
