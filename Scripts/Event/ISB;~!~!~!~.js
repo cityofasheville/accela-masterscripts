@@ -36,7 +36,7 @@ if ((appMatch('Permits/*/*/*') || appMatch('Planning/*/*/*'))
 		'TCO Issued 90 Days',
 		'TCC Issued 30 Days',
 		'TCC Issued 60 Days',
-		'TCC Issued 90 Days',
+		'TCC Issued 90 Days'
 	)
 ) {
 	makeStyledCommentAndCancelProcess(
@@ -70,7 +70,7 @@ if (inspType.indexOf('BU') == 0) {
 	) {
 		makeStyledCommentAndCancelProcess(
 			"Site Work Record must have approved GR-PRELIMINARY inspection.",
-			"Please return to the bottom of the record screen and navigate to the list of Related Records to find the associated Site record.",
+			"Please return to the bottom of the record screen and navigate to the list of Related Records to find the associated Site record."
 		)
 	}
 }
@@ -106,7 +106,7 @@ var buildingInspectionTypesToCheck = [
 			'UNDER SLAB',
 			'FIRE DAMPER',
 			'ABOVE CEILING',
-			'REINSP',
+			'REINSP'
 		],
 	},
 	{
@@ -117,7 +117,7 @@ var buildingInspectionTypesToCheck = [
 			'WATER LINE',
 			'SEWER LINE',
 			'BACKFLOW',
-			'REINSP',
+			'REINSP'
 		]
 	},
 	{
@@ -128,7 +128,7 @@ var buildingInspectionTypesToCheck = [
 			'TEMPORARY SAW SERVICE',
 			'ABOVE CEILING',
 			'OTHER',
-			'REINSP',
+			'REINSP'
 		]
 	},
 	{
@@ -139,7 +139,7 @@ var buildingInspectionTypesToCheck = [
 			'LIGHT TEST',
 			'SMOKE TEST',
 			'DUCT WRAP',
-			'REINSP',
+			'REINSP'
 		]
 	},
 	{
@@ -147,14 +147,14 @@ var buildingInspectionTypesToCheck = [
 		types: [
 			'ROUGH IN',
 			'ABOVE CEILING',
-			'REINSP',
+			'REINSP'
 		]
 	},
 	{
 		group: 'GP',
 		types: [
 			'ROUGH IN',
-			'REINSP',
+			'REINSP'
 		]
 	}
 ]
@@ -182,28 +182,28 @@ if (matches(inspType, 'BU-FRAMING')) {
 	if (checkInspectionResult('PL-ROUGH IN', 'Pending')) {
 		makeStyledCommentAndCancelProcess(
 			"Can\'t schedule Framing Inspection",
-			"Can't schedule Framing Inspection until Plumbing Rough-In is scheduled.",
+			"Can't schedule Framing Inspection until Plumbing Rough-In is scheduled."
 		)
 	}
 
 	if (checkInspectionResult('ME-ROUGH IN', 'Pending')) {
 		makeStyledCommentAndCancelProcess(
 			"Can't schedule Framing Inspection",
-			"Can't schedule Framing Inspection until Mechanical Rough-In is scheduled.",
+			"Can't schedule Framing Inspection until Mechanical Rough-In is scheduled."
 		)
 	}
 
 	if (checkInspectionResult('EE-ROUGH IN', 'Pending')) {
 		makeStyledCommentAndCancelProcess(
 			"Can't schedule Framing Inspection",
-			"Can't schedule Framing Inspection until Electrical Rough-In is scheduled.",
+			"Can't schedule Framing Inspection until Electrical Rough-In is scheduled."
 		)
 	}
 
 	if (checkInspectionResult('GP-ROUGH IN', 'Pending')) {
 		makeStyledCommentAndCancelProcess(
 			"Can't schedule Framing Inspection",
-			"Can't schedule Framing Inspection until Gas Piping Rough-In is scheduled.",
+			"Can't schedule Framing Inspection until Gas Piping Rough-In is scheduled."
 		)
 	}
 
@@ -234,14 +234,14 @@ if (matches(inspType, 'BU-FRAMING')) {
 					if (checkInspectionResult('PL-ROUGH IN', 'Pending')) {
 						makeStyledCommentAndCancelProcess(
 							"Can't schedule Framing Inspection",
-							"Can't schedule Framing Inspection until Plumbing Rough-In is scheduled.",
+							"Can't schedule Framing Inspection until Plumbing Rough-In is scheduled."
 						)
 					}
 
 					if (checkInspectionResult('ME-ROUGH IN', 'Pending')) {
 						makeStyledCommentAndCancelProcess(
 							"Can't schedule Framing Inspection",
-							"Can't schedule Framing Inspection until Mechanical Rough-In is scheduled.",
+							"Can't schedule Framing Inspection until Mechanical Rough-In is scheduled."
 						)
 					}
 
@@ -255,7 +255,7 @@ if (matches(inspType, 'BU-FRAMING')) {
 					if (checkInspectionResult('GP-ROUGH IN', 'Pending')) {
 						makeStyledCommentAndCancelProcess(
 							"Can't schedule Framing Inspection",
-							"Can't schedule Framing Inspection until Gas Piping Rough-In is scheduled.",
+							"Can't schedule Framing Inspection until Gas Piping Rough-In is scheduled."
 						)
 					}
 
@@ -291,49 +291,49 @@ if (matches(inspType, 'BU-FINAL', 'BU-FINAL-REINSP', 'MH-FINAL')) {
 				if (checkInspectionResult('PL-FINAL', 'Pending')) {
 					makeStyledCommentAndCancelProcess(
 						"Can't schedule FINAL Inspection",
-						"Can't schedule FINAL Inspection until Plumbing Final is scheduled.See related records.",
+						"Can't schedule FINAL Inspection until Plumbing Final is scheduled.See related records."
 					)
 				}
 
 				if (checkInspectionResult('ME-FINAL', 'Pending')) {
 					makeStyledCommentAndCancelProcess(
 						"Can't schedule FINAL Inspection",
-						"Can't schedule FINAL Inspection until Mechanical Final is scheduled.See related records.",
+						"Can't schedule FINAL Inspection until Mechanical Final is scheduled.See related records."
 					)
 				}
 
 				if (checkInspectionResult('EE-FINAL', 'Pending')) {
 					makeStyledCommentAndCancelProcess(
 						"Can't schedule FINAL Inspection",
-						"Can't schedule FINAL Inspection until Electrical Final is scheduled.See related records.",
+						"Can't schedule FINAL Inspection until Electrical Final is scheduled.See related records."
 					)
 				}
 
 				if (checkInspectionResult('GP-FINAL', 'Pending')) {
 					makeStyledCommentAndCancelProcess(
 						"Can't schedule FINAL Inspection",
-						"Can't schedule FINAL Inspection until Gas Piping Final is scheduled.See related records.",
+						"Can't schedule FINAL Inspection until Gas Piping Final is scheduled.See related records."
 					)
 				}
 
 				if (checkInspectionResult('HO-FINAL', 'Pending')) {
 					makeStyledCommentAndCancelProcess(
 						"Can't schedule FINAL Inspection",
-						"Can't schedule FINAL Inspection until Exhaust Hood Final is scheduled.See related records.",
+						"Can't schedule FINAL Inspection until Exhaust Hood Final is scheduled.See related records."
 					)
 				}
 
 				if (checkInspectionResult('RE-FINAL', 'Pending')) {
 					makeStyledCommentAndCancelProcess(
 						"Can't schedule FINAL Inspection",
-						"Can't schedule FINAL Inspection until Refrigeration Final is scheduled.See related records.",
+						"Can't schedule FINAL Inspection until Refrigeration Final is scheduled.See related records."
 					)
 				}
 
 				if (checkInspectionResult('FP-FINAL', 'Pending')) {
 					makeStyledCommentAndCancelProcess(
 						"Can't schedule FINAL Inspection",
-						"Can't schedule FINAL Inspection until Fire Prevention Final is scheduled.See related records.",
+						"Can't schedule FINAL Inspection until Fire Prevention Final is scheduled.See related records."
 					)
 				}
 				capId = saveCapId;
@@ -355,7 +355,7 @@ if (matches(inspType, 'BU-INSULATION')
 	*/
 	makeStyledCommentAndCancelProcess(
 		"The BU-INSULATION Inspection cannot be scheduled until the BU-FRAMING Inspection is scheduled",
-		"Please Schedule the BU-FRAMING inspection first. Inspections not required by scope will be marked NotApplicable by the inspector.",
+		"Please Schedule the BU-FRAMING inspection first. Inspections not required by scope will be marked NotApplicable by the inspector."
 	)
 }
 
@@ -551,7 +551,7 @@ function checkForCloseOutDocuments(inspectionToCheck) {
 	if (sendThing) {
 		makeStyledCommentAndCancelProcess(
 			"Can't schedule Final",
-			"Close Out Documents not approved.",
+			"Close Out Documents not approved."
 		)
 	}
 }
@@ -564,7 +564,7 @@ function checkCloseOutDocCompleteness(inspectionToCheck) {
 		if (isTaskActive('Close Out Document Review')) {
 			makeStyledCommentAndCancelProcess(
 				'Final inspection cannot be scheduled',
-				'Close out documents must be complete.',
+				'Close out documents must be complete.'
 			)
 		}
 	}
@@ -602,7 +602,7 @@ if (pCapId) {
 	if (pBalanceDue > 0) {
 		makeStyledCommentAndCancelProcess(
 			"Parent Permit Has Balance Due",
-			"The parent permit has a balance due of $" + pBalanceDue + ".  Inspections cannot be scheduled.",
+			"The parent permit has a balance due of $" + pBalanceDue + ".  Inspections cannot be scheduled."
 		)
 	}
 	//end replaced branch: ES_CHECK_FOR_BALANCE_ON_PARENT;
@@ -611,6 +611,6 @@ if (pCapId) {
 if (balanceDue > 0) {
 	makeStyledCommentAndCancelProcess(
 		"Balance Due",
-		"Inspection cannot be scheduled because there is a balance due for this Record.",
+		"Inspection cannot be scheduled because there is a balance due for this Record."
 	)
 }
