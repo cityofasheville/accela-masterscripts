@@ -671,6 +671,22 @@ console.log(product,
 	daysBetween
 )
 
+logDebug(product)
+logDebug(inspectionList)
+logDebug(its)
+logDebug(inspectionModel)
+logDebug(thisInsp)
+logDebug(thisInspID)
+logDebug(thisInspEmail)
+logDebug(thisInspEmail)
+logDebug(scheduledDate)
+logDebug(schedYear)
+logDebug(schedMonth)
+logDebug(schedDay)
+logDebug(schedDateObj)
+logDebug(daysBetween)
+logDebug(daysBetween)
+
 if (thisInspEmail != null) {
 	//start replaced branch: ES_BLD_INSP_CANCEL_DETAILS
 	email(thisInspEmail, 'noreply@ashevillenc.gov', emailSubject, emailText);
