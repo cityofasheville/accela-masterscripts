@@ -3,6 +3,10 @@ Inspection schedule before: prevent people from jumping to the final inspection
 without doing preliminaries
 */
 
+if (matches(currentUserID, 'RHEDRICK', 'MMAZANEC')) {
+	showDebug = true;
+}
+
 // TODO: IMPLEMENT THIS INSTEAD OF ALL THAT OTHER STUFF
 function makeStyledCommentAndCancelProcess(title, text) {
 	showMessage = true;
