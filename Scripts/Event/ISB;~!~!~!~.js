@@ -614,3 +614,61 @@ if (balanceDue > 0) {
 		"Inspection cannot be scheduled because there is a balance due for this Record."
 	)
 }
+
+// SEND EMAIL TO ASSIGNED INSPECTOR UPON RESCHEDULE INSPECTION
+
+var product = aa.env.getValue('Product');
+var inspectionList = aa.env.getValue('InspectionList');
+if (inspectionList != null) {
+	var its = inspectionList.iterator();
+}
+inspectionModel = its.next();
+var thisInsp = inspectionModel['inspector'];
+var thisInspID = thisInsp.getUserID();
+comment('Inspector ID: ' + thisInspID);
+var thisInspObj = aa.person.getUser(thisInspID).getOutput();
+var thisInspEmail = null;
+thisInspEmail = thisInspObj.getEmail();
+comment('Inspector Email: ' + thisInspEmail);
+var scheduledDate = inspectionModel.getScheduledDateString();
+var schedYear = scheduledDate.substring(0, 4);
+var schedMonth = scheduledDate.substring(5, 7);
+var schedDay = scheduledDate.substring(8, 10);
+var schedDateObj = new Date(schedYear, schedMonth - 1, schedDay);
+comment('scheduled Date: ' + schedDateObj);
+
+var daysBetween = null;
+daysBetween = dateDiff(schedDateObj, cancelDate);
+
+comment(daysBetween);
+//for (x in inspectionModel) comment(x + ' = ' + inspectionModel[x]);
+if (capId == null) {
+	CAPID = inspectionModel.getCapID();
+	sca = String(CAPID).split('-');
+	capID = aa.cap.getCapID(sca[0], sca[1], sca[2]).getOutput();
+	capIdstring = capID.getCustomID();
+	ad = aa.address.getAddressByCapId(capID).getOutput();
+}
+
+console.log(product,
+	inspectionList,
+	its,
+	inspectionModel,
+	thisInsp,
+	thisInspID,
+	thisInspEmail,
+	thisInspEmail,
+	scheduledDate,
+	schedYear,
+	schedMonth,
+	schedDay,
+	schedDateObj,
+	daysBetween,
+	daysBetween
+)
+
+if (thisInspEmail != null) {
+	//start replaced branch: ES_BLD_INSP_CANCEL_DETAILS
+	email(thisInspEmail, 'noreply@ashevillenc.gov', emailSubject, emailText);
+	//end replaced branch: ES_BLD_INSP_CANCEL_DETAILS;
+}
