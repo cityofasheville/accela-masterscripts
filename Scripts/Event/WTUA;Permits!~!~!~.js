@@ -219,11 +219,14 @@ if (wfTask == 'Routing') { //
 		'Building Review',
 		'Fire Review',
 		'Zoning Review',
+		'Driveway',
+		'Grading',
 	];
 	for (var divisionReviewIndex = 0; divisionReviewIndex < divisionReviewSetList.length; divisionReviewIndex++) {
 		var divisionReviewCheck = divisionReviewSetList[divisionReviewIndex];
 		if (AInfo[divisionReviewCheck] == 'No') {
 			setTask(divisionReviewCheck, 'N', 'Y', 'DIVISION REVIEW');
+			setTask(divisionReviewCheck, 'N', 'Y', 'DIV REVIEW-RES');
 		}
 	}
 	//end replaced branch: ES_SET_WF_DIVISION REVIEW;
@@ -240,7 +243,10 @@ if (wfTask == 'Routing') { //
 	if (AInfo['Expected Timeframe'] == 'Res. Waiver - 2 Days') {
 		setAllDivisionReviewTimes(2, divisionReviewSetList);
 	}
-	if (AInfo['Expected Timeframe'] == 'Residential - 10 Days'
+if (AInfo['Expected Timeframe'] == 'Residential Renovation - 5 Days') {
+		setAllDivisionReviewTimes(5, divisionReviewSetList);
+	}
+	if (AInfo['Expected Timeframe'] == 'Residential New Construction - 10 Days'
 		|| AInfo['Expected Timeframe'] == 'Small Comm - 10 Days'
 	) {
 		setAllDivisionReviewTimes(10, divisionReviewSetList);
