@@ -502,22 +502,22 @@ if ((appMatch('Planning/Development/*/*') || appMatch('Planning/Subdivision/*/*'
 	}
 }
 //end replaced branch: WORKFLOW_UA_PERMITS;
-function getAllContacts(capId) {
-//Function will change contact types from exsistingType to newType,
-//optional paramter capID
-	var returnArray = [;]
-	capContactResult = aa.people.getCapContactByCapID(capId);
-	if (capContactResult.getSuccess())
-		{
-		var contactsArray = capContactResult.getOutput();
-		for (yy in contactsArray)
-			{
-			var theContact = contactsArray[yy].getCapContactModel();
-			returnArray.push(theContact.getEmail())
-			}
-		}
-	return returnArray;
-}
+// function getAllContacts(capId) {
+// //Function will change contact types from exsistingType to newType,
+// //optional paramter capID
+// 	var returnArray = [;]
+// 	capContactResult = aa.people.getCapContactByCapID(capId);
+// 	if (capContactResult.getSuccess())
+// 		{
+// 		var contactsArray = capContactResult.getOutput();
+// 		for (yy in contactsArray)
+// 			{
+// 			var theContact = contactsArray[yy].getCapContactModel();
+// 			returnArray.push(theContact.getEmail())
+// 			}
+// 		}
+// 	return returnArray;
+// }
 
 //test
 var revisionRequiredEmailSubject = 'Action Needed Regarding Your Permit';
@@ -540,7 +540,7 @@ if (matches(wfTask, 'Building Review','Zoning Review','Grading','Driveway') && m
 		'jerryhedrick@yahoo.com',
 		'noreply@ashevillenc.gov',
 		revisionRequiredEmailSubject,
-		getAllContacts(capId)
+		contactArray
 	);
 	// goes to applicant
 	// emailContact(
