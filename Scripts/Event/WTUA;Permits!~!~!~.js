@@ -522,9 +522,20 @@ function getAllContacts(capId) {
 //test
 var revisionRequiredEmailSubject = 'Action Needed Regarding Your Permit';
 var revisionRequiredEmailText = 		'Your plan review is complete for the permit ' + capIDString + '. The plan requires revision. You may pick up your marked up plan at https://services.ashevillenc.gov/CitizenAccess . Login and search for your permit, then go to Record Info>Attachments to download the markup and comments. After you have completed the revision, please resubmit that at our site https://develop.residentialplans.ashevillenc.gov/ If you have questions please contact the Permit Application Center at PAC@ashevillenc.gov or 828-259-5846.'
+var contactArray = getContactArray(capId).map(function(contact) {
+	return contact.getEmail()
+})
 
 
 if (matches(wfTask, 'Building Review','Zoning Review','Grading','Driveway') && matches(wfStatus, 'Hold for Revision') && AInfo['Electronic Submittal'] == 'Yes') {
+	contactArray.forEach(function(contactEmail) {
+		email(
+			contactEmail,
+			'noreply@ashevillenc.gov',
+			revisionRequiredEmailSubject,
+			'Email contact by array is working'
+		)
+	})
 	email(
 		'jerryhedrick@yahoo.com',
 		'noreply@ashevillenc.gov',
@@ -532,8 +543,8 @@ if (matches(wfTask, 'Building Review','Zoning Review','Grading','Driveway') && m
 		getAllContacts(capId)
 	);
 	// goes to applicant
-	emailContact(
-		revisionRequiredEmailSubject,
-		revisionRequiredEmailText
-	);
+	// emailContact(
+	// 	revisionRequiredEmailSubject,
+	// 	'Email contact method'
+	// );
 }
