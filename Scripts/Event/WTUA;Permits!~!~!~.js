@@ -502,3 +502,38 @@ if ((appMatch('Planning/Development/*/*') || appMatch('Planning/Subdivision/*/*'
 	}
 }
 //end replaced branch: WORKFLOW_UA_PERMITS;
+function getAllContacts(capId) {
+//Function will change contact types from exsistingType to newType,
+//optional paramter capID
+	var returnArray = [;]
+	capContactResult = aa.people.getCapContactByCapID(capId);
+	if (capContactResult.getSuccess())
+		{
+		var contactsArray = capContactResult.getOutput();
+		for (yy in contactsArray)
+			{
+			var theContact = contactsArray[yy].getCapContactModel();
+			returnArray.push(theContact.getEmail())
+			}
+		}
+	return returnArray;
+}
+
+//test
+var revisionRequiredEmailSubject = 'Action Needed Regarding Your Permit';
+var revisionRequiredEmailText = 		'Your plan review is complete for the permit ' + capIDString + '. The plan requires revision. You may pick up your marked up plan at https://services.ashevillenc.gov/CitizenAccess . Login and search for your permit, then go to Record Info>Attachments to download the markup and comments. After you have completed the revision, please resubmit that at our site https://develop.residentialplans.ashevillenc.gov/ If you have questions please contact the Permit Application Center at PAC@ashevillenc.gov or 828-259-5846.'
+
+
+if (matches(wfTask, 'Building Review','Zoning Review','Grading','Driveway') && matches(wfStatus, 'Hold for Revision') && AInfo['Electronic Submittal'] == 'Yes') {
+	email(
+		'jerryhedrick@yahoo.com',
+		'noreply@ashevillenc.gov',
+		revisionRequiredEmailSubject,
+		getAllContacts(capId)
+	);
+	// goes to applicant
+	emailContact(
+		revisionRequiredEmailSubject,
+		revisionRequiredEmailText
+	);
+}
