@@ -521,7 +521,16 @@ if ((appMatch('Planning/Development/*/*') || appMatch('Planning/Subdivision/*/*'
 
 //test
 var revisionRequiredEmailSubject = 'Action Needed Regarding Your Permit';
-var revisionRequiredEmailText = 'Your plan review is complete for the permit ' + capIDString + '. The plan requires revision. You may pick up your marked up plan at https://services.ashevillenc.gov/CitizenAccess . Login and search for your permit, then go to Record Info>Attachments to download the markup and comments. After you have completed the revision, please resubmit that at our site https://develop.residentialplans.ashevillenc.gov/ If you have questions please contact the Permit Application Center at PAC@ashevillenc.gov or 828-259-5846.';
+
+// TODO: ADD ADDRESS
+var revisionRequiredEmailText = 'The City of Asheville Development Services Department (DSD) has reviewed your plans for ' + capIDString + '. <strong>Your plans require revision.</strong>'
+	+ '<br>'
+	+ 'Please login to the Citizen Access website at https://services.ashevillenc.gov/CitizenAccess to download plan review comments and marked up plans in .PDF format. You will need a .Login and search for your permit, then go to Record Info > Attachments to download comments and plans in PDF format.'
+	+ '<br>'
+	+ 'Resubmit revised plans and response to comments online in PDF format through develop.ashevillenc.gov or in-person during business hours at 161 S. Charlotte St. For additional information and guidelines, visit http://bit.ly/digital_submission. '
+	+ '<br>'
+	+ 'If you have questions, please contact the Permit Application Center at PAC@ashevillenc.gov or 828-259-5846.';
+
 var contactArray = getContactArray(capId).map(function(contact) {
 	return contact.getEmail();
 })
