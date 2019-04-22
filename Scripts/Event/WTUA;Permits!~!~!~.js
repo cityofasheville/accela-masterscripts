@@ -219,7 +219,7 @@ if (wfTask == 'Routing') { //
 		'Building Review',
 		'Fire Review',
 		'Zoning Review',
-		'Driveway',
+'Driveway',
 		'Grading',
 	];
 	for (var divisionReviewIndex = 0; divisionReviewIndex < divisionReviewSetList.length; divisionReviewIndex++) {
@@ -243,15 +243,18 @@ if (wfTask == 'Routing') { //
 	if (AInfo['Expected Timeframe'] == 'Res. Waiver - 2 Days') {
 		setAllDivisionReviewTimes(2, divisionReviewSetList);
 	}
-if (AInfo['Expected Timeframe'] == 'Residential Renovation - 5 Days') {
-		setAllDivisionReviewTimes(5, divisionReviewSetList);
+if (AInfo['Expected Timeframe'] == 'Residential Renovation - 4 Days') {
+		setAllDivisionReviewTimes(4, divisionReviewSetList);
+	}
+if (AInfo['Expected Timeframe'] == 'Residential New Construction - 6 Days') {
+		setAllDivisionReviewTimes(6, divisionReviewSetList);
 	}
 	if (AInfo['Expected Timeframe'] == 'Residential New Construction - 10 Days'
-		|| AInfo['Expected Timeframe'] == 'Small Comm - 10 Days'
+		|| AInfo['Expected Timeframe'] == 'Small Comm/Comm Renovation - 10 Days'
 	) {
 		setAllDivisionReviewTimes(10, divisionReviewSetList);
 	}
-	if (AInfo['Expected Timeframe'] == 'Std Level I Comm  - 21 Days') {
+	if (AInfo['Expected Timeframe'] == 'Std Level I Comm - 21 Days') {
 		setAllDivisionReviewTimes(21, divisionReviewSetList);
 	}
 	if (AInfo['Expected Timeframe'] == 'Std Level II or III Comm - 45 Days') {
@@ -377,7 +380,7 @@ if (appMatch('Permits/Residential/Home Occupation/Home Stay')
 	&& wfTask == 'Application Process'
 	&& wfStatus == 'Application Complete'
 ) {
-	emailToStartHomeStayReview('talley@ashevillenc.gov');
+	emailToStartHomeStayReview('hmahoney@ashevillenc.gov');
 	emailToStartHomeStayReview('smorgan@ashevillenc.gov');
 }
 
@@ -502,3 +505,35 @@ if ((appMatch('Planning/Development/*/*') || appMatch('Planning/Subdivision/*/*'
 	}
 }
 //end replaced branch: WORKFLOW_UA_PERMITS;
+
+if (appMatch('Permits/Residential/*/*') && !appMatch('Permits/Residential/Home Occupation/*')) {
+if (matches(wfTask, 'Building Review','Zoning Review','Grading','Driveway','Planning') && matches(wfStatus, 'Hold for Revision')&& appMatch('Permits/Residential/*/*')) {
+			emailContact('Action Needed Regarding Your Permit', 'The City of Asheville Development Services Department (DSD) has reviewed your permit application for ' + capIDString + ' located at address ' + CapAddress + ' and requires additional revision. Pick up plan review comments and marked up plans online at https://services.ashevillenc.gov/CitizenAccess. Login and search for your permit, then go to Record Info > Attachments to download comments and plans in .PDF format. <br><br>Resubmit revised plans and response to comments online in .PDF format through develop.ashevillenc.gov or in person during business hours at 161 S. Charlotte St. For additional information and guidelines, visit http://bit.ly/dsd_digital_reqs . <br><br>Please note that your plans are reviewed by staff from multiple separate divisions, including the Building Safety Division, Planning and Zoning Division, and Site Engineering Division. You will receive additional notification emails in the case that your application receives plan review comments from other divisions.<br><br>If you have questions, please contact the Permit Application Center at PAC@ashevillenc.gov or 828-259-5846.');
+			email('TAlley@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Action Needed Regarding Your Permit', 'The City of Asheville Development Services Department (DSD) has reviewed your permit application for ' + capIDString + ' located at address ' + CapAddress + ' and requires additional revision. Pick up plan review comments and marked up plans online at https://services.ashevillenc.gov/CitizenAccess. Login and search for your permit, then go to Record Info > Attachments to download comments and plans in .PDF format. <br><br>Resubmit revised plans and response to comments online in .PDF format through develop.ashevillenc.gov or in person during business hours at 161 S. Charlotte St. For additional information and guidelines, visit http://bit.ly/dsd_digital_reqs . <br><br>Please note that your plans are reviewed by staff from multiple separate divisions, including the Building Safety Division, Planning and Zoning Division, and Site Engineering Division. You will receive additional notification emails in the case that your application receives plan review comments from other divisions.<br><br>If you have questions, please contact the Permit Application Center at PAC@ashevillenc.gov or 828-259-5846.');
+}
+}
+// added 2/20/2019 to email all residential customers, electronic submittal or not, when a permit can be picked up online 
+if (appMatch('Permits/Residential/*/*') && wfTask == 'Issuance' && matches(wfStatus, 'Issue', 'Reissue')) {
+
+emailContact('Your Permit Has Been Issued -- Important Instructions Inside', 'Permit Number: ' + capIDString + ' <br> Location: ' + CapAddress + ' <br> <br>You may pick up your approved permit and plans in person at the Development Services Department, or online at https://services.ashevillenc.gov/CitizenAccess. Login to your account and enter the permit number into the top right corner search box. Then navigate to Record Info > Attachments to download comments and plans in .PDF format.<br><br>It is your responsibility to print out and maintain full-size, hard copy versions of issued permits, plan review comments, and approved Building and Zoning and Grading Site plans on the project site.<br><br>If you have questions, please contact the Permit Application Center at PAC@ashevillenc.gov or 828-259-5846.');
+
+}
+
+// To turn on Clearing House step after all review steps are complete 4/18/2019
+if (matches(wfStatus, 'Approved','Approved with Conditions')) {
+	if (matches(wfProcess, 'MASTER-RES')) {
+		if (wfTask == 'Grading' ||  
+			wfTask == 'Building Review' || 
+			wfTask == 'Driveway' || 
+			wfTask == 'Zoning Review') {
+				if(	
+				isTaskComplete("Building Review") && 
+				isTaskComplete("Grading") && 
+				isTaskComplete("Zoning Review") && 
+				isTaskComplete("Driveway") 
+			) {
+			setTask('Clearing House', 'Y', 'N', 'DIV REVIEW-RES');
+			}
+		}
+	}
+}
