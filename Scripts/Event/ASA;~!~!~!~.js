@@ -91,12 +91,14 @@ if (publicUser) {
 
 		if (appMatch('Permits/Commercial/Existing Building/Repair-Replacement')) {
 			updateFee('CFIRE', 'COM_BLD', 'FINAL', 1, 'N');
-			updateFee('CFIREADDB', 'COM_BLD', 'FINAL', 1, 'N');
-			updateFee('CFIREADDE', 'COM_BLD', 'FINAL', 1, 'N');
-			updateFee('CFIREADDM', 'COM_BLD', 'FINAL', 1, 'N');
-			updateFee('CFIREADDP', 'COM_BLD', 'FINAL', 1, 'N');
-			updateFee('CFIREADDG', 'COM_BLD', 'FINAL', 1, 'N');
-			updateFee('TECH', 'COM_BLD', 'FINAL', 1, 'N');
+			updateFee('CFIREADDSC', 'COM_BLD', 'FINAL', 1, 'N');
+
+// These fees were superseded in the July 2017 Fee Update
+// updateFee('CFIREADDE', 'COM_BLD', 'FINAL', 1, 'N');
+// updateFee('CFIREADDM', 'COM_BLD', 'FINAL', 1, 'N');
+// updateFee('CFIREADDP', 'COM_BLD', 'FINAL', 1, 'N');
+// updateFee('CFIREADDG', 'COM_BLD', 'FINAL', 1, 'N');
+updateFee('TECH', 'COM_BLD', 'FINAL', 1, 'N');
 		}
 
 		if (appMatch('Permits/Commercial/Existing Building/Repair-Replacement') && AInfo['Multi-Family Use?'] == 'Yes') {
