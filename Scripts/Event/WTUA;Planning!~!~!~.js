@@ -1,7 +1,5 @@
 //start replaced branch: WORKFLOW_UA_PLANNING
 
-
-
 //start replaced branch: ES_SET_EXPIRATION_DATES
 {
 	if (wfTask == 'Application Process' && matches(wfStatus, 'Complete', 'Application Incomplete')) {
@@ -357,3 +355,7 @@ if ((appMatch('Planning/Development/*/*') || appMatch('Planning/Subdivision/*/*'
 }
 
 //end replaced branch: WORKFLOW_UA_PLANNING;
+
+//
+//
+//
