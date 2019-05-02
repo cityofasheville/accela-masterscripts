@@ -519,9 +519,9 @@ emailContact('Your Permit Has Been Issued -- Important Instructions Inside', 'Pe
 
 }
 
-// To turn on Clearing House step after all review steps are complete 4/18/2019
+// To bypass Clearing House step after all review steps are complete 4/25/2019
 if (matches(wfStatus, 'Approved','Approved with Conditions')) {
-	if (matches(wfProcess, 'MASTER-RES')) {
+	if (matches(wfProcess, 'DIV REVIEW-RES')) {
 		if (wfTask == 'Grading' ||  
 			wfTask == 'Building Review' || 
 			wfTask == 'Driveway' || 
@@ -532,7 +532,8 @@ if (matches(wfStatus, 'Approved','Approved with Conditions')) {
 				isTaskComplete("Zoning Review") && 
 				isTaskComplete("Driveway") 
 			) {
-			setTask('Clearing House', 'Y', 'N', 'DIV REVIEW-RES');
+			setTask('Issuance', 'Y', 'N', 'MASTER-RES');
+                         closeTask('Review Process', 'Complete', 'Y', 'MASTER-RES');
 			}
 		}
 	}
