@@ -696,16 +696,16 @@ if (userResult.getSuccess()) {
 	theCapAddress = getCapAddress(capId);
 }
 
-emailContact('Inspection Completed', 'You are a contact on permit ' + capIDString + ' An Inspection ' + inspType + ' was completed with a result of ' + inspResult + '.<br>Inspection Comment: ' + inspComment + '<br>Inspected By: ' + userFName + ' ' + userLName + '<br>Phone: ' + userPhn + '<br><br>Thank You.', 'Contact');
+emailContact('Inspection Completed', 'You are a contact on permit ' + capIDString + ' An Inspection ' + inspType + ' was completed with a result of ' + inspResult + '.<br>Inspection Comment: ' + inspComment + '<br>Please go to https://services.ashevillenc.gov/CitizenAccess/ if necessary to get inspector details.<br><br>Thank you.');
 var profArr = getLicenseProfessional(capId);
 if (true && profArr != null) {
 	for (x in profArr)
 		if (profArr[x].getEmail() + '' != '')
-			email(profArr[x].getEmail(), 'noreply@ashevillenc.gov', 'Inspection ' + inspType + ' for ' + capIDString + ' at address ' + theCapAddress + ' Resulted', 'You are a professional on permit ' + capIDString + ' An Inspection ' + inspType + ' was completed with a result of ' + inspResult + '.<br>Inspection Comment: ' + inspComment + '<br>Inspected By: ' + userFName + ' ' + userLName + '<br>Phone: ' + userPhn + '<br><br>Thank You.');
+			email(profArr[x].getEmail(), 'noreply@ashevillenc.gov', 'Inspection ' + inspType + ' for ' + capIDString + ' at address ' + theCapAddress + ' Resulted', 'You are a professional on permit ' + capIDString + ' An Inspection ' + inspType + ' was completed with a result of ' + inspResult + '.<br>Inspection Comment: ' + inspComment + '<br>Please go to https://services.ashevillenc.gov/CitizenAccess/ if necessary to get inspector details.<br><br>Thank you.');
 }
 
 if (userResult.getSuccess() && inspResult == 'Cancelled') {
-	email(userEmail, 'noreply@ashevillenc.gov', 'Inspection cancelled', 'Permit: ' + capIDString + '<br>Inspection: ' + inspType + '<br>At address ' + theCapAddress + '<br>On ' + inspSchedDate + ' has been Cancelled');
+	email('mlipe@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Inspection Cancelled -- Let Proper Inspector Know', 'Permit: ' + capIDString + '<br>Inspection: ' + inspType + '<br>At address ' + theCapAddress + '<br>On ' + inspSchedDate + ' has been Cancelled');
 }
 
 // DISABLED: InspectionResultSubmitAfter:98
