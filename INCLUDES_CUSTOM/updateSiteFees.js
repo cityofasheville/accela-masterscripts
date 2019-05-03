@@ -1,5 +1,5 @@
 // TODO:  function not referenced in master script migration
-
+//test
 function updateSiteFees(){
 
 var TotalSqFtNew = parseInt(AInfo['Total SqFt of New Construction']);
