@@ -1,3 +1,130 @@
+//Added 6/14/19 check for approved finals before issuing BU FINAL
+if ( (appMatch("Permits/Residential/New Building/*") || appMatch("Permits/Residential/Accessory Structure/*")) && (matches(inspType, 'BU-FINAL', 'BU-FINAL-REINSP')) ) {
+	if (!checkInspectionResult('EE-FINAL', 'Approved') && 
+			!checkInspectionResult('EE-FINAL', 'Approved with Conditions') && 
+			!checkInspectionResult('EE-FINAL', 'Scheduled') && 
+			!checkInspectionResult('EE-FINAL-REINSP', 'Approved') && 
+			!checkInspectionResult('EE-FINAL-REINSP', 'Approved with Conditions') && 
+			!checkInspectionResult('EE-FINAL-REINSP', 'Scheduled') && 
+			AInfo['EE Permit'] != 'NA') {
+				showMessage = true;
+				comment("<font size=small><b>Can't schedule BU Final:</b></font><br><br>EE Final must be approved first.<br><br>");
+				cancel = true;
+	}
+
+	if (!checkInspectionResult('ME-FINAL', 'Approved') && 
+			!checkInspectionResult('ME-FINAL', 'Approved with Conditions') && 
+			!checkInspectionResult('ME-FINAL', 'Scheduled') && 
+			!checkInspectionResult('ME-FINAL-REINSP', 'Approved') && 
+			!checkInspectionResult('ME-FINAL-REINSP', 'Approved with Conditions') && 
+			!checkInspectionResult('ME-FINAL-REINSP', 'Scheduled') && 
+			AInfo['ME Permit'] != 'NA') {
+				showMessage = true;
+				comment("<font size=small><b>Can't schedule BU Final:</b></font><br><br>ME Final must be approved first.<br><br>");
+				cancel = true;
+	}
+
+	if (!checkInspectionResult('HO-FINAL', 'Approved') && 
+			!checkInspectionResult('HO-FINAL', 'Approved with Conditions') && 
+			!checkInspectionResult('HO-FINAL', 'Scheduled') && 
+			!checkInspectionResult('HO-FINAL-REINSP', 'Approved') && 
+			!checkInspectionResult('HO-FINAL-REINSP', 'Approved with Conditions') && 
+			!checkInspectionResult('HO-FINAL-REINSP', 'Scheduled') && 
+			AInfo['HO Permit'] != 'NA') {
+				showMessage = true;
+				comment("<font size=small><b>Can't schedule BU Final:</b></font><br><br>HO Final must be approved first.<br><br>");
+				cancel = true;
+	}
+
+  if (!checkInspectionResult('GR-FINAL', 'Approved') && 
+      !checkInspectionResult('GR-FINAL', 'Approved with Conditions') && 
+      !checkInspectionResult('GR-FINAL', 'Scheduled') && 
+      !checkInspectionResult('GR-FINAL-REINSP', 'Approved') && 
+      !checkInspectionResult('GR-FINAL-REINSP', 'Approved with Conditions') && 
+      !checkInspectionResult('GR-FINAL-REINSP', 'Scheduled') && 
+      AInfo['GR Permit'] != 'NA') {
+				showMessage = true;
+				comment("<font size=small><b>Can't schedule BU Final:</b></font><br><br>GR Final must be approved first.<br><br>");
+				cancel = true;
+  }
+
+	if (!checkInspectionResult('FP-FINAL', 'Approved') && 
+			!checkInspectionResult('FP-FINAL', 'Approved with Conditions') && 
+			!checkInspectionResult('FP-FINAL', 'Scheduled') && 
+			!checkInspectionResult('FP-FINAL-REINSP', 'Approved') && 
+			!checkInspectionResult('FP-FINAL-REINSP', 'Approved with Conditions') && 
+			!checkInspectionResult('FP-FINAL-REINSP', 'Scheduled') && 
+			AInfo['FP Permit'] != 'NA') {
+				showMessage = true;
+				comment("<font size=small><b>Can't schedule BU Final:</b></font><br><br>FP Final must be approved first.<br><br>");
+				cancel = true;
+	}
+
+	if (!checkInspectionResult('PL-FINAL', 'Approved') && 
+			!checkInspectionResult('PL-FINAL', 'Approved with Conditions') && 
+			!checkInspectionResult('PL-FINAL', 'Scheduled') && 
+			!checkInspectionResult('PL-FINAL-REINSP', 'Approved') && 
+			!checkInspectionResult('PL-FINAL-REINSP', 'Approved with Conditions') && 
+			!checkInspectionResult('PL-FINAL-REINSP', 'Scheduled') && 
+			AInfo['PL Permit'] != 'NA') {
+				showMessage = true;
+				comment("<font size=small><b>Can't schedule BU Final:</b></font><br><br>PL Final must be approved first.<br><br>");
+				cancel = true;
+	}
+
+  if (!checkInspectionResult('RE-FINAL', 'Approved') && 
+      !checkInspectionResult('RE-FINAL', 'Approved with Conditions') && 
+      !checkInspectionResult('RE-FINAL', 'Scheduled') && 
+      !checkInspectionResult('RE-FINAL-REINSP', 'Approved') && 
+      !checkInspectionResult('RE-FINAL-REINSP', 'Approved with Conditions') && 
+      !checkInspectionResult('RE-FINAL-REINSP', 'Scheduled') && 
+      AInfo['RE Permit'] != 'NA') {
+    showMessage = true;
+    comment("<font size=small><b>Can't schedule BU Final:</b></font><br><br>RE Final must be approved first.<br><br>");
+    cancel = true;
+	}
+
+	if (!checkInspectionResult('DR-FINAL', 'Approved') && 
+			!checkInspectionResult('DR-FINAL', 'Approved with Conditions') && 
+			!checkInspectionResult('DR-FINAL', 'Scheduled') && 
+			!checkInspectionResult('DR-FINAL-REINSP', 'Approved') && 
+			!checkInspectionResult('DR-FINAL-REINSP', 'Approved with Conditions') && 
+			!checkInspectionResult('DR-FINAL-REINSP', 'Scheduled') && 
+			AInfo['DR Permit'] != 'NA') {
+				showMessage = true;
+				comment("<font size=small><b>Can't schedule BU Final:</b></font><br><br>DR Final must be approved first.<br><br>");
+				cancel = true;
+	}
+
+  if (!checkInspectionResult('GP-FINAL', 'Approved') && 
+			!checkInspectionResult('GP-FINAL', 'Approved with Conditions') && 
+			!checkInspectionResult('GP-FINAL', 'Scheduled') && 
+			!checkInspectionResult('GP-FINAL-REINSP', 'Approved') && 
+			!checkInspectionResult('GP-FINAL-REINSP', 'Approved with Conditions') && 
+			!checkInspectionResult('GP-FINAL-REINSP', 'Scheduled') && 
+			AInfo['GP Permit'] != 'NA') {
+				showMessage = true;
+				comment("<font size=small><b>Can't schedule BU Final:</b></font><br><br>GP Final must be approved first.<br><br>");
+				cancel = true;
+	}
+}		
+
+//Added 6/12/19 check for approved gr preliminary
+if ((appMatch("Permits/Residential/New Building/*") || appMatch("Permits/Residential/Accessory Structure/*")) &&  !matches(inspType,"GR-PRELIMINARY")  && AInfo['GR Permit'] != 'NA') {
+	if (!checkInspectionResult("GR-PRELIMINARY","Approved") && !checkInspectionResult("GR-PRELIMINARY","Approved with Conditions") && !hasChildren('Permits/*/Site Work/*')) {
+		cancel = true;
+		showMessage = true;
+		logMessage('Inspection Not Allowed: The GR-PRELIMINARY inspection must be approved first.');
+	}
+
+	if (hasChildren('Permits/*/Site Work/*') && !doesChildHaveApprovedInspection('Permits/*/Site Work/*', 'GR-PRELIMINARY') ) {
+		cancel = true;
+		showMessage = true;
+		logMessage('Site Work Record must have approved GR-PRELIMINARY inspection. Please go to the Record Info dropdown and choose Related Records. Then find the Site record and if necessary schedule the GR-PRELIMINARY inspection.');
+	}
+}
+
+
 if ((appMatch('Permits/*/*/*') || appMatch('Planning/*/*/*')) && !matches(capStatus, 'Issued', 'Reissued', 'Partial Issued', 'TCO Issued', 'Inspections', 'TCO Reissued', 'TCC Issued', 'In Compliance', 'Renewed', 'Amended', 'TCO Issued 30 Days', 'TCO Issued 60 Days', 'TCO Issued 90 Days', 'TCC Issued 30 Days', 'TCC Issued 60 Days', 'TCC Issued 90 Days')) {
 	showMessage = true;
 	comment("<font size=small><b>Permit NOT Issued:</b></font><br><br>Please visit the Development Services Department for re-issuance.<br><br>");
