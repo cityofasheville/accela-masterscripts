@@ -65,9 +65,9 @@ if (appMatch('*/Commercial/*/Repair-Replacement')) {
 //	email('ccollins@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Early Assistance' + capIDString + ' Requested', 'A new Early Assistance record ' + capIDString + ' has been created and requires your attention.');
 //}
 //
-if (appMatch('Services/Project Inquiry/Meeting Request/NA')) {
-	email('cshort@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Early Assistance' + capIDString + ' Requested', 'A new Early Assistance record ' + capIDString + ' has been created and requires your attention.');
-}
+//if (appMatch('Services/Project Inquiry/Meeting Request/NA')) {
+//	email('cshort@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Early Assistance' + capIDString + ' Requested', 'A new Early Assistance record ' + capIDString + ' has been created and requires your attention.');
+//}
 
 // Previous line below commented out 4/18/18 and replaced with the multiple rows at the end of this script
 // email('PAC@ashevillenc.gov', 'noreply@ashevillenc.gov', 'ACA Permit Created', 'The following permit, ' + capIDString + ' was just created in ACA');
@@ -75,7 +75,7 @@ if (appMatch('Services/Project Inquiry/Meeting Request/NA')) {
 // Begin added all below to break out emails according to Susannah 4/18/18
 
 if (appMatch('*/*/*/Repair-Replacement')) {
-	email('GMiser@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Repair-Replace ACA Permit Created', 'The following permit, ' + capIDString + ' was just created in ACA. Please verify that it was pulled appropriately.');
+	email('MLipe@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Repair-Replace ACA Permit Created', 'The following permit, ' + capIDString + ' was just created in ACA. Please verify that it was pulled appropriately.');
 	email('SSalyer@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Repair-Replace ACA Permit Created', 'The following permit, ' + capIDString + ' was just created in ACA. Please verify that it was pulled appropriately.');
 }
 
@@ -87,11 +87,11 @@ if (appMatch('*/*/*/Multi-Trade')) {
 if (appMatch('Permits/Sign/*/*')) {
 	email('RHurley@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Sign ACA Permit Created', 'The following permit, ' + capIDString + ' was just created in ACA. Please verify that it was pulled appropriately.');
 	// changed below from talley 8/16/18
-	email('CShort@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Sign ACA Permit Created', 'The following permit, ' + capIDString + ' was just created in ACA. Please verify that it was pulled appropriately.');
+	email('GMiser@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Sign ACA Permit Created', 'The following permit, ' + capIDString + ' was just created in ACA. Please verify that it was pulled appropriately.');
 }
 
 if (appMatch('Permits/*/Reroof/*')) {
-	email('GMiser@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Reroof ACA Permit Created', 'The following permit, ' + capIDString + ' was just created in ACA. Please verify that it was pulled appropriately.');
+	email('MLipe@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Reroof ACA Permit Created', 'The following permit, ' + capIDString + ' was just created in ACA. Please verify that it was pulled appropriately.');
 	email('SSalyer@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Reroof ACA Permit Created', 'The following permit, ' + capIDString + ' was just created in ACA. Please verify that it was pulled appropriately.');
 }
 // End added emails
