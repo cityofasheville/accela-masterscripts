@@ -142,6 +142,11 @@ if ((appMatch('Permits/*/Existing Building/*') || appMatch('Permits/*/New Buildi
 	//end replaced branch: ES_ADD_SETBACKS;
 }
 
+//moved from ASA Planning 6/25/19
+if (!appMatch('Permits/*/Existing Building/Reroof') && (appMatch('Permits/*/New Building/*') || appMatch('Permits/*/Existing Building/*') || appMatch('*/*/Remodel/*') || appMatch('*/*/Manufactured Home/*') || appMatch('*/*/Demolition/*') || appMatch('*/*/Addition/*') || appMatch('*/*/Accessory Structure/*') || appMatch('Permits/*/New/*') || appMatch('Permits/*/Site Work/*')) && AInfo['ParcelAttribute.RIVER DISTRICT'] == 'Yes') {
+	email('smonson@ashevillenc.gov', 'noreply@ashevillenc.gov', 'River District Design Review Task', 'River District Design Review task assigned. ' + capIDString + ' - Please check Accela and update the record status.');
+}
+
 // DISABLED: ApplicationSubmitAfter:99
 //if (appMatch('Permits/Water Availability/Warranty/NA')) {
 //	editAppSpecific('Warranty Expiration Date',dateAdd(null,365));
