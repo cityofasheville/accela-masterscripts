@@ -197,8 +197,11 @@ if (matches(inspResult, 'Disapproved-Level 1 Fee', 'Disapproved-Level 2 Fee', 'D
 		}
 
 		if (inspType.indexOf('BU') == 0 && matches(inspResult, 'Disapproved-Level 3 Fee')) {
-			updateFee('ENFB23', 'ENF_BLD', 'FINAL', 1, 'Y');
-			updateFee('TECH', 'ENF_BLD', 'FINAL', 1, 'Y');
+
+			//updateFee('ENFB23', 'ENF_BLD', 'FINAL', 1, 'Y');
+			//updateFee('TECH', 'ENF_BLD', 'FINAL', 1, 'Y');
+//changed 5/20/2019 to no longer add Level 3 fee automatically
+			email('MLipe@ashevillenc.gov', 'noreply@ashevillenc.gov', ' Level 3 Disapproval with fee', 'The Inspection ' + inspType + ' for Permit ' + capIDString + ' was completed with a result of ' + inspResult + '.<br>Inspection Comment: ' + inspComment + ' <br>Please manually update the fee -- it was not added automatically!');
 		}
 
 		if (inspType.indexOf('EE') == 0 && matches(inspResult, 'Disapproved-Level 1 Fee')) {
@@ -212,8 +215,10 @@ if (matches(inspResult, 'Disapproved-Level 1 Fee', 'Disapproved-Level 2 Fee', 'D
 		}
 
 		if (inspType.indexOf('EE') == 0 && matches(inspResult, 'Disapproved-Level 3 Fee')) {
-			updateFee('ENFB23', 'ENF_BLD', 'FINAL', 1, 'Y');
-			updateFee('TECH', 'ENF_BLD', 'FINAL', 1, 'Y');
+			//updateFee('ENFB23', 'ENF_BLD', 'FINAL', 1, 'Y');
+			//updateFee('TECH', 'ENF_BLD', 'FINAL', 1, 'Y');
+//changed 5/20/2019 to no longer add Level 3 fee automatically
+			email('MLipe@ashevillenc.gov', 'noreply@ashevillenc.gov', ' Level 3 Disapproval with fee', 'The Inspection ' + inspType + ' for Permit ' + capIDString + ' was completed with a result of ' + inspResult + '.<br>Inspection Comment: ' + inspComment + ' <br>Please manually update the fee -- it was not added automatically!');
 		}
 
 		if (inspType.indexOf('ME') == 0 && matches(inspResult, 'Disapproved-Level 1 Fee')) {
@@ -227,8 +232,10 @@ if (matches(inspResult, 'Disapproved-Level 1 Fee', 'Disapproved-Level 2 Fee', 'D
 		}
 
 		if (inspType.indexOf('ME') == 0 && matches(inspResult, 'Disapproved-Level 3 Fee')) {
-			updateFee('ENFB23', 'ENF_BLD', 'FINAL', 1, 'Y');
-			updateFee('TECH', 'ENF_BLD', 'FINAL', 1, 'Y');
+			//updateFee('ENFB23', 'ENF_BLD', 'FINAL', 1, 'Y');
+			//updateFee('TECH', 'ENF_BLD', 'FINAL', 1, 'Y');
+//changed 5/20/2019 to no longer add Level 3 fee automatically
+			email('MLipe@ashevillenc.gov', 'noreply@ashevillenc.gov', ' Level 3 Disapproval with fee', 'The Inspection ' + inspType + ' for Permit ' + capIDString + ' was completed with a result of ' + inspResult + '.<br>Inspection Comment: ' + inspComment + ' <br>Please manually update the fee -- it was not added automatically!');
 		}
 
 		if (inspType.indexOf('PL') == 0 && matches(inspResult, 'Disapproved-Level 1 Fee')) {
@@ -242,8 +249,10 @@ if (matches(inspResult, 'Disapproved-Level 1 Fee', 'Disapproved-Level 2 Fee', 'D
 		}
 
 		if (inspType.indexOf('PL') == 0 && matches(inspResult, 'Disapproved-Level 3 Fee')) {
-			updateFee('ENFB23', 'ENF_BLD', 'FINAL', 1, 'Y');
-			updateFee('TECH', 'ENF_BLD', 'FINAL', 1, 'Y');
+			//updateFee('ENFB23', 'ENF_BLD', 'FINAL', 1, 'Y');
+			//updateFee('TECH', 'ENF_BLD', 'FINAL', 1, 'Y');
+//changed 5/20/2019 to no longer add Level 3 fee automatically
+			email('MLipe@ashevillenc.gov', 'noreply@ashevillenc.gov', ' Level 3 Disapproval with fee', 'The Inspection ' + inspType + ' for Permit ' + capIDString + ' was completed with a result of ' + inspResult + '.<br>Inspection Comment: ' + inspComment + ' <br>Please manually update the fee -- it was not added automatically!');
 		}
 
 		if (inspType.indexOf('GP') == 0 && matches(inspResult, 'Disapproved-Level 1 Fee')) {
@@ -257,8 +266,10 @@ if (matches(inspResult, 'Disapproved-Level 1 Fee', 'Disapproved-Level 2 Fee', 'D
 		}
 
 		if (inspType.indexOf('GP') == 0 && matches(inspResult, 'Disapproved-Level 3 Fee')) {
-			updateFee('ENFB23', 'ENF_BLD', 'FINAL', 1, 'Y');
-			updateFee('TECH', 'ENF_BLD', 'FINAL', 1, 'Y');
+			//updateFee('ENFB23', 'ENF_BLD', 'FINAL', 1, 'Y');
+			//updateFee('TECH', 'ENF_BLD', 'FINAL', 1, 'Y');
+//changed 5/20/2019 to no longer add Level 3 fee automatically
+			email('MLipe@ashevillenc.gov', 'noreply@ashevillenc.gov', ' Level 3 Disapproval with fee', 'The Inspection ' + inspType + ' for Permit ' + capIDString + ' was completed with a result of ' + inspResult + '.<br>Inspection Comment: ' + inspComment + ' <br>Please manually update the fee -- it was not added automatically!');
 		}
 
 		if (inspType.indexOf('HO') == 0 && matches(inspResult, 'Disapproved-Level 1 Fee')) {
@@ -272,8 +283,10 @@ if (matches(inspResult, 'Disapproved-Level 1 Fee', 'Disapproved-Level 2 Fee', 'D
 		}
 
 		if (inspType.indexOf('HO') == 0 && matches(inspResult, 'Disapproved-Level 3 Fee')) {
-			updateFee('ENFB23', 'ENF_BLD', 'FINAL', 1, 'Y');
-			updateFee('TECH', 'ENF_BLD', 'FINAL', 1, 'Y');
+			//updateFee('ENFB23', 'ENF_BLD', 'FINAL', 1, 'Y');
+			//updateFee('TECH', 'ENF_BLD', 'FINAL', 1, 'Y');
+//changed 5/20/2019 to no longer add Level 3 fee automatically
+			email('MLipe@ashevillenc.gov', 'noreply@ashevillenc.gov', ' Level 3 Disapproval with fee', 'The Inspection ' + inspType + ' for Permit ' + capIDString + ' was completed with a result of ' + inspResult + '.<br>Inspection Comment: ' + inspComment + ' <br>Please manually update the fee -- it was not added automatically!');
 		}
 
 		if (inspType.indexOf('RE') == 0 && matches(inspResult, 'Disapproved-Level 1 Fee')) {
@@ -287,8 +300,10 @@ if (matches(inspResult, 'Disapproved-Level 1 Fee', 'Disapproved-Level 2 Fee', 'D
 		}
 
 		if (inspType.indexOf('RE') == 0 && matches(inspResult, 'Disapproved-Level 3 Fee')) {
-			updateFee('ENFB23', 'ENF_BLD', 'FINAL', 1, 'Y');
-			updateFee('TECH', 'ENF_BLD', 'FINAL', 1, 'Y');
+			//updateFee('ENFB23', 'ENF_BLD', 'FINAL', 1, 'Y');
+			//updateFee('TECH', 'ENF_BLD', 'FINAL', 1, 'Y');
+//changed 5/20/2019 to no longer add Level 3 fee automatically
+			email('MLipe@ashevillenc.gov', 'noreply@ashevillenc.gov', ' Level 3 Disapproval with fee', 'The Inspection ' + inspType + ' for Permit ' + capIDString + ' was completed with a result of ' + inspResult + '.<br>Inspection Comment: ' + inspComment + ' <br>Please manually update the fee -- it was not added automatically!');
 		}
 
 		if (inspType.indexOf('MH') == 0 && matches(inspResult, 'Disapproved-Level 1 Fee')) {
@@ -302,8 +317,10 @@ if (matches(inspResult, 'Disapproved-Level 1 Fee', 'Disapproved-Level 2 Fee', 'D
 		}
 
 		if (inspType.indexOf('MH') == 0 && matches(inspResult, 'Disapproved-Level 3 Fee')) {
-			updateFee('ENFB23', 'ENF_BLD', 'FINAL', 1, 'Y');
-			updateFee('TECH', 'ENF_BLD', 'FINAL', 1, 'Y');
+			//updateFee('ENFB23', 'ENF_BLD', 'FINAL', 1, 'Y');
+			//updateFee('TECH', 'ENF_BLD', 'FINAL', 1, 'Y');
+//changed 5/20/2019 to no longer add Level 3 fee automatically
+			email('MLipe@ashevillenc.gov', 'noreply@ashevillenc.gov', ' Level 3 Disapproval with fee', 'The Inspection ' + inspType + ' for Permit ' + capIDString + ' was completed with a result of ' + inspResult + '.<br>Inspection Comment: ' + inspComment + ' <br>Please manually update the fee -- it was not added automatically!');
 		}
 
 		if (inspType.indexOf('FP') == 0 && matches(inspResult, 'Disapproved-Level 1 Fee')) {
@@ -317,8 +334,10 @@ if (matches(inspResult, 'Disapproved-Level 1 Fee', 'Disapproved-Level 2 Fee', 'D
 		}
 
 		if (inspType.indexOf('FP') == 0 && matches(inspResult, 'Disapproved-Level 3 Fee')) {
-			updateFee('FINS3', 'ENF_BLD', 'FINAL', 1, 'Y');
-			updateFee('TECH', 'ENF_BLD', 'FINAL', 1, 'Y');
+			//updateFee('FINS3', 'ENF_BLD', 'FINAL', 1, 'Y');
+			//updateFee('TECH', 'ENF_BLD', 'FINAL', 1, 'Y');
+//changed 5/20/2019 to no longer add Level 3 fee automatically
+			email('MLipe@ashevillenc.gov', 'noreply@ashevillenc.gov', ' Level 3 Disapproval with fee', 'The Inspection ' + inspType + ' for Permit ' + capIDString + ' was completed with a result of ' + inspResult + '.<br>Inspection Comment: ' + inspComment + ' <br>Please manually update the fee -- it was not added automatically!');
 		}
 
 		if (matches(inspResult, 'Disapproved-No Plans')) {
