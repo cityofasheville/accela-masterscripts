@@ -32,14 +32,16 @@ if ((appMatch('*/*/Annexation/*') || appMatch('*/*/Landmark/*') || appMatch('*/*
 	addAdHocTask('ADHOC TASKS', 'NC Dept of Cultural Resources', ' ', 'ACOLE');
 }
 
-if (!appMatch('Permits/*/Existing Building/Reroof') && (appMatch('Permits/*/New Building/*') || appMatch('Permits/*/Existing Building/*') || appMatch('*/*/Remodel/*') || appMatch('*/*/Manufactured Home/*') || appMatch('*/*/Demolition/*') || appMatch('*/*/Addition/*') || appMatch('*/*/Accessory Structure/*') || appMatch('Permits/*/New/*') || appMatch('Permits/*/Site Work/*')) && AInfo['ParcelAttribute.RIVER DISTRICT'] == 'Yes') {
-	email('smonson@ashevillenc.gov', 'noreply@ashevillenc.gov', 'River District Design Review Task', 'River District Design Review task assigned. ' + capIDString + ' - Please check Accela and update the record status.');
+//Added 6/20/19 matching HRC Overlay email in ASA Permits -jon
+if (appMatch('Planning/*/Minor Work/*') && AInfo['ParcelAttribute.HRC OVERLAY'] == 'Yes') {
+	email('acole@ashevillenc.gov', 'noreply@ashevillenc.gov', 'HRC Overlay Task', 'HRC Overlay Review task assigned. ' + capIDString + ' - Please check Accela and update the record status.');
 }
 
 //5-24-16 - when a parcel is located in a central business district, create add-hoc tasks:
-if (appMatch('Planning/Development/*/*') && AInfo['ParcelAttribute.ZONING DISTRICT'] == 'CBD,') {
-	addAdHocTask('ADHOC TASKS', 'Encroachment Agreement', ' ', 'JBOONE'); //James Boone
-        addAdHocTask('ADHOC TASKS', 'Granite - Running Bond', ' ', 'PWTBD'); //Public Works, To Be Determined
-}
+//5/24/2019 As per Chris, Susannah, we don't need these, and associated tasks have been deleted
+//if (appMatch('Planning/Development/*/*') && AInfo['ParcelAttribute.ZONING DISTRICT'] == 'CBD,') {
+//	addAdHocTask('ADHOC TASKS', 'Encroachment Agreement', ' ', 'JBOONE'); //James Boone
+ //       addAdHocTask('ADHOC TASKS', 'Granite - Running Bond', ' ', 'PWTBD'); //Public Works, To Be Determined
+//}
 
 //end replaced branch: APP_SA_BRANCH_PLANNING;
