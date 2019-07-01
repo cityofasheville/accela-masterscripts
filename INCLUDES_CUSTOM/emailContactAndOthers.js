@@ -1,9 +1,9 @@
-function emailContactJon(emailSubj, emailBody) {
+function emailContactAndOthers(emailSubj, emailBody, emailOther) { // ContactType
     var fromAddr = "noreply@accela.com",
         ContactType = "Applicant",
         emailAddr = "";
-    if(3 == arguments.length) { 
-      ContactType = arguments[2]; //Optional third param ContactType
+    if(4 == arguments.length) { 
+      ContactType = arguments[3]; //Optional fourth param ContactType
     }
     var CapContacts = aa.people.getCapContactByCapID(capId);
     if (CapContacts.getSuccess()) {
@@ -17,7 +17,7 @@ function emailContactJon(emailSubj, emailBody) {
         }
     }
     if(emailAddr.indexOf("@") > 0) {
-      aa.sendMail(fromAddr, emailAddr, "jtwilson@ashevillenc.gov", emailSubj, emailBody); 
+      aa.sendMail(fromAddr, emailAddr, emailOther, emailSubj, emailBody); 
       logDebug("Successfully sent email to " + ContactType)
     }else{
       logDebug("Couldn't send email to " + ContactType + ", no valid email address");
