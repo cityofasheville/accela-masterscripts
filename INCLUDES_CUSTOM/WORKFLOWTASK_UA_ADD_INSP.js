@@ -40,12 +40,18 @@ function WORKFLOWTASK_UA_ADD_INSP() {
 				createPendingInspection('SIGN', 'BU-FINAL');
 			}
 
-			if (AInfo['EE Permit'] != 'NA' && AInfo['EE Permit'] != 'TBD' && !checkInspectionResult('EE-FINAL', 'Pending')) {
-				createPendingInspection('SIGN', 'EE-ROUGH IN');
-			}
+			// if (AInfo['EE Permit'] != 'NA' && AInfo['EE Permit'] != 'TBD' && !checkInspectionResult('EE-FINAL', 'Pending')) {
+			// 	createPendingInspection('SIGN', 'EE-ROUGH IN');
+			// }
 
-			if (AInfo['EE Permit'] != 'NA' && AInfo['EE Permit'] != 'TBD' && !checkInspectionResult('EE-FINAL', 'Pending')) {
-				createPendingInspection('SIGN', 'EE-FINAL');
+			// if (AInfo['EE Permit'] != 'NA' && AInfo['EE Permit'] != 'TBD' && !checkInspectionResult('EE-FINAL', 'Pending')) {
+			// 	createPendingInspection('SIGN', 'EE-FINAL');
+			// }
+			
+			// 7/24/2019 only add electrical inspections if needed
+			if ( AInfo['Issue Electrical Permit To'] != 'N/A' ) {
+				createPendingInspection('ELEC', 'EE-FINAL');
+				createPendingInspection('ELEC', 'EE-ROUGH IN');
 			}
 
 			if (AInfo['FP Permit'] != 'NA' && AInfo['FP Permit'] != 'TBD' && !checkInspectionResult('FP-FINAL', 'Pending')) {
