@@ -481,6 +481,7 @@ if (matches(inspResult, 'Disapproved-TCO Fee')) {
 	}
 }
 
+
 // End modifications 5/24/18
 
 //Commented out 5/23/18 -- wasn't running anyway, prob because it used the alias instead of 'TU & TCO'

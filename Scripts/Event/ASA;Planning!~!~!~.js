@@ -32,6 +32,7 @@ if ((appMatch('*/*/Annexation/*') || appMatch('*/*/Landmark/*') || appMatch('*/*
 	addAdHocTask('ADHOC TASKS', 'NC Dept of Cultural Resources', ' ', 'ACOLE');
 }
 
+
 //Added 6/20/19 matching HRC Overlay email in ASA Permits -jon
 if (appMatch('Planning/*/Minor Work/*') && AInfo['ParcelAttribute.HRC OVERLAY'] == 'Yes') {
 	email('acole@ashevillenc.gov', 'noreply@ashevillenc.gov', 'HRC Overlay Task', 'HRC Overlay Review task assigned. ' + capIDString + ' - Please check Accela and update the record status.');
@@ -43,5 +44,6 @@ if (appMatch('Planning/*/Minor Work/*') && AInfo['ParcelAttribute.HRC OVERLAY'] 
 //	addAdHocTask('ADHOC TASKS', 'Encroachment Agreement', ' ', 'JBOONE'); //James Boone
  //       addAdHocTask('ADHOC TASKS', 'Granite - Running Bond', ' ', 'PWTBD'); //Public Works, To Be Determined
 //}
+
 
 //end replaced branch: APP_SA_BRANCH_PLANNING;
