@@ -533,7 +533,7 @@ if (matches(wfStatus, 'Approved','Approved with Conditions')) {
 				isTaskComplete("Driveway") 
 			) {
 			setTask('Issuance', 'Y', 'N', 'MASTER-RES');
-                         closeTask('Review Process', 'Complete', 'Y', 'MASTER-RES');
+                         closeTask('Review Process', 'Complete', 'Completed by Script', 'MASTER-RES');
 			}
 		}
 	}
