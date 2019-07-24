@@ -1,4 +1,3 @@
-
 theCapAddress = getCapAddress(capId);
 
 
@@ -12,9 +11,19 @@ if ((appMatch('Permits/Commercial/*/*') || appMatch('Planning/Development/*/*') 
 }
 
 if ((appMatch('Permits/Commercial/*/*') || appMatch('Planning/Development/*/*') || appMatch('Planning/Subdivision/*/*')) && (inspType.indexOf('DR') == 0 || inspType.indexOf('SID') == 0)) {
-	email('berickson@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Inspection Request', 'An inspection of type ' + inspType + ' has been scheduled for Permit Application ' + capIDString + ' at address ' + theCapAddress + '. Please perform the inspection and enter the results into Accela.');
+	email('dmears@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Inspection Request', 'An inspection of type ' + inspType + ' has been scheduled for Permit Application ' + capIDString + ' at address ' + theCapAddress + '. Please perform the inspection and enter the results into Accela.');
 }
+// changed from berickson 2/5/18 by Jerry
 
 if ((appMatch('Permits/Commercial/*/*') || appMatch('Planning/Development/*/*') || appMatch('Planning/Subdivision/*/*')) && (inspType.indexOf('DR') == 0 || inspType.indexOf('SID') == 0)) {
 	email('rhedrick@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Inspection Request', 'An inspection of type ' + inspType + ' has been scheduled for Permit Application ' + capIDString + ' at address ' + theCapAddress + '. Please perform the inspection and enter the results into Accela.');
 }
+// added emails to Caitlyn and Thana for Zoning Final 081318
+if (( appMatch('Planning/Development/*/*') || appMatch('Planning/Subdivision/*/*')) && matches(inspType, 'ZO-FINAL')) {
+	email('cshort@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Inspection Request', 'An inspection of type ' + inspType + ' has been scheduled for Permit Application ' + capIDString + ' at address ' + theCapAddress + '.');
+}
+//changed from talley to hmahoney 4/4/19
+if (( appMatch('Planning/Development/*/*') || appMatch('Planning/Subdivision/*/*')) && matches(inspType, 'ZO-FINAL')) {
+	email('hmahoney@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Inspection Request', 'An inspection of type ' + inspType + ' has been scheduled for Permit Application ' + capIDString + ' at address ' + theCapAddress + '.');
+}
+

@@ -266,8 +266,85 @@ if (appMatch('Planning/Development/Signage Plan/*') && matches(wfStatus, 'Denied
 	addParcelCondition(null, 'Planning', 'Applied', 'Signage Plan Detail', 'City Council has denied the proposed signage plan associated with this parcel. The applicant must wait at least 365 days before reapplying for a new signage plan substantially similar to the proposed signage plan.', 'Notice');
 }
 
-if (wfTask == 'Permit Verification' && matches(wfStatus, 'Issue', 'Issue Partial')) {
+// Added 2/27/18 to email PAC that a Pre-con meeting is possible. As per Chris. Permit Verification task exists only for Level I, Level II, Maj Sub, Level III, Cond Zoning -- which are the exact record types this email applies to.
+// 3/9/18 as per Chris and Susannah, changed to Nancy and Caitlyn rather than PAC
+//commented out 5/18/18 -- not in right place, now emailing Thana after individual tasks
 
+//if (wfTask == 'Permit Verification' && matches(wfStatus, 'Issue', 'Issue Partial')) {
+//	email('NWatford@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Pre-Construction Meeting', 'Possible Pre-Construction meeting required. ' + capIDString + ' - Please check record and if pre-con meeting is required, please contact the applicant to schedule.');
+//	email('CShort@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Pre-Construction Meeting', 'Possible Pre-Construction meeting required. ' + capIDString + ' - Please check record and if pre-con meeting is required, please contact the applicant to schedule.');
+//
+//
+//}
+//
+// Changes made 5/18/18 to email Thana/Caitlyn when all of these tasks are completed.
+// 8/22/18 Added Not Required to statuses to check for
+// 4/11/19 refactored by Jon -- made live 4/22/19 after testing
+
+if (matches(wfStatus, 'Approved','Approved with Conditions','Not Required')) {
+	if (matches(wfProcess, 'PLN_LVL2', 'PLN_LVL2SUB', 'PLN_TRC', 'PLN_CUP')) {
+		if (wfTask == 'Grading' ||  
+			wfTask == 'Stormwater' || 
+			wfTask == 'Driveway' || 
+			wfTask == 'Sidewalk') {
+				if(	
+				isTaskComplete("Planning Intake") && 
+				isTaskComplete("Grading") && 
+				isTaskComplete("Stormwater") && 
+				isTaskComplete("Driveway") && 
+				isTaskComplete("Sidewalk") && 
+				isTaskComplete("Addressing") && 
+				isTaskComplete("Application Process") && 
+				isTaskComplete("Pre-Application Process")
+			) {
+					// email('CShort@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Pre-Construction Meeting', 'Possible Pre-Construction meeting required. ' + capIDString + ' - Please check record and if pre-con meeting is required, please contact the applicant to schedule.');
+					email('NWatford@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Pre-Construction Meeting', 'Possible Pre-Construction meeting required. ' + capIDString + ' - Please check record and if pre-con meeting is required, please contact the applicant to schedule.');
+					email('HMahoney@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Pre-Construction Meeting', 'Possible Pre-Construction meeting required. ' + capIDString + ' - Please check record and if pre-con meeting is required, please contact the applicant to schedule.');
+			}
+		}
+	}
+	if (matches(wfProcess, 'PW_DEV')) {
+		if (wfTask == 'Grading' ||  
+			wfTask == 'Stormwater' || 
+			wfTask == 'Driveway' || 
+			wfTask == 'Sidewalk' ||
+			wfTask == 'Addressing' ||
+			wfTask == 'Staff Level Site Plan Review') {
+				if (
+				isTaskComplete("Staff Level Site Plan Review") && 
+				isTaskComplete("Grading") && 
+				isTaskComplete("Stormwater") && 
+				isTaskComplete("Driveway") && 
+				isTaskComplete("Sidewalk") && 
+				isTaskComplete("Addressing") && 
+				isTaskComplete("Application Process")) {
+						email('TAlley@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Pre-Construction Meeting', 'Possible Pre-Construction meeting required. ' + capIDString + ' - Please check record and if pre-con meeting is required, please contact the applicant to schedule.');
+						email('NWatford@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Pre-Construction Meeting', 'Possible Pre-Construction meeting required. ' + capIDString + ' - Please check record and if pre-con meeting is required, please contact the applicant to schedule.');
+					email('HMahoney@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Pre-Construction Meeting', 'Possible Pre-Construction meeting required. ' + capIDString + ' - Please check record and if pre-con meeting is required, please contact the applicant to schedule.');
+				}
+			}
+	}
+}
+// Added below 5/23/18 to send email to primary contact. this is for records that may be created online to alert the customer their permit can be printed out.
+
+if (wfTask == 'Permit Verification' && matches(wfStatus, 'Issue', 'Reissue', 'Issue Partial')) {
+	emailContact('Your Permit Has Been Issued -- Important Instructions Inside', 'Permit Number: ' + capIDString + ' <br> Location: ' + CapAddress + ' <br> Your permit has been issued at this location. If you have not received your permit and plans already, before starting work, please follow the steps below to prepare the permit and plans for this project.<br><br> --Visit Develop.AshevilleNC.Gov<br> --Click Access Permits and Inspections<br> --Search for the above record number in the top-right corner of the page.<br> --Click the arrow down next to Record Info and select Attachments<br> --Click the name of the approved plans and permit to download<br><br>The project permit must be posted at the work site. Approved plans must be available on-site.');
+
+}
+// End added 5/23
+
+// Added below 2/22/19 to send email to primary contact when CA (HRC) is issued.
+//
+ if (wfTask == 'Issuance' && matches(wfStatus, 'Issue') && appMatch('Planning/HRC/*/*')) {
+	emailContact('Your Certificate of Appropriateness (CA) Has Been Issued -- Important Instructions Inside', 'Permit Number: ' + capIDString + ' <br> Location: ' + CapAddress + ' <br><br> Your application for a Certificate of Appropriateness (CA) has been reviewed and approved.<br><br> You may pick up the CA online by visiting our Citizen Access Portal at https://services.ashevillenc.gov/CitizenAccess/ or in person at the Development Services Department located at 161 S. Charlotte Street during regular business hours. <br><br>If you visit Citizen Access to pick up your CA, login, search for the record number in the upper right hand corner, then go to Record Info then Attachments. Then download the CA from the attachments. The CA is required to be posted on site along with any other required permits.<br><br> If you have questions, please contact the Permit Application Center at PAC@ashevillenc.gov or 828-259-5846.');
+	email('ACole@ashevillenc.gov', 'noreply@ashevillenc.gov', 'COPY - Your Certificate of Appropriateness (CA) Has Been Issued -- Important Instructions Inside', 'Permit Number: ' + capIDString + ' <br> Location: ' + CapAddress + ' <br><br> Your application for a Certificate of Appropriateness (CA) has been reviewed and approved.<br><br> You may pick up the CA online by visiting our Citizen Access Portal at https://services.ashevillenc.gov/CitizenAccess/ or in person at the Development Services Department located at 161 S. Charlotte Street during regular business hours. <br><br>If you visit Citizen Access to pick up your CA, login, search for the record number in the upper right hand corner, then go to Record Info then Attachments. Then download the CA from the attachments. The CA is required to be posted on site along with any other required permits.<br><br> If you have questions, please contact the Permit Application Center at PAC@ashevillenc.gov or 828-259-5846.');
+	email('RHedrick@ashevillenc.gov', 'noreply@ashevillenc.gov', 'COPY - Your Certificate of Appropriateness (CA) Has Been Issued -- Important Instructions Inside', 'Permit Number: ' + capIDString + ' <br> Location: ' + CapAddress + ' <br><br> Your application for a Certificate of Appropriateness (CA) has been reviewed and approved.<br><br> You may pick up the CA online by visiting our Citizen Access Portal at https://services.ashevillenc.gov/CitizenAccess/ or in person at the Development Services Department located at 161 S. Charlotte Street during regular business hours. <br><br>If you visit Citizen Access to pick up your CA, login, search for the record number in the upper right hand corner, then go to Record Info then Attachments. Then download the CA from the attachments. The CA is required to be posted on site along with any other required permits.<br><br> If you have questions, please contact the Permit Application Center at PAC@ashevillenc.gov or 828-259-5846.');
+
+}	
+// End added 2/22
+
+
+if (wfTask == 'Permit Verification' && matches(wfStatus, 'Issue', 'Issue Partial')) {
 	//replaced branch(WORKFLOWTASK_UA_ADD_INSP)
 	WORKFLOWTASK_UA_ADD_INSP();
 }
@@ -288,3 +365,7 @@ if ((appMatch('Planning/Development/*/*') || appMatch('Planning/Subdivision/*/*'
 }
 
 //end replaced branch: WORKFLOW_UA_PLANNING;
+
+//
+//
+//

@@ -197,8 +197,11 @@ if (matches(inspResult, 'Disapproved-Level 1 Fee', 'Disapproved-Level 2 Fee', 'D
 		}
 
 		if (inspType.indexOf('BU') == 0 && matches(inspResult, 'Disapproved-Level 3 Fee')) {
-			updateFee('ENFB23', 'ENF_BLD', 'FINAL', 1, 'Y');
-			updateFee('TECH', 'ENF_BLD', 'FINAL', 1, 'Y');
+
+			//updateFee('ENFB23', 'ENF_BLD', 'FINAL', 1, 'Y');
+			//updateFee('TECH', 'ENF_BLD', 'FINAL', 1, 'Y');
+//changed 5/20/2019 to no longer add Level 3 fee automatically
+			email('MLipe@ashevillenc.gov', 'noreply@ashevillenc.gov', ' Level 3 Disapproval with fee', 'The Inspection ' + inspType + ' for Permit ' + capIDString + ' was completed with a result of ' + inspResult + '.<br>Inspection Comment: ' + inspComment + ' <br>Please manually update the fee -- it was not added automatically!');
 		}
 
 		if (inspType.indexOf('EE') == 0 && matches(inspResult, 'Disapproved-Level 1 Fee')) {
@@ -212,8 +215,10 @@ if (matches(inspResult, 'Disapproved-Level 1 Fee', 'Disapproved-Level 2 Fee', 'D
 		}
 
 		if (inspType.indexOf('EE') == 0 && matches(inspResult, 'Disapproved-Level 3 Fee')) {
-			updateFee('ENFB23', 'ENF_BLD', 'FINAL', 1, 'Y');
-			updateFee('TECH', 'ENF_BLD', 'FINAL', 1, 'Y');
+			//updateFee('ENFB23', 'ENF_BLD', 'FINAL', 1, 'Y');
+			//updateFee('TECH', 'ENF_BLD', 'FINAL', 1, 'Y');
+//changed 5/20/2019 to no longer add Level 3 fee automatically
+			email('MLipe@ashevillenc.gov', 'noreply@ashevillenc.gov', ' Level 3 Disapproval with fee', 'The Inspection ' + inspType + ' for Permit ' + capIDString + ' was completed with a result of ' + inspResult + '.<br>Inspection Comment: ' + inspComment + ' <br>Please manually update the fee -- it was not added automatically!');
 		}
 
 		if (inspType.indexOf('ME') == 0 && matches(inspResult, 'Disapproved-Level 1 Fee')) {
@@ -227,8 +232,10 @@ if (matches(inspResult, 'Disapproved-Level 1 Fee', 'Disapproved-Level 2 Fee', 'D
 		}
 
 		if (inspType.indexOf('ME') == 0 && matches(inspResult, 'Disapproved-Level 3 Fee')) {
-			updateFee('ENFB23', 'ENF_BLD', 'FINAL', 1, 'Y');
-			updateFee('TECH', 'ENF_BLD', 'FINAL', 1, 'Y');
+			//updateFee('ENFB23', 'ENF_BLD', 'FINAL', 1, 'Y');
+			//updateFee('TECH', 'ENF_BLD', 'FINAL', 1, 'Y');
+//changed 5/20/2019 to no longer add Level 3 fee automatically
+			email('MLipe@ashevillenc.gov', 'noreply@ashevillenc.gov', ' Level 3 Disapproval with fee', 'The Inspection ' + inspType + ' for Permit ' + capIDString + ' was completed with a result of ' + inspResult + '.<br>Inspection Comment: ' + inspComment + ' <br>Please manually update the fee -- it was not added automatically!');
 		}
 
 		if (inspType.indexOf('PL') == 0 && matches(inspResult, 'Disapproved-Level 1 Fee')) {
@@ -242,8 +249,10 @@ if (matches(inspResult, 'Disapproved-Level 1 Fee', 'Disapproved-Level 2 Fee', 'D
 		}
 
 		if (inspType.indexOf('PL') == 0 && matches(inspResult, 'Disapproved-Level 3 Fee')) {
-			updateFee('ENFB23', 'ENF_BLD', 'FINAL', 1, 'Y');
-			updateFee('TECH', 'ENF_BLD', 'FINAL', 1, 'Y');
+			//updateFee('ENFB23', 'ENF_BLD', 'FINAL', 1, 'Y');
+			//updateFee('TECH', 'ENF_BLD', 'FINAL', 1, 'Y');
+//changed 5/20/2019 to no longer add Level 3 fee automatically
+			email('MLipe@ashevillenc.gov', 'noreply@ashevillenc.gov', ' Level 3 Disapproval with fee', 'The Inspection ' + inspType + ' for Permit ' + capIDString + ' was completed with a result of ' + inspResult + '.<br>Inspection Comment: ' + inspComment + ' <br>Please manually update the fee -- it was not added automatically!');
 		}
 
 		if (inspType.indexOf('GP') == 0 && matches(inspResult, 'Disapproved-Level 1 Fee')) {
@@ -257,8 +266,10 @@ if (matches(inspResult, 'Disapproved-Level 1 Fee', 'Disapproved-Level 2 Fee', 'D
 		}
 
 		if (inspType.indexOf('GP') == 0 && matches(inspResult, 'Disapproved-Level 3 Fee')) {
-			updateFee('ENFB23', 'ENF_BLD', 'FINAL', 1, 'Y');
-			updateFee('TECH', 'ENF_BLD', 'FINAL', 1, 'Y');
+			//updateFee('ENFB23', 'ENF_BLD', 'FINAL', 1, 'Y');
+			//updateFee('TECH', 'ENF_BLD', 'FINAL', 1, 'Y');
+//changed 5/20/2019 to no longer add Level 3 fee automatically
+			email('MLipe@ashevillenc.gov', 'noreply@ashevillenc.gov', ' Level 3 Disapproval with fee', 'The Inspection ' + inspType + ' for Permit ' + capIDString + ' was completed with a result of ' + inspResult + '.<br>Inspection Comment: ' + inspComment + ' <br>Please manually update the fee -- it was not added automatically!');
 		}
 
 		if (inspType.indexOf('HO') == 0 && matches(inspResult, 'Disapproved-Level 1 Fee')) {
@@ -272,8 +283,10 @@ if (matches(inspResult, 'Disapproved-Level 1 Fee', 'Disapproved-Level 2 Fee', 'D
 		}
 
 		if (inspType.indexOf('HO') == 0 && matches(inspResult, 'Disapproved-Level 3 Fee')) {
-			updateFee('ENFB23', 'ENF_BLD', 'FINAL', 1, 'Y');
-			updateFee('TECH', 'ENF_BLD', 'FINAL', 1, 'Y');
+			//updateFee('ENFB23', 'ENF_BLD', 'FINAL', 1, 'Y');
+			//updateFee('TECH', 'ENF_BLD', 'FINAL', 1, 'Y');
+//changed 5/20/2019 to no longer add Level 3 fee automatically
+			email('MLipe@ashevillenc.gov', 'noreply@ashevillenc.gov', ' Level 3 Disapproval with fee', 'The Inspection ' + inspType + ' for Permit ' + capIDString + ' was completed with a result of ' + inspResult + '.<br>Inspection Comment: ' + inspComment + ' <br>Please manually update the fee -- it was not added automatically!');
 		}
 
 		if (inspType.indexOf('RE') == 0 && matches(inspResult, 'Disapproved-Level 1 Fee')) {
@@ -287,8 +300,10 @@ if (matches(inspResult, 'Disapproved-Level 1 Fee', 'Disapproved-Level 2 Fee', 'D
 		}
 
 		if (inspType.indexOf('RE') == 0 && matches(inspResult, 'Disapproved-Level 3 Fee')) {
-			updateFee('ENFB23', 'ENF_BLD', 'FINAL', 1, 'Y');
-			updateFee('TECH', 'ENF_BLD', 'FINAL', 1, 'Y');
+			//updateFee('ENFB23', 'ENF_BLD', 'FINAL', 1, 'Y');
+			//updateFee('TECH', 'ENF_BLD', 'FINAL', 1, 'Y');
+//changed 5/20/2019 to no longer add Level 3 fee automatically
+			email('MLipe@ashevillenc.gov', 'noreply@ashevillenc.gov', ' Level 3 Disapproval with fee', 'The Inspection ' + inspType + ' for Permit ' + capIDString + ' was completed with a result of ' + inspResult + '.<br>Inspection Comment: ' + inspComment + ' <br>Please manually update the fee -- it was not added automatically!');
 		}
 
 		if (inspType.indexOf('MH') == 0 && matches(inspResult, 'Disapproved-Level 1 Fee')) {
@@ -302,8 +317,10 @@ if (matches(inspResult, 'Disapproved-Level 1 Fee', 'Disapproved-Level 2 Fee', 'D
 		}
 
 		if (inspType.indexOf('MH') == 0 && matches(inspResult, 'Disapproved-Level 3 Fee')) {
-			updateFee('ENFB23', 'ENF_BLD', 'FINAL', 1, 'Y');
-			updateFee('TECH', 'ENF_BLD', 'FINAL', 1, 'Y');
+			//updateFee('ENFB23', 'ENF_BLD', 'FINAL', 1, 'Y');
+			//updateFee('TECH', 'ENF_BLD', 'FINAL', 1, 'Y');
+//changed 5/20/2019 to no longer add Level 3 fee automatically
+			email('MLipe@ashevillenc.gov', 'noreply@ashevillenc.gov', ' Level 3 Disapproval with fee', 'The Inspection ' + inspType + ' for Permit ' + capIDString + ' was completed with a result of ' + inspResult + '.<br>Inspection Comment: ' + inspComment + ' <br>Please manually update the fee -- it was not added automatically!');
 		}
 
 		if (inspType.indexOf('FP') == 0 && matches(inspResult, 'Disapproved-Level 1 Fee')) {
@@ -317,68 +334,15 @@ if (matches(inspResult, 'Disapproved-Level 1 Fee', 'Disapproved-Level 2 Fee', 'D
 		}
 
 		if (inspType.indexOf('FP') == 0 && matches(inspResult, 'Disapproved-Level 3 Fee')) {
-			updateFee('FINS3', 'ENF_BLD', 'FINAL', 1, 'Y');
-			updateFee('TECH', 'ENF_BLD', 'FINAL', 1, 'Y');
+			//updateFee('FINS3', 'ENF_BLD', 'FINAL', 1, 'Y');
+			//updateFee('TECH', 'ENF_BLD', 'FINAL', 1, 'Y');
+//changed 5/20/2019 to no longer add Level 3 fee automatically
+			email('MLipe@ashevillenc.gov', 'noreply@ashevillenc.gov', ' Level 3 Disapproval with fee', 'The Inspection ' + inspType + ' for Permit ' + capIDString + ' was completed with a result of ' + inspResult + '.<br>Inspection Comment: ' + inspComment + ' <br>Please manually update the fee -- it was not added automatically!');
 		}
 
 		if (matches(inspResult, 'Disapproved-No Plans')) {
 			updateFee('ENFB02', 'ENF_BLD', 'FINAL', 1, 'Y');
 			updateFee('TECH', 'ENF_BLD', 'FINAL', 1, 'Y');
-		}
-
-	}
-	//end replaced branch: ES_ADD_REINSP_FEE;
-}
-
-// TODO:  repeated conditionals, consider refactoring. Done.
-
-if (matches(inspResult, 'Disapproved-TCO Fee')) {
-
-	//start replaced branch: ES_ADD_TCO-REINSP_FEE
-	{
-		if (inspType.indexOf('BU') == 0 ) {
-			updateFee('BU_INSP', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
-			updateFee('TECH', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
-		}
-
-		if (inspType.indexOf('EE') == 0 ) {
-			updateFee('BU_INSP', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
-			updateFee('TECH', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
-		}
-
-		if (inspType.indexOf('ME') == 0 ) {
-			updateFee('BU_INSP', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
-			updateFee('TECH', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
-		}
-
-		if (inspType.indexOf('PL') == 0 ) {
-			updateFee('BU_INSP', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
-			updateFee('TECH', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
-		}
-
-		if (inspType.indexOf('FP') == 0 ) {
-			updateFee('FP_INSP', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
-			updateFee('TECH', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
-		}
-
-		if (inspType.indexOf('ZO') == 0 ) {
-			updateFee('ZO_INSP', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
-			updateFee('TECH', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
-		}
-
-		if (inspType.indexOf('SW') == 0 ) {
-			updateFee('SW_INSP', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
-			updateFee('TECH', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
-		}
-
-		if (inspType.indexOf('GR') == 0 ) {
-			updateFee('SW_INSP', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
-			updateFee('TECH', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
-		}
-
-		if (inspType.indexOf('FL') == 0 ) {
-			updateFee('SW_INSP', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
-			updateFee('TECH', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
 		}
 // Added by Jerry 6/21/17 -- new reinspection fees have been created. We need to include them here. The above were already done for the BLD and FIRE groups.
 // Now adding Site Engineering, Zoning, Public Works and Water. The new ones are all in the REINSP Fee Schedule
@@ -388,12 +352,12 @@ if (matches(inspResult, 'Disapproved-TCO Fee')) {
                                                 updateFee('SIGNREINSP', 'REINSP', 'FINAL', 1, 'Y');
                                                 updateFee('TECH', 'REINSP', 'FINAL', 1, 'Y');
                                 }
-                
+
                                 if (inspType.indexOf('ZO') == 0 && matches(inspResult, 'Disapproved-Level 1 Fee')) {
                                                 updateFee('REIN_ZOLI', 'REINSP', 'FINAL', 1, 'Y');
                                                 updateFee('TECH', 'REINSP', 'FINAL', 1, 'Y');
                                 }
-                
+
                                 if (inspType.indexOf('ZO') == 0 && matches(inspResult, 'Disapproved-Level 2 Fee')) {
                                                 updateFee('REIN_ZOLII', 'REINSP', 'FINAL', 1, 'Y');
                                                 updateFee('TECH', 'REINSP', 'FINAL', 1, 'Y');
@@ -407,7 +371,7 @@ if (matches(inspResult, 'Disapproved-TCO Fee')) {
                                                 updateFee('REIN_PWLI', 'REINSP', 'FINAL', 1, 'Y');
                                                 updateFee('TECH', 'REINSP', 'FINAL', 1, 'Y');
                                 }
-                
+
                                 if (inspType.indexOf('SID') == 0 && matches(inspResult, 'Disapproved-Level 2 Fee')) {
                                                 updateFee('REIN_PWLII', 'REINSP', 'FINAL', 1, 'Y');
                                                 updateFee('TECH', 'REINSP', 'FINAL', 1, 'Y');
@@ -421,7 +385,7 @@ if (matches(inspResult, 'Disapproved-TCO Fee')) {
                                                 updateFee('REIN_PWLI', 'REINSP', 'FINAL', 1, 'Y');
                                                 updateFee('TECH', 'REINSP', 'FINAL', 1, 'Y');
                                 }
-                
+
                                 if (inspType.indexOf('DR') == 0 && matches(inspResult, 'Disapproved-Level 2 Fee')) {
                                                 updateFee('REIN_PWLII', 'REINSP', 'FINAL', 1, 'Y');
                                                 updateFee('TECH', 'REINSP', 'FINAL', 1, 'Y');
@@ -436,7 +400,7 @@ if (matches(inspResult, 'Disapproved-TCO Fee')) {
                                                 updateFee('REIN_SELI', 'REINSP', 'FINAL', 1, 'Y');
                                                 updateFee('TECH', 'REINSP', 'FINAL', 1, 'Y');
                                 }
-                
+
                                 if (inspType.indexOf('FL') == 0 && matches(inspResult, 'Disapproved-Level 2 Fee')) {
                                                 updateFee('REIN_SELII', 'REINSP', 'FINAL', 1, 'Y');
                                                 updateFee('TECH', 'REINSP', 'FINAL', 1, 'Y');
@@ -451,7 +415,7 @@ if (matches(inspResult, 'Disapproved-TCO Fee')) {
                                                 updateFee('REIN_SELI', 'REINSP', 'FINAL', 1, 'Y');
                                                 updateFee('TECH', 'REINSP', 'FINAL', 1, 'Y');
                                 }
-                
+
                                 if (inspType.indexOf('GR') == 0 && matches(inspResult, 'Disapproved-Level 2 Fee')) {
                                                 updateFee('REIN_SELII', 'REINSP', 'FINAL', 1, 'Y');
                                                 updateFee('TECH', 'REINSP', 'FINAL', 1, 'Y');
@@ -466,7 +430,7 @@ if (matches(inspResult, 'Disapproved-TCO Fee')) {
                                                 updateFee('REIN_SELI', 'REINSP', 'FINAL', 1, 'Y');
                                                 updateFee('TECH', 'REINSP', 'FINAL', 1, 'Y');
                                 }
-                
+
                                 if (inspType.indexOf('SW') == 0 && matches(inspResult, 'Disapproved-Level 2 Fee')) {
                                                 updateFee('REIN_SELII', 'REINSP', 'FINAL', 1, 'Y');
                                                 updateFee('TECH', 'REINSP', 'FINAL', 1, 'Y');
@@ -478,8 +442,98 @@ if (matches(inspResult, 'Disapproved-TCO Fee')) {
                                 }
 
 	}
-	//end replaced branch: ES_ADD_TCO-REINSP_FEE;
+	//end replaced branch: ES_ADD_REINSP_FEE;
 }
+
+// TODO:  repeated conditionals, consider refactoring. Done.
+
+if (matches(inspResult, 'Disapproved-TCO Fee')) {
+
+	//start replaced branch: ES_ADD_TCO-REINSP_FEE
+//	{
+// Modifications 5/24/18  New fee created, TCO-DISAPPRO, that now we need to apply after that inspection result is chosen. But only for Building
+
+	if (appMatch('*/Commercial/*/*')) {
+		if (inspType.indexOf('BU') == 0 ) {
+			updateFee('TCO-DISAPPRO', 'TU & TCO', 'FINAL', 1, 'Y');
+			updateFee('TECH', 'TU & TCO', 'FINAL', 1, 'Y');
+		}
+
+		if (inspType.indexOf('EE') == 0 ) {
+			updateFee('TCO-DISAPPRO', 'TU & TCO', 'FINAL', 1, 'Y');
+			updateFee('TECH', 'TU & TCO', 'FINAL', 1, 'Y');
+		}
+
+		if (inspType.indexOf('ME') == 0 ) {
+			updateFee('TCO-DISAPPRO', 'TU & TCO', 'FINAL', 1, 'Y');
+			updateFee('TECH', 'TU & TCO', 'FINAL', 1, 'Y');
+		}
+
+		if (inspType.indexOf('PL') == 0 ) {
+			updateFee('TCO-DISAPPRO', 'TU & TCO', 'FINAL', 1, 'Y');
+			updateFee('TECH', 'TU & TCO', 'FINAL', 1, 'Y');
+		}
+
+		if (inspType.indexOf('FP') == 0 ) {
+			updateFee('TCO-DISAPPRO', 'TU & TCO', 'FINAL', 1, 'Y');
+			updateFee('TECH', 'TU & TCO', 'FINAL', 1, 'Y');
+		}
+	}
+}
+
+
+// End modifications 5/24/18
+
+//Commented out 5/23/18 -- wasn't running anyway, prob because it used the alias instead of 'TU & TCO'
+
+//		if (inspType.indexOf('BU') == 0 ) {
+//			updateFee('BU_INSP', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
+//			updateFee('TECH', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
+//		}
+//
+//		if (inspType.indexOf('EE') == 0 ) {
+//			updateFee('BU_INSP', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
+//			updateFee('TECH', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
+//		}
+//
+//		if (inspType.indexOf('ME') == 0 ) {
+//			updateFee('BU_INSP', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
+//			updateFee('TECH', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
+//		}
+//
+//		if (inspType.indexOf('PL') == 0 ) {
+//			updateFee('BU_INSP', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
+//			updateFee('TECH', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
+//		}
+//
+//		if (inspType.indexOf('FP') == 0 ) {
+//			updateFee('FP_INSP', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
+//			updateFee('TECH', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
+//		}
+//
+//		if (inspType.indexOf('ZO') == 0 ) {
+//			updateFee('ZO_INSP', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
+//			updateFee('TECH', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
+//		}
+//
+//		if (inspType.indexOf('SW') == 0 ) {
+//			updateFee('SW_INSP', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
+//			updateFee('TECH', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
+//		}
+//
+//		if (inspType.indexOf('GR') == 0 ) {
+//			updateFee('SW_INSP', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
+//			updateFee('TECH', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
+//		}
+//
+//		if (inspType.indexOf('FL') == 0 ) {
+//			updateFee('SW_INSP', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
+//			updateFee('TECH', 'TU/TCC/TCO', 'FINAL', 1, 'Y');
+//		}
+
+//	}
+	//end replaced branch: ES_ADD_TCO-REINSP_FEE;
+//}
 
 if (matches(inspResult, 'Disapproved-TU Fee')) {
 
@@ -608,18 +662,24 @@ if (matches(inspGroup, 'ABC') && matches(inspResult, 'Approved', 'Disapproved', 
 if ((appMatch('Permits/*/Site Work/*') || appMatch('Planning/Development/*/*') || appMatch('Planning/Subdivision/*/*')) && inspType == 'ZO-FINAL' && matches(inspResult, 'Approved')) {
 	email('PAC@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Zoning Final ' + capIDString + ' Approved', 'The Zoning Final inspection for Permit ' + capIDString + ' has been Approved.<br>Inspection Comment: ' + inspComment + ' <br>Please verify if clear for issuance of Certificate of Compliance or Occupancy.');
 }
+// begin 4/18/18 changes. For next three IF-Then's, emails changed from PAC to Tiffany, and added email to Amy
 
 if (inspType == 'GR-FINAL' && matches(inspResult, 'Approved')) {
-	email('PAC@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Grading Final ' + capIDString + ' Approved', 'The Grading Final inspection for Permit ' + capIDString + ' has been Approved.<br>Inspection Comment: ' + inspComment + ' <br>Please verify if clear for issuance of Certificate of Compliance or Occupancy.');
+	email('TGordon@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Grading Final ' + capIDString + ' Approved', 'The Grading Final inspection for Permit ' + capIDString + ' has been Approved.<br>Inspection Comment: ' + inspComment + ' <br>Please verify if clear for issuance of Certificate of Compliance or Occupancy.');
+	email('ATesner@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Grading Final ' + capIDString + ' Approved', 'The Grading Final inspection for Permit ' + capIDString + ' has been Approved.<br>Inspection Comment: ' + inspComment + ' <br>Please verify if clear for issuance of Certificate of Compliance or Occupancy.');
 }
 
 if (inspType == 'SW-FINAL' && matches(inspResult, 'Approved')) {
-	email('PAC@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Storm Water Final ' + capIDString + ' Approved', 'The Stormwater Final inspection for Permit ' + capIDString + ' has been Approved.<br>Inspection Comment: ' + inspComment + ' <br>Please verify if clear for issuance of Certificate of Compliance or Occupancy.');
+	email('TGordon@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Storm Water Final ' + capIDString + ' Approved', 'The Stormwater Final inspection for Permit ' + capIDString + ' has been Approved.<br>Inspection Comment: ' + inspComment + ' <br>Please verify if clear for issuance of Certificate of Compliance or Occupancy.');
+	email('ATesner@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Storm Water Final ' + capIDString + ' Approved', 'The Stormwater Final inspection for Permit ' + capIDString + ' has been Approved.<br>Inspection Comment: ' + inspComment + ' <br>Please verify if clear for issuance of Certificate of Compliance or Occupancy.');
 }
 
 if (inspType == 'FL-FINAL' && matches(inspResult, 'Approved')) {
-	email('PAC@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Flood Final ' + capIDString + ' Approved', 'The Flood Plain Development Final inspection for Permit ' + capIDString + ' has been Approved.<br>Inspection Comment: ' + inspComment + ' <br>Please verify if clear for issuance of Certificate of Compliance or Occupancy.');
+	email('TGordon@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Flood Final ' + capIDString + ' Approved', 'The Flood Plain Development Final inspection for Permit ' + capIDString + ' has been Approved.<br>Inspection Comment: ' + inspComment + ' <br>Please verify if clear for issuance of Certificate of Compliance or Occupancy.');
+	email('ATesner@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Flood Final ' + capIDString + ' Approved', 'The Flood Plain Development Final inspection for Permit ' + capIDString + ' has been Approved.<br>Inspection Comment: ' + inspComment + ' <br>Please verify if clear for issuance of Certificate of Compliance or Occupancy.');
 }
+
+//End 4/18/18 changes
 
 if (inspType == 'ZO-EXPIRATION CHECK' && matches(inspResult, 'Expired')) {
 	updateTask('Application Process', 'Expired', 'Updated by IRSA Script');
@@ -656,16 +716,16 @@ if (userResult.getSuccess()) {
 	theCapAddress = getCapAddress(capId);
 }
 
-emailContact('Inspection Completed', 'You are a contact on permit ' + capIDString + ' An Inspection ' + inspType + ' was completed with a result of ' + inspResult + '.<br>Inspection Comment: ' + inspComment + '<br>Inspected By: ' + userFName + ' ' + userLName + '<br>Phone: ' + userPhn + '<br><br>Thank You.', 'Contact');
+emailContact('Inspection Completed', 'You are a contact on permit ' + capIDString + ' An Inspection ' + inspType + ' was completed with a result of ' + inspResult + '.<br>Inspection Comment: ' + inspComment + '<br>Please go to https://services.ashevillenc.gov/CitizenAccess/ if necessary to get inspector details.<br><br>Thank you.');
 var profArr = getLicenseProfessional(capId);
 if (true && profArr != null) {
 	for (x in profArr)
 		if (profArr[x].getEmail() + '' != '')
-			email(profArr[x].getEmail(), 'noreply@ashevillenc.gov', 'Inspection ' + inspType + ' for ' + capIDString + ' at address ' + theCapAddress + ' Resulted', 'You are a professional on permit ' + capIDString + ' An Inspection ' + inspType + ' was completed with a result of ' + inspResult + '.<br>Inspection Comment: ' + inspComment + '<br>Inspected By: ' + userFName + ' ' + userLName + '<br>Phone: ' + userPhn + '<br><br>Thank You.');
+			email(profArr[x].getEmail(), 'noreply@ashevillenc.gov', 'Inspection ' + inspType + ' for ' + capIDString + ' at address ' + theCapAddress + ' Resulted', 'You are a professional on permit ' + capIDString + ' An Inspection ' + inspType + ' was completed with a result of ' + inspResult + '.<br>Inspection Comment: ' + inspComment + '<br>Please go to https://services.ashevillenc.gov/CitizenAccess/ if necessary to get inspector details.<br><br>Thank you.');
 }
 
 if (userResult.getSuccess() && inspResult == 'Cancelled') {
-	email(userEmail, 'noreply@ashevillenc.gov', 'Inspection cancelled', 'Permit: ' + capIDString + '<br>Inspection: ' + inspType + '<br>At address ' + theCapAddress + '<br>On ' + inspSchedDate + ' has been Cancelled');
+	email('mlipe@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Inspection Cancelled -- Let Proper Inspector Know', 'Permit: ' + capIDString + '<br>Inspection: ' + inspType + '<br>At address ' + theCapAddress + '<br>On ' + inspSchedDate + ' has been Cancelled');
 }
 
 // DISABLED: InspectionResultSubmitAfter:98

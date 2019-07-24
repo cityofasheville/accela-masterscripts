@@ -91,12 +91,14 @@ if (publicUser) {
 
 		if (appMatch('Permits/Commercial/Existing Building/Repair-Replacement')) {
 			updateFee('CFIRE', 'COM_BLD', 'FINAL', 1, 'N');
-			updateFee('CFIREADDB', 'COM_BLD', 'FINAL', 1, 'N');
-			updateFee('CFIREADDE', 'COM_BLD', 'FINAL', 1, 'N');
-			updateFee('CFIREADDM', 'COM_BLD', 'FINAL', 1, 'N');
-			updateFee('CFIREADDP', 'COM_BLD', 'FINAL', 1, 'N');
-			updateFee('CFIREADDG', 'COM_BLD', 'FINAL', 1, 'N');
-			updateFee('TECH', 'COM_BLD', 'FINAL', 1, 'N');
+			updateFee('CFIREADDSC', 'COM_BLD', 'FINAL', 1, 'N');
+
+// These fees were superseded in the July 2017 Fee Update
+// updateFee('CFIREADDE', 'COM_BLD', 'FINAL', 1, 'N');
+// updateFee('CFIREADDM', 'COM_BLD', 'FINAL', 1, 'N');
+// updateFee('CFIREADDP', 'COM_BLD', 'FINAL', 1, 'N');
+// updateFee('CFIREADDG', 'COM_BLD', 'FINAL', 1, 'N');
+updateFee('TECH', 'COM_BLD', 'FINAL', 1, 'N');
 		}
 
 		if (appMatch('Permits/Commercial/Existing Building/Repair-Replacement') && AInfo['Multi-Family Use?'] == 'Yes') {
@@ -138,6 +140,11 @@ if ((appMatch('Permits/*/Existing Building/*') || appMatch('Permits/*/New Buildi
 
 	}
 	//end replaced branch: ES_ADD_SETBACKS;
+}
+
+//moved from ASA Planning 6/25/19
+if (!appMatch('Permits/*/Existing Building/Reroof') && (appMatch('Permits/*/New Building/*') || appMatch('Permits/*/Existing Building/*') || appMatch('*/*/Remodel/*') || appMatch('*/*/Manufactured Home/*') || appMatch('*/*/Demolition/*') || appMatch('*/*/Addition/*') || appMatch('*/*/Accessory Structure/*') || appMatch('Permits/*/New/*') || appMatch('Permits/*/Site Work/*')) && AInfo['ParcelAttribute.RIVER DISTRICT'] == 'Yes') {
+	email('smonson@ashevillenc.gov', 'noreply@ashevillenc.gov', 'River District Design Review Task', 'River District Design Review task assigned. ' + capIDString + ' - Please check Accela and update the record status.');
 }
 
 // DISABLED: ApplicationSubmitAfter:99
