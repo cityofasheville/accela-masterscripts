@@ -74,6 +74,11 @@ if (appMatch('*/Commercial/*/Repair-Replacement')) {
 
 // Begin added all below to break out emails according to Susannah 4/18/18
 
+//added 7/8/19 as per Misty to email her on ALL online permits
+if (appMatch('*/*/*/*')) {
+	email('MLipe@ashevillenc.gov', 'noreply@ashevillenc.gov', 'ACA Permit Created Online', 'The following permit, ' + capIDString + ' was just created in ACA. Please verify that it was pulled appropriately.');
+}
+
 if (appMatch('*/*/*/Repair-Replacement')) {
 	email('MLipe@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Repair-Replace ACA Permit Created', 'The following permit, ' + capIDString + ' was just created in ACA. Please verify that it was pulled appropriately.');
 	email('SSalyer@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Repair-Replace ACA Permit Created', 'The following permit, ' + capIDString + ' was just created in ACA. Please verify that it was pulled appropriately.');
