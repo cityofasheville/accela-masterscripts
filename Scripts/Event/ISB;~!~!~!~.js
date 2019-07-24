@@ -36,17 +36,17 @@ if ( (appMatch("Permits/Residential/New Building/*") || appMatch("Permits/Reside
 				cancel = true;
 	}
 
-  if (!checkInspectionResult('GR-FINAL', 'Approved') && 
-      !checkInspectionResult('GR-FINAL', 'Approved with Conditions') && 
-      !checkInspectionResult('GR-FINAL', 'Scheduled') && 
-      !checkInspectionResult('GR-FINAL-REINSP', 'Approved') && 
-      !checkInspectionResult('GR-FINAL-REINSP', 'Approved with Conditions') && 
-      !checkInspectionResult('GR-FINAL-REINSP', 'Scheduled') && 
-      AInfo['GR Permit'] != 'NA') {
-				showMessage = true;
-				comment("<font size=small><b>Can't schedule BU Final:</b></font><br><br>GR Final must be approved first.<br><br>");
-				cancel = true;
-  }
+  //if (!checkInspectionResult('GR-FINAL', 'Approved') && 
+    //  !checkInspectionResult('GR-FINAL', 'Approved with Conditions') && 
+    //  !checkInspectionResult('GR-FINAL', 'Scheduled') && 
+    //  !checkInspectionResult('GR-FINAL-REINSP', 'Approved') && 
+    //  !checkInspectionResult('GR-FINAL-REINSP', 'Approved with Conditions') && 
+    //  !checkInspectionResult('GR-FINAL-REINSP', 'Scheduled') && 
+    //  AInfo['GR Permit'] != 'NA') {
+	//			showMessage = true;
+	//			comment("<font size=small><b>Can't schedule BU Final:</b></font><br><br>GR Final must be approved first.<br><br>");
+	//			cancel = true;
+  //}
 
 	if (!checkInspectionResult('FP-FINAL', 'Approved') && 
 			!checkInspectionResult('FP-FINAL', 'Approved with Conditions') && 
@@ -84,17 +84,17 @@ if ( (appMatch("Permits/Residential/New Building/*") || appMatch("Permits/Reside
     cancel = true;
 	}
 
-	if (!checkInspectionResult('DR-FINAL', 'Approved') && 
-			!checkInspectionResult('DR-FINAL', 'Approved with Conditions') && 
-			!checkInspectionResult('DR-FINAL', 'Scheduled') && 
-			!checkInspectionResult('DR-FINAL-REINSP', 'Approved') && 
-			!checkInspectionResult('DR-FINAL-REINSP', 'Approved with Conditions') && 
-			!checkInspectionResult('DR-FINAL-REINSP', 'Scheduled') && 
-			AInfo['DR Permit'] != 'NA') {
-				showMessage = true;
-				comment("<font size=small><b>Can't schedule BU Final:</b></font><br><br>DR Final must be approved first.<br><br>");
-				cancel = true;
-	}
+	//if (!checkInspectionResult('DR-FINAL', 'Approved') && 
+			//!checkInspectionResult('DR-FINAL', 'Approved with Conditions') && 
+			//!checkInspectionResult('DR-FINAL', 'Scheduled') && 
+			//!checkInspectionResult('DR-FINAL-REINSP', 'Approved') && 
+			//!checkInspectionResult('DR-FINAL-REINSP', 'Approved with Conditions') && 
+			//!checkInspectionResult('DR-FINAL-REINSP', 'Scheduled') && 
+			//AInfo['DR Permit'] != 'NA') {
+			//	showMessage = true;
+			//	comment("<font size=small><b>Can't schedule BU Final:</b></font><br><br>DR Final must be approved first.<br><br>");
+			//	cancel = true;
+	//}
 
   if (!checkInspectionResult('GP-FINAL', 'Approved') && 
 			!checkInspectionResult('GP-FINAL', 'Approved with Conditions') && 
