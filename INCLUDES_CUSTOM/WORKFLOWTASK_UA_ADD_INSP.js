@@ -50,8 +50,8 @@ function WORKFLOWTASK_UA_ADD_INSP() {
 			
 			// 7/24/2019 only add electrical inspections if needed
 			if ( AInfo['Issue Electrical Permit To'] != 'N/A' ) {
-				createPendingInspection('ELEC', 'EE-FINAL');
-				createPendingInspection('ELEC', 'EE-ROUGH IN');
+				createPendingInspection('SIGN', 'EE-FINAL');
+				createPendingInspection('SIGN', 'EE-ROUGH IN');
 			}
 
 			if (AInfo['FP Permit'] != 'NA' && AInfo['FP Permit'] != 'TBD' && !checkInspectionResult('FP-FINAL', 'Pending')) {
