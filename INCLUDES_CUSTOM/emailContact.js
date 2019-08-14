@@ -1,10 +1,10 @@
-// Based on emailContact function. Added emailOther param
-function emailContactAndOthers(emailSubj, emailBody, emailOther) { // ContactType
+// overwrites emailContact function. Changed reply address.
+function emailContact(emailSubj, emailBody) { // ContactType
     var fromAddr = "developmentservices@ashevillenc.gov",
         ContactType = "Applicant",
         emailAddr = "";
-    if(4 == arguments.length) { 
-      ContactType = arguments[3]; //Optional fourth param ContactType
+    if(3 == arguments.length) { 
+      ContactType = arguments[2]; //Optional third param ContactType
     }
     var CapContacts = aa.people.getCapContactByCapID(capId);
     if (CapContacts.getSuccess()) {
@@ -18,10 +18,9 @@ function emailContactAndOthers(emailSubj, emailBody, emailOther) { // ContactTyp
         }
     }
     if(emailAddr.indexOf("@") > 0) {
-      aa.sendMail(fromAddr, emailAddr, emailOther, emailSubj, emailBody); 
+      aa.sendMail(fromAddr, emailAddr, null, emailSubj, emailBody); 
       logDebug("Successfully sent email to " + ContactType)
     }else{
       logDebug("Couldn't send email to " + ContactType + ", no valid email address");
     }
 }
-
