@@ -1,6 +1,6 @@
 function emailAllContacts(emailSubj, emailBody, emailOther) {
-    var fromAddr = "developmentservices@ashevillenc.gov",
-        emailAddrs = [];
+    var fromAddr = "developmentservices@ashevillenc.gov";
+    var emailAddrs = [];
 
     var CapContacts = aa.people.getCapContactByCapID(capId);
     if (CapContacts.getSuccess()) {
@@ -11,10 +11,10 @@ function emailAllContacts(emailSubj, emailBody, emailOther) {
           }
       }
     }
-    let emailString = emailAddrs.join(';');
+    var emailString = emailAddrs.join(';');
     if(emailString.indexOf("@") > 0) {
       aa.sendMail(fromAddr, emailString, emailOther, emailSubj, emailBody); 
-      logDebug("Successfully sent emails")
+      logDebug("Successfully sent emails");
     }else{
       logDebug("Couldn't send emails, invalid address");
     }
