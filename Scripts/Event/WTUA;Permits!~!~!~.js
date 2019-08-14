@@ -212,6 +212,12 @@ if (wfTask == 'Conditions of Approval') {
 	}
 }
 
+// 8/1/2019 
+if ( (appMatch("Permits/Residential/New Building/*") || appMatch("Permits/Residential/Accessory Structure/*")) 
+	&& (matches(wfStatus, 'Hold for Revision') && matches(wfTask, 'Building Review','Zoning Review','Grading','Driveway'))) {
+	editTaskDueDate(wfTask, dateAdd(null, 2, 'Y'));
+}
+
 if (wfTask == 'Routing') { //
 	//start replaced branch: ES_SET_WF_DIVISION REVIEW
 	var divisionReviewSetList = [
@@ -238,6 +244,10 @@ if (wfTask == 'Routing') { //
 	}
 	//start replaced branch: ES_SET_WF_DUEDATE
 	if (AInfo['Expected Timeframe'] == 'Quick Touch - 3 Days') {
+		setAllDivisionReviewTimes(3, divisionReviewSetList);
+	}
+// as of 7/29/19 now only using on item in dropdown, but leaving others in list:
+	if (AInfo['Expected Timeframe'] == 'Residential Review - 5 Days') {
 		setAllDivisionReviewTimes(3, divisionReviewSetList);
 	}
 	if (AInfo['Expected Timeframe'] == 'Res. Waiver - 2 Days') {
@@ -348,7 +358,6 @@ if (matches(wfTask, 'Inspections', 'Power Release', 'Gas Release')) {
 	//end replaced branch: ES_SET_WF_TU-TCO;
 }
 
-
 // Implied that it can be any process
 // We're assuming that when the CO status is chosen, that it will automatically be on a correct process
 // For example, division review can never have a CO status
@@ -368,7 +377,6 @@ if (matches(wfStatus, 'Certificate of Occupancy')
 ) {
 	emailAboutCertOfOcc('khinz@ashevillenc.gov');
 	emailAboutCertOfOcc('jpayne@ashevillenc.gov');
-
 }
 
 // changed from smorgan to talley 05/09/18. Added smorgan back on 5/18
@@ -431,7 +439,6 @@ if (matches(wfTask, 'HRC Overlay')
 		'HRC Overlay Review task updated. ' + capIDString + ' - Please check record status and issue if ready.');
 }
 
-
 // Added as per Diane 3/30/17 -- notifies PAC when River District task is updated to statuses below
 // (These statuses result in Go To Next Task, e.g. PAC may need to issue permit)
 
@@ -447,7 +454,6 @@ if (matches(wfTask, 'River District Design Review')
 		'RDDR Task',
 		'River District Design Review task updated. ' + capIDString + ' - Please check record status and issue if ready.');
 }
-
 
 if (matches(wfStatus, 'Issue', 'Issue Partial', 'Reissue', 'Amended')) {
 	//replaced branch(WORKFLOWTASK_UA_ADD_INSP)
