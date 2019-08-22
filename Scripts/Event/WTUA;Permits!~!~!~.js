@@ -524,9 +524,11 @@ if (matches(wfTask, 'Building Review','Zoning Review','Grading','Driveway','Plan
 }
 // added 2/20/2019 to email all residential customers, electronic submittal or not, when a permit can be picked up online 
 if (appMatch('Permits/Residential/*/*') && wfTask == 'Issuance' && matches(wfStatus, 'Issue', 'Reissue')) {
-
-emailContact('Your Permit Has Been Issued -- Important Instructions Inside', 'Permit Number: ' + capIDString + ' <br> Location: ' + CapAddress + ' <br> <br>You may pick up your approved permit and plans in person at the Development Services Department, or online at https://services.ashevillenc.gov/CitizenAccess. Login to your account and enter the permit number into the top right corner search box. Then navigate to Record Info > Attachments to download comments and plans in .PDF format.<br><br>It is your responsibility to print out and maintain full-size, hard copy versions of issued permits, plan review comments, and approved Building and Zoning and Grading Site plans on the project site.<br><br>If you have questions, please contact the Permit Application Center at PAC@ashevillenc.gov or 828-259-5846.');
-
+	if(capIDString == '19-00163') {
+		emailContact('Your Permit Has Been Issued --- Important Instructions Inside', 'Permit Number: ' + capIDString + ' <br> Location: ' + CapAddress + ' <br> <br>You may pick up your approved permit and plans in person at the Development Services Department, or online at https://services.ashevillenc.gov/CitizenAccess. Login to your account and enter the permit number into the top right corner search box. Then navigate to Record Info > Attachments to download comments and plans in .PDF format.<br><br>It is your responsibility to print out and maintain full-size, hard copy versions of issued permits, plan review comments, and approved Building and Zoning and Grading Site plans on the project site.<br><br>If you have questions, please contact the Permit Application Center at PAC@ashevillenc.gov or 828-259-5846.');
+	} else {
+		emailContact('Your Permit Has Been Issued -- Important Instructions Inside', 'Permit Number: ' + capIDString + ' <br> Location: ' + CapAddress + ' <br> <br>You may pick up your approved permit and plans in person at the Development Services Department, or online at https://services.ashevillenc.gov/CitizenAccess. Login to your account and enter the permit number into the top right corner search box. Then navigate to Record Info > Attachments to download comments and plans in .PDF format.<br><br>It is your responsibility to print out and maintain full-size, hard copy versions of issued permits, plan review comments, and approved Building and Zoning and Grading Site plans on the project site.<br><br>If you have questions, please contact the Permit Application Center at PAC@ashevillenc.gov or 828-259-5846.');
+	}
 }
 
 // To bypass Clearing House step after all review steps are complete 4/25/2019
