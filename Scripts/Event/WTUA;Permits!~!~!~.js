@@ -548,3 +548,18 @@ if (matches(wfStatus, 'Approved','Approved with Conditions')) {
 		}
 	}
 }
+
+// 8/22/2019 
+if (appMatch('Permits/*/*/SFD') || appMatch('Permits/*/*/SFD Waiver') || appMatch('Permits/Residential/Existing Building/Alterations w Addition')) {
+	if(wfTask == 'Issuance' && matches(wfStatus, 'Issue', 'Reissue')) {
+		if (AInfo['DR Permit'] != 'NA') {
+			createPendingInspection('RES_SITE', 'DR-PRELIMINARY');
+			createPendingInspection('RES_SITE', 'DR-FINAL');
+		}
+		if (AInfo['GR Permit'] != 'NA') {
+			createPendingInspection('RES_SITE', 'GR-PRELIMINARY');
+			createPendingInspection('RES_SITE', 'GR-ROUTINE');
+			createPendingInspection('RES_SITE', 'GR-FINAL');
+		}
+	}
+}
