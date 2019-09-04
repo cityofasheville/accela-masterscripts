@@ -1,4 +1,3 @@
-
 //start replaced branch: APP_SA_BRANCH_PERMITS
 
 // DISABLED: APP_SA_BRANCH_PERMITS:1
@@ -133,3 +132,9 @@ if ((appMatch('*/*/Trade/*') || appMatch('*/Fire/Construction/*'))) {
 	}
 }
 //end replaced branch: APP_SA_BRANCH_PERMITS;
+
+if (appMatch('Permits/Residential/New Building/*') || appMatch('Permits/Residential/Accessory Structure/*')) {
+	if (AInfo['Master Site Permit'] != 'NA') {
+		setTask('Master Site Compliance', 'Y', 'N', 'CLOSE OUT');
+		}
+	}
