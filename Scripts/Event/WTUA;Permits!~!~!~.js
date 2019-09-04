@@ -542,3 +542,9 @@ if (matches(wfStatus, 'Approved','Approved with Conditions')) {
 		}
 	}
 }
+
+if (appMatch('Permits/Sign/Stand Alone/*')
+&& wfTask == 'Issuance' && matches(wfStatus, 'Issue', 'Reissue')
+) {
+	emailContact('test','Permit Number: '+capIDString+' <br> Location: '+CapAddress,'Architect');
+}
