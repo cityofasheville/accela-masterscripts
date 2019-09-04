@@ -4,7 +4,7 @@ function emailCustom(emailSubj, emailBody,
     fromAddr:fromAddr="developmentservices@ashevillenc.gov",
     contactType:contactType="",
     licenseType:licenseType="",
-  } = {}) {
+  }) {
     var emailAddrs = [];
 
     if(toAddr != "") { emailAddrs.push(toAddr); }
