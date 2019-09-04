@@ -548,7 +548,6 @@ if (appMatch('Permits/Sign/Stand Alone/*')
 ) {
 	emailCustom('test',
 	'Permit Number: '+capIDString+' <br> Location: '+CapAddress,
-	{
-		contactType:'Architect',
-	});
-}
+	undefined,undefined,
+	'Architect')
+
