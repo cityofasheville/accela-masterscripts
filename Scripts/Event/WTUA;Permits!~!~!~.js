@@ -550,4 +550,4 @@ if (appMatch('Permits/Sign/Stand Alone/*')
 	'Permit Number: '+capIDString+' <br> Location: '+CapAddress,
 	undefined,undefined,
 	'Architect')
-
+}
