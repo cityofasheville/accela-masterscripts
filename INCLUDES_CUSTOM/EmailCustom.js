@@ -1,8 +1,10 @@
-function emailCustom(emailSubj, emailBody, toAddr="",
-    fromAddr="developmentservices@ashevillenc.gov",
-    contactType="",
-    licenseType=""
+function emailCustom(emailSubj, emailBody, toAddr,
+    fromAddr, contactType, licenseType
   ) {
+    toAddr = typeof toAddr !== 'undefined' ? toAddr : "";
+    fromAddr = typeof fromAddr !== 'undefined' ? fromAddr : "developmentservices@ashevillenc.gov";
+    contactType = typeof contactType !== 'undefined' ? contactType : "";
+    licenseType = typeof licenseType !== 'undefined' ? licenseType : "";
     var emailAddrs = [];
 
     if(toAddr != "") { emailAddrs.push(toAddr); }
