@@ -1,9 +1,9 @@
 function emailCustom(emailSubj, emailBody,
   {
-    toAddr="",
-    fromAddr="developmentservices@ashevillenc.gov",
-    contactType="",
-    licenseType="",
+    toAddr:toAddr="",
+    fromAddr:fromAddr="developmentservices@ashevillenc.gov",
+    contactType:contactType="",
+    licenseType:licenseType="",
   } = {}) {
     var emailAddrs = [];
 
