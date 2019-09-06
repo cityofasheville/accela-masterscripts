@@ -543,14 +543,11 @@ if (matches(wfStatus, 'Approved','Approved with Conditions')) {
 	}
 }
 
-// if (appMatch('Permits/Sign/Stand Alone/*')
-// && wfTask == 'Issuance' && matches(wfStatus, 'Issue', 'Reissue')
-// ) {
-// 	emailCustom('test',
-// 	'Permit Number: '+capIDString+' <br> Location: '+CapAddress,
-// 	undefined,undefined,
-// 	'Architect')
-// }
+if (appMatch('Permits/Sign/Stand Alone/*')
+&& wfTask == 'Issuance' && matches(wfStatus, 'Issue', 'Reissue')
+) {
+	emailByContactType('test', 'Permit Number: '+capIDString+' <br> Location: '+CapAddress, 'Architect');
+}
 
 if (appMatch('Permits/Commercial/*/*')) {
 	if (matches(wfTask, 'Cross Connection') && matches(wfStatus, 'Backflow Assembly Compliant')) {
@@ -568,7 +565,7 @@ if (appMatch('Permits/Commercial/*/*')) {
 	if (matches(wfTask, 'Conditions of Approval') && matches(wfStatus, 'Items Pending')) {
 		if (AInfo['Cross Connection'] != 'No') {
 			email(
-			'backflowmailbox@ashevillenc.gov',
+			'jtwilson@ashevillenc.gov', // 'backflowmailbox@ashevillenc.gov',
 			'developmentservices@ashevillenc.gov',
 			'Cross Connection Task Activated',
 			'The following location ' + CapAddress + ' has had the cross connection task activated for permit ' + capIDString + '.' );

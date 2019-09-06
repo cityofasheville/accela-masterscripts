@@ -1,4 +1,4 @@
-function emailByLicenseType(emailSubj, emailBody, toAddr, fromAddr, licenseType) {
+function emailByLicenseType(emailSubj, emailBody, licenseType, fromAddr, toAddr) {
   toAddr = typeof toAddr !== 'undefined' ? toAddr : "";
   fromAddr = typeof fromAddr !== 'undefined' ? fromAddr : "developmentservices@ashevillenc.gov";
   licenseType = typeof licenseType !== 'undefined' ? licenseType : "";
@@ -33,4 +33,4 @@ function emailByLicenseType(emailSubj, emailBody, toAddr, fromAddr, licenseType)
     logDebug("Couldn't send emails, invalid address");
   }
 }
-// TO CALL: emailByLicenseType(emailSubj, emailBody, toAddr, fromAddr, licenseType)
+// TO CALL: emailByLicenseType(emailSubj, emailBody, licenseType, fromAddr, toAddr) 
