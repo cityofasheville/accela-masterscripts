@@ -1,7 +1,7 @@
 function emailByContactType(emailSubj, emailBody, contactType, fromAddr, toAddr) {
-    toAddr = toAddr !== null ? toAddr : "";
-    fromAddr = fromAddr !== null ? fromAddr : "developmentservices@ashevillenc.gov";
-    contactType = contactType !== null ? contactType : "";
+    toAddr = typeof toAddr !== 'undefined' ? toAddr : "";
+    fromAddr = typeof fromAddr !== 'undefined' ? fromAddr : "developmentservices@ashevillenc.gov";
+    contactType = typeof contactType !== 'undefined' ? contactType : "";
     var emailAddrs = [];
 
     if(toAddr != "") { emailAddrs.push(toAddr); }
