@@ -8,9 +8,8 @@ function emailByLicenseType(emailSubj, emailBody, licenseType, fromAddr, toAddr)
 
   if(licenseType != "") {
     var profArr = getLicenseProfessional(capId);
-    showDebug = true;
     if (profArr != null) {
-    	for(x in profArr) logDebug(profArr[x].getEmail(),1); 
+    	for(x in profArr) emailAddrs.push(profArr[x].getEmail()); 
   	}
     emailAddrs.push('wha@noway.arg');
     // var CapContacts = aa.people.getCapContactByCapID(capId);
@@ -25,11 +24,27 @@ function emailByLicenseType(emailSubj, emailBody, licenseType, fromAddr, toAddr)
     //   }
     // }
   }
+  showDebug = true;
+  var profObjArray = getLicenseProfessional(capId);
+  for (iProf in profObjArray) {
+    var tProfObj = profObjArray[iProf];
+    logDebug("LP Name: " + tProfObj.people.getFirstName() + " " + tProfObj.people.getLastName());
+    // var vProfObj = new licenseProfObject(tProfObj.getLicenseNbr());
+    // logDebug("LP Email: " + vProfObj.refLicModel.getEMailAddress());
+    // if(!matches(vProfObj.refLicModel.getEMailAddress(),null,undefined,"")) {
+    //   logDebug("LP Email: " + vProfObj.refLicModel.getEMailAddress());
+    //   var eParams = aa.util.newHashtable();
+    //   addParameter(eParams, "$$recordTypeAlias$$", cap.getCapType().getAlias());
+    //   getRecordParams4Notification(eParams);
+    //   getACARecordParam4Notification(eParams,acaURL);
+    //   vProfObj.getEmailTemplateParams(eParams);
+    //   getPrimaryAddressLineParam4Notification(eParams);
+    //   // getWorkflowParams4Notification(eParams); 
+    //   // getContactParams4Notification(eParams,contactTypesArray);
+    //   sendNotification(agencyReplyEmail,vProfObj.refLicModel.getEMailAddress(),"",notificationTemplate,eParams,null);
+    // } 
+  }
 
-  //var profArr = getLicenseProfessional(capId);
-  //if (profArr != null) {
-  //	for(x in profArr) if(profArr[x].getEmail() + '' != '') email(profArr[x].getEmail(),'noreply@ashevillenc.gov','Inspection Resulted','You are a professional on permit '+capIDString+' An Inspection '+inspType+' was completed with a result of '+inspResult+'.<br>Inspection Comment: '+inspComment+'<br><br><br>Thank You.');
-  //	}
 
   var addrString = emailAddrs.join(';') 
   if(addrString.indexOf("@") > 0) {
