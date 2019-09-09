@@ -1,9 +1,9 @@
 // Sends emails to everyone of contactType (unlike built in EmailContact, which just sends to one if multiple). 
 // Param contactType can also be "ALL".
 function emailByContactType(emailSubj, emailBody, contactType, fromAddr, toAddr) {
-    toAddr = typeof toAddr !== 'undefined' ? toAddr : "";
-    fromAddr = typeof fromAddr !== 'undefined' ? fromAddr : "developmentservices@ashevillenc.gov";
-    contactType = typeof contactType !== 'undefined' ? contactType : "";
+    toAddr = typeof toAddr !== 'undefined' || toAddr == null ? toAddr : "";
+    fromAddr = typeof fromAddr !== 'undefined' || fromAddr == null ? fromAddr : "developmentservices@ashevillenc.gov";
+    contactType = typeof contactType !== 'undefined' || contactType == null ? contactType : "";
     var emailAddrs = [];
 
     if(toAddr != "") { emailAddrs.push(toAddr); }
