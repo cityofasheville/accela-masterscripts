@@ -28,9 +28,9 @@ function emailByLicenseType(emailSubj, emailBody, licenseType, fromAddr, toAddr)
   var profObjArray = getLicenseProfessional(capId);
   for (iProf in profObjArray) {
     var tProfObj = profObjArray[iProf];
-    logDebug("LP Name: " + tProfObj.people.getFirstName() + " " + tProfObj.people.getLastName());
-    // var vProfObj = new licenseProfObject(tProfObj.getLicenseNbr());
-    // logDebug("LP Email: " + vProfObj.refLicModel.getEMailAddress());
+//    logDebug("LP Name: " + tProfObj.people.getFirstName() + " " + tProfObj.people.getLastName());
+    var vProfObj = new licenseProfObject(tProfObj.getLicenseNbr());
+    logDebug("LP Email: " + vProfObj.refLicModel.getEMailAddress());
     // if(!matches(vProfObj.refLicModel.getEMailAddress(),null,undefined,"")) {
     //   logDebug("LP Email: " + vProfObj.refLicModel.getEMailAddress());
     //   var eParams = aa.util.newHashtable();
