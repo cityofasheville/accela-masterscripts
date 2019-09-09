@@ -13,7 +13,7 @@ function emailByContactType(emailSubj, emailBody, contactType, fromAddr, toAddr)
       if (CapContacts.getSuccess()) {
         var ContactOutputs = CapContacts.getOutput();
         for (yy in ContactOutputs) {
-          if(contactType.equals(ContactOutputs[yy].getCapContactModel().getPeople().getContactType()) || (contactType == "Architect")) { 
+          if(contactType.equals(ContactOutputs[yy].getCapContactModel().getPeople().getContactType()) || (contactType == "ALL")) { 
             if(ContactOutputs[yy].getEmail() != null) {
               emailAddrs.push(ContactOutputs[yy].getEmail());
             }
