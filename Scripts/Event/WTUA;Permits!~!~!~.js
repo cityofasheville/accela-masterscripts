@@ -546,7 +546,7 @@ if (matches(wfStatus, 'Approved','Approved with Conditions')) {
 if (appMatch('Permits/Sign/Stand Alone/*')
 && wfTask == 'Issuance' && matches(wfStatus, 'Issue', 'Reissue')
 ) {
-	emailByContactType('test', 'Permit Number: '+capIDString+' <br> Location: '+CapAddress, 'Architect', null, 'nobody@avl.com');
+	emailByContactType('test', 'Permit Number: '+capIDString+' <br> Location: '+CapAddress, 'ALL', 'nobody@avl.com');
 }
 
 if (appMatch('Permits/Commercial/*/*')) {
