@@ -857,7 +857,7 @@ if (balanceDue > 0) {
 }
 
 if( appMatch('Permits/Sign/Stand Alone/*') && matches(inspType, 'BU-FOOTING')) {
-	let x = emailByLicenseType('test', 'Test: ', 'General Contractor', 'from.nobody@avl.com');
+	var x = emailByLicenseType('test', 'Test: ', 'General Contractor', 'from.nobody@avl.com');
 	showMessage = true;
 	comment(x);
 	cancel = true;
