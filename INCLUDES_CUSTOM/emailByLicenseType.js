@@ -34,5 +34,6 @@ function emailByLicenseType(emailSubj, emailBody, licenseType, fromAddr, toAddr)
   }else{
     logDebug("Couldn't send emails, invalid address");
   }
+  return profArr;
 }
 // TO CALL: emailByLicenseType(emailSubj, emailBody, licenseType, fromAddr, toAddr) 
