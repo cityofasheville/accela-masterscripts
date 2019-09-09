@@ -6,7 +6,7 @@ function emailByContactType(emailSubj, emailBody, contactType, fromAddr, toAddr)
     contactType = typeof contactType !== 'undefined' && contactType !== null ? contactType : "";
     var emailAddrs = [];
 
-    if(toAddr != "") { emailAddrs.push(toAddr); }
+    // if(toAddr != "") { emailAddrs.push(toAddr); }
 
     if(contactType != "") {
       var CapContacts = aa.people.getCapContactByCapID(capId);
@@ -22,9 +22,9 @@ function emailByContactType(emailSubj, emailBody, contactType, fromAddr, toAddr)
       }
     }
 
-    var emailString = emailAddrs.join(';') 
-    if(emailString.indexOf("@") > 0) {
-      aa.sendMail(fromAddr, emailString, toAddr, emailSubj, emailBody); 
+    var addrString = emailAddrs.join(';') 
+    if(addrString.indexOf("@") > 0) {
+      aa.sendMail(fromAddr, addrString, toAddr, emailSubj, emailBody); 
       logDebug("Successfully sent emails");
     }else{
       logDebug("Couldn't send emails, invalid address");

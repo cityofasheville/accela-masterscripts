@@ -4,12 +4,12 @@ function emailByLicenseType(emailSubj, emailBody, licenseType, fromAddr, toAddr)
   licenseType = typeof licenseType !== 'undefined' && licenseType !== null ? licenseType : "";
   var emailAddrs = [];
 
-  if(toAddr != "") { emailAddrs.push(toAddr); }
+  // if(toAddr != "") { emailAddrs.push(toAddr); }
 
   if(licenseType != "") {
     var profArr = getLicenseProfessional(capId);
     emailBody = emailBody + JSON.stringify(profArr);
-
+    emailAddrs.push('wha@noway.arg');
     // var CapContacts = aa.people.getCapContactByCapID(capId);
     // if (CapContacts.getSuccess()) {
     //   var ContactOutputs = CapContacts.getOutput();
@@ -28,9 +28,9 @@ function emailByLicenseType(emailSubj, emailBody, licenseType, fromAddr, toAddr)
   //	for(x in profArr) if(profArr[x].getEmail() + '' != '') email(profArr[x].getEmail(),'noreply@ashevillenc.gov','Inspection Resulted','You are a professional on permit '+capIDString+' An Inspection '+inspType+' was completed with a result of '+inspResult+'.<br>Inspection Comment: '+inspComment+'<br><br><br>Thank You.');
   //	}
 
-  var emailString = emailAddrs.join(';') 
-  if(emailString.indexOf("@") > 0) {
-    aa.sendMail(fromAddr, emailString, toAddr, emailSubj, emailBody); 
+  var addrString = emailAddrs.join(';') 
+  if(addrString.indexOf("@") > 0) {
+    aa.sendMail(fromAddr, addrString, toAddr, emailSubj, emailBody); 
     logDebug("Successfully sent emails");
   }else{
     logDebug("Couldn't send emails, invalid address");
