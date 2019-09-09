@@ -1,23 +1,26 @@
 function emailByLicenseType(emailSubj, emailBody, licenseType, fromAddr, toAddr) {
-  toAddr = typeof toAddr !== 'undefined' ? toAddr : "";
-  fromAddr = typeof fromAddr !== 'undefined' ? fromAddr : "developmentservices@ashevillenc.gov";
-  licenseType = typeof licenseType !== 'undefined' ? licenseType : "";
+  toAddr = typeof toAddr !== 'undefined' && toAddr !== null ? toAddr : "";
+  fromAddr = typeof fromAddr !== 'undefined' && fromAddr !== null ? fromAddr : "developmentservices@ashevillenc.gov";
+  licenseType = typeof licenseType !== 'undefined' && licenseType !== null ? licenseType : "";
   var emailAddrs = [];
 
   if(toAddr != "") { emailAddrs.push(toAddr); }
 
-  if(contactType != "") {
-    var CapContacts = aa.people.getCapContactByCapID(capId);
-    if (CapContacts.getSuccess()) {
-      var ContactOutputs = CapContacts.getOutput();
-      for (yy in ContactOutputs) {
-        if(contactType.equals(ContactOutputs[yy].getCapContactModel().getPeople().getContactType())) { 
-          if(ContactOutputs[yy].getEmail() != null) {
-            emailAddrs.push(ContactOutputs[yy].getEmail());
-          }
-        }
-      }
-    }
+  if(licenseType != "") {
+    var profArr = getLicenseProfessional(capId);
+    emailBody = emailBody + JSON.stringify(profArr);
+
+    // var CapContacts = aa.people.getCapContactByCapID(capId);
+    // if (CapContacts.getSuccess()) {
+    //   var ContactOutputs = CapContacts.getOutput();
+    //   for (yy in ContactOutputs) {
+    //     if(contactType.equals(ContactOutputs[yy].getCapContactModel().getPeople().getContactType())) { 
+    //       if(ContactOutputs[yy].getEmail() != null) {
+    //         emailAddrs.push(ContactOutputs[yy].getEmail());
+    //       }
+    //     }
+    //   }
+    // }
   }
 
   //var profArr = getLicenseProfessional(capId);

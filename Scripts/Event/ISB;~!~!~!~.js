@@ -855,3 +855,16 @@ if (balanceDue > 0) {
 	comment("<font size=small><b>Balance Due:</b></font><br><br>Inspection cannot be scheduled because there is a balance due for this Record.<br><br>");
 	cancel = true;
 }
+
+if( appMatch('Permits/Sign/Stand Alone/*') && matches(inspType, 'GR-PRELIMINARY')) {
+	showMessage = true;
+	comment("Nope");
+	cancel = true;
+}
+
+if (appMatch('Permits/Sign/Stand Alone/*')
+&& wfTask == 'Issuance' && matches(wfStatus, 'Issue', 'Reissue')
+) {
+	// emailByLicenseType(emailSubj, emailBody, licenseType, fromAddr, toAddr) 
+	emailByLicenseType('test', 'Test: ', 'General Contractor', 'from.nobody@avl.com');
+}
