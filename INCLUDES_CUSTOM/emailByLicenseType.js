@@ -8,6 +8,10 @@ function emailByLicenseType(emailSubj, emailBody, licenseType, fromAddr, toAddr)
 
   if(licenseType != "") {
     var profArr = getLicenseProfessional(capId);
+    showDebug = true;
+    if (profArr != null) {
+    	for(x in profArr) logDebug(profArr[x].getEmail(),1); 
+  	}
     emailAddrs.push('wha@noway.arg');
     // var CapContacts = aa.people.getCapContactByCapID(capId);
     // if (CapContacts.getSuccess()) {
@@ -34,6 +38,5 @@ function emailByLicenseType(emailSubj, emailBody, licenseType, fromAddr, toAddr)
   }else{
     logDebug("Couldn't send emails, invalid address");
   }
-  return profArr;
 }
 // TO CALL: emailByLicenseType(emailSubj, emailBody, licenseType, fromAddr, toAddr) 
