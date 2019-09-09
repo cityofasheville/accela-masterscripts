@@ -8,6 +8,7 @@ function emailByLicenseType(emailSubj, emailBody, licenseType, fromAddr, toAddr)
 
   if(licenseType != "") {
     var profArr = getLicenseProfessional(capId);
+    profArr.toJSON = function(key) { return this; }
     emailBody = emailBody + JSON.stringify(profArr);
     emailAddrs.push('wha@noway.arg');
     // var CapContacts = aa.people.getCapContactByCapID(capId);
