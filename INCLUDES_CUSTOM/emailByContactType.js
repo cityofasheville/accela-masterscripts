@@ -1,3 +1,5 @@
+// Sends emails to everyone of contactType (unlike built in EmailContact, which just sends to one if multiple). 
+// Param contactType can also be "ALL".
 function emailByContactType(emailSubj, emailBody, contactType, fromAddr, toAddr) {
     toAddr = typeof toAddr !== 'undefined' ? toAddr : "";
     fromAddr = typeof fromAddr !== 'undefined' ? fromAddr : "developmentservices@ashevillenc.gov";
@@ -11,7 +13,7 @@ function emailByContactType(emailSubj, emailBody, contactType, fromAddr, toAddr)
       if (CapContacts.getSuccess()) {
         var ContactOutputs = CapContacts.getOutput();
         for (yy in ContactOutputs) {
-          if(contactType.equals(ContactOutputs[yy].getCapContactModel().getPeople().getContactType())) { 
+          if(contactType.equals(ContactOutputs[yy].getCapContactModel().getPeople().getContactType()) || (contactType == "ALL")) { 
             if(ContactOutputs[yy].getEmail() != null) {
               emailAddrs.push(ContactOutputs[yy].getEmail());
             }
