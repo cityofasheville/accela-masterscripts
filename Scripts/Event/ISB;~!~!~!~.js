@@ -856,15 +856,9 @@ if (balanceDue > 0) {
 	cancel = true;
 }
 
-if( appMatch('Permits/Sign/Stand Alone/*') && matches(inspType, 'GR-PRELIMINARY')) {
+if( appMatch('Permits/Sign/Stand Alone/*') && matches(inspType, 'BU-FOOTING')) {
+	emailByLicenseType('test', 'Test: ', 'General Contractor', 'from.nobody@avl.com');
 	showMessage = true;
 	comment("Nope");
 	cancel = true;
-}
-
-if (appMatch('Permits/Sign/Stand Alone/*')
-&& wfTask == 'Issuance' && matches(wfStatus, 'Issue', 'Reissue')
-) {
-	// emailByLicenseType(emailSubj, emailBody, licenseType, fromAddr, toAddr) 
-	emailByLicenseType('test', 'Test: ', 'General Contractor', 'from.nobody@avl.com');
 }
