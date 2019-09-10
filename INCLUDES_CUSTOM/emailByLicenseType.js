@@ -30,7 +30,7 @@ function emailByLicenseType(emailSubj, emailBody, licenseType, fromAddr, toAddr)
     var tProfObj = profObjArray[iProf];
 //    logDebug("LP Name: " + tProfObj.people.getFirstName() + " " + tProfObj.people.getLastName());
     var vProfObj = new licenseProfObject(tProfObj.getLicenseNbr());
-    logDebug("LP Email: " + vProfObj ); //.refLicModel.getEMailAddress());
+    logDebug("LP Email: " + Object.keys(vProfObj)[0] ); //.refLicModel.getEMailAddress());
     // if(!matches(vProfObj.refLicModel.getEMailAddress(),null,undefined,"")) {
     //   logDebug("LP Email: " + vProfObj.refLicModel.getEMailAddress());
     //   var eParams = aa.util.newHashtable();
