@@ -857,8 +857,5 @@ if (balanceDue > 0) {
 }
 
 if( appMatch('Permits/Sign/Stand Alone/*') && matches(inspType, 'BU-FOOTING')) {
-	emailByLicenseType('test', 'Test: ', 'General Contractor', 'from.nobody@avl.com');
-	// showMessage = true;
-	// comment(x,1);
-	// cancel = true;
+	emailByLicenseType('test', 'Test: ', 'Unlicensed Contractor', 'from.nobody@avl.com', 'to.nobody@avl.com');
 }
