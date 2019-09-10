@@ -1,12 +1,10 @@
 // Sends emails to everyone of contactType (unlike built in EmailContact, which just sends to one if multiple). 
 // Param contactType can also be "ALL".
-function emailByContactType(emailSubj, emailBody, contactType, fromAddr, toAddr) {
-    toAddr = typeof toAddr !== 'undefined' && toAddr !== null ? toAddr : "";
+function emailByContactType(emailSubj, emailBody, contactType, fromAddr, ccAddr) {
+    ccAddr = typeof ccAddr !== 'undefined' && ccAddr !== null ? ccAddr : "";
     fromAddr = typeof fromAddr !== 'undefined' && fromAddr !== null ? fromAddr : "developmentservices@ashevillenc.gov";
     contactType = typeof contactType !== 'undefined' && contactType !== null ? contactType : "";
     var emailAddrs = [];
-
-    // if(toAddr != "") { emailAddrs.push(toAddr); }
 
     if(contactType != "") {
       var CapContacts = aa.people.getCapContactByCapID(capId);
@@ -21,10 +19,9 @@ function emailByContactType(emailSubj, emailBody, contactType, fromAddr, toAddr)
         }
       }
     }
-
     var addrString = emailAddrs.join(';') 
     if(addrString.indexOf("@") > 0) {
-      aa.sendMail(fromAddr, addrString, toAddr, emailSubj, emailBody); 
+      aa.sendMail(fromAddr, addrString, ccAddr, emailSubj, emailBody); 
       logDebug("Successfully sent emails");
     }else{
       logDebug("Couldn't send emails, invalid address");
