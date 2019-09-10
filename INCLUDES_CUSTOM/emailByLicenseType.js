@@ -29,10 +29,15 @@ function emailByLicenseType(emailSubj, emailBody, licenseType, fromAddr, toAddr)
   for (iProf in profObjArray) {
     var tProfObj = profObjArray[iProf];
 //    logDebug("LP Name: " + tProfObj.people.getFirstName() + " " + tProfObj.people.getLastName());
-    var vProfObj = new licenseProfObject(tProfObj.getLicenseNbr());
+    var vProfObj = new licenseProfObject(tProfObj.getLicenseNbr()); // refLicModel,infoTableGroupCodeObj,infoTableSubGroupCodesObj,infoTables,attribs,valid,validTables,validAttrs,getEmailTemplateParams,refreshTables,getMaxRowByTable,addTableRow,addTableFromASIT,removeTableRow,removeTable,setTableEnabledFlag,setDisplayInACA4Table,getAttribute,setAttribute,updateFromRecordContactByType,updateFromAddress,updateFromRecordLicensedProf,copyToRecord,enable,disable,getAssociatedRecords,updateRecord
+    
     var keysProfObj = Object.keys(vProfObj);
-    logDebug("keys: " + keysProfObj);
-    logDebug("key1: " + keysProfObj[0] ); //.refLicModel.getEMailAddress());
+    logDebug("keysProfObj: " + keysProfObj);
+
+    var refLicModel = vProfObj.refLicModel;
+    var keysRefLicModel = Object.keys(refLicModel);
+    logDebug("keysRefLicModel: " + keysRefLicModel);
+
     
     // logDebug("LP Email: " + vProfObj.refLicModel.getEMailAddress());
     // if(!matches(vProfObj.refLicModel.getEMailAddress(),null,undefined,"")) {
