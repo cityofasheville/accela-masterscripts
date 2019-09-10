@@ -562,7 +562,7 @@ if (appMatch('Permits/*/*/SFD') || appMatch('Permits/*/*/SFD Waiver') || appMatc
 	}
 }
 // added 8/30/19 as per Misty
-if (appMatch('Permits/Residential/Existing Building/Alterations w Addition') || appMatch('Permits/Residential/Existing Building/Alterations'))  {
-			createPendingInspection('R_MASTER', 'BU-FRAMING');
-			createPendingInspection('R_MASTER', 'BU-INSULATION');
-}
+//if (appMatch('Permits/Residential/Existing Building/Alterations w Addition') || appMatch('Permits/Residential/Existing Building/Alterations'))  {
+//			createPendingInspection('R_MASTER', 'BU-FRAMING');
+//			createPendingInspection('R_MASTER', 'BU-INSULATION');
+// }
