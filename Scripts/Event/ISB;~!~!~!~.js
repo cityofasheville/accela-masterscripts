@@ -407,10 +407,10 @@ if (matches(inspType, 'BU-FRAMING') && checkInspectionResult('BU-FOOTING', 'Pend
 	comment("<font size=small><b>BU-FRAMING Inspection Not Allowed:</b></font><br><br>The BU-FOOTING inspection must be scheduled. Inspections not required by scope will be marked NotApplicable by the inspector.<br><br>");
 	cancel = true;
 }
-//added 03/18/19 to take into affect the Site Record child being removed for Residential
+//added 03/18/19 to take into affect the Site Record child being removed for Residential 9/11/19 fixed error message
 if (matches(inspType, 'BU-FOOTING') && checkInspectionResult('GR-PRELIMINARY', 'Pending')) {
 	showMessage = true;
-	comment("<font size=small><b>BU-FRAMING Inspection Not Allowed:</b></font><br><br>The BU-FOOTING inspection must be scheduled. Inspections not required by scope will be marked NotApplicable by the inspector.<br><br>");
+	comment("<font size=small><b>BU-FOOTING Inspection Not Allowed:</b></font><br><br>The GR-PRELIMINARY inspection must be scheduled. Inspections not required by scope will be marked NotApplicable by the inspector.<br><br>");
 	cancel = true;
 }
 //
