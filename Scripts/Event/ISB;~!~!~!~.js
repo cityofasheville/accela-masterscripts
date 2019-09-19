@@ -1,5 +1,5 @@
 //Added 6/14/19 check for approved finals before issuing BU FINAL
-if ( (appMatch("Permits/Residential/New Building/*") || appMatch("Permits/Residential/Accessory Structure/*")) && (matches(inspType, 'BU-FINAL', 'BU-FINAL-REINSP')) ) {
+if ( (appMatch("Permits/*/New Building/*") || appMatch("Permits/*/Accessory Structure/*") || appMatch("Permits/*/Existing Building/*")) && !appMatch("*/*/*/Repair-Replacement") && !appMatch("*/*/*/Reroof") && (matches(inspType, 'BU-FINAL', 'BU-FINAL-REINSP')) ) {
 	if (!checkInspectionResult('EE-FINAL', 'Approved') && 
 			!checkInspectionResult('EE-FINAL', 'Approved with Conditions') && 
 			!checkInspectionResult('EE-FINAL', 'Scheduled') && 
@@ -107,6 +107,18 @@ if ( (appMatch("Permits/Residential/New Building/*") || appMatch("Permits/Reside
 				comment("<font size=small><b>Can't schedule BU Final:</b></font><br><br>GP Final must be approved first.<br><br>");
 				cancel = true;
 	}
+// Zoning final is never needed before any Building final as per Misty 9/13/19
+//  if (!checkInspectionResult('ZO-FINAL', 'Approved') && appMatch("Permits/Commercial/*/*") &&
+//			!checkInspectionResult('ZO-FINAL', 'Approved with Conditions') && 
+//			!checkInspectionResult('ZO-FINAL', 'Scheduled') && 
+//			!checkInspectionResult('ZO-FINAL-REINSP', 'Approved') && 
+//			!checkInspectionResult('ZO-FINAL-REINSP', 'Approved with Conditions') && 
+//			!checkInspectionResult('ZO-FINAL-REINSP', 'Scheduled') && 
+//			AInfo['ZO Permit'] != 'NA') {
+//				showMessage = true;
+//				comment("<font size=small><b>Can't schedule BU Final:</b></font><br><br>ZO Final must be approved first.<br><br>");
+//				cancel = true;
+//	}
 }		
 
 //Added 6/12/19 check for approved gr preliminary
