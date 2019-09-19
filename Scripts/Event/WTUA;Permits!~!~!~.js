@@ -210,6 +210,10 @@ if (wfTask == 'Conditions of Approval') {
 			setTask(condition, 'N', 'Y', 'ADMIN');
 		}
 	}
+	// 9/19/2019 set Backflow Approval 
+	if (isTaskActive('Cross Connection', 'ADMIN')) {
+		setTask('Backflow Approval', 'Y', 'N', 'CLOSE OUT');
+	}
 }
 
 // 8/1/2019 
@@ -547,7 +551,7 @@ if (matches(wfStatus, 'Approved','Approved with Conditions')) {
 	}
 }
 
-// 8/22/2019 Add Driveway or Grading inspections on issuance
+// 8/22/2019 
 if (appMatch('Permits/*/*/SFD') || appMatch('Permits/*/*/SFD Waiver') || appMatch('Permits/Residential/Existing Building/Alterations w Addition')) {
 	if(wfTask == 'Issuance' && matches(wfStatus, 'Issue', 'Reissue')) {
 		if (AInfo['DR Permit'] != 'NA') {
@@ -605,15 +609,6 @@ if (appMatch('Permits/Commercial/*/*')) {
     'backflowmailbox@ashevillenc.gov')
   }
 }
-// 9/17/2019 Cross Connection Task Activated email
-if (appMatch('Permits/Commercial/*/*')) {
-	if (matches(wfTask, 'Conditions of Approval') && matches(wfStatus, 'Items Pending')) {
-		if (AInfo['Cross Connection'] != 'No') {
-			email(
-			'backflowmailbox@ashevillenc.gov',
-			'developmentservices@ashevillenc.gov',
-			'Cross Connection Task Activated',
-			'The following location ' + CapAddress + ' has had the cross connection task activated for permit ' + capIDString + '.' );
-		}
-	}
-}
+
+
+//setTask(divisionReviewCheck, 'N', 'Y', 'DIVISION REVIEW');
