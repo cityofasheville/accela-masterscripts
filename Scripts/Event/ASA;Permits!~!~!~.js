@@ -147,7 +147,7 @@ if (appMatch('Permits/Residential/New Building/*')|| appMatch('Permits/Residenti
 //end replaced branch: APP_SA_BRANCH_PERMITS;
 
 // added 8/30/19 as per Misty
-if (appMatch('Permits/Residential/Existing Building/Alterations w Addition') || appMatch('Permits/Residential/Existing Building/Alterations'))  {
+if (appMatch('Permits/Residential/Existing Building/Alterations w Addition') || appMatch('Permits/Residential/Existing Building/Alterations') || appMatch('Permits/Residential/Existing Building/Repair-Replacement'))  {
 			createPendingInspection('R_MASTER', 'BU-FRAMING');
 			createPendingInspection('R_MASTER', 'BU-INSULATION');
 }
