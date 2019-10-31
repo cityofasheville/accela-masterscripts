@@ -358,10 +358,12 @@ if (wfTask == 'Permit Verification' && matches(wfStatus, 'Issue', 'Reissue', 'Is
 // End added 5/23
 
 // Added below 2/22/19 to send email to primary contact when CA (HRC) is issued.
-//
+// 10/31/19 comes from residentialpermits@
  if (wfTask == 'Issuance' && matches(wfStatus, 'Issue') && appMatch('Planning/HRC/*/*')) {
-	emailAllContacts('Your Certificate of Appropriateness (CA) Has Been Issued -- Important Instructions Inside', 'Permit Number: ' + capIDString + ' <br> Location: ' + CapAddress + ' <br><br> Your application for a Certificate of Appropriateness (CA) has been reviewed and approved.<br><br> You may pick up the CA online by visiting our Citizen Access Portal at https://services.ashevillenc.gov/CitizenAccess/ or in person at the Development Services Department located at 161 S. Charlotte Street during regular business hours. <br><br>If you visit Citizen Access to pick up your CA, login, search for the record number in the upper right hand corner, then go to Record Info then Attachments. Then download the CA from the attachments. The CA is required to be posted on site along with any other required permits.<br><br> If you have questions, please contact the Permit Application Center at PAC@ashevillenc.gov or 828-259-5846.');
-
+	emailByContactType('Your Certificate of Appropriateness (CA) Has Been Issued -- Important Instructions Inside', 
+	'Permit Number: ' + capIDString + ' <br> Location: ' + CapAddress + ' <br><br> Your application for a Certificate of Appropriateness (CA) has been reviewed and approved.<br><br> You may pick up the CA online by visiting our Citizen Access Portal at https://services.ashevillenc.gov/CitizenAccess/ or in person at the Development Services Department located at 161 S. Charlotte Street during regular business hours. <br><br>If you visit Citizen Access to pick up your CA, login, search for the record number in the upper right hand corner, then go to Record Info then Attachments. Then download the CA from the attachments. The CA is required to be posted on site along with any other required permits.<br><br> If you have questions, please contact the Permit Application Center at PAC@ashevillenc.gov or 828-259-5846.',
+	'ALL', 
+	'residentialpermits@ashevillenc.gov')
 }	
 // End added 2/22
 
