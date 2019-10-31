@@ -85,7 +85,7 @@ if (appMatch('*/*/*/Repair-Replacement')) {
 }
 
 if (appMatch('*/*/*/Multi-Trade')) {
-	email('KSlagle@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Multi-Trade ACA Permit Created', 'The following permit, ' + capIDString + ' was just created in ACA. Please verify that it was pulled appropriately.');
+	email('KAkabar2@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Multi-Trade ACA Permit Created', 'The following permit, ' + capIDString + ' was just created in ACA. Please verify that it was pulled appropriately.');
 	email('TGordon@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Multi-Trade ACA Permit Created', 'The following permit, ' + capIDString + ' was just created in ACA. Please verify that it was pulled appropriately.');
 }
 
