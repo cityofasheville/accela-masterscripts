@@ -137,7 +137,7 @@ if ((appMatch("Permits/Residential/New Building/*") || appMatch("Permits/Residen
 }
 
 
-if ((appMatch('Permits/*/*/*') || appMatch('Planning/*/*/*')) && !matches(capStatus, 'Issued', 'Reissued', 'Partial Issued', 'TCO Issued', 'Inspections', 'TCO Reissued', 'TCC Issued', 'In Compliance', 'Renewed', 'Amended', 'TCO Issued 30 Days', 'TCO Issued 60 Days', 'TCO Issued 90 Days', 'TCC Issued 30 Days', 'TCC Issued 60 Days', 'TCC Issued 90 Days')) {
+if ((appMatch('Permits/*/*/*') || appMatch('Planning/*/*/*')) && !matches(capStatus, 'Issued', 'Reissued', 'Partial Issued', 'TCO Issued', 'Inspections', 'TCO Reissued', 'TCC Issued', 'In Compliance', 'Renewed', 'Amended', 'TCO Issued 30 Days', 'TCO Issued 60 Days', 'TCO Issued 90 Days', 'TCC Issued 30 Days', 'TCC Issued 60 Days', 'TCC Issued 90 Days', 'Pending Inspection')) {
 	showMessage = true;
 	comment("<font size=small><b>Permit NOT Issued:</b></font><br><br>Please visit the Development Services Department for re-issuance.<br><br>");
 	cancel = true;
