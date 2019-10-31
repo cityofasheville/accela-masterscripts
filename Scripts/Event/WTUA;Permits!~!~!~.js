@@ -493,20 +493,32 @@ if (appMatch('*/*/*/Repair-Replacement') && matches(wfStatus, 'Hold - See Commen
 	}
 
 	if (matches(wfTask, 'Air Quality')) {
-		emailContact('Permit Suspended', 'You are listed as a contact for permit ' + capIDString + " This repair - replacement permit has been suspended by the WNC Regional Air Quality Agency.Please cease work and contact Mike Matthews at 828 - 250 - 6776 for information regarding next steps.");
+		emailAllContacts('Permit Suspended', 'You are listed as a contact for permit ' + capIDString + " This repair - replacement permit has been suspended by the WNC Regional Air Quality Agency.Please cease work and contact Mike Matthews at 828 - 250 - 6776 for information regarding next steps.");
 	}
 
 	if (matches(wfTask, 'Fire Review')) {
-		emailContact('Permit Suspended', "You are listed as a contact for permit " + capIDString + " This repair - replacement permit has been suspended by the Fire Marshal ' s Office.Please cease work and contact the permit office at 828 - 259 - 5846 for information regarding next steps.");
+		emailAllContacts('Permit Suspended', "You are listed as a contact for permit " + capIDString + " This repair - replacement permit has been suspended by the Fire Marshal ' s Office.Please cease work and contact the permit office at 828 - 259 - 5846 for information regarding next steps.");
 	}
 }
 
 
 profArr = getLicenseProfessional(capId);
 if ((appMatch('Planning/Development/*/*') || appMatch('Planning/Subdivision/*/*') || appMatch('Permits/*/Site Work/*')) && matches(wfStatus, 'Issue') && AInfo['Issue Grading Permit To'] != 'NA') {
-	emailContact(
+	if(appMatch('Permits/Residential/Site Work/*')) {
+		emailByContactType(
 		'Grading Preliminary Inspection Required',
-		'Permit Number: ' + capIDString + ' <br> Location: ' + CapAddress + ' <br> A Grading Permit is being issued for this location contingent upon proper installation of all erosion control devices. <br> The contractor must schedule a GR-PRELIM inspection before commencing work. All approved plans and permits must be on site. Silt Fencing and a Construction Entrance must be installed, and the temporary address must be posted. This inspection is required on individual lots, master sites and also required for individual lots within Subdivisions. Building permit inspections will be delayed until the Grading Preliminary inspection is approved. Thank you.');
+		'Permit Number: ' + capIDString + ' <br> Location: ' + CapAddress + ' <br> A Grading Permit is being issued for this location contingent upon proper installation of all erosion control devices. <br> The contractor must schedule a GR-PRELIM inspection before commencing work. All approved plans and permits must be on site. Silt Fencing and a Construction Entrance must be installed, and the temporary address must be posted. This inspection is required on individual lots, master sites and also required for individual lots within Subdivisions. Building permit inspections will be delayed until the Grading Preliminary inspection is approved. Thank you.',
+		'ALL',
+		'residentialpermits@ashevillenc.gov'
+		)
+	} else {
+		emailByContactType(
+		'Grading Preliminary Inspection Required',
+		'Permit Number: ' + capIDString + ' <br> Location: ' + CapAddress + ' <br> A Grading Permit is being issued for this location contingent upon proper installation of all erosion control devices. <br> The contractor must schedule a GR-PRELIM inspection before commencing work. All approved plans and permits must be on site. Silt Fencing and a Construction Entrance must be installed, and the temporary address must be posted. This inspection is required on individual lots, master sites and also required for individual lots within Subdivisions. Building permit inspections will be delayed until the Grading Preliminary inspection is approved. Thank you.',
+		'ALL',
+		'developmentservices@ashevillenc.gov'
+		)
+	}
 	// Declared above as well
 	if (profArr != null) {
 		for (x in profArr) {
@@ -523,16 +535,24 @@ if ((appMatch('Planning/Development/*/*') || appMatch('Planning/Subdivision/*/*'
 // two emails reformatted 8/22/2019
 if (appMatch('Permits/Residential/*/*') && !appMatch('Permits/Residential/Home Occupation/*')) {
 	if (matches(wfTask, 'Building Review','Zoning Review','Grading','Driveway','Planning') && matches(wfStatus, 'Hold for Revision')&& appMatch('Permits/Residential/*/*')) {
-		emailContactAndOthers('Action Needed On Your Permit', '<html><head><style>ol {margin: 0;padding: 0}</style></head><body>Permit Number: ' + capIDString + ' <br>Location: ' + CapAddress + ' <br><p>Your residential permit application has been reviewed and requires additional information and/or revision. For your convenience, you may visit the Citizen Access website (<a href="https://services.ashevillenc.gov/citizenaccess">https://services.ashevillenc.gov/citizenaccess</a>) to print your permit and approved plans/comments. </p><p>Please refer to the following steps to access your approved permit and plans/comments online in .PDF format:</p><p><ol><li>Visit <a href="https://services.ashevillenc.gov/citizenaccess">https://services.ashevillenc.gov/citizenaccess</a>. Register for a Citizen Access account if you have not already done so, then log in to access the permit documents.</li><li>Enter your permit number in the top right <b>search box</b> and click on the green spyglass to pull up the permit record.</li><li>Click <b>Record Info</b> to access a drop-down menu; then select <b>Attachments</b> from the drop-down menu.</li><li>To download reviewed plans and comments, click the blue links next to documents labeled <b>REVIEWED SITE PLANS + COMMENTS</b> and/or <b>REVIEWED BUILDING PLANS + COMMENTS.</b></li></ol></p><p>You may resubmit your revised plans and response to comments online in .PDF format through <a href="develop.ashevillenc.gov">develop.ashevillenc.gov</a> or in person during business hours at 161 S. Charlotte St.</p><p>For additional information and resubmittal guidelines, visit <a href="http://bit.ly/dsd_new_residential">http://bit.ly/dsd_new_residential</a>. </p><p>Please note that your plans may be reviewed by staff from multiple divisions, including the Building Safety Division ("Building"), Planning and Zoning Division ("Planning"), and Site Engineering Division ("Site") depending on your scope of work. You will receive additional notification emails if your application receives plan review comments from other divisions.</p><p>If you have questions, please contact the Permit Application Center at <a href="mailto:PAC@ashevillenc.gov">PAC@ashevillenc.gov</a> or 828-259-5846 or visit in-person at 161 S. Charlotte St. on Monday-Friday from 8:30 am - 5:00 pm. </p><hr></body></html>','TAlley@ashevillenc.gov');
+		emailByContactType('Action Needed On Your Permit', 
+			'<html><head><style>ol {margin: 0;padding: 0}</style></head><body>Permit Number: ' + capIDString + ' <br>Location: ' + CapAddress + ' <br><p>Your residential permit application has been reviewed and requires additional information and/or revision. For your convenience, you may visit the Citizen Access website (<a href="https://services.ashevillenc.gov/citizenaccess">https://services.ashevillenc.gov/citizenaccess</a>) to print your permit and approved plans/comments. </p><p>Please refer to the following steps to access your approved permit and plans/comments online in .PDF format:</p><p><ol><li>Visit <a href="https://services.ashevillenc.gov/citizenaccess">https://services.ashevillenc.gov/citizenaccess</a>. Register for a Citizen Access account if you have not already done so, then log in to access the permit documents.</li><li>Enter your permit number in the top right <b>search box</b> and click on the green spyglass to pull up the permit record.</li><li>Click <b>Record Info</b> to access a drop-down menu; then select <b>Attachments</b> from the drop-down menu.</li><li>To download reviewed plans and comments, click the blue links next to documents labeled <b>REVIEWED SITE PLANS + COMMENTS</b> and/or <b>REVIEWED BUILDING PLANS + COMMENTS.</b></li></ol></p><p>You may resubmit your revised plans and response to comments online in .PDF format through <a href="develop.ashevillenc.gov">develop.ashevillenc.gov</a> or in person during business hours at 161 S. Charlotte St.</p><p>For additional information and resubmittal guidelines, visit <a href="http://bit.ly/dsd_new_residential">http://bit.ly/dsd_new_residential</a>. </p><p>Please note that your plans may be reviewed by staff from multiple divisions, including the Building Safety Division ("Building"), Planning and Zoning Division ("Planning"), and Site Engineering Division ("Site") depending on your scope of work. You will receive additional notification emails if your application receives plan review comments from other divisions.</p><p>If you have questions, please contact the Permit Application Center at <a href="mailto:PAC@ashevillenc.gov">PAC@ashevillenc.gov</a> or 828-259-5846 or visit in-person at 161 S. Charlotte St. on Monday-Friday from 8:30 am - 5:00 pm. </p><hr></body></html>',
+			'ALL',
+			'residentialpermits@ashevillenc.gov'
+			);
 	}
 }
 // added 2/20/2019 to email all residential customers, electronic submittal or not, when a permit can be picked up online 
 if (appMatch('Permits/Residential/*/*') && wfTask == 'Issuance' && matches(wfStatus, 'Issue', 'Reissue')) {
-	emailContact('Permit Approved', '<html><head><style>ol {margin: 0;padding: 0}</style></head><body>Permit Number: ' + capIDString + ' <br>Location: ' + CapAddress + ' <br><p>Your residential permit application has been approved. For your convenience, you may visit the Citizen Access website (<a href="https://services.ashevillenc.gov/citizenaccess">https://services.ashevillenc.gov/citizenaccess</a>) to print your permit and approved plans/comments. </p><p>Please note that the issued permit along with the approved plans/comments must be maintained in hard copy on the project site during construction until the permit is closed.</p><p>Please refer to the following steps to access your approved permit and plans/comments online in .PDF format:</p><p><ol><li>Visit <a href="https://services.ashevillenc.gov/citizenaccess">https://services.ashevillenc.gov/citizenaccess</a>. Register for a Citizen Access account if you have not already done so, then log in to access the permit documents.</li><li>Enter your permit number in the top right <b>search box</b> and click on the green spyglass to pull up the permit record.</li><li>Click <b>Record Info</b> to access a drop-down menu; then select <b>Attachments</b> from the drop-down menu.</li><li>To download the 1) issued permit and 2) approved plans/comments, click the blue links next to documents labeled <b>ISSUED PERMIT</b> and <b>APPROVED SITE PLANS + COMMENTS</b> and/or <b>APPROVED BUILDING PLANS + COMMENTS.</b> </li></ol></p><p>If you have questions, please contact the Permit Application Center at PAC@ashevillenc.gov or 828-259-5846 or visit in-person at 161 S. Charlotte St. on Monday-Friday from 8:30 am - 5:00 pm. </p><hr></body></html>');
+	emailByContactType('Permit Approved', 
+		'<html><head><style>ol {margin: 0;padding: 0}</style></head><body>Permit Number: ' + capIDString + ' <br>Location: ' + CapAddress + ' <br><p>Your residential permit application has been approved. For your convenience, you may visit the Citizen Access website (<a href="https://services.ashevillenc.gov/citizenaccess">https://services.ashevillenc.gov/citizenaccess</a>) to print your permit and approved plans/comments. </p><p>Please note that the issued permit along with the approved plans/comments must be maintained in hard copy on the project site during construction until the permit is closed.</p><p>Please refer to the following steps to access your approved permit and plans/comments online in .PDF format:</p><p><ol><li>Visit <a href="https://services.ashevillenc.gov/citizenaccess">https://services.ashevillenc.gov/citizenaccess</a>. Register for a Citizen Access account if you have not already done so, then log in to access the permit documents.</li><li>Enter your permit number in the top right <b>search box</b> and click on the green spyglass to pull up the permit record.</li><li>Click <b>Record Info</b> to access a drop-down menu; then select <b>Attachments</b> from the drop-down menu.</li><li>To download the 1) issued permit and 2) approved plans/comments, click the blue links next to documents labeled <b>ISSUED PERMIT</b> and <b>APPROVED SITE PLANS + COMMENTS</b> and/or <b>APPROVED BUILDING PLANS + COMMENTS.</b> </li></ol></p><p>If you have questions, please contact the Permit Application Center at PAC@ashevillenc.gov or 828-259-5846 or visit in-person at 161 S. Charlotte St. on Monday-Friday from 8:30 am - 5:00 pm. </p><hr></body></html>',
+		'ALL',
+		'residentialpermits@ashevillenc.gov'
+		);
 }
 
 // To bypass Clearing House step after all review steps are complete 4/25/2019
-if (matches(wfStatus, 'Approved','Approved with Conditions')) {
+if (matches(wfStatus, 'Approved','Approved with Conditions','Partial Approval','Plan Review Waiver','Not Required')) {
 	if (matches(wfProcess, 'DIV REVIEW-RES')) {
 		if (wfTask == 'Grading' ||  
 			wfTask == 'Building Review' || 
@@ -611,4 +631,10 @@ if (appMatch('Permits/Commercial/*/*')) {
 }
 
 
-//setTask(divisionReviewCheck, 'N', 'Y', 'DIVISION REVIEW');
+//setTask(divisionReviewCheck, 'N', 'Y', 'DIVISION REVIEWdue
+
+// 10/17/2019 
+if (appMatch("*/*/*/Home Stay") 
+	&& (matches(wfStatus, 'Application Complete') && matches(wfTask, 'Application Process'))) {
+	editTaskDueDate("Zoning Review", dateAdd(null, 15, 'Y'));
+}
