@@ -1,3 +1,4 @@
+// WTUA:Permits/*/*/*
 // if (matches(currentUserID, 'RHEDRICK', 'MMAZANEC')) {
 // 	showDebug = true;
 // }
@@ -633,8 +634,54 @@ if (appMatch('Permits/Commercial/*/*')) {
 
 //setTask(divisionReviewCheck, 'N', 'Y', 'DIVISION REVIEWdue
 
-// 10/17/2019 
+// 8/17/2019 
 if (appMatch("*/*/*/Home Stay") 
 	&& (matches(wfStatus, 'Application Complete') && matches(wfTask, 'Application Process'))) {
 	editTaskDueDate("Zoning Review", dateAdd(null, 15, 'Y'));
+}
+
+
+// added 11/12/2019 to email all lic prof when permit issued
+if ( (wfTask == 'Issuance' || wfTask == 'Permit Verification' || wfTask == 'Application Process') && matches(wfStatus, 'Issue', 'Reissue')) {
+	var ownerName = getOwnerNameFromCap();
+	var fromAddr ;
+	if (appMatch('*/Residential/*/*')) {
+		fromAddr = 'residentialpermits@ashevillenc.gov';
+	} else {
+		fromAddr = 'developmentservices@ashevillenc.gov';
+	}
+	emailByLicenseType('Permit Issued by City of Asheville - You are Listed as a Licensed Professional', 
+		'<html><head><style>ol {margin: 0;padding: 0}</style></head><body>Permit Number: ' 
+		+ capIDString + ' <br>Location: ' + CapAddress + '<br>Owner: ' + ownerName
+		+ '<br><p>'
+		+ ' Hello, you are receiving this email because you are listed as a licensed professional on this permit that was issued by the City of Asheville. '
+		+ ' We appreciate your doing business in Asheville!'
+		+ '</p><p>'
+		+ ' If you should not be on this permit, please let us know at pac@ashevillenc.gov. We look forward to working with you. Thank you, '
+		+ '</p><p>'
+		+ ' City of Asheville Development Services Department</p><hr></body></html>',
+		'ALL',
+		fromAddr
+		);
+	// emailByContactType('Permit Issued by City of Asheville - Licenced Professionals being notified', 
+	// 	'<html><head><style>ol {margin: 0;padding: 0}</style></head><body>Permit Number: ' 
+	// 	+ capIDString + ' <br>Location: ' + CapAddress + '<br>Owner: ' + ownerName + 
+	// 	' <br><p>Your residential permit application has been issued. Everyone listed as a Licensed Professional has received the following email. For your convenience, you may visit the Citizen Access website (<a href="https://services.ashevillenc.gov/citizenaccess">https://services.ashevillenc.gov/citizenaccess</a>) to print your permit and approved plans/comments. </p><p>Please note that the issued permit along with the approved plans/comments must be maintained in hard copy on the project site during construction until the permit is closed.</p><p>Please refer to the following steps to access your approved permit and plans/comments online in .PDF format:</p><p><ol><li>Visit <a href="https://services.ashevillenc.gov/citizenaccess">https://services.ashevillenc.gov/citizenaccess</a>. Register for a Citizen Access account if you have not already done so, then log in to access the permit documents.</li><li>Enter your permit number in the top right <b>search box</b> and click on the green spyglass to pull up the permit record.</li><li>Click <b>Record Info</b> to access a drop-down menu; then select <b>Attachments</b> from the drop-down menu.</li><li>To download the 1) issued permit and 2) approved plans/comments, click the blue links next to documents labeled <b>ISSUED PERMIT</b> and <b>APPROVED SITE PLANS + COMMENTS</b> and/or <b>APPROVED BUILDING PLANS + COMMENTS.</b> </li></ol></p><p>If you have questions, please contact the Permit Application Center at PAC@ashevillenc.gov or 828-259-5846 or visit in-person at 161 S. Charlotte St. on Monday-Friday from 8:30 am - 5:00 pm. </p><hr></body></html>',
+	// 	'Applicant',
+	// 	fromAddr
+	// 	);
+}
+
+function getOwnerNameFromCap() {
+    itemCap = capId;
+    if (arguments.length > 1 && arguments[1]) itemCap = arguments[1];
+
+    capOwnerResult = aa.owner.getOwnerByCapId(itemCap);
+    if (capOwnerResult.getSuccess()) {
+        owner = capOwnerResult.getOutput();
+
+        thisOwner = owner[0];
+        return thisOwner.getOwnerFullName();
+    }
+    return null;
 }
