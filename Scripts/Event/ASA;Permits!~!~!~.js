@@ -63,7 +63,7 @@ capOwnerModel = getCapOwnerByName('CITY OF ASHEVILLE');
 if (capOwnerModel) {
 	//start replaced branch: ES_OWNER_IS_CITY
 	{
-		addAdHocTask('ADHOC TASKS', 'City Manager Signature', ' ', 'DMEEK');
+		addAdHocTask('ADHOC TASKS', 'City Manager Signature', ' ', 'SCARVER');
 		if (AInfo['Total Project Valuation'] > 99999) {
 			addStdCondition('PAC', 'CO HOLD - GS 133-1.1');
 			comment('Condition was added');
@@ -77,7 +77,7 @@ capOwnerModel2 = getCapOwnerByName('THE CITY OF ASHEVILLE');
 if (capOwnerModel2) {
 	//start replaced branch: ES_OWNER_IS_CITY
 	{
-		addAdHocTask('ADHOC TASKS', 'City Manager Signature', ' ', 'DMEEK');
+		addAdHocTask('ADHOC TASKS', 'City Manager Signature', ' ', 'SCARVER');
 		if (AInfo['Total Project Valuation'] > 99999) {
 			addStdCondition('PAC', 'CO HOLD - GS 133-1.1');
 			comment('Condition was added');
@@ -91,7 +91,7 @@ if (capOwnerModel2) {
 if (capOwnerModel3) {
 	//start replaced branch: ES_OWNER_IS_CITY
 	{
-		addAdHocTask('ADHOC TASKS', 'City Manager Signature', ' ', 'DMEEK');
+		addAdHocTask('ADHOC TASKS', 'City Manager Signature', ' ', 'SCARVER');
 		if (AInfo['Total Project Valuation'] > 99999) {
 			addStdCondition('PAC', 'CO HOLD - GS 133-1.1');
 			comment('Condition was added');
@@ -105,7 +105,7 @@ capOwnerModel4 = getCapOwnerByName('CITY OF ASHEVILLE WATER AUTHORITY ');
 if (capOwnerModel4) {
 	//start replaced branch: ES_OWNER_IS_CITY
 	{
-		addAdHocTask('ADHOC TASKS', 'City Manager Signature', ' ', 'DMEEK');
+		addAdHocTask('ADHOC TASKS', 'City Manager Signature', ' ', 'SCARVER');
 		if (AInfo['Total Project Valuation'] > 99999) {
 			addStdCondition('PAC', 'CO HOLD - GS 133-1.1');
 			comment('Condition was added');
