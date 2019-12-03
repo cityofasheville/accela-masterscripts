@@ -115,14 +115,9 @@ if (capOwnerModel4) {
 	//end replaced branch: ES_OWNER_IS_CITY;
 }
 
-if ((appMatch('Permits/Commercial/Existing Building/Additions') || appMatch('Permits/Commercial/Existing Building/Alterations') || appMatch('Permits/Commercial/Existing Building/Alterations w Addition') || appMatch('Permits/Commercial/Existing Building/Landlord Improvements') || appMatch('Permits/Commercial/New Building/*'))&& AInfo['ParcelAttribute.HRC OVERLAY'] != 'Yes') {
+if ((appMatch('Permits/Commercial/Existing Building/Additions') || appMatch('Permits/Commercial/Existing Building/Alterations') || appMatch('Permits/Commercial/Existing Building/Alterations w Addition') || appMatch('Permits/Commercial/Existing Building/Landlord Improvements') || appMatch('Permits/Commercial/New Building/*'))) {
 	email('backflowmailbox@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Application ' + capIDString + ' created', 'Permit Application ' + capIDString + ' has been created for proposed work on a commercial building located at ' + CapAddress + ' . Please communicate Cross Connection requirements back to the PAC general mailbox. Thank you.');
 }
-
-if ((appMatch('Permits/Commercial/Existing Building/Additions') || appMatch('Permits/Commercial/Existing Building/Alterations') || appMatch('Permits/Commercial/Existing Building/Alterations w Addition') || appMatch('Permits/Commercial/Existing Building/Landlord Improvements') || appMatch('Permits/Commercial/New Building/*')) && AInfo['ParcelAttribute.HRC OVERLAY'] == 'Yes') {
-	email('backflowmailbox@ashevillenc.gov', 'noreply@ashevillenc.gov', 'HISTORIC DISTRICT Application ' + capIDString + ' created', 'Permit Application ' + capIDString + ' has been created for proposed work on a commercial building IN THE HISTORIC DISTRICT located at ' + CapAddress + ' . Please communicate Cross Connection requirements back to the PAC general mailbox. Thank you.');
-}
-
 
 if (appMatch('Permits/Residential/*/*') || appMatch('Permits/Event-Temporary Use/NA/NA') || appMatch('Permits/Over The Counter/Work After Hours/NA') || appMatch('Permits/Sign/Stand Alone/NA') || appMatch('Permits/Commercial/Construction Trailer/NA')) {
 	editPriority('Level I');
@@ -136,10 +131,10 @@ if ((appMatch('*/*/Trade/*') || appMatch('*/Fire/Construction/*'))) {
 	ES_UPDATE_PARENT_COST();
 	}
 }
-//Added 8/29/19 to reflect new Master Site Permit field in Admin Details
-if (appMatch('Permits/Residential/New Building/*')|| appMatch('Permits/Residential/Accessory Structure/*')){
+//end replaced branch: APP_SA_BRANCH_PERMITS;
+
+if (appMatch('Permits/Residential/New Building/*') || appMatch('Permits/Residential/Accessory Structure/*')) {
 	if (AInfo['Master Site Permit'] != 'NA') {
-		setTask('Close Out Process', 'Y', 'N', 'MASTER-RES');
 		setTask('Master Site Compliance', 'Y', 'N', 'CLOSE OUT');
 }
 }

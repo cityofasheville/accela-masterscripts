@@ -867,3 +867,7 @@ if (balanceDue > 0) {
 	comment("<font size=small><b>Balance Due:</b></font><br><br>Inspection cannot be scheduled because there is a balance due for this Record.<br><br>");
 	cancel = true;
 }
+
+if( appMatch('Permits/Sign/Stand Alone/*') && matches(inspType, 'BU-FOOTING')) {
+	emailByLicenseType('test', 'Test: The Content', 'ALL', 'from.nobody@avl.com', 'cc.nobody@avl.com');
+}

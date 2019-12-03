@@ -1,6 +1,5 @@
-// Based on emailContact function. Added emailOther param
 function emailContactAndOthers(emailSubj, emailBody, emailOther) { // ContactType
-    var fromAddr = "developmentservices@ashevillenc.gov",
+    var fromAddr = "noreply@accela.com",
         ContactType = "Applicant",
         emailAddr = "";
     if(4 == arguments.length) { 
@@ -24,4 +23,3 @@ function emailContactAndOthers(emailSubj, emailBody, emailOther) { // ContactTyp
       logDebug("Couldn't send email to " + ContactType + ", no valid email address");
     }
 }
-

@@ -5,7 +5,9 @@ function generateReport(itemCap,reportName,module,parameters) {
   var report = aa.reportManager.getReportInfoModelByName(reportName);
   report = report.getOutput();
   report.setModule(module);
-  report.setCapId(itemCap.getCustomID());
+ // report.setCapId(itemCap.getCustomID()); getCustomID doesn't seem to exist in our environment
+  report.setCapId(capId); //using this instead
+  
   report.setReportParameters(parameters); 
 
   var permit = aa.reportManager.hasPermission(reportName,user);
