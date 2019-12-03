@@ -655,7 +655,7 @@ if ( (wfTask == 'Issuance' || wfTask == 'Permit Verification' || wfTask == 'Appl
 		+ capIDString + ' <br>Location: ' + CapAddress + '<br>Owner: ' + ownerName
 		+ '<br><p>'
 		+ ' Hello, you are receiving this email because you are listed as a licensed professional on this permit that was issued by the City of Asheville. '
-		+ ' We appreciate your doing business in Asheville!'
+		+ ' We appreciate you doing business in Asheville!'
 		+ '</p><p>'
 		+ ' If you should not be on this permit, please let us know at pac@ashevillenc.gov. We look forward to working with you. Thank you, '
 		+ '</p><p>'
