@@ -1,4 +1,5 @@
 function getOwnerNameFromCap() {
+    // returns name of owner given Cap object. If multiples, just the first.
     itemCap = capId;
     if (arguments.length > 1 && arguments[1]) itemCap = arguments[1];
 
