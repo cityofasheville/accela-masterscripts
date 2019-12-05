@@ -1,6 +1,6 @@
 // Returns array of email addresses, everyone of licenseType
 // Param contactType can also be "ALL".
-function emailByLicenseType(licenseType) {
+function getEmailsByLicenseType(licenseType) {
   var emailAddrs = [];
   var profObjArray = getLicenseProfessional(capId);
   for (iProf in profObjArray) {
