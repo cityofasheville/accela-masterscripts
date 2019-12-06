@@ -691,10 +691,10 @@ if ( ( wfTask == 'Application Process') && matches(wfStatus, 'Application Incomp
   var contacts = getEmailsByContactType('ALL');
   var emailAddrs = inAButNotB_loc(licProc,contacts);
 
-  showMessage = true;  
-    comment(licProc[1]);
-    comment(contacts[0]);
-    comment(emailAddrs);
+  // showMessage = true;  
+  //   comment(licProc[1]);
+  //   comment(contacts[0]);
+  //   comment(emailAddrs);
 
 }
 
@@ -704,8 +704,11 @@ function inAButNotB_loc(a1, a2) {
   var result = [];
   for (var i = 0; i < a1.length; i++) {
     showMessage = true;  
+    comment('a1[i]');
     comment(a1[i]);
     if (a2.indexOf(a1[i]) === -1) {
+      comment('a2.indexOf(a1[i])');
+      comment(a2.indexOf(a1[i]));
       result.push(a1[i]);
     }
   }
