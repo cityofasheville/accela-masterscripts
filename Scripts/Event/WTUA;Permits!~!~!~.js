@@ -687,8 +687,8 @@ if (appMatch("*/*/*/Home Stay")
 
 if ( ( wfTask == 'Application Process') && matches(wfStatus, 'Application Incomplete' )) {
 
-  var licProc = ['grady@raheath.com','JERRYHEDRICK@YAHOO.COM']  // getEmailsByLicenseType('ALL');
-  var contacts = ['falbarady@raheath.com','JERRYHEDRICK@YAHOO.COM']  // getEmailsByContactType('ALL');
+  var licProc = getEmailsByLicenseType('ALL');
+  var contacts = getEmailsByContactType('ALL');
   var emailAddrs = inAButNotB_loc(licProc,contacts);
 
   showMessage = true;  

@@ -8,7 +8,7 @@ function getEmailsByLicenseType(licenseType) {
     var vProfObj = new licenseProfObject(tProfObj.getLicenseNbr()); 
     if(licenseType == vProfObj.refLicModel.getLicenseType() || (licenseType == "ALL")) {
       if(tProfObj.getEmail() + '' != ''){
-        emailAddrs.push(tProfObj.getEmail());
+        emailAddrs.push(tProfObj.getEmail().trim());
       }
     }
   }
