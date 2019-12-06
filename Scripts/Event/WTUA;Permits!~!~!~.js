@@ -1,4 +1,4 @@
-// WTUA:Permits/*/*/*
+// WTUA:Permits/*/*/* WORKFLOWTASKUPDATEAFTER
 // if (matches(currentUserID, 'RHEDRICK', 'MMAZANEC')) {
 // 	showDebug = true;
 // }
@@ -654,11 +654,13 @@ if ( (wfTask == 'Issuance' || wfTask == 'Permit Verification' || wfTask == 'Appl
 var licProc = getEmailsByLicenseType('ALL');
 var contacts = getEmailsByContactType('ALL');
 var emailAddrs = inAButNotB(licProc,contacts);
+
 showMessage = true;
-  comment(licProc);
-  comment(contacts);
+  comment('<'+licProc[1]+'>');
+  comment('<'+contacts[0]+'>');
   comment(emailAddrs);
   cancel = true;
+
 var emailTo = emailAddrs.join(';')
 email(
   emailTo,

@@ -9,3 +9,6 @@ function inAButNotB(a1, a2) {
     }
     return result;
   }
+
+  // console.log(inAButNotB(['a ','b','c'], ['a']));
+  // console.log(inAButNotB(['a','b','c'], ['a ']));
