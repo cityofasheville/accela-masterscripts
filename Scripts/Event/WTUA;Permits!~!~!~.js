@@ -689,9 +689,9 @@ if ( ( wfTask == 'Application Process') && matches(wfStatus, 'Application Incomp
 
   var licProc = getEmailsByLicenseType('ALL');
   var contacts = getEmailsByContactType('ALL');
+  showMessage = true;
   var emailAddrs = inAButNotB(licProc,contacts);
   
-  showMessage = true;
     comment(licProc[1]);
     comment(contacts[0]);
     comment(emailAddrs);
