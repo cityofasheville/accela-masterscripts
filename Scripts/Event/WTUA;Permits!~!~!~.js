@@ -689,11 +689,24 @@ if ( ( wfTask == 'Application Process') && matches(wfStatus, 'Application Incomp
 
   var licProc = getEmailsByLicenseType('ALL');
   var contacts = getEmailsByContactType('ALL');
-  showMessage = true;
-  var emailAddrs = inAButNotB(licProc,contacts);
-  
+  var emailAddrs = inAButNotB_loc(licProc,contacts);
+
+  showMessage = true;  
     comment(licProc[1]);
     comment(contacts[0]);
     comment(emailAddrs);
 
+}
+
+function inAButNotB_loc(a1, a2) {
+  // given two arrays, returns everything that appears in first list but not the second.
+  // Use this to send emails to everyone in first list unless they are in second.
+  var result = [];
+  for (var i = 0; i < a1.length; i++) {
+    comment(a1[i]);
+    if (a2.indexOf(a1[i]) === -1) {
+      result.push(a1[i]);
+    }
+  }
+  return result;
 }
