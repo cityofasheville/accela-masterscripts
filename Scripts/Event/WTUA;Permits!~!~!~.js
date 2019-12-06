@@ -703,6 +703,7 @@ function inAButNotB_loc(a1, a2) {
   // Use this to send emails to everyone in first list unless they are in second.
   var result = [];
   for (var i = 0; i < a1.length; i++) {
+    showMessage = true;  
     comment(a1[i]);
     if (a2.indexOf(a1[i]) === -1) {
       result.push(a1[i]);
