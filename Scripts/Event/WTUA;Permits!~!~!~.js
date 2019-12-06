@@ -707,6 +707,9 @@ function inAButNotB_loc(a1, a2) {
     comment('a1[i]');
     comment(a1[i]);
     if (a2.indexOf(a1[i]) === -1) {
+      comment('a2');
+      comment(a2);
+
       comment('a2.indexOf(a1[i])');
       comment(a2.indexOf(a1[i]));
       result.push(a1[i]);
