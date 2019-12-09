@@ -690,6 +690,7 @@ if ( ( wfTask == 'Application Process') && matches(wfStatus, 'Application Incomp
   var licProc = getEmailsByLicenseType('ALL');
   var contacts = getEmailsByContactType('ALL');
   var emailAddrs = inAButNotB_loc(licProc,contacts);
+  var emailAddrs = inAButNotB_loc(['licProc','other'],['licProc','contacts']);
 
   // showMessage = true;  
   //   comment(licProc[1]);
