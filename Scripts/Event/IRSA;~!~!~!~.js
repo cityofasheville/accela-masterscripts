@@ -1,3 +1,4 @@
+// IRSA:*/*/*/* Inspection results submitted after
 // TODO:  repeated conditionals, consider refactoring
 
 if (matches(inspResult, 'Approved')) {
@@ -481,7 +482,6 @@ if (matches(inspResult, 'Disapproved-TCO Fee')) {
 	}
 }
 
-
 // End modifications 5/24/18
 
 //Commented out 5/23/18 -- wasn't running anyway, prob because it used the alias instead of 'TU & TCO'
@@ -651,7 +651,7 @@ if (matches(inspGroup, 'TU') && matches(inspResult, 'Approved', 'Disapproved', '
 	email('PAC@ashevillenc.gov', 'noreply@ashevillenc.gov', 'TU ' + capIDString + ' Inspection Resulted', 'The Inspection ' + inspType + ' for Permit ' + capIDString + ' was completed with a result of ' + inspResult + '.<br>Inspection Comment: ' + inspComment + ' <br>Please verify if clear for release of utilities.');
 }
 
-if (matches(inspGroup, 'TCO') && matches(inspResult, 'Approved', 'Disapproved', 'Not Applicable', 'Cancelled')) {
+if (matches(inspGroup, 'TCO') && matches(inspResult, 'Approved', 'Disapproved', 'Not Applicable', 'Cancelled', 'Disapproved-TCO Fee')) {
 	email('PAC@ashevillenc.gov', 'noreply@ashevillenc.gov', 'TCO Inspection ' + capIDString + ' Resulted', 'The Inspection ' + inspType + ' for Permit ' + capIDString + ' was completed with a result of ' + inspResult + '.<br>Inspection Comment: ' + inspComment + ' <br>Please verify if clear for issuance of Temporary Certificate of Compliance or Occupancy.');
 }
 
