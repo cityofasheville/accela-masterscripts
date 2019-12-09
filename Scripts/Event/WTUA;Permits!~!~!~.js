@@ -701,8 +701,8 @@ function inAButNotB_loc(a1, a2) {
   for (var i = 0; i < a1.length; i++) {
     comment(a2);
     comment(a1[i]);
-    comment(a2.isArray);
-    comment(a1[i].isArray);
+    comment(Array.isArray(a2));
+    comment(Array.isArray(a1[i]));
     comment(a2.indexOf(a1[i]));
     if (a2.indexOf(a1[i]) === -1) {
       result.push(a1[i]);
