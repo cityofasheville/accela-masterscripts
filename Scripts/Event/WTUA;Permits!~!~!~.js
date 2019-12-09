@@ -706,7 +706,7 @@ function inAButNotB_loc(a1, a2) {
   comment(a1);
   comment(a2);
   comment('a1.length= ' + a1.length);
-  comment('a1.typeOf= ' + a1.typeOf);
+  comment('a1.typeof= ' + a1.typeof);
   for (var i = 0; i < a1.length; i++) {
     comment('i= ' + i);
 
