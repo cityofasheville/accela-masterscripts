@@ -690,11 +690,26 @@ if ( ( wfTask == 'Application Process') && matches(wfStatus, 'Application Incomp
 
   var licProc = getEmailsByLicenseType('ALL');
   var contacts = getEmailsByContactType('ALL');
-  var emailAddrs = inAButNotB(licProc,contacts);
+  var emailAddrs = inAButNotB_loc(licProc,contacts);
   comment(emailAddrs);
-
-  var emailAddrs2 = inAButNotB(['licProc','other'],['licProc','contacts']);
-  comment(emailAddrs2);
-
 }
 
+function inAButNotB_loc(a1, a2) {
+  a1 = trimAll(a1);
+  a2 = trimAll(a2);
+  var result = [];
+  for (var i = 0; i < a1.length; i++) {
+    if (a2.indexOf(a1[i]) === -1) {
+      result.push(a1[i]);
+    }
+  }
+  return result;
+  
+  function trimAll(arr) {
+    var result = [];
+    for(var i = 0; i < arr.length; i++) {
+      result.push(arr[i].trim());
+    }
+    return result;
+  }
+}
