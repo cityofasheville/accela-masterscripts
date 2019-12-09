@@ -641,85 +641,55 @@ if (appMatch("*/*/*/Home Stay")
 }
 
 
-// // added 11/12/2019 to email all lic prof when permit issued
-// if ( (wfTask == 'Issuance' || wfTask == 'Permit Verification' || wfTask == 'Application Process') && matches(wfStatus, 'Issue', 'Reissue')) {
-// 	var ownerName = getOwnerNameFromCap();
-// 	var fromAddr ;
-// 	if (appMatch('*/Residential/*/*')) {
-// 		fromAddr = 'residentialpermits@ashevillenc.gov';
-// 	} else {
-// 		fromAddr = 'developmentservices@ashevillenc.gov';
-//   }
-// // Send to all licensed prof
-// var licProc = getEmailsByLicenseType('ALL');
-// var contacts = getEmailsByContactType('ALL');
-// var emailAddrs = inAButNotB(licProc,contacts);
+// added 11/12/2019 to email all lic prof when permit issued
+if ( (wfTask == 'Issuance' || wfTask == 'Permit Verification' || wfTask == 'Application Process') && matches(wfStatus, 'Issue', 'Reissue')) {
+	var ownerName = getOwnerNameFromCap();
+	var fromAddr ;
+	if (appMatch('*/Residential/*/*')) {
+		fromAddr = 'residentialpermits@ashevillenc.gov';
+	} else {
+		fromAddr = 'developmentservices@ashevillenc.gov';
+  }
+// Send to all licensed prof
+var licProc = getEmailsByLicenseType('ALL');
+var contacts = getEmailsByContactType('ALL');
+var emailAddrs = inAButNotB(licProc,contacts);
 
 // showMessage = true;
 //   comment('<'+licProc[1]+'>');
 //   comment('<'+contacts[0]+'>');
 //   comment(emailAddrs);
-//   cancel = true;
 
-// var emailTo = emailAddrs.join(';')
-// email(
-//   emailTo,
-//   fromAddr,
-//   'Permit Issued by City of Asheville - You are Listed as a Licensed Professional', 
-// 		'<html><head><style>ol {margin: 0;padding: 0}</style></head><body>Permit Number: ' 
-// 		+ capIDString + ' <br>Location: ' + CapAddress + '<br>Owner: ' + ownerName
-// 		+ '<br><p>'
-// 		+ ' Hello, you are receiving this email because you are listed as a licensed professional on this permit that was issued by the City of Asheville. '
-// 		+ ' We appreciate you doing business in Asheville!'
-// 		+ '</p><p>'
-// 		+ ' If you should not be on this permit, please let us know at pac@ashevillenc.gov. We look forward to working with you. Thank you, '
-// 		+ '</p><p>'
-//     + ' City of Asheville Development Services Department</p><hr></body></html>');
+var emailTo = emailAddrs.join(';')
+email(
+  emailTo,
+  fromAddr,
+  'Permit Issued by City of Asheville - You are Listed as a Licensed Professional', 
+		'<html><head><style>ol {margin: 0;padding: 0}</style></head><body>Permit Number: ' 
+		+ capIDString + ' <br>Location: ' + CapAddress + '<br>Owner: ' + ownerName
+		+ '<br><p>'
+		+ ' Hello, you are receiving this email because you are listed as a licensed professional on this permit that was issued by the City of Asheville. '
+		+ ' We appreciate you doing business in Asheville!'
+		+ '</p><p>'
+		+ ' If you should not be on this permit, please let us know at pac@ashevillenc.gov. We look forward to working with you. Thank you, '
+		+ '</p><p>'
+    + ' City of Asheville Development Services Department</p><hr></body></html>');
     
-// 	// emailByContactType('Permit Issued by City of Asheville - Licenced Professionals being notified', 
-// 	// 	'<html><head><style>ol {margin: 0;padding: 0}</style></head><body>Permit Number: ' 
-// 	// 	+ capIDString + ' <br>Location: ' + CapAddress + '<br>Owner: ' + ownerName + 
-// 	// 	' <br><p>Your residential permit application has been issued. Everyone listed as a Licensed Professional has received the following email. For your convenience, you may visit the Citizen Access website (<a href="https://services.ashevillenc.gov/citizenaccess">https://services.ashevillenc.gov/citizenaccess</a>) to print your permit and approved plans/comments. </p><p>Please note that the issued permit along with the approved plans/comments must be maintained in hard copy on the project site during construction until the permit is closed.</p><p>Please refer to the following steps to access your approved permit and plans/comments online in .PDF format:</p><p><ol><li>Visit <a href="https://services.ashevillenc.gov/citizenaccess">https://services.ashevillenc.gov/citizenaccess</a>. Register for a Citizen Access account if you have not already done so, then log in to access the permit documents.</li><li>Enter your permit number in the top right <b>search box</b> and click on the green spyglass to pull up the permit record.</li><li>Click <b>Record Info</b> to access a drop-down menu; then select <b>Attachments</b> from the drop-down menu.</li><li>To download the 1) issued permit and 2) approved plans/comments, click the blue links next to documents labeled <b>ISSUED PERMIT</b> and <b>APPROVED SITE PLANS + COMMENTS</b> and/or <b>APPROVED BUILDING PLANS + COMMENTS.</b> </li></ol></p><p>If you have questions, please contact the Permit Application Center at PAC@ashevillenc.gov or 828-259-5846 or visit in-person at 161 S. Charlotte St. on Monday-Friday from 8:30 am - 5:00 pm. </p><hr></body></html>',
-// 	// 	'Applicant',
-// 	// 	fromAddr
-// 	// 	);
-// }
-
-if ( ( wfTask == 'Application Process') && matches(wfStatus, 'Application Incomplete' )) {
-  showMessage = true;  
-
-  var licProc = getEmailsByLicenseType('ALL');
-  var contacts = getEmailsByContactType('ALL');
-  var emailAddrs = inAButNotB_loc(licProc,contacts);
-  comment(emailAddrs);
-
-  var emailAddrs2 = inAButNotB_loc(['licProc','other'],['licProc','contacts']);
-  comment(emailAddrs2);
-
+	// emailByContactType('Permit Issued by City of Asheville - Licenced Professionals being notified', 
+	// 	'<html><head><style>ol {margin: 0;padding: 0}</style></head><body>Permit Number: ' 
+	// 	+ capIDString + ' <br>Location: ' + CapAddress + '<br>Owner: ' + ownerName + 
+	// 	' <br><p>Your residential permit application has been issued. Everyone listed as a Licensed Professional has received the following email. For your convenience, you may visit the Citizen Access website (<a href="https://services.ashevillenc.gov/citizenaccess">https://services.ashevillenc.gov/citizenaccess</a>) to print your permit and approved plans/comments. </p><p>Please note that the issued permit along with the approved plans/comments must be maintained in hard copy on the project site during construction until the permit is closed.</p><p>Please refer to the following steps to access your approved permit and plans/comments online in .PDF format:</p><p><ol><li>Visit <a href="https://services.ashevillenc.gov/citizenaccess">https://services.ashevillenc.gov/citizenaccess</a>. Register for a Citizen Access account if you have not already done so, then log in to access the permit documents.</li><li>Enter your permit number in the top right <b>search box</b> and click on the green spyglass to pull up the permit record.</li><li>Click <b>Record Info</b> to access a drop-down menu; then select <b>Attachments</b> from the drop-down menu.</li><li>To download the 1) issued permit and 2) approved plans/comments, click the blue links next to documents labeled <b>ISSUED PERMIT</b> and <b>APPROVED SITE PLANS + COMMENTS</b> and/or <b>APPROVED BUILDING PLANS + COMMENTS.</b> </li></ol></p><p>If you have questions, please contact the Permit Application Center at PAC@ashevillenc.gov or 828-259-5846 or visit in-person at 161 S. Charlotte St. on Monday-Friday from 8:30 am - 5:00 pm. </p><hr></body></html>',
+	// 	'Applicant',
+	// 	fromAddr
+	// 	);
 }
 
 function inAButNotB_loc(a1, a2) {
   // given two arrays, returns everything that appears in first list but not the second.
   // Use this to send emails to everyone in first list unless they are in second.
   var result = [];
-  comment(a1);
-  comment(a2);
-  comment('a1.length= ' + a1.length);
-  comment('a1[0]= ' + a1[0]);
-  comment('typeof a1[0]= ' + typeof a1[0]);
-  comment('typeof a1[0].toString()= ' + typeof a1[0].toString());
-//  comment('Object.keys(a1[0])= ' + Object.keys(a1[0]));
-
-  comment(Array.isArray(a1));
   for (var i = 0; i < a1.length; i++) {
-    comment('i= ' + i);
-
-    comment('a1[i].toString()= ' + '<' + a1[i].toString() + '>');
-    comment('a2= ' + '<' + a2.toString() + '>');
-    comment('a2.toString().indexOf(a1[i].toString())= ' + '<' + a2.toString().indexOf(a1[i].toString()) + '>');
-
     if (a2.toString().indexOf(a1[i].toString()) === -1) {
-
       result.push(a1[i].toString());
     }
   }
