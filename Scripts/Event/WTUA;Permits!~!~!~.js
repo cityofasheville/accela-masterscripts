@@ -695,14 +695,14 @@ if ( ( wfTask == 'Application Process') && matches(wfStatus, 'Application Incomp
 }
 
 function inAButNotB_loc(a1, a2) {
-  var moo = ['a','b'];
-  comment(moo.indexOf('a'));
   a1 = trimAll(a1);
   a2 = trimAll(a2);
   var result = [];
   for (var i = 0; i < a1.length; i++) {
     comment(a2);
     comment(a1[i]);
+    comment(a2.isArray);
+    comment(a1[i].isArray);
     comment(a2.indexOf(a1[i]));
     if (a2.indexOf(a1[i]) === -1) {
       result.push(a1[i]);
