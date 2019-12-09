@@ -702,7 +702,6 @@ function inAButNotB_loc(a1, a2) {
   // given two arrays, returns everything that appears in first list but not the second.
   // Use this to send emails to everyone in first list unless they are in second.
   var result = [];
-  showMessage = false;
   comment(a1);
   comment(a2);
   comment('a1.length= ' + a1.length);
