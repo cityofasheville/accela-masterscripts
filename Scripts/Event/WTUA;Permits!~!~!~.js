@@ -703,6 +703,10 @@ function inAButNotB_loc(a1, a2) {
     comment(a1[i]);
     comment(Array.isArray(a2));
     comment(Array.isArray(a1[i]));
+    var toString = Object.prototype.toString;
+
+    toString.call(a2);
+    toString.call(a1[i]);
     comment(typeof a2);
     comment(typeof a1[i].toString());
     comment(a2.indexOf(a1[i].toString()));
