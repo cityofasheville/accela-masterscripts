@@ -708,7 +708,7 @@ function inAButNotB_loc(a1, a2) {
   comment(a2);
   comment('a1.length= ' + a1.length);
   comment('a1[0]= ' + a1[0]);
-  comment('typeof a1[0]= ' + typeof a1[0]);
+  comment('Object.keys(a1[0])= ' + Object.keys(a1[0]));
   comment(Array.isArray(a1));
   for (var i = 0; i < a1.length; i++) {
     comment('i= ' + i);
