@@ -699,8 +699,8 @@ function inAButNotB_loc(a1, a2) {
   a2 = trimAll(a2);
   var result = [];
   for (var i = 0; i < a1.length; i++) {
-    comment('<' + a2.toString() + '>');
-    comment('<' + a1[i].toString() + '>');
+    comment(a2);
+    comment(a1[i]);
     comment(a2.indexOf(a1[i]));
     if (a2.indexOf(a1[i]) === -1) {
       result.push(a1[i]);
