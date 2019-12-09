@@ -686,16 +686,15 @@ if (appMatch("*/*/*/Home Stay")
 // }
 
 if ( ( wfTask == 'Application Process') && matches(wfStatus, 'Application Incomplete' )) {
+  showMessage = true;  
 
   var licProc = getEmailsByLicenseType('ALL');
   var contacts = getEmailsByContactType('ALL');
   var emailAddrs = inAButNotB_loc(licProc,contacts);
-  var emailAddrs = inAButNotB_loc(['licProc','other'],['licProc','contacts']);
+  comment(emailAddrs);
 
-  // showMessage = true;  
-  //   comment(licProc[1]);
-  //   comment(contacts[0]);
-  //   comment(emailAddrs);
+  var emailAddrs2 = inAButNotB_loc(['licProc','other'],['licProc','contacts']);
+  comment(emailAddrs2);
 
 }
 
@@ -703,7 +702,7 @@ function inAButNotB_loc(a1, a2) {
   // given two arrays, returns everything that appears in first list but not the second.
   // Use this to send emails to everyone in first list unless they are in second.
   var result = [];
-  showMessage = true;
+  showMessage = false;
   comment(a1);
   comment(a2);
   comment('a1.length= ' + a1.length);
