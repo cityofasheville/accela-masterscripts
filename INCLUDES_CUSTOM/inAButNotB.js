@@ -3,7 +3,7 @@ function inAButNotB(a1, a2) {
   // Use this to send emails to everyone in first list unless they are in second.
   var result = [];
   for (var i = 0; i < a1.length; i++) {
-    if (a2.toString().indexOf(a1[i].toString()) === -1) {
+    if (a2.indexOf(a1[i].toString()) === -1) {
       result.push(a1[i].toString());
     }
   }
