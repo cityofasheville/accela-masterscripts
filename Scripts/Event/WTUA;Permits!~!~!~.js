@@ -1,4 +1,4 @@
-// WTUA:Permits/*/*/*
+// WTUA:Permits/*/*/* WORKFLOWTASKUPDATEAFTER
 // if (matches(currentUserID, 'RHEDRICK', 'MMAZANEC')) {
 // 	showDebug = true;
 // }
@@ -649,8 +649,17 @@ if ( (wfTask == 'Issuance' || wfTask == 'Permit Verification' || wfTask == 'Appl
 		fromAddr = 'residentialpermits@ashevillenc.gov';
 	} else {
 		fromAddr = 'developmentservices@ashevillenc.gov';
-	}
-	emailByLicenseType('Permit Issued by City of Asheville - You are Listed as a Licensed Professional', 
+  }
+// Send to all licensed prof unless they are a contact
+var licProc = getEmailsByLicenseType('ALL');
+var contacts = getEmailsByContactType('ALL');
+var emailAddrs = inAButNotB(licProc,contacts);
+
+var emailTo = emailAddrs.join(';')
+email(
+  emailTo,
+  fromAddr,
+  'Permit Issued by City of Asheville - You are Listed as a Licensed Professional', 
 		'<html><head><style>ol {margin: 0;padding: 0}</style></head><body>Permit Number: ' 
 		+ capIDString + ' <br>Location: ' + CapAddress + '<br>Owner: ' + ownerName
 		+ '<br><p>'
@@ -659,10 +668,8 @@ if ( (wfTask == 'Issuance' || wfTask == 'Permit Verification' || wfTask == 'Appl
 		+ '</p><p>'
 		+ ' If you should not be on this permit, please let us know at pac@ashevillenc.gov. We look forward to working with you. Thank you, '
 		+ '</p><p>'
-		+ ' City of Asheville Development Services Department</p><hr></body></html>',
-		'ALL',
-		fromAddr
-		);
+    + ' City of Asheville Development Services Department</p><hr></body></html>');
+    
 	// emailByContactType('Permit Issued by City of Asheville - Licenced Professionals being notified', 
 	// 	'<html><head><style>ol {margin: 0;padding: 0}</style></head><body>Permit Number: ' 
 	// 	+ capIDString + ' <br>Location: ' + CapAddress + '<br>Owner: ' + ownerName + 
