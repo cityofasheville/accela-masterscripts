@@ -709,19 +709,20 @@ function inAButNotB_loc(a1, a2) {
   comment('a1.length= ' + a1.length);
   comment('a1[0]= ' + a1[0]);
   comment('typeof a1[0]= ' + typeof a1[0]);
+  comment('typeof a1[0].toString()= ' + typeof a1[0].toString());
 //  comment('Object.keys(a1[0])= ' + Object.keys(a1[0]));
 
   comment(Array.isArray(a1));
   for (var i = 0; i < a1.length; i++) {
     comment('i= ' + i);
 
-    comment('a1[i]= ' + '<' + a1[i] + '>');
-    comment('a2= ' + '<' + a2 + '>');
-    comment('a2.indexOf(a1[i])= ' + '<' + a2.indexOf(a1[i]) + '>');
+    comment('a1[i].toString()= ' + '<' + a1[i].toString() + '>');
+    comment('a2= ' + '<' + a2.toString() + '>');
+    comment('a2.toString().indexOf(a1[i].toString())= ' + '<' + a2.toString().indexOf(a1[i].toString()) + '>');
 
-    if (a2.indexOf(a1[i]) === -1) {
+    if (a2.toString().indexOf(a1[i].toString()) === -1) {
 
-      result.push(a1[i]);
+      result.push(a1[i].toString());
     }
   }
   return result;
