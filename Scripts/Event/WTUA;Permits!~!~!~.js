@@ -701,12 +701,14 @@ if ( ( wfTask == 'Application Process') && matches(wfStatus, 'Application Incomp
 function inAButNotB_loc(a1, a2) {
   // given two arrays, returns everything that appears in first list but not the second.
   // Use this to send emails to everyone in first list unless they are in second.
+  var msg;
   showMessage = true;
   comment(a1);
   comment(a2);
-
+  msg = '<' + '>';
+  comment(msg);
+  
   var result = [];
-  var msg;
   for (var i = 0; i < a1.length; i++) {
     msg = '<' + 1[i] + '>';
     comment('a1[i]');
