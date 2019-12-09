@@ -707,9 +707,13 @@ function inAButNotB_loc(a1, a2) {
   comment(a2);
   msg = '<' + '>';
   comment(msg);
-  
+
   var result = [];
   for (var i = 0; i < a1.length; i++) {
+    msg = 'i=' + i;
+    comment('a1[i]' + 'xxx');
+    comment(msg);
+
     msg = '<' + 1[i] + '>';
     comment('a1[i]');
     comment(msg);
