@@ -678,3 +678,15 @@ email(
 	// 	fromAddr
 	// 	);
 }
+
+// 8/17/2019 
+if (appMatch("*/*/*/Home Stay") 
+	&& (matches(wfStatus, 'Application Complete') && matches(wfTask, 'Application Process'))) {
+
+    var statusDate = aa.env.getValue("StatusDate"); 
+    showMessage = true;
+    comment(statusDate);
+    comment(dateAdd(statusDate, 365));
+    ainfo["EXPIRATION DATE"] = dateAdd(statusDate, 365);
+    comment(ainfo["EXPIRATION DATE"]);
+}
