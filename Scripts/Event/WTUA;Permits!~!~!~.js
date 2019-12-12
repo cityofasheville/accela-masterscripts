@@ -687,6 +687,6 @@ if (appMatch("*/*/*/Home Stay")
     showMessage = true;
     comment(statusDate);
     comment(dateAdd(statusDate, 365));
-    ainfo["EXPIRATION DATE"] = dateAdd(statusDate, 365);
-    comment(ainfo["EXPIRATION DATE"]);
+    aInfo["EXPIRATION DATE"] = dateAdd(statusDate, 365);
+    comment(aInfo["EXPIRATION DATE"]);
 }
