@@ -683,7 +683,7 @@ email(
 if (appMatch("*/*/*/Home Stay") 
 	&& (matches(wfStatus, 'Application Complete') && matches(wfTask, 'Application Process'))) {
 
-    var statusDate = aa.env.getValue("StatusDate"); 
+    var statusDate = getStatusDate(); // aa.env.getValue("StatusDate"); 
     showMessage = true;
     comment(statusDate);
     comment(dateAdd(statusDate, 365));
