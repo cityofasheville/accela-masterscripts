@@ -679,14 +679,52 @@ email(
 	// 	);
 }
 
-// 8/17/2019 
+// 12/17/2019 
+// TESTING AN EMAIL
 if (appMatch("*/*/*/Home Stay") 
-	&& (matches(wfStatus, 'Application Complete') && matches(wfTask, 'Application Process'))) {
+	&& (matches(wfStatus, 'Hold for Revision') && matches(wfTask, 'Zoning Review'))) {
 
-    var statusDate = getStatusDate(); // aa.env.getValue("StatusDate"); 
-    showMessage = true;
-    comment(statusDate);
-    comment(dateAdd(statusDate, 365));
-    AInfo['EXPIRATION DATE'] = dateAdd(statusDate, 365);
-    comment(AInfo['EXPIRATION DATE']);
+    var licprofs = getLicProfData(capId);
+    var emailContent
+      = '<html><head><style>ol {margin: 0;padding: 0}</style></head><body>Permit Number: ' 
+      + capIDString + ' <br>Location: ' + CapAddress + '<br>Owner: ' + ownerName
+      + '<br><p>'
+      + ' Hello, this is just to let you know that your permit has been issued, and we are notifying the '
+      + ' licensed professionals (contractors) who are listed on the permit. '
+      + '</p><p>'
+      + ' Those professionals are: '
+      + '</p><table>'
+      + '<tr><th>' + 'Business' + '</th><th>' + 'Type' + '</th><th>' + 'Name' + '</th><th>' + 'Email' + '</th></tr>';
+    licprofs.forEach(function(xx) {
+      emailContent 
+      = emailContent + '<tr><td>' + xx.business + '</td><td>' + xx.type + '</td><td>' 
+      + xx.name + '</td><td>' + xx.email + '</td></tr>';
+    });
+    emailContent 
+      = emailContent
+      + '</table><p>'
+      + 'If any of these professionals are incorrect, please let us know at pac@ashevillenc.gov or at 828-259-5846. '
+      + 'We look forward to working with you. Thank you,'
+      + '</p><p>'
+      + 'City of Asheville Development Services Department</p><hr></body></html>';
+
+    email(
+      emailTo,
+      fromAddr,
+      'Permit Issued by City of Asheville - Licensed Professionals Listed Below', 
+      emailContent);
+
+      // 12/17/2019 
+    // WORKING ON setting expiration date
+    //////////////////////////////
+
+    // if (appMatch("*/*/*/Home Stay") 
+    // && (matches(wfStatus, 'Application Complete') && matches(wfTask, 'Application Process'))) {
+
+    // var statusDate = getStatusDate(); // aa.env.getValue("StatusDate"); 
+    // showMessage = true;
+    // comment(statusDate);
+    // comment(dateAdd(statusDate, 365));
+    // AInfo['EXPIRATION DATE'] = dateAdd(statusDate, 365);
+    // comment(AInfo['EXPIRATION DATE']);
 }
