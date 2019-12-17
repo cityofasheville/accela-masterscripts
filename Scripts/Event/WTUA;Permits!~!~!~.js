@@ -718,8 +718,9 @@ if (appMatch("*/*/*/Home Stay")
     var wfObj = workflowResult.getOutput();
     for (i in wfObj) {
       fTask = wfObj[i];
-      comment(fTask);
       for (x in fTask)
+      comment(x);
+      comment(fTask[x]);
         if (x === "resTaskDescription" && fTask[x] === "Inspections") {
           comment(x + " = " + fTask[x]);
           comment(fTask.getStatusDate());
