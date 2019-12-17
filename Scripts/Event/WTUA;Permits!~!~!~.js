@@ -738,6 +738,10 @@ if (appMatch("*/*/*/Home Stay")
   // var statusDate = getStatusDate(); // aa.env.getValue("StatusDate"); 
   // comment(dateAdd(statusDate, 365));
   // AInfo['EXPIRATION DATE'] = dateAdd(statusDate, 365);
-  comment(AInfo['EXPIRATION DATE']);
+  var expdt = AInfo['EXPIRATION DATE'];
+  comment(expdt);
+  AInfo['EXPIRATION DATE'] = 'moo';
+  var expdt = AInfo['EXPIRATION DATE'];
+  comment(expdt);
   
 }
