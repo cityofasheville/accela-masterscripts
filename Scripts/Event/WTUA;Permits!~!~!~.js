@@ -707,7 +707,8 @@ if (appMatch("*/*/*/Home Stay")
       + 'We look forward to working with you. Thank you,'
       + '</p><p>'
       + 'City of Asheville Development Services Department</p><hr></body></html>';
-
+    showMessage = true;
+    comment(emailContent);
     email(
       emailTo,
       fromAddr,
