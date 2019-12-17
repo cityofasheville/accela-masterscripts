@@ -707,9 +707,6 @@ if ( (wfTask == 'Issuance' || wfTask == 'Permit Verification' || wfTask == 'Appl
 // 12/17/2019 
 // WORKING ON setting expiration date
 //////////////////////////////
-
-
-
 if (appMatch("*/*/*/Home Stay") 
 && (matches(wfTask, 'Inspections') && matches(wfStatus, 'In Compliance', 'Renewed'))) {
           showMessage = true;
@@ -726,6 +723,8 @@ if (appMatch("*/*/*/Home Stay")
             var statusOneYear = dateAdd(statusDate, 365)
             comment(statusDate);
             comment(statusOneYear);
+            editAppSpecific('EXPIRATION DATE', statusOneYear);
+            comment(AInfo['EXPIRATION DATE']);
           }
         }
       }
@@ -743,10 +742,5 @@ if (appMatch("*/*/*/Home Stay")
   // comment(expdt);
   // AInfo['EXPIRATION DATE'] = statusOneYear;
   // var nexpdt = AInfo['EXPIRATION DATE'];
-  // comment(nexpdt);
-  var expdt = AInfo['Zoning District'];
-  comment(expdt);
-  AInfo['Zoning District'] = 'moo';
-  var nexpdt = AInfo['Zoning District'];
-  comment(nexpdt);
+  // comment(AInfo['EXPIRATION DATE']);
 }
