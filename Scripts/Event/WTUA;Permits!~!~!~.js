@@ -724,8 +724,9 @@ if (appMatch("*/*/*/Home Stay")
       // }
       for (x in fTask)
         if (x === "resTaskDescription" && fTask[x] === "Inspections") {
-          aa.print(x + " = " + fTask[x]);
-          aa.print(fTask.getStatusDate());
+          showMessage = true;
+          comment(x + " = " + fTask[x]);
+          comment(fTask.getStatusDate());
         }
 
       // if (fTask.getStatusDate()) {
