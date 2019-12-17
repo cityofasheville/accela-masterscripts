@@ -708,26 +708,39 @@ if ( (wfTask == 'Issuance' || wfTask == 'Permit Verification' || wfTask == 'Appl
 // WORKING ON setting expiration date
 //////////////////////////////
 
-if (appMatch("*/*/*/Home Stay") 
-&& (matches(wfStatus, 'Hold for Revision') && matches(wfTask, 'Zoning Review'))) {
 
+
+if (appMatch("*/*/*/Home Stay") 
+&& (matches(wfTask, 'Inspections') && matches(wfStatus, 'In Compliance', 'Renewed'))) {
   var workflowResult = aa.workflow.getTasks(capId);
   if (workflowResult.getSuccess()) {
     var wfObj = workflowResult.getOutput();
     for (i in wfObj) {
       fTask = wfObj[i];
+      // for (j in fTask) {
+      //   if(fTask[j].resTaskDescription === 'Inspections'){
+      //     aa.print(fTask.getStatusDate());
+      //   }
+      // }
+
+      obj= fTask;
+      for (x in obj)
+        if (typeof(obj[x]) === "function") 
+          aa.print(x);
+      for (x in obj)
+        if (typeof(obj[x]) !== "function") 
+          aa.print(x + " = " + obj[x]);
+
       if (fTask.getStatusDate()) {
         showMessage = true;
         comment((fTask.getStatusDate().getMonth() + 1) + "/" + fTask.getStatusDate().getDate() + "/" + (fTask.getStatusDate().getYear() + 1900));
       }
     }
   }
-  else { 
-    logMessage("**ERROR: Failed to get workflow object: " + s_capResult.getErrorMessage()); 
-  }
 
   // var statusDate = getStatusDate(); // aa.env.getValue("StatusDate"); 
   // comment(dateAdd(statusDate, 365));
   // AInfo['EXPIRATION DATE'] = dateAdd(statusDate, 365);
-  // comment(AInfo['EXPIRATION DATE']);
+  comment(AInfo['EXPIRATION DATE']);
+  
 }
