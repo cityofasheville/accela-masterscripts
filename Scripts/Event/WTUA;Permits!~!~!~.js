@@ -739,10 +739,14 @@ if (appMatch("*/*/*/Home Stay")
   // var statusDate = getStatusDate(); // aa.env.getValue("StatusDate"); 
   // comment(dateAdd(statusDate, 365));
   // AInfo['EXPIRATION DATE'] = dateAdd(statusDate, 365);
-  var expdt = AInfo['EXPIRATION DATE'];
+  // var expdt = AInfo['EXPIRATION DATE'];
+  // comment(expdt);
+  // AInfo['EXPIRATION DATE'] = statusOneYear;
+  // var nexpdt = AInfo['EXPIRATION DATE'];
+  // comment(nexpdt);
+  var expdt = AInfo['Zoning District'];
   comment(expdt);
-  AInfo['EXPIRATION DATE'] = statusOneYear;
-  var expdt = AInfo['EXPIRATION DATE'];
-  comment(expdt);
-  
+  AInfo['Zoning District'] = 'moo';
+  var nexpdt = AInfo['Zoning District'];
+  comment(nexpdt);
 }
