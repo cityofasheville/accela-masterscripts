@@ -641,7 +641,7 @@ if (appMatch("*/*/*/Home Stay")
 }
 
 
-// added 11/12/2019 to email all lic prof when permit issued
+// 11/12/2019 - Email all lic prof when permit issued. Also email applicant that they were notified.
 if ( (wfTask == 'Issuance' || wfTask == 'Permit Verification' || wfTask == 'Application Process') && matches(wfStatus, 'Issue', 'Reissue')) {
 	var ownerName = getOwnerNameFromCap();
 	var fromAddr ;
@@ -695,27 +695,37 @@ if ( (wfTask == 'Issuance' || wfTask == 'Permit Verification' || wfTask == 'Appl
     + 'We look forward to working with you. Thank you,'
     + '</p><p>'
     + 'City of Asheville Development Services Department</p><hr></body></html>';
-  var fromAddr  = 'residentialpermits@ashevillenc.gov';
-  var emailAddrs = getEmailsByContactType('Applicant');
-  var emailTo = emailAddrs.join(';')
+  emailAddrs = getEmailsByContactType('Applicant');
+  emailTo = emailAddrs.join(';')
   email(
     emailTo,
-    fromAddr,
+    fromAddr, //set above for other email
     'Permit Issued by City of Asheville - Licensed Professionals Listed Below', 
     emailContent);
 }   
 
-    // 12/17/2019 
-    // WORKING ON setting expiration date
-    //////////////////////////////
+// 12/17/2019 
+// WORKING ON setting expiration date
+//////////////////////////////
 
-    if (appMatch("*/*/*/Home Stay") 
-    && (matches(wfStatus, 'Hold for Revision') && matches(wfTask, 'Zoning Review'))) {
+if (appMatch("*/*/*/Home Stay") 
+&& (matches(wfStatus, 'Hold for Revision') && matches(wfTask, 'Zoning Review'))) {
 
-      var statusDate = getStatusDate(); // aa.env.getValue("StatusDate"); 
+  var workflowResult = aa.workflow.getTasks(capId);
+  if (workflowResult.getSuccess())
+    wfObj = workflowResult.getOutput();
+  else
+    { logMessage("**ERROR: Failed to get workflow object: " + s_capResult.getErrorMessage()); return false; }
+
+  for (i in wfObj) {
+    fTask = wfObj[i];
+    if (fTask.getStatusDate()) {
       showMessage = true;
-      comment(statusDate);
-      comment(dateAdd(statusDate, 365));
-      AInfo['EXPIRATION DATE'] = dateAdd(statusDate, 365);
-      comment(AInfo['EXPIRATION DATE']);
+      comment((fTask.getStatusDate().getMonth() + 1) + "/" + fTask.getStatusDate().getDate() + "/" + (fTask.getStatusDate().getYear() + 1900));
     }
+  }
+  // var statusDate = getStatusDate(); // aa.env.getValue("StatusDate"); 
+  // comment(dateAdd(statusDate, 365));
+  // AInfo['EXPIRATION DATE'] = dateAdd(statusDate, 365);
+  // comment(AInfo['EXPIRATION DATE']);
+}
