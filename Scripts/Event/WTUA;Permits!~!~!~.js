@@ -721,7 +721,11 @@ if (appMatch("*/*/*/Home Stay")
       for (x in fTask) {
         if (x == "resTaskDescription" && fTask[x] == "Inspections") {
           comment(x + " = " + fTask[x]);
-          comment(fTask.getStatusDate());
+          if (fTask.getStatusDate()) {
+            var statusDate = fTask.getStatusDate();
+            comment(statusDate);
+            comment(dateAdd(statusDate, 365));
+          }
         }
       }
       // if (fTask.getStatusDate()) {
