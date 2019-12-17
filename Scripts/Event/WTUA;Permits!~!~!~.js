@@ -718,13 +718,12 @@ if (appMatch("*/*/*/Home Stay")
     var wfObj = workflowResult.getOutput();
     for (i in wfObj) {
       fTask = wfObj[i];
-      for (x in fTask)
-      comment(x + " = = " + fTask[x]);
+      for (x in fTask) {
         if (x === "resTaskDescription" && fTask[x] === "Inspections") {
           comment(x + " = " + fTask[x]);
           comment(fTask.getStatusDate());
         }
-
+      }
       // if (fTask.getStatusDate()) {
       //   showMessage = true;
       //   comment((fTask.getStatusDate().getMonth() + 1) + "/" + fTask.getStatusDate().getDate() + "/" + (fTask.getStatusDate().getYear() + 1900));
