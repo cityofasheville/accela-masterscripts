@@ -722,19 +722,16 @@ if (appMatch("*/*/*/Home Stay")
       //     aa.print(fTask.getStatusDate());
       //   }
       // }
+      for (x in fTask)
+        if (x === "resTaskDescription" && fTask[x] === "Inspections") {
+          aa.print(x + " = " + fTask[x]);
+          aa.print(fTask.getStatusDate());
+        }
 
-      obj= fTask;
-      for (x in obj)
-        if (typeof(obj[x]) === "function") 
-          aa.print(x);
-      for (x in obj)
-        if (typeof(obj[x]) !== "function") 
-          aa.print(x + " = " + obj[x]);
-
-      if (fTask.getStatusDate()) {
-        showMessage = true;
-        comment((fTask.getStatusDate().getMonth() + 1) + "/" + fTask.getStatusDate().getDate() + "/" + (fTask.getStatusDate().getYear() + 1900));
-      }
+      // if (fTask.getStatusDate()) {
+      //   showMessage = true;
+      //   comment((fTask.getStatusDate().getMonth() + 1) + "/" + fTask.getStatusDate().getDate() + "/" + (fTask.getStatusDate().getYear() + 1900));
+      // }
     }
   }
 
