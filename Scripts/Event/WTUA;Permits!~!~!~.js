@@ -719,7 +719,7 @@ if (appMatch("*/*/*/Home Stay")
     for (i in wfObj) {
       fTask = wfObj[i];
       for (x in fTask) {
-        if (x === "resTaskDescription" && fTask[x] === "Inspections") {
+        if (x == "resTaskDescription" && fTask[x] == "Inspections") {
           comment(x + " = " + fTask[x]);
           comment(fTask.getStatusDate());
         }
