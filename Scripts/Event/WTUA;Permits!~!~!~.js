@@ -712,18 +712,20 @@ if (appMatch("*/*/*/Home Stay")
 && (matches(wfStatus, 'Hold for Revision') && matches(wfTask, 'Zoning Review'))) {
 
   var workflowResult = aa.workflow.getTasks(capId);
-  if (workflowResult.getSuccess())
-    wfObj = workflowResult.getOutput();
-  else
-    { logMessage("**ERROR: Failed to get workflow object: " + s_capResult.getErrorMessage()); return false; }
-
-  for (i in wfObj) {
-    fTask = wfObj[i];
-    if (fTask.getStatusDate()) {
-      showMessage = true;
-      comment((fTask.getStatusDate().getMonth() + 1) + "/" + fTask.getStatusDate().getDate() + "/" + (fTask.getStatusDate().getYear() + 1900));
+  if (workflowResult.getSuccess()) {
+    var wfObj = workflowResult.getOutput();
+    for (i in wfObj) {
+      fTask = wfObj[i];
+      if (fTask.getStatusDate()) {
+        showMessage = true;
+        comment((fTask.getStatusDate().getMonth() + 1) + "/" + fTask.getStatusDate().getDate() + "/" + (fTask.getStatusDate().getYear() + 1900));
+      }
     }
   }
+  else { 
+    logMessage("**ERROR: Failed to get workflow object: " + s_capResult.getErrorMessage()); 
+  }
+
   // var statusDate = getStatusDate(); // aa.env.getValue("StatusDate"); 
   // comment(dateAdd(statusDate, 365));
   // AInfo['EXPIRATION DATE'] = dateAdd(statusDate, 365);
