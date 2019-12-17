@@ -650,16 +650,16 @@ if ( (wfTask == 'Issuance' || wfTask == 'Permit Verification' || wfTask == 'Appl
 	} else {
 		fromAddr = 'developmentservices@ashevillenc.gov';
   }
-// Send to all licensed prof unless they are a contact
-var licProc = getEmailsByLicenseType('ALL');
-var contacts = getEmailsByContactType('ALL');
-var emailAddrs = inAButNotB(licProc,contacts);
+  // Send to all licensed prof unless they are a contact
+  var licProc = getEmailsByLicenseType('ALL');
+  var contacts = getEmailsByContactType('ALL');
+  var emailAddrs = inAButNotB(licProc,contacts);
 
-var emailTo = emailAddrs.join(';')
-email(
-  emailTo,
-  fromAddr,
-  'Permit Issued by City of Asheville - You are Listed as a Licensed Professional', 
+  var emailTo = emailAddrs.join(';')
+  email(
+    emailTo,
+    fromAddr,
+    'Permit Issued by City of Asheville - You are Listed as a Licensed Professional', 
 		'<html><head><style>ol {margin: 0;padding: 0}</style></head><body>Permit Number: ' 
 		+ capIDString + ' <br>Location: ' + CapAddress + '<br>Owner: ' + ownerName
 		+ '<br><p>'
@@ -670,63 +670,52 @@ email(
 		+ '</p><p>'
     + ' City of Asheville Development Services Department</p><hr></body></html>');
     
-	// emailByContactType('Permit Issued by City of Asheville - Licenced Professionals being notified', 
-	// 	'<html><head><style>ol {margin: 0;padding: 0}</style></head><body>Permit Number: ' 
-	// 	+ capIDString + ' <br>Location: ' + CapAddress + '<br>Owner: ' + ownerName + 
-	// 	' <br><p>Your residential permit application has been issued. Everyone listed as a Licensed Professional has received the following email. For your convenience, you may visit the Citizen Access website (<a href="https://services.ashevillenc.gov/citizenaccess">https://services.ashevillenc.gov/citizenaccess</a>) to print your permit and approved plans/comments. </p><p>Please note that the issued permit along with the approved plans/comments must be maintained in hard copy on the project site during construction until the permit is closed.</p><p>Please refer to the following steps to access your approved permit and plans/comments online in .PDF format:</p><p><ol><li>Visit <a href="https://services.ashevillenc.gov/citizenaccess">https://services.ashevillenc.gov/citizenaccess</a>. Register for a Citizen Access account if you have not already done so, then log in to access the permit documents.</li><li>Enter your permit number in the top right <b>search box</b> and click on the green spyglass to pull up the permit record.</li><li>Click <b>Record Info</b> to access a drop-down menu; then select <b>Attachments</b> from the drop-down menu.</li><li>To download the 1) issued permit and 2) approved plans/comments, click the blue links next to documents labeled <b>ISSUED PERMIT</b> and <b>APPROVED SITE PLANS + COMMENTS</b> and/or <b>APPROVED BUILDING PLANS + COMMENTS.</b> </li></ol></p><p>If you have questions, please contact the Permit Application Center at PAC@ashevillenc.gov or 828-259-5846 or visit in-person at 161 S. Charlotte St. on Monday-Friday from 8:30 am - 5:00 pm. </p><hr></body></html>',
-	// 	'Applicant',
-	// 	fromAddr
-	// 	);
-}
-
-// 12/17/2019 
-// TESTING AN EMAIL
-if (appMatch("*/*/*/Home Stay") 
-	&& (matches(wfStatus, 'Hold for Revision') && matches(wfTask, 'Zoning Review'))) {
-
-    var licprofs = getLicProfData(capId);
-    var emailContent
-      = '<html><head><style>ol {margin: 0;padding: 0}</style></head><body>Permit Number: ' 
-      + capIDString + ' <br>Location: ' + CapAddress + '<br>Owner: ' + ownerName
-      + '<br><p>'
-      + ' Hello, this is just to let you know that your permit has been issued, and we are notifying the '
-      + ' licensed professionals (contractors) who are listed on the permit. '
-      + '</p><p>'
-      + ' Those professionals are: '
-      + '</p><table>'
-      + '<tr><th>' + 'Business' + '</th><th>' + 'Type' + '</th><th>' + 'Name' + '</th><th>' + 'Email' + '</th></tr>';
-    licprofs.forEach(function(xx) {
-      emailContent 
-      = emailContent + '<tr><td>' + xx.business + '</td><td>' + xx.type + '</td><td>' 
-      + xx.name + '</td><td>' + xx.email + '</td></tr>';
-    });
+  // 12/17/2019 
+  // Email to Applicant
+  var licprofs = getLicProfData(capId);
+  var emailContent
+    = '<html><head><style>ol {margin: 0;padding: 0}</style></head><body>Permit Number: ' 
+    + capIDString + ' <br>Location: ' + CapAddress + '<br>Owner: ' + ownerName
+    + '<br><p>'
+    + ' Hello, this is just to let you know that your permit has been issued, and we are notifying the '
+    + ' licensed professionals (contractors) who are listed on the permit. '
+    + '</p><p>'
+    + ' Those professionals are: '
+    + '</p><table>'
+    + '<tr><th>' + 'Business' + '</th><th>' + 'Type' + '</th><th>' + 'Name' + '</th><th>' + 'Email' + '</th></tr>';
+  licprofs.forEach(function(xx) {
     emailContent 
-      = emailContent
-      + '</table><p>'
-      + 'If any of these professionals are incorrect, please let us know at pac@ashevillenc.gov or at 828-259-5846. '
-      + 'We look forward to working with you. Thank you,'
-      + '</p><p>'
-      + 'City of Asheville Development Services Department</p><hr></body></html>';
-    var fromAddr  = 'residentialpermits@ashevillenc.gov';
-    var emailAddrs = getEmailsByContactType('Applicant');
-    var emailTo = emailAddrs.join(';')
-    email(
-      emailTo,
-      fromAddr,
-      'Permit Issued by City of Asheville - Licensed Professionals Listed Below', 
-      emailContent);
+    = emailContent + '<tr><td>' + xx.business + '</td><td>' + xx.type + '</td><td>' 
+    + xx.name + '</td><td>' + xx.email + '</td></tr>';
+  });
+  emailContent 
+    = emailContent
+    + '</table><p>'
+    + 'If any of these professionals are incorrect, please let us know at pac@ashevillenc.gov or at 828-259-5846. '
+    + 'We look forward to working with you. Thank you,'
+    + '</p><p>'
+    + 'City of Asheville Development Services Department</p><hr></body></html>';
+  var fromAddr  = 'residentialpermits@ashevillenc.gov';
+  var emailAddrs = getEmailsByContactType('Applicant');
+  var emailTo = emailAddrs.join(';')
+  email(
+    emailTo,
+    fromAddr,
+    'Permit Issued by City of Asheville - Licensed Professionals Listed Below', 
+    emailContent);
+}   
 
-      // 12/17/2019 
+    // 12/17/2019 
     // WORKING ON setting expiration date
     //////////////////////////////
 
-    // if (appMatch("*/*/*/Home Stay") 
-    // && (matches(wfStatus, 'Application Complete') && matches(wfTask, 'Application Process'))) {
+    if (appMatch("*/*/*/Home Stay") 
+    && (matches(wfStatus, 'Hold for Revision') && matches(wfTask, 'Zoning Review'))) {
 
-    // var statusDate = getStatusDate(); // aa.env.getValue("StatusDate"); 
-    // showMessage = true;
-    // comment(statusDate);
-    // comment(dateAdd(statusDate, 365));
-    // AInfo['EXPIRATION DATE'] = dateAdd(statusDate, 365);
-    // comment(AInfo['EXPIRATION DATE']);
-}
+      var statusDate = getStatusDate(); // aa.env.getValue("StatusDate"); 
+      showMessage = true;
+      comment(statusDate);
+      comment(dateAdd(statusDate, 365));
+      AInfo['EXPIRATION DATE'] = dateAdd(statusDate, 365);
+      comment(AInfo['EXPIRATION DATE']);
+    }
