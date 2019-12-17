@@ -712,19 +712,15 @@ if ( (wfTask == 'Issuance' || wfTask == 'Permit Verification' || wfTask == 'Appl
 
 if (appMatch("*/*/*/Home Stay") 
 && (matches(wfTask, 'Inspections') && matches(wfStatus, 'In Compliance', 'Renewed'))) {
+          showMessage = true;
   var workflowResult = aa.workflow.getTasks(capId);
   if (workflowResult.getSuccess()) {
     var wfObj = workflowResult.getOutput();
     for (i in wfObj) {
       fTask = wfObj[i];
-      // for (j in fTask) {
-      //   if(fTask[j].resTaskDescription === 'Inspections'){
-      //     aa.print(fTask.getStatusDate());
-      //   }
-      // }
+      comment(fTask);
       for (x in fTask)
         if (x === "resTaskDescription" && fTask[x] === "Inspections") {
-          showMessage = true;
           comment(x + " = " + fTask[x]);
           comment(fTask.getStatusDate());
         }
