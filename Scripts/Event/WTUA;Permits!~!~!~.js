@@ -705,42 +705,24 @@ if ( (wfTask == 'Issuance' || wfTask == 'Permit Verification' || wfTask == 'Appl
 }   
 
 // 12/17/2019 
-// WORKING ON setting expiration date
+// HomeStay set expiration date = in compliance date + 1 year
 //////////////////////////////
 if (appMatch("*/*/*/Home Stay") 
 && (matches(wfTask, 'Inspections') && matches(wfStatus, 'In Compliance', 'Renewed'))) {
-          showMessage = true;
   var workflowResult = aa.workflow.getTasks(capId);
   if (workflowResult.getSuccess()) {
     var wfObj = workflowResult.getOutput();
     for (i in wfObj) {
       fTask = wfObj[i];
-      for (x in fTask) {
-        if (x == "resTaskDescription" && fTask[x] == "Inspections") {
-          comment(x + " = " + fTask[x]);
+      for (j in fTask) {
+        if (j == "resTaskDescription" && fTask[j] == "Inspections") {
           if (fTask.getStatusDate()) {
             var statusDate = fTask.getStatusDate();
-            var statusOneYear = dateAdd(statusDate, 365)
-            comment(statusDate);
-            comment(statusOneYear);
+            var statusOneYear = dateAddMonths(statusDate, 12)
             editAppSpecific('EXPIRATION DATE', statusOneYear);
-            comment(AInfo['EXPIRATION DATE']);
           }
         }
       }
-      // if (fTask.getStatusDate()) {
-      //   showMessage = true;
-      //   comment((fTask.getStatusDate().getMonth() + 1) + "/" + fTask.getStatusDate().getDate() + "/" + (fTask.getStatusDate().getYear() + 1900));
-      // }
     }
   }
-
-  // var statusDate = getStatusDate(); // aa.env.getValue("StatusDate"); 
-  // comment(dateAdd(statusDate, 365));
-  // AInfo['EXPIRATION DATE'] = dateAdd(statusDate, 365);
-  // var expdt = AInfo['EXPIRATION DATE'];
-  // comment(expdt);
-  // AInfo['EXPIRATION DATE'] = statusOneYear;
-  // var nexpdt = AInfo['EXPIRATION DATE'];
-  // comment(AInfo['EXPIRATION DATE']);
 }
