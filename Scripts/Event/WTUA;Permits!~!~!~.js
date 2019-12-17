@@ -740,7 +740,7 @@ if (appMatch("*/*/*/Home Stay")
   // AInfo['EXPIRATION DATE'] = dateAdd(statusDate, 365);
   var expdt = AInfo['EXPIRATION DATE'];
   comment(expdt);
-  AInfo['EXPIRATION DATE'] = 'moo';
+  AInfo['EXPIRATION DATE'] = '12/26/1962';
   var expdt = AInfo['EXPIRATION DATE'];
   comment(expdt);
   
