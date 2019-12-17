@@ -723,8 +723,9 @@ if (appMatch("*/*/*/Home Stay")
           comment(x + " = " + fTask[x]);
           if (fTask.getStatusDate()) {
             var statusDate = fTask.getStatusDate();
+            var statusOneYear = dateAdd(statusDate, 365)
             comment(statusDate);
-            comment(dateAdd(statusDate, 365));
+            comment(statusOneYear);
           }
         }
       }
@@ -740,7 +741,7 @@ if (appMatch("*/*/*/Home Stay")
   // AInfo['EXPIRATION DATE'] = dateAdd(statusDate, 365);
   var expdt = AInfo['EXPIRATION DATE'];
   comment(expdt);
-  AInfo['EXPIRATION DATE'] = statusDate;
+  AInfo['EXPIRATION DATE'] = statusOneYear;
   var expdt = AInfo['EXPIRATION DATE'];
   comment(expdt);
   
