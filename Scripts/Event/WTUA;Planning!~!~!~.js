@@ -426,3 +426,18 @@ if (wfTask == 'PZC' && matches(wfStatus, 'Continuance')) {
 
 
 }
+if ((wfTask == 'Level I Zoning') && matches(wfStatus, 'Sent to 1st Level I Review'))
+	{
+// Added 12/30/19 to reflect Level I changes
+			if (AInfo['Addressing'] == 'Yes') {
+			setTask('Addressing', 'Y', 'N', 'PW_DEV_SUBREVIEW');
+		}
+			if (AInfo['Transportation'] == 'Yes') {
+			setTask('Transportation', 'Y', 'N', 'PW_DEV_SUBREVIEW');
+		}
+	}
+
+// 12/31/2019
+if (wfTask == 'Level I Zoning') {
+	editAppSpecific('Comment Due Date', AInfo['Level I Comment Due Date']);
+}

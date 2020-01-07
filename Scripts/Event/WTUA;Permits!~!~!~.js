@@ -728,3 +728,10 @@ if (appMatch("*/*/*/Home Stay")
     }
   }
 }
+
+//test 1/2/20
+if (appMatch('Permits/*/*/SFD')) {
+	if(wfTask == 'Issuance' && matches(wfStatus, 'Issue', 'Reissue')) {
+      createPendingInspectionIfNotExists('RES_SITE', 'GR-CONTRACTOR CONFERENCE');
+	}
+}
