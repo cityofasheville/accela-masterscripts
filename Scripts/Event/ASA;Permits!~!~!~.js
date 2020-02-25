@@ -20,7 +20,7 @@
 //end replaced branch: ES_MOVE_WORKDESC_SHORTNOTES;
 
 if ((appMatch('Permits/*/Existing Building/*') || appMatch('Permits/*/New Building/*') || appMatch('*/*/Remodel/*') || appMatch('*/*/Manufactured Home/*') || appMatch('*/*/Demolition/*') || appMatch('*/*/Addition/*') || appMatch('*/*/Accessory Structure/*') || appMatch('Permits/*/New/*') || appMatch('Permits/*/Site Work/*') || appMatch('Permits/Sign/Stand Alone/*')) && AInfo['ParcelAttribute.RIVER DISTRICT'] == 'Yes') {
-	addAdHocTask('ADHOC TASKS', 'River District Design Review', ' ', 'SMONSON');
+	addAdHocTask('ADHOC TASKS', 'River District Design Review', ' ', 'SVRTUNSKI');
 }
 
 if (!appMatch('Permits/*/Existing Building/Reroof') && (appMatch('Permits/*/Existing Building/*') || appMatch('Permits/*/New Building/*') || appMatch('*/*/Remodel/*') || appMatch('*/*/Manufactured Home/*') || appMatch('*/*/Demolition/*') || appMatch('*/*/Addition/*') || appMatch('*/*/Accessory Structure/*') || appMatch('Permits/*/New/*') || appMatch('Permits/*/Site Work/*')) && AInfo['ParcelAttribute.DTDR OVERLAY'] == 'Yes') {
@@ -56,7 +56,7 @@ if ((appMatch('Permits/*/Existing Building/*') || appMatch('Permits/*/New Buildi
 }
 
 if (!appMatch('Permits/*/Existing Building/Reroof') && (appMatch('Permits/*/New Building/*') || appMatch('Permits/*/Existing Building/*') || appMatch('*/*/Remodel/*') || appMatch('*/*/Manufactured Home/*') || appMatch('*/*/Demolition/*') || appMatch('*/*/Addition/*') || appMatch('*/*/Accessory Structure/*') || appMatch('Permits/*/New/*') || appMatch('Permits/*/Site Work/*')) && AInfo['ParcelAttribute.RIVER DISTRICT'] == 'Yes') {
-	email('smonson@ashevillenc.gov', 'noreply@ashevillenc.gov', 'River District Design Review Task', 'River District Design Review task assigned. ' + capIDString + ' - Please check Accela and update the record status.');
+	email('svrtunski@ashevillenc.gov', 'noreply@ashevillenc.gov', 'River District Design Review Task', 'River District Design Review task assigned. ' + capIDString + ' - Please check Accela and update the record status.');
 }
 
 capOwnerModel = getCapOwnerByName('CITY OF ASHEVILLE');
