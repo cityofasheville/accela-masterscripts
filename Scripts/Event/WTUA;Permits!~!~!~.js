@@ -642,7 +642,7 @@ if (appMatch("*/*/*/Home Stay")
 
 
 // 11/12/2019 - Email all lic prof when permit issued. Also email applicant that they were notified.
-if ( (wfTask == 'Issuance' || wfTask == 'Permit Verification' || wfTask == 'Application Process') && matches(wfStatus, 'Issue', 'Reissue')) {
+if ( (wfTask == 'Issuance' || wfTask == 'Permit Verification' || wfTask == 'Permit Issuance') && matches(wfStatus, 'Issue', 'Reissue')) {
 	var ownerName = getOwnerNameFromCap();
 	var fromAddr ;
 	if (appMatch('*/Residential/*/*')) {
@@ -673,38 +673,39 @@ if ( (wfTask == 'Issuance' || wfTask == 'Permit Verification' || wfTask == 'Appl
   // 12/17/2019 
   // Email to Applicant
 
-  // var licprofs = getLicProfData(capId);
-  // var emailContent
-  //   = '<html><head><style>ol {margin: 0;padding: 0}</style></head><body>Permit Number: ' 
-  //   + capIDString + ' <br>Location: ' + CapAddress + '<br>Owner: ' + ownerName
-  //   + '<br><p>'
-  //   + ' Hello, this is just to let you know that your permit has been issued, and we are notifying the '
-  //   + ' licensed professionals (contractors) who are listed on the permit. '
-  //   + '</p><p>'
-  //   + ' Those professionals are: '
-  //   + '</p><table>'
-  //   + '<tr><th>' + 'Business' + '</th><th>' + 'Type' + '</th><th>' + 'Name' + '</th><th>' + 'Email' + '</th></tr>';
-  // licprofs.forEach(function(xx) {
-  //   emailContent 
-  //   = emailContent + '<tr><td>' + xx.business + '</td><td>' + xx.type + '</td><td>' 
-  //   + xx.name + '</td><td>' + xx.email + '</td></tr>';
-  // });
-  // emailContent 
-  //   = emailContent
-  //   + '</table><p>'
-  //   + 'If any of these professionals are incorrect, please let us know at pac@ashevillenc.gov or at 828-259-5846. '
-  //   + 'We look forward to working with you. Thank you,'
-  //   + '</p><p>'
-  //   + 'City of Asheville Development Services Department</p><hr></body></html>';
-  // emailAddrs = getEmailsByContactType('Applicant');
-  // emailTo = emailAddrs.join(';')
-  // email(
-  //   emailTo,
-  //   fromAddr, //set above for other email
-  //   'Permit Issued by City of Asheville - Licensed Professionals Listed Below', 
-  //   emailContent);
-
-}   
+   var licprofs = getLicProfData(capId);
+   if(licprofs.length > 0) {
+	   var emailContent
+	     = '<html><head><style>ol {margin: 0;padding: 0}</style></head><body>Permit Number: ' 
+	     + capIDString + ' <br>Location: ' + CapAddress + '<br>Owner: ' + ownerName
+	     + '<br><p>'
+	     + ' Hello, this is just to let you know that your permit has been issued, and we are notifying the '
+	     + ' licensed professionals (contractors) who are listed on the permit. '
+	     + '</p><p>'
+	     + ' Those professionals are: '
+	     + '</p><table>'
+	     + '<tr><th>' + 'Business' + '</th><th>' + 'Type' + '</th><th>' + 'Name' + '</th><th>' + 'Email' + '</th></tr>';
+	   licprofs.forEach(function(xx) {
+	     emailContent 
+	     = emailContent + '<tr><td>' + xx.business + '</td><td>' + xx.type + '</td><td>' 
+	     + xx.name + '</td><td>' + xx.email + '</td></tr>';
+	   });
+	   emailContent 
+	     = emailContent
+	     + '</table><p>'
+	     + 'If any of these professionals are incorrect, please let us know at pac@ashevillenc.gov or at 828-259-5846. '
+	     + 'We look forward to working with you. Thank you,'
+	     + '</p><p>'
+	     + 'City of Asheville Development Services Department</p><hr></body></html>';
+	   emailAddrs = getEmailsByContactType('Applicant');
+	   emailTo = emailAddrs.join(';')
+	   email(
+	     emailTo,
+	     fromAddr, //set above for other email
+	     'Permit Issued by City of Asheville - Licensed Professionals Listed Below', 
+	     emailContent);
+	}   
+}
 
 // 12/17/2019 
 // HomeStay set expiration date = in compliance date + 1 year
@@ -727,11 +728,4 @@ if (appMatch("*/*/*/Home Stay")
       }
     }
   }
-}
-
-//test 1/2/20
-if (appMatch('Permits/*/*/SFD')) {
-	if(wfTask == 'Issuance' && matches(wfStatus, 'Issue', 'Reissue')) {
-      createPendingInspectionIfNotExists('RES_SITE', 'GR-CONTRACTOR CONFERENCE');
-	}
 }
