@@ -19,7 +19,7 @@ if ((appMatch('Permits/Commercial/*/*') || appMatch('Planning/Development/*/*') 
 }
 // added emails to Caitlyn and Thana for Zoning Final 081318
 if (( appMatch('Planning/Development/*/*') || appMatch('Planning/Subdivision/*/*')) && matches(inspType, 'ZO-FINAL')) {
-	email('cshort@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Inspection Request', 'An inspection of type ' + inspType + ' has been scheduled for Permit Application ' + capIDString + ' at address ' + theCapAddress + '.');
+	email('jpayne4@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Inspection Request', 'An inspection of type ' + inspType + ' has been scheduled for Permit Application ' + capIDString + ' at address ' + theCapAddress + '.');
 }
 //changed from talley to hmahoney 4/4/19
 if (( appMatch('Planning/Development/*/*') || appMatch('Planning/Subdivision/*/*')) && matches(inspType, 'ZO-FINAL')) {
