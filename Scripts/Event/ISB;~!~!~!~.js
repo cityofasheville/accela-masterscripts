@@ -1,3 +1,4 @@
+// Adding this line to test 9.3.13 install
 //Added 6/14/19 check for approved finals before issuing BU FINAL
 if ( (appMatch("Permits/*/New Building/*") || appMatch("Permits/*/Accessory Structure/*") || appMatch("Permits/*/Existing Building/*")) && !appMatch("*/*/*/Repair-Replacement") && !appMatch("*/*/*/Reroof") && (matches(inspType, 'BU-FINAL', 'BU-FINAL-REINSP')) ) {
 	if (!checkInspectionResult('EE-FINAL', 'Approved') && 

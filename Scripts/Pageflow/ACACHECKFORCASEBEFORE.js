@@ -125,31 +125,32 @@ showDebug = false;
 //	showDebug = 3;
 //	}
 
-if (appMatch('Permits/*/*/*')) {
-	AddressValidatedNumber = cap.getAddressModel().getRefAddressId();
-	rfArray = getRelatedCapsByAddressBefore_TPS('Permits/Fire/Construction/*');
-}
 
-if (appMatch('Permits/*/*/*') && rfArray != null) {
-	for (eachrow in rfArray)
-		//start replaced branch: ES_ASB_CODE_DUP_CASES
-	{
-		theCapStatus = aa.cap.getCap(rfArray[eachrow].getCapID()).getOutput().getCapStatus();
-		theCapId = aa.cap.getCap(rfArray[eachrow].getCapID()).getOutput().getCapID().getCustomID();
-		if (theCapStatus != null && !matches(theCapStatus, 'Revoked', 'In Compliance', 'Renewed', 'Finaled', 'Void', 'Closed', 'CO Issued', 'CC Issued', 'Expired')) {
-			showMessage = true;
-			comment('<font size=small><b>Open Permit Exists:</b></font><br><br>An open Permit (' + theCapId + ') already exists at this Address. For additional information please contact the Development Services Department at 828-259-5846. <br><br>');
-			cancel = true;
-		}
+// if (appMatch('Permits/*/*/*')) {
+// 	AddressValidatedNumber = cap.getAddressModel().getRefAddressId();
+// 	rfArray = getRelatedCapsByAddressBefore_TPS('Permits/Fire/Construction/*');
+// }
 
-		// DISABLED: ES_ASB_CODE_DUP_CASES:4
-		//showMessage = true;
-		//comment('<font size=small><b>Open Permit Exists:</b></font><br><br>An open Permit ('+theCapId+') already exists at this Address. Web permits cannot be created if open permits exist at the location<br><br>');
-		//cancel = true;
+// if (appMatch('Permits/*/*/*') && rfArray != null) {
+// 	for (eachrow in rfArray)
+// 		//start replaced branch: ES_ASB_CODE_DUP_CASES
+// 	{
+// 		theCapStatus = aa.cap.getCap(rfArray[eachrow].getCapID()).getOutput().getCapStatus();
+// 		theCapId = aa.cap.getCap(rfArray[eachrow].getCapID()).getOutput().getCapID().getCustomID();
+// 		if (theCapStatus != null && !matches(theCapStatus, 'Revoked', 'In Compliance', 'Renewed', 'Finaled', 'Void', 'Closed', 'CO Issued', 'CC Issued', 'Expired')) {
+// 			showMessage = true;
+// 			comment('<font size=small><b>Open Permit Exists:</b></font><br><br>An open Permit (' + theCapId + ') already exists at this Address. For additional information please contact the Development Services Department at 828-259-5846. <br><br>');
+// 			cancel = false;
+// 		}
 
-	}
-	//end replaced branch: ES_ASB_CODE_DUP_CASES;
-}
+// 		// DISABLED: ES_ASB_CODE_DUP_CASES:4
+// 		//showMessage = true;
+// 		//comment('<font size=small><b>Open Permit Exists:</b></font><br><br>An open Permit ('+theCapId+') already exists at this Address. Web permits cannot be created if open permits exist at the location<br><br>');
+// 		//cancel = true;
+
+// 	}
+// 	//end replaced branch: ES_ASB_CODE_DUP_CASES;
+// }
 
 parcel = cap.getParcelModel();
 if (parcel) {
@@ -182,57 +183,57 @@ if (appMatch('Permits/*/*/*') && paArray['ParcelAttribute.JURISDICTION'] != 'Ash
 	cancel = true;
 }
 
-if (appMatch('Permits/*/*/*')) {
-	AddressValidatedNumber = cap.getAddressModel().getRefAddressId();
-	rfArray = getRelatedCapsByAddressBefore_TPS('Permits/Commercial/*/*');
-}
+// if (appMatch('Permits/*/*/*')) {
+// 	AddressValidatedNumber = cap.getAddressModel().getRefAddressId();
+// 	rfArray = getRelatedCapsByAddressBefore_TPS('Permits/Commercial/*/*');
+// }
 
-if (appMatch('Permits/*/*/*') && rfArray != null) {
-	for (eachrow in rfArray)
-		//start replaced branch: ES_ASB_CODE_DUP_CASES
-	{
-		theCapStatus = aa.cap.getCap(rfArray[eachrow].getCapID()).getOutput().getCapStatus();
-		theCapId = aa.cap.getCap(rfArray[eachrow].getCapID()).getOutput().getCapID().getCustomID();
-		if (theCapStatus != null && !matches(theCapStatus, 'Revoked', 'In Compliance', 'Renewed', 'Finaled', 'Void', 'Closed', 'CO Issued', 'CC Issued', 'Expired')) {
-			showMessage = true;
-			comment('<font size=small><b>Open Permit Exists:</b></font><br><br>An open Permit (' + theCapId + ') already exists at this Address. For additional information please contact the Development Services Department at 828-259-5846. <br><br>');
-			cancel = true;
-		}
+// if (appMatch('Permits/*/*/*') && rfArray != null) {
+// 	for (eachrow in rfArray)
+// 		//start replaced branch: ES_ASB_CODE_DUP_CASES
+// 	{
+// 		theCapStatus = aa.cap.getCap(rfArray[eachrow].getCapID()).getOutput().getCapStatus();
+// 		theCapId = aa.cap.getCap(rfArray[eachrow].getCapID()).getOutput().getCapID().getCustomID();
+// 		if (theCapStatus != null && !matches(theCapStatus, 'Revoked', 'In Compliance', 'Renewed', 'Finaled', 'Void', 'Closed', 'CO Issued', 'CC Issued', 'Expired')) {
+// 			showMessage = true;
+// 			comment('<font size=small><b>Open Permit Exists:</b></font><br><br>An open Permit (' + theCapId + ') already exists at this Address. For additional information please contact the Development Services Department at 828-259-5846. <br><br>');
+// 			cancel = false;
+// 		}
 
-		// DISABLED: ES_ASB_CODE_DUP_CASES:4
-		//showMessage = true;
-		//comment('<font size=small><b>Open Permit Exists:</b></font><br><br>An open Permit ('+theCapId+') already exists at this Address. Web permits cannot be created if open permits exist at the location<br><br>');
-		//cancel = true;
+// 		// DISABLED: ES_ASB_CODE_DUP_CASES:4
+// 		//showMessage = true;
+// 		//comment('<font size=small><b>Open Permit Exists:</b></font><br><br>An open Permit ('+theCapId+') already exists at this Address. Web permits cannot be created if open permits exist at the location<br><br>');
+// 		//cancel = true;
 
-	}
-	//end replaced branch: ES_ASB_CODE_DUP_CASES;
-}
+// 	}
+// 	//end replaced branch: ES_ASB_CODE_DUP_CASES;
+// }
 
-if (appMatch('Permits/*/*/*')) {
-	AddressValidatedNumber = cap.getAddressModel().getRefAddressId();
-	rfArray = getRelatedCapsByAddressBefore_TPS('Permits/Residential/*/*');
-}
+// if (appMatch('Permits/*/*/*')) {
+// 	AddressValidatedNumber = cap.getAddressModel().getRefAddressId();
+// 	rfArray = getRelatedCapsByAddressBefore_TPS('Permits/Residential/*/*');
+// }
 
-if (appMatch('Permits/*/*/*') && rfArray != null) {
-	for (eachrow in rfArray)
-		//start replaced branch: ES_ASB_CODE_DUP_CASES
-	{
-		theCapStatus = aa.cap.getCap(rfArray[eachrow].getCapID()).getOutput().getCapStatus();
-		theCapId = aa.cap.getCap(rfArray[eachrow].getCapID()).getOutput().getCapID().getCustomID();
-		if (theCapStatus != null && !matches(theCapStatus, 'Revoked', 'In Compliance', 'Renewed', 'Finaled', 'Void', 'Closed', 'CO Issued', 'CC Issued', 'Expired')) {
-			showMessage = true;
-			comment('<font size=small><b>Open Permit Exists:</b></font><br><br>An open Permit (' + theCapId + ') already exists at this Address. For additional information please contact the Development Services Department at 828-259-5846. <br><br>');
-			cancel = true;
-		}
+// if (appMatch('Permits/*/*/*') && rfArray != null) {
+// 	for (eachrow in rfArray)
+// 		//start replaced branch: ES_ASB_CODE_DUP_CASES
+// 	{
+// 		theCapStatus = aa.cap.getCap(rfArray[eachrow].getCapID()).getOutput().getCapStatus();
+// 		theCapId = aa.cap.getCap(rfArray[eachrow].getCapID()).getOutput().getCapID().getCustomID();
+// 		if (theCapStatus != null && !matches(theCapStatus, 'Revoked', 'In Compliance', 'Renewed', 'Finaled', 'Void', 'Closed', 'CO Issued', 'CC Issued', 'Expired')) {
+// 			showMessage = true;
+// 			comment('<font size=small><b>Open Permit Exists:</b></font><br><br>An open Permit (' + theCapId + ') already exists at this Address. For additional information please contact the Development Services Department at 828-259-5846. <br><br>');
+// 			cancel = false;
+// 		}
 
-		// DISABLED: ES_ASB_CODE_DUP_CASES:4
-		//showMessage = true;
-		//comment('<font size=small><b>Open Permit Exists:</b></font><br><br>An open Permit ('+theCapId+') already exists at this Address. Web permits cannot be created if open permits exist at the location<br><br>');
-		//cancel = true;
+// 		// DISABLED: ES_ASB_CODE_DUP_CASES:4
+// 		//showMessage = true;
+// 		//comment('<font size=small><b>Open Permit Exists:</b></font><br><br>An open Permit ('+theCapId+') already exists at this Address. Web permits cannot be created if open permits exist at the location<br><br>');
+// 		//cancel = true;
 
-	}
-	//end replaced branch: ES_ASB_CODE_DUP_CASES;
-}
+// 	}
+// 	//end replaced branch: ES_ASB_CODE_DUP_CASES;
+// }
 
 /*------------------------------------------------------------------------------------------------------/
 | <===========END=Main=Loop================>
@@ -3730,7 +3731,7 @@ function email(pToEmail, pFromEmail, pSubject, pText)
 
 function emailContact(mSubj,mText)   // optional: Contact Type, default Applicant
 	{
-	var replyTo = "noreply@ashevillenc.gov";
+	var replyTo = "noreply@accela.com";
 	var contactType = "Applicant"
 	var emailAddress = "";
 

@@ -537,8 +537,8 @@ if ((appMatch('Planning/Development/*/*') || appMatch('Planning/Subdivision/*/*'
 if (appMatch('Permits/Residential/*/*') && !appMatch('Permits/Residential/Home Occupation/*')) {
 	if (matches(wfTask, 'Building Review','Zoning Review','Grading','Driveway','Planning') && matches(wfStatus, 'Hold for Revision')&& appMatch('Permits/Residential/*/*')) {
 		emailByContactType('Action Needed On Your Permit', 
-			'<html><head><style>ol {margin: 0;padding: 0}</style></head><body>Permit Number: ' + capIDString + ' <br>Location: ' + CapAddress + ' <br><p>Your residential permit application has been reviewed and requires additional information and/or revision. For your convenience, you may visit the Citizen Access website (<a href="https://services.ashevillenc.gov/citizenaccess">https://services.ashevillenc.gov/citizenaccess</a>) to print your permit and approved plans/comments. </p><p>Please refer to the following steps to access your approved permit and plans/comments online in .PDF format:</p><p><ol><li>Visit <a href="https://services.ashevillenc.gov/citizenaccess">https://services.ashevillenc.gov/citizenaccess</a>. Register for a Citizen Access account if you have not already done so, then log in to access the permit documents.</li><li>Enter your permit number in the top right <b>search box</b> and click on the green spyglass to pull up the permit record.</li><li>Click <b>Record Info</b> to access a drop-down menu; then select <b>Attachments</b> from the drop-down menu.</li><li>To download reviewed plans and comments, click the blue links next to documents labeled <b>REVIEWED SITE PLANS + COMMENTS</b> and/or <b>REVIEWED BUILDING PLANS + COMMENTS.</b></li></ol></p><p>You may resubmit your revised plans and response to comments online in .PDF format through <a href="develop.ashevillenc.gov">develop.ashevillenc.gov</a> or in person during business hours at 161 S. Charlotte St.</p><p>For additional information and resubmittal guidelines, visit <a href="http://bit.ly/dsd_new_residential">http://bit.ly/dsd_new_residential</a>. </p><p>Please note that your plans may be reviewed by staff from multiple divisions, including the Building Safety Division ("Building"), Planning and Zoning Division ("Planning"), and Site Engineering Division ("Site") depending on your scope of work. You will receive additional notification emails if your application receives plan review comments from other divisions.</p><p>If you have questions, please contact the Permit Application Center at <a href="mailto:PAC@ashevillenc.gov">PAC@ashevillenc.gov</a> or 828-259-5846 or visit in-person at 161 S. Charlotte St. on Monday-Friday from 8:30 am - 5:00 pm. </p><hr></body></html>',
-			'ALL',
+		'<html><head><style>ol {margin: 0;padding: 0}</style></head><body>Permit Number: ' + capIDString + ' <br>Location: ' + CapAddress + ' <br><p>Your residential permit application has been reviewed and requires additional information and/or revisions. </p><p>Please follow these steps to download your plan review comments in .PDF format:</p><p><ol><li>Visit <a href="https://services.ashevillenc.gov/citizenaccess">https://services.ashevillenc.gov/citizenaccess</a>. Register for a Citizen Access account if you have not already done so, then log in to access the permit documents.</li><li>Enter your permit number in the top right <b>search box</b> and click on the green spyglass to pull up the permit record.</li><li>Click <b>Record Info</b> to access a drop-down menu; then select <b>Attachments</b> from the drop-down menu.</li><li>To download reviewed plans and comments, click the blue links next to documents labeled <b>REVIEWED SITE PLANS + COMMENTS</b> and/or <b>REVIEWED BUILDING PLANS + COMMENTS.</b></li></ol></p><p>You may resubmit your revised plans and response to comments online in .PDF format through <a href="develop.ashevillenc.gov">develop.ashevillenc.gov</a> or in person during business hours at 161 S. Charlotte St.</p><p>For additional information and resubmittal guidelines, visit <a href="http://bit.ly/dsd_new_residential">http://bit.ly/dsd_new_residential</a>. </p><p>Depending on your scope of work, your plans may require review by staff from multiple divisions, including the Building Safety Division ("Building"), Planning and Zoning Division ("Planning"), and Site Engineering Division ("Site"). You will receive additional notification emails if your application receives plan review comments from other divisions.</p><p>If you have questions, please contact the Permit Application Center at <a href="mailto:PAC@ashevillenc.gov">PAC@ashevillenc.gov</a> or 828-259-5846 or visit in-person at 161 S. Charlotte St. on Monday-Friday from 8:30 am - 5:00 pm. </p><hr></body></html>',
+		'ALL',
 			'residentialpermits@ashevillenc.gov'
 			);
 	}
@@ -642,7 +642,7 @@ if (appMatch("*/*/*/Home Stay")
 
 
 // 11/12/2019 - Email all lic prof when permit issued. Also email applicant that they were notified.
-if ( (wfTask == 'Issuance' || wfTask == 'Permit Verification' || wfTask == 'Application Process') && matches(wfStatus, 'Issue', 'Reissue')) {
+if ( (wfTask == 'Issuance' || wfTask == 'Permit Verification' || wfTask == 'Permit Issuance') && matches(wfStatus, 'Issue', 'Reissue')) {
 	var ownerName = getOwnerNameFromCap();
 	var fromAddr ;
 	if (appMatch('*/Residential/*/*')) {
@@ -672,37 +672,40 @@ if ( (wfTask == 'Issuance' || wfTask == 'Permit Verification' || wfTask == 'Appl
     
   // 12/17/2019 
   // Email to Applicant
-  var licprofs = getLicProfData(capId);
-  var emailContent
-    = '<html><head><style>ol {margin: 0;padding: 0}</style></head><body>Permit Number: ' 
-    + capIDString + ' <br>Location: ' + CapAddress + '<br>Owner: ' + ownerName
-    + '<br><p>'
-    + ' Hello, this is just to let you know that your permit has been issued, and we are notifying the '
-    + ' licensed professionals (contractors) who are listed on the permit. '
-    + '</p><p>'
-    + ' Those professionals are: '
-    + '</p><table>'
-    + '<tr><th>' + 'Business' + '</th><th>' + 'Type' + '</th><th>' + 'Name' + '</th><th>' + 'Email' + '</th></tr>';
-  licprofs.forEach(function(xx) {
-    emailContent 
-    = emailContent + '<tr><td>' + xx.business + '</td><td>' + xx.type + '</td><td>' 
-    + xx.name + '</td><td>' + xx.email + '</td></tr>';
-  });
-  emailContent 
-    = emailContent
-    + '</table><p>'
-    + 'If any of these professionals are incorrect, please let us know at pac@ashevillenc.gov or at 828-259-5846. '
-    + 'We look forward to working with you. Thank you,'
-    + '</p><p>'
-    + 'City of Asheville Development Services Department</p><hr></body></html>';
-  emailAddrs = getEmailsByContactType('Applicant');
-  emailTo = emailAddrs.join(';')
-  email(
-    emailTo,
-    fromAddr, //set above for other email
-    'Permit Issued by City of Asheville - Licensed Professionals Listed Below', 
-    emailContent);
-}   
+
+   var licprofs = getLicProfData(capId);
+   if(licprofs.length > 0) {
+	   var emailContent
+	     = '<html><head><style>ol {margin: 0;padding: 0}</style></head><body>Permit Number: ' 
+	     + capIDString + ' <br>Location: ' + CapAddress + '<br>Owner: ' + ownerName
+	     + '<br><p>'
+	     + ' Hello, this is just to let you know that your permit has been issued, and we are notifying the '
+	     + ' licensed professionals (contractors) who are listed on the permit. '
+	     + '</p><p>'
+	     + ' Those professionals are: '
+	     + '</p><table>'
+	     + '<tr><th>' + 'Business' + '</th><th>' + 'Type' + '</th><th>' + 'Name' + '</th><th>' + 'Email' + '</th></tr>';
+	   licprofs.forEach(function(xx) {
+	     emailContent 
+	     = emailContent + '<tr><td>' + xx.business + '</td><td>' + xx.type + '</td><td>' 
+	     + xx.name + '</td><td>' + xx.email + '</td></tr>';
+	   });
+	   emailContent 
+	     = emailContent
+	     + '</table><p>'
+	     + 'If any of these professionals are incorrect, please let us know at pac@ashevillenc.gov or at 828-259-5846. '
+	     + 'We look forward to working with you. Thank you,'
+	     + '</p><p>'
+	     + 'City of Asheville Development Services Department</p><hr></body></html>';
+	   emailAddrs = getEmailsByContactType('Applicant');
+	   emailTo = emailAddrs.join(';')
+	   email(
+	     emailTo,
+	     fromAddr, //set above for other email
+	     'Permit Issued by City of Asheville - Licensed Professionals Listed Below', 
+	     emailContent);
+	}   
+}
 
 // 12/17/2019 
 // HomeStay set expiration date = in compliance date + 1 year
@@ -725,11 +728,4 @@ if (appMatch("*/*/*/Home Stay")
       }
     }
   }
-}
-
-//test 1/2/20
-if (appMatch('Permits/*/*/SFD')) {
-	if(wfTask == 'Issuance' && matches(wfStatus, 'Issue', 'Reissue')) {
-      createPendingInspectionIfNotExists('RES_SITE', 'GR-CONTRACTOR CONFERENCE');
-	}
 }
