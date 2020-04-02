@@ -20,8 +20,8 @@ function getElevationSlopeValues(parcelNumber)
       //  aa.print(vOut);
       // not sure if we need this JSON.parse, getOutput might do this already
       var vOutParsed = JSON.parse(vOut);
-      returnArray["maxElevation"] = vOutParsed.maxElevation;
-      returnArray["percentSlope"] = vOutParsed.percentSlope;
+      returnArray["maxElevation"] = parseFloat(vOutParsed.maxElevation);
+      returnArray["percentSlope"] = parseFloat(vOutParsed.percentSlope);
    }
 
    return returnArray;
