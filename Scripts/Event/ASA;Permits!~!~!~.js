@@ -1,3 +1,4 @@
+// // ASA;Permits/*/*/*
 //start replaced branch: APP_SA_BRANCH_PERMITS
 
 // DISABLED: APP_SA_BRANCH_PERMITS:1
