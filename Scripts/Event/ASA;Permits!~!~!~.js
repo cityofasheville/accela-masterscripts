@@ -1,3 +1,4 @@
+// // ASA;Permits/*/*/*
 //start replaced branch: APP_SA_BRANCH_PERMITS
 
 // DISABLED: APP_SA_BRANCH_PERMITS:1
@@ -19,29 +20,29 @@
 }
 //end replaced branch: ES_MOVE_WORKDESC_SHORTNOTES;
 
-if ((appMatch('Permits/*/Existing Building/*') || appMatch('Permits/*/New Building/*') || appMatch('*/*/Remodel/*') || appMatch('*/*/Manufactured Home/*') || appMatch('*/*/Demolition/*') || appMatch('*/*/Addition/*') || appMatch('*/*/Accessory Structure/*') || appMatch('Permits/*/New/*') || appMatch('Permits/*/Site Work/*') || appMatch('Permits/Sign/Stand Alone/*')) && AInfo['ParcelAttribute.RIVER DISTRICT'] == 'Yes') {
-	addAdHocTask('ADHOC TASKS', 'River District Design Review', ' ', 'SVRTUNSKI');
-}
+// if ((appMatch('Permits/*/Existing Building/*') || appMatch('Permits/*/New Building/*') || appMatch('*/*/Remodel/*') || appMatch('*/*/Manufactured Home/*') || appMatch('*/*/Demolition/*') || appMatch('*/*/Addition/*') || appMatch('*/*/Accessory Structure/*') || appMatch('Permits/*/New/*') || appMatch('Permits/*/Site Work/*') || appMatch('Permits/Sign/Stand Alone/*')) && AInfo['ParcelAttribute.RIVER DISTRICT'] == 'Yes') {
+// 	addAdHocTask('ADHOC TASKS', 'River District Design Review', ' ', 'SVRTUNSKI');
+// }
 
-if (!appMatch('Permits/*/Existing Building/Reroof') && (appMatch('Permits/*/Existing Building/*') || appMatch('Permits/*/New Building/*') || appMatch('*/*/Remodel/*') || appMatch('*/*/Manufactured Home/*') || appMatch('*/*/Demolition/*') || appMatch('*/*/Addition/*') || appMatch('*/*/Accessory Structure/*') || appMatch('Permits/*/New/*') || appMatch('Permits/*/Site Work/*')) && AInfo['ParcelAttribute.DTDR OVERLAY'] == 'Yes') {
-	addAdHocTask('ADHOC TASKS', 'Downtown Design Review', ' ', 'SVRTUNSKI');
-}
+// if (!appMatch('Permits/*/Existing Building/Reroof') && (appMatch('Permits/*/Existing Building/*') || appMatch('Permits/*/New Building/*') || appMatch('*/*/Remodel/*') || appMatch('*/*/Manufactured Home/*') || appMatch('*/*/Demolition/*') || appMatch('*/*/Addition/*') || appMatch('*/*/Accessory Structure/*') || appMatch('Permits/*/New/*') || appMatch('Permits/*/Site Work/*')) && AInfo['ParcelAttribute.DTDR OVERLAY'] == 'Yes') {
+// 	addAdHocTask('ADHOC TASKS', 'Downtown Design Review', ' ', 'SVRTUNSKI');
+// }
 
-if ((appMatch('Permits/*/Existing Building/*') || appMatch('Permits/*/New Building/*') || appMatch('*/*/Reroof/*') || appMatch('*/*/Remodel/*') || appMatch('*/*/Manufactured Home/*') || appMatch('*/*/Demolition/*') || appMatch('*/*/Addition/*') || appMatch('*/*/Accessory Structure/*') || appMatch('Permits/*/New/*') || appMatch('Permits/*/Site Work/*') || appMatch('Permits/Sign/Stand Alone/*')) && AInfo['ParcelAttribute.HRC OVERLAY'] == 'Yes') {
-	addAdHocTask('ADHOC TASKS', 'HRC Overlay', ' ', 'ACOLE');
-}
+// if ((appMatch('Permits/*/Existing Building/*') || appMatch('Permits/*/New Building/*') || appMatch('*/*/Reroof/*') || appMatch('*/*/Remodel/*') || appMatch('*/*/Manufactured Home/*') || appMatch('*/*/Demolition/*') || appMatch('*/*/Addition/*') || appMatch('*/*/Accessory Structure/*') || appMatch('Permits/*/New/*') || appMatch('Permits/*/Site Work/*') || appMatch('Permits/Sign/Stand Alone/*')) && AInfo['ParcelAttribute.HRC OVERLAY'] == 'Yes') {
+// 	addAdHocTask('ADHOC TASKS', 'HRC Overlay', ' ', 'ACOLE');
+// }
 
-if ((appMatch('Permits/*/Existing Building/*') || appMatch('Permits/*/New Building/*') || appMatch('*/*/Reroof/*') || appMatch('*/*/Remodel/*') || appMatch('*/*/Manufactured Home/*') || appMatch('*/*/Demolition/*') || appMatch('*/*/Addition/*') || appMatch('*/*/Accessory Structure/*') || appMatch('Permits/*/New/*') || appMatch('Permits/*/Construction Trailer/*') || appMatch('Permits/*/Site Work/*') || appMatch('Permits/Sign/Stand Alone/*')) && AInfo['ParcelAttribute.FLOOD PLAIN'] == 'Yes') {
-	addAdHocTask('ADHOC TASKS', 'Flood', ' ', 'STWTTBD');
-}
+// if ((appMatch('Permits/*/Existing Building/*') || appMatch('Permits/*/New Building/*') || appMatch('*/*/Reroof/*') || appMatch('*/*/Remodel/*') || appMatch('*/*/Manufactured Home/*') || appMatch('*/*/Demolition/*') || appMatch('*/*/Addition/*') || appMatch('*/*/Accessory Structure/*') || appMatch('Permits/*/New/*') || appMatch('Permits/*/Construction Trailer/*') || appMatch('Permits/*/Site Work/*') || appMatch('Permits/Sign/Stand Alone/*')) && AInfo['ParcelAttribute.FLOOD PLAIN'] == 'Yes') {
+// 	addAdHocTask('ADHOC TASKS', 'Flood', ' ', 'STWTTBD');
+// }
 
-if ((appMatch('Permits/*/Existing Building/Addition') || appMatch('Permits/*/Existing Building/Alterations w Addition') || appMatch('Permits/*/New Building/*') || appMatch('*/*/Manufactured Home/*') || appMatch('*/*/Addition/*') || appMatch('*/*/Accessory Structure/*') || appMatch('Permits/*/New/*') || appMatch('Permits/*/Site Work/*')) && AInfo['ParcelAttribute.STEEP SLOPE'] == 'Yes') {
-	addAdHocTask('ADHOC TASKS', 'Steep Slope', ' ', 'PZPRTBD');
-}
+// if ((appMatch('Permits/*/Existing Building/Addition') || appMatch('Permits/*/Existing Building/Alterations w Addition') || appMatch('Permits/*/New Building/*') || appMatch('*/*/Manufactured Home/*') || appMatch('*/*/Addition/*') || appMatch('*/*/Accessory Structure/*') || appMatch('Permits/*/New/*') || appMatch('Permits/*/Site Work/*')) && AInfo['ParcelAttribute.STEEP SLOPE'] == 'Yes') {
+// 	addAdHocTask('ADHOC TASKS', 'Steep Slope', ' ', 'PZPRTBD');
+// }
 
-if ((appMatch('Permits/*/Existing Building/*') || appMatch('Permits/*/New Building/*') || appMatch('*/*/Reroof/*') || appMatch('*/*/Remodel/*') || appMatch('*/*/Manufactured Home/*') || appMatch('*/*/Demolition/*') || appMatch('*/*/Addition/*') || appMatch('*/*/Accessory Structure/*') || appMatch('Permits/*/New/*') || appMatch('Permits/*/Site Work/*') || appMatch('Permits/Sign/Stand Alone/*')) && AInfo['ParcelAttribute.LANDMARK'] == 'Yes') {
-	addAdHocTask('ADHOC TASKS', 'Landmark', ' ', 'ACOLE');
-}
+// if ((appMatch('Permits/*/Existing Building/*') || appMatch('Permits/*/New Building/*') || appMatch('*/*/Reroof/*') || appMatch('*/*/Remodel/*') || appMatch('*/*/Manufactured Home/*') || appMatch('*/*/Demolition/*') || appMatch('*/*/Addition/*') || appMatch('*/*/Accessory Structure/*') || appMatch('Permits/*/New/*') || appMatch('Permits/*/Site Work/*') || appMatch('Permits/Sign/Stand Alone/*')) && AInfo['ParcelAttribute.LANDMARK'] == 'Yes') {
+// 	addAdHocTask('ADHOC TASKS', 'Landmark', ' ', 'ACOLE');
+// }
 
 if (!appMatch('Permits/*/Existing Building/Reroof') && (appMatch('Permits/*/New Building/*') || appMatch('Permits/*/Existing Building/*') || appMatch('*/*/Remodel/*') || appMatch('*/*/Manufactured Home/*') || appMatch('*/*/Demolition/*') || appMatch('*/*/Addition/*') || appMatch('*/*/Accessory Structure/*') || appMatch('Permits/*/New/*') || appMatch('Permits/*/Site Work/*')) && AInfo['ParcelAttribute.DTDR OVERLAY'] == 'Yes') {
 	email('svrtunski@ashevillenc.gov', 'noreply@ashevillenc.gov', 'DTDR Task', 'Downtown Design Review task assigned. ' + capIDString + ' - Please check Accela and update the record status.');
