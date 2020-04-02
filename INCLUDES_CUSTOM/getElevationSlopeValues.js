@@ -9,7 +9,8 @@ function getElevationSlopeValues(parcelNumber)
    // initializing the return array
    returnArray["maxElevation"] = null;
    returnArray["percentSlope"] = null;
-   var aURL = "https://mapwnc.org/api/slopebypin/" + parcelNumber;
+   //var aURL = "https://mapwnc.org/api/slopebypin/" + parcelNumber;
+   var aURL = "https://coa-bc-steep-slope-calculator.herokuapp.com/api/slopebypin/" + parcelNumber;
    // aa.print(aURL);
    var vOutObj = aa.httpClient.get(aURL);
 
