@@ -23,7 +23,6 @@ function getElevationSlopeValues(parcelNumber)
       returnArray["maxElevation"] = vOutParsed.maxElevation;
       returnArray["percentSlope"] = vOutParsed.percentSlope;
    }
-asdff = asdffdsa;
    return returnArray;
 }
 
