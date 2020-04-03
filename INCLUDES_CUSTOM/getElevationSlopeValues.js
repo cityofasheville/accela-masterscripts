@@ -1,5 +1,4 @@
 
-// 
 function getElevationSlopeValues(parcelNumber)
 {
    if( ! parcelNumber) // not passed a valid string or number return false
@@ -15,18 +14,16 @@ function getElevationSlopeValues(parcelNumber)
    var aURL = "https://coa-bc-steep-slope-calculator.herokuapp.com/api/slopebypin/" + parcelNumber;
    // aa.print(aURL);
    var vOutObj = aa.httpClient.get(aURL);
-   aa.print("testout");
    if(vOutObj.getSuccess())
    {
       var vOut = vOutObj.getOutput();
       //  aa.print(vOut);
       // not sure if we need this JSON.parse, getOutput might do this already
       var vOutParsed = JSON.parse(vOut);
-      aa.print("testin");
       returnArray["maxElevation"] = vOutParsed.maxElevation;
       returnArray["percentSlope"] = vOutParsed.percentSlope;
    }
-
+asdff = asdffdsa;
    return returnArray;
 }
 
