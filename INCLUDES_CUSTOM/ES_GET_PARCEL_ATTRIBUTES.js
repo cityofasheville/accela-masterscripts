@@ -44,6 +44,7 @@ function ES_GET_PARCEL_ATTRIBUTES() {
 	x = getElevationSlopeValues(AInfo['ParcelAttribute.PINNUMBER']);
 	editAppSpecific('Max Elevation', x['maxElevation']);
 	editAppSpecific('Percent Slope', x['percentSlope']);
+
 	if (AInfo['ParcelAttribute.INSPECTION GROUP'] != null) {
 		editAppSpecific('Inspection Group', AInfo['ParcelAttribute.INSPECTION GROUP']);
 	}

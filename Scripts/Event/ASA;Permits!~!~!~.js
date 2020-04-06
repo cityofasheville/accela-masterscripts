@@ -26,7 +26,6 @@ else {
 	addAdHocTask('ADHOC TASKS', 'River District Design Review', ' ', 'SVRTUNSKI');
 }
 
-
 if (!appMatch('Permits/*/Existing Building/Reroof') && (appMatch('Permits/*/Existing Building/*') || appMatch('Permits/*/New Building/*') || appMatch('*/*/Remodel/*') || appMatch('*/*/Manufactured Home/*') || appMatch('*/*/Demolition/*') || appMatch('*/*/Addition/*') || appMatch('*/*/Accessory Structure/*') || appMatch('Permits/*/New/*') || appMatch('Permits/*/Site Work/*')) && AInfo['ParcelAttribute.DTDR OVERLAY'] == 'Yes') {
 	addAdHocTask('ADHOC TASKS', 'Downtown Design Review', ' ', 'SVRTUNSKI');
 }
