@@ -1,3 +1,4 @@
+
 function getElevationSlopeValues(parcelNumber)
 {
    if( ! parcelNumber) // not passed a valid string or number return false
@@ -9,11 +10,10 @@ function getElevationSlopeValues(parcelNumber)
    // initializing the return array
    returnArray["maxElevation"] = null;
    returnArray["percentSlope"] = null;
-   //var aURL = "https://mapwnc.org/api/slopebypin/" + parcelNumber;
-   var aURL = "http://coa-bc-steep-slope-calculator.herokuapp.com/api/slopebypin/" + parcelNumber;
+   // var aURL = "https://coa-bc-steep-slope-calculator.herokuapp.com/api/slopebypin/" + parcelNumber;
+   var aURL = "https://mapwnc.org/api/slopebypin/" + parcelNumber;
    // aa.print(aURL);
    var vOutObj = aa.httpClient.get(aURL);
-
    if(vOutObj.getSuccess())
    {
       var vOut = vOutObj.getOutput();
@@ -23,10 +23,13 @@ function getElevationSlopeValues(parcelNumber)
       returnArray["maxElevation"] = vOutParsed.maxElevation;
       returnArray["percentSlope"] = vOutParsed.percentSlope;
    }
-
    return returnArray;
 }
 
-
-
-
+// function getElevationSlopeValues(parcelNumber)
+// {
+//    var returnArray = new Array();
+//    returnArray["maxElevation"] = 2135.00; 
+//    returnArray["percentSlope"] = 9.30; 
+//    return returnArray;
+// }
