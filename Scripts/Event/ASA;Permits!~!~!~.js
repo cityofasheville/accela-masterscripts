@@ -1,4 +1,4 @@
-// // ASA;Permits/*/*/*
+// // ASA;Permits/*/*/*   --- as modified by Ray Schug 040320
 //start replaced branch: APP_SA_BRANCH_PERMITS
 
 // DISABLED: APP_SA_BRANCH_PERMITS:1
@@ -19,10 +19,13 @@
 
 }
 //end replaced branch: ES_MOVE_WORKDESC_SHORTNOTES;
-
-if ((appMatch('Permits/*/Existing Building/*') || appMatch('Permits/*/New Building/*') || appMatch('*/*/Remodel/*') || appMatch('*/*/Manufactured Home/*') || appMatch('*/*/Demolition/*') || appMatch('*/*/Addition/*') || appMatch('*/*/Accessory Structure/*') || appMatch('Permits/*/New/*') || appMatch('Permits/*/Site Work/*') || appMatch('Permits/Sign/Stand Alone/*')) && AInfo['ParcelAttribute.RIVER DISTRICT'] == 'Yes') {
+if (publicUser)
+	logDebug("Skipping River District Review Check for publicUserID: "+publicUserID)
+else {
+		if ((appMatch('Permits/*/Existing Building/*') || appMatch('Permits/*/New Building/*') || appMatch('*/*/Remodel/*') || appMatch('*/*/Manufactured Home/*') || appMatch('*/*/Demolition/*') || appMatch('*/*/Addition/*') || appMatch('*/*/Accessory Structure/*') || appMatch('Permits/*/New/*') || appMatch('Permits/*/Site Work/*') || appMatch('Permits/Sign/Stand Alone/*')) && AInfo['ParcelAttribute.RIVER DISTRICT'] == 'Yes') {
 	addAdHocTask('ADHOC TASKS', 'River District Design Review', ' ', 'SVRTUNSKI');
 }
+
 
 if (!appMatch('Permits/*/Existing Building/Reroof') && (appMatch('Permits/*/Existing Building/*') || appMatch('Permits/*/New Building/*') || appMatch('*/*/Remodel/*') || appMatch('*/*/Manufactured Home/*') || appMatch('*/*/Demolition/*') || appMatch('*/*/Addition/*') || appMatch('*/*/Accessory Structure/*') || appMatch('Permits/*/New/*') || appMatch('Permits/*/Site Work/*')) && AInfo['ParcelAttribute.DTDR OVERLAY'] == 'Yes') {
 	addAdHocTask('ADHOC TASKS', 'Downtown Design Review', ' ', 'SVRTUNSKI');
@@ -151,4 +154,5 @@ if (appMatch('Permits/Residential/New Building/*')|| appMatch('Permits/Residenti
 if (appMatch('Permits/Residential/Existing Building/Alterations w Addition') || appMatch('Permits/Residential/Existing Building/Alterations') || appMatch('Permits/Residential/Existing Building/Repair-Replacement'))  {
 			createPendingInspection('R_MASTER', 'BU-FRAMING');
 			createPendingInspection('R_MASTER', 'BU-INSULATION');
+}
 }
