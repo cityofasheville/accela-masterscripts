@@ -533,9 +533,13 @@ if ((appMatch('Planning/Development/*/*') || appMatch('Planning/Subdivision/*/*'
 }
 //end replaced branch: WORKFLOW_UA_PERMITS;
 
-// two emails reformatted 8/22/2019
-if (appMatch('Permits/Residential/*/*') && !appMatch('Permits/Residential/Home Occupation/*')) {
-	if (matches(wfTask, 'Building Review','Zoning Review','Grading','Driveway','Planning') && matches(wfStatus, 'Hold for Revision')&& appMatch('Permits/Residential/*/*')) {
+// added Commercial 4/14/2020
+if (
+	(appMatch('Permits/Residential/*/*') && !appMatch('Permits/Residential/Home Occupation/*'))
+	||
+	(appMatch('Permits/Commercial/New Building/*'))
+   ) {
+	if (matches(wfTask, 'Building Review','Zoning Review','Grading','Driveway','Planning','Fire Review') && matches(wfStatus, 'Hold for Revision')) {
 		emailByContactType('Action Needed On Your Permit', 
 		'<html> <head> <style> ol { margin: 0; padding: 0 } </style> </head> <body>Permit Number: ' + capIDString + ' <br>Location: ' + CapAddress + ' <br> <p>Your permit application has been reviewed and requires additional information and/or revisions. </p> <p>Please refer to the following steps to access your plans/comments online in .PDF format:</p> <p> <ol> <li>Visit <a href="https: //services.ashevillenc.gov/citizenaccess">https://services.ashevillenc.gov/citizenaccess</a>. Register for a Citizen Access account if you have not already done so, then log in to access the permit documents.</li> <li>Enter your permit number in the top right <b>search box</b> and click on the green spyglass to pull up the permit record.</li> <li>Click <b>Record Info</b> to access a drop-down menu; then select <b>Attachments</b> from the drop-down menu.</li> <li>To download reviewed plans and comments, click the blue links next to documents labeled <b>REVIEWED SITE PLANS + COMMENTS</b> and/or <b>REVIEWED BUILDING PLANS + COMMENTS.</b></li> </ol> </p> <p>You may resubmit your revised plans and response to comments online in .PDF format through <a href="develop.ashevillenc.gov">develop.ashevillenc.gov</a> or in person during business hours at 161 S.Charlotte St.</p> <p>Depending on your scope of work, your plans may require review by staff from multiple divisions, including the Building Safety Division ("Building"), Planning and Zoning Division ("Planning"), and Site Engineering Division("Site"). You will receive additional notification emails if your application receives plan review comments from other divisions.</p> <p>If you have questions, please contact the Permit Application Center at <a href="mailto:PAC@ashevillenc.gov">PAC@ashevillenc.gov</a> or 828-259-5846</p> <hr> </body> </html>',
 		'ALL',
