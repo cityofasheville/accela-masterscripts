@@ -380,7 +380,7 @@ if (matches(wfStatus, 'Certificate of Occupancy')
 		|| appMatch('Permits/Over The Counter/Tenant Occupancy/CO')
 	)
 ) {
-	emailAboutCertOfOcc('khinz@ashevillenc.gov');
+	emailAboutCertOfOcc('apollard@ashevillenc.gov');
 	emailAboutCertOfOcc('jpayne@ashevillenc.gov');
 }
 
