@@ -718,6 +718,13 @@ if (appMatch("*/*/*/Home Stay")
 && (matches(wfTask, 'Inspections') && matches(wfStatus, 'In Compliance', 'Renewed'))) {
   var workflowResult = aa.workflow.getTasks(capId);
   if (workflowResult.getSuccess()) {
+
+	email(
+		'hmahoney@ashevillenc.gov',
+		'developmentservices@ashevillenc.gov',
+		'Home Stay Marked In Compliance or Renewed',
+		'Permit Number: ' + capIDString + ' Location: ' + CapAddress + ' Home Stay Marked In Compliance or Renewed');
+
     var wfObj = workflowResult.getOutput();
     for (i in wfObj) {
       fTask = wfObj[i];
