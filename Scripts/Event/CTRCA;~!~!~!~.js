@@ -49,7 +49,8 @@ if (appMatch('*/*/*/Repair-Replacement')) {
 }
 
 if (appMatch('*/Commercial/*/Repair-Replacement')) {
-	email('khinz@ashevillenc.gov', 'noreply@ashevillenc.gov', 'ACA Permit Created', 'The following permit, ' + capIDString + ' was just created in ACA please review scope of work and update Accela');
+//changed from khinz 4/17/20
+	email('apollard@ashevillenc.gov', 'noreply@ashevillenc.gov', 'ACA Permit Created', 'The following permit, ' + capIDString + ' was just created in ACA please review scope of work and update Accela');
 }
 
 if (appMatch('*/Commercial/*/Repair-Replacement')) {
