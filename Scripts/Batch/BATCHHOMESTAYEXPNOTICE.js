@@ -1,10 +1,9 @@
-
 /*------------------------------------------------------------------------------------------------------/
-| Program: BatchHomeStayExpNotice: Batch  BATCHHOMESTAYEXPNOTICE  
+| Program: BatchHomeStayExpNotice: Batch    
 | Client : Asheville
 |
 | 
-| Looks for grading permits that expire in 60 days
+| Looks for HOME STAY permits that expire in 60 days
 | Email will be sent for each record that expres in 60 days
 /------------------------------------------------------------------------------------------------------*/
 /*------------------------------------------------------------------------------------------------------/
@@ -25,7 +24,7 @@ var systemUserObj = aa.person.getUser("ADMIN").getOutput();
 var capId;                                                                               // Variable used to hold the Cap Id value.
 var senderEmailAddr = "noreply@ashevillenc.gov";                                           // Email address of the sender
 var emailAddress = "RHedrick@ashevillenc.gov";                                                // Email address of the person who will receive the batch script log information
-var emailAddress2 = "jtwilson@ashevillenc.gov";                                    // CC email address of the person who will receive the batch script log information
+var emailAddress2 = "HMahoney@ashevillenc.gov";                                    // CC email address of the person who will receive the batch script log information
 var emailText = "Asheville HomeStay Permits to expire in 30 days";                        // Email body
 var useAppSpecificGroupName = false;
 
@@ -129,8 +128,8 @@ function expHomestay()
 					+ 'If you wish to renew, please fill out this <a href="https://form.jotform.com/70245119738155">Homestay Renewal Form</a> to upload '
 					+ 'information about your renewal request, '
 					+ 'including any changes made to your Homestay area. After this form is completed, we will be notified to invoice fees for your renewal '
-					+ 'and will send a follow-up email with instructions to pay along with the invoice. If you do not wish to renew, '
-					+ 'please contact Shannon Morgan at smorgan@ashevillenc.gov or 828.259.5829.'
+					+ 'and will send a follow-up email with instructions to pay along with the invoice. '
+					+ '<b>If you have any questions about your renewal or if you do not wish to renew, please contact hmahoney@ashevillenc.gov</b>'
 					+ '</p><hr></body></html>'           
            			capCount++;
 
