@@ -576,6 +576,28 @@ if (matches(wfStatus, 'Approved','Approved with Conditions','Partial Approval','
 	}
 }
 
+// To add commercial building prmits to the Clearing House bypass -- 04/27/20
+if (matches(wfStatus, 'Approved','Approved with Conditions','Partial Approval','Plan Review Waiver','Not Required')) {
+	if (matches(wfProcess, 'DIVISION REVIEW')) {
+		if (wfTask == 'Addressing' ||  
+			wfTask == 'Building Review' || 
+			wfTask == 'Fire Review' || 
+			wfTask == 'Zoning Review') {
+				if(	
+				isTaskComplete("Building Review") && 
+				isTaskComplete("Zoning Review") && 
+				isTaskComplete("Addressing") && 
+				isTaskComplete("Fire Review") 
+			) {
+			setTask('Clearing House', 'N', 'Y', 'DIVISION REVIEW');
+            closeTask('Review Process', 'Complete', 'Completed by Script', 'MASTER V4');
+			setTask('Issuance', 'Y', 'N', 'MASTER V4');
+            assignTask('Issuance', 'NHART', 'MASTER V4');
+			}
+		}
+	}
+}
+
 // 8/22/2019 
 if (appMatch('Permits/*/*/SFD') || appMatch('Permits/*/*/SFD Waiver') || appMatch('Permits/Residential/Existing Building/Alterations w Addition')) {
 	if(wfTask == 'Issuance' && matches(wfStatus, 'Issue', 'Reissue')) {
