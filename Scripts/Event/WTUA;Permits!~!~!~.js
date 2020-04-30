@@ -763,5 +763,4 @@ if (appMatch("*/*/*/Home Stay")
 		'developmentservices@ashevillenc.gov',
 		'Home Stay Marked In Compliance or Renewed',
 		'Permit Number: ' + capIDString + ' Location: ' + CapAddress + ' Home Stay Marked In Compliance or Renewed');
-  }
 }
