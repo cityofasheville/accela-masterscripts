@@ -218,6 +218,7 @@ if (wfTask == 'Conditions of Approval') {
 }
 
 // 8/1/2019 
+// Addressing added back in 5/4/20
 if ( (appMatch("Permits/Residential/New Building/*") || appMatch("Permits/Residential/Accessory Structure/*")) 
 	&& (matches(wfStatus, 'Hold for Revision') && matches(wfTask, 'Building Review','Zoning Review','Grading','Driveway','Addressing'))) {
 	editTaskDueDate(wfTask, dateAdd(null, 2, 'Y'));
@@ -230,7 +231,7 @@ if (wfTask == 'Routing') { //
 		'Building Review',
 		'Fire Review',
 		'Zoning Review',
-'Driveway',
+		'Driveway',
 		'Grading',
 	];
 	for (var divisionReviewIndex = 0; divisionReviewIndex < divisionReviewSetList.length; divisionReviewIndex++) {
@@ -558,7 +559,8 @@ if (appMatch('Permits/Residential/*/*') && wfTask == 'Issuance' && matches(wfSta
 }
 
 // To bypass Clearing House step after all review steps are complete 4/25/2019
-if (matches(wfStatus, 'Approved','Approved with Conditions','Partial Approval','Plan Review Waiver','Not Required')) {
+if (matches(wfStatus, 'Approved','Approved with Conditions','Partial Approval',
+'Plan Review Waiver','Not Required', 'Approved - Fees Due', 'Approved - No Fees')) {
 	if (matches(wfProcess, 'DIV REVIEW-RES')) {
 		if (wfTask == 'Grading' ||  
 			wfTask == 'Building Review' || 
@@ -579,8 +581,10 @@ if (matches(wfStatus, 'Approved','Approved with Conditions','Partial Approval','
 	}
 }
 
-// To add commercial building prmits to the Clearing House bypass -- 04/27/20
-if (matches(wfStatus, 'Approved','Approved with Conditions','Partial Approval','Plan Review Waiver','Not Required')) {
+// To add commercial building prmits to the Clearing House bypass -- 04/27/20 
+// Addressing added back in 5/4/20
+if (matches(wfStatus, 'Approved','Approved with Conditions','Partial Approval',
+'Plan Review Waiver','Not Required', 'Approved - Fees Due', 'Approved - No Fees')) {
 	if (matches(wfProcess, 'DIVISION REVIEW')) {
 		if (wfTask == 'Addressing' ||  
 			wfTask == 'Building Review' || 
