@@ -219,7 +219,7 @@ if (wfTask == 'Conditions of Approval') {
 
 // 8/1/2019 
 if ( (appMatch("Permits/Residential/New Building/*") || appMatch("Permits/Residential/Accessory Structure/*")) 
-	&& (matches(wfStatus, 'Hold for Revision') && matches(wfTask, 'Building Review','Zoning Review','Grading','Driveway'))) {
+	&& (matches(wfStatus, 'Hold for Revision') && matches(wfTask, 'Building Review','Zoning Review','Grading','Driveway','Addressing'))) {
 	editTaskDueDate(wfTask, dateAdd(null, 2, 'Y'));
 }
 
@@ -563,12 +563,14 @@ if (matches(wfStatus, 'Approved','Approved with Conditions','Partial Approval','
 		if (wfTask == 'Grading' ||  
 			wfTask == 'Building Review' || 
 			wfTask == 'Driveway' || 
-			wfTask == 'Zoning Review') {
+			wfTask == 'Zoning Review'| 
+			wfTask == 'Addressing') {
 				if(	
 				isTaskComplete("Building Review") && 
 				isTaskComplete("Grading") && 
 				isTaskComplete("Zoning Review") && 
-				isTaskComplete("Driveway") 
+				isTaskComplete("Driveway")  && 
+				isTaskComplete("Addressing") 
 			) {
 			setTask('Issuance', 'Y', 'N', 'MASTER-RES');
                          closeTask('Review Process', 'Complete', 'Completed by Script', 'MASTER-RES');
