@@ -231,7 +231,7 @@ if (wfTask == 'Routing') { //
 		'Building Review',
 		'Fire Review',
 		'Zoning Review',
-'Driveway',
+		'Driveway',
 		'Grading',
 	];
 	for (var divisionReviewIndex = 0; divisionReviewIndex < divisionReviewSetList.length; divisionReviewIndex++) {
@@ -559,7 +559,8 @@ if (appMatch('Permits/Residential/*/*') && wfTask == 'Issuance' && matches(wfSta
 }
 
 // To bypass Clearing House step after all review steps are complete 4/25/2019
-if (matches(wfStatus, 'Approved','Approved with Conditions','Partial Approval','Plan Review Waiver','Not Required')) {
+if (matches(wfStatus, 'Approved','Approved with Conditions','Partial Approval',
+'Plan Review Waiver','Not Required', 'Approved - Fees Due', 'Approved - No Fees')) {
 	if (matches(wfProcess, 'DIV REVIEW-RES')) {
 		if (wfTask == 'Grading' ||  
 			wfTask == 'Building Review' || 
