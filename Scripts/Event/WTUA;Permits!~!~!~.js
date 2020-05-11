@@ -539,6 +539,9 @@ if (
 	(appMatch('Permits/Residential/*/*') && !appMatch('Permits/Residential/Home Occupation/*'))
 	||
 	(appMatch('Permits/Commercial/New Building/*'))
+	||
+	(appMatch('Permits/Commercial/Existing Building/*'))
+
    ) {
 	if (appMatch('Permits/Commercial/New Building/*')) { fromEmail = 'developmentservices@ashevillenc.gov' } else { fromEmail = 'residentialpermits@ashevillenc.gov' };
 	if (matches(wfTask, 'Building Review','Zoning Review','Grading','Driveway','Planning','Fire Review') && matches(wfStatus, 'Hold for Revision')) {
@@ -747,7 +750,7 @@ if (appMatch("*/*/*/Home Stay")
 && (matches(wfTask, 'Inspections') && matches(wfStatus, 'In Compliance', 'Renewed'))) {
   var workflowResult = aa.workflow.getTasks(capId);
   if (workflowResult.getSuccess()) {
-    var wfObj = workflowResult.getOutput();
+	      var wfObj = workflowResult.getOutput();
     for (i in wfObj) {
       fTask = wfObj[i];
       for (j in fTask) {
