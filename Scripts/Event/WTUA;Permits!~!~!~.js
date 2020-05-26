@@ -777,7 +777,7 @@ if (appMatch("*/*/*/Home Stay")
 
 // May 26, 2020 Email PAC on MSD Step Approved for SFD
 if (appMatch('Permits/*/*/SFD') || appMatch('Permits/*/*/SFD Waiver')) {
-	if (matches(wfTask, 'MSD Approval') && matches(wfStatus, 'Approved','Approved with Conditions')) {
+	if (matches(wfTask, 'MSD Approval') && matches(wfStatus, 'MSD Approved','MSD Approved Pending Payment')) {
 		email(
 			'pac@ashevillenc.gov',
 			'residentialpermits@ashevillenc.gov',
