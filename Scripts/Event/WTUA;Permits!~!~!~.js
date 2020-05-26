@@ -782,7 +782,7 @@ if (appMatch('Permits/*/*/SFD') || appMatch('Permits/*/*/SFD Waiver')) {
 			'pac@ashevillenc.gov',
 			'residentialpermits@ashevillenc.gov',
 			'MSD Step Approved',
-			'MSD has approved the MSD Approval step for permit number: Permit Number: ' + capIDString + ' at Address: ' + CapAddress + 
+			'MSD has approved the MSD Approval step for Permit Number: ' + capIDString + ' at Address: ' + CapAddress + 
 			' Please check the permit to determine the next steps to take.'
 			);
 	}
