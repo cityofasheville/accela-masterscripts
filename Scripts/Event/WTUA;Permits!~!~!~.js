@@ -767,3 +767,17 @@ if (appMatch("*/*/*/Home Stay")
 		'Home Stay Marked In Compliance or Renewed',
 		'Permit Number: ' + capIDString + ' Location: ' + CapAddress + ' Home Stay Marked In Compliance or Renewed');
 }
+
+// May 26, 2020 Email PAC on MSD Step Approved for SFD
+if (appMatch('Permits/*/*/SFD') || appMatch('Permits/*/*/SFD Waiver')) {
+	if (matches(wfTask, 'MSD Approval') && matches(wfStatus, 'Approved','Approved with Conditions')) {
+		email(
+			'pac@ashevillenc.gov',
+			'residentialpermits@ashevillenc.gov',
+			'MSD Step Approved',
+			'MSD has approved the MSD Approval step for permit number: Permit Number: ' + capIDString + ' at Address: ' + CapAddress + 
+			' Please check the permit to determine the next steps to take.'
+			);
+	}
+
+}
