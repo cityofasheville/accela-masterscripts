@@ -90,7 +90,7 @@ if (publicUser) {
 		}
 
 		if (appMatch('Permits/Commercial/Existing Building/Repair-Replacement')) {
-			updateFee('CFIRE', 'COM_BLD', 'FINAL', 1, 'N');
+//			updateFee('CFIRE', 'COM_BLD', 'FINAL', 1, 'N');
 			updateFee('CFIREADDSC', 'COM_BLD', 'FINAL', 1, 'N');
 
 // These fees were superseded in the July 2017 Fee Update
