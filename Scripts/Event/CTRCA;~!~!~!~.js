@@ -101,4 +101,3 @@ if (appMatch('Permits/*/Reroof/*')) {
 	email('SSalyer@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Reroof ACA Permit Created', 'The following permit, ' + capIDString + ' was just created in ACA. Please verify that it was pulled appropriately.');
 }
 // End added emails
-
