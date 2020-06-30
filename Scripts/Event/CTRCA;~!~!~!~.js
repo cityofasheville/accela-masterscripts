@@ -85,9 +85,9 @@ if (appMatch('*/*/*/Repair-Replacement')) {
 	email('SSalyer@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Repair-Replace ACA Permit Created', 'The following permit, ' + capIDString + ' was just created in ACA. Please verify that it was pulled appropriately.');
 }
 
+// back to PAC 6/30/2020
 if (appMatch('*/*/*/Multi-Trade')) {
-	email('KAkabar2@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Multi-Trade ACA Permit Created', 'The following permit, ' + capIDString + ' was just created in ACA. Please verify that it was pulled appropriately.');
-	email('TGordon@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Multi-Trade ACA Permit Created', 'The following permit, ' + capIDString + ' was just created in ACA. Please verify that it was pulled appropriately.');
+	email('PAC@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Multi-Trade ACA Permit Created', 'The following permit, ' + capIDString + ' was just created in ACA. Please verify that it was pulled appropriately.');
 }
 
 if (appMatch('Permits/Sign/*/*')) {

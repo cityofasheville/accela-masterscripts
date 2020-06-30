@@ -664,19 +664,17 @@ if ((appMatch('Permits/*/Site Work/*') || appMatch('Planning/Development/*/*') |
 }
 // begin 4/18/18 changes. For next three IF-Then's, emails changed from PAC to Tiffany, and added email to Amy
 
+// back to PAC 6/30/2020
 if (inspType == 'GR-FINAL' && matches(inspResult, 'Approved')) {
-	email('TGordon@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Grading Final ' + capIDString + ' Approved', 'The Grading Final inspection for Permit ' + capIDString + ' has been Approved.<br>Inspection Comment: ' + inspComment + ' <br>Please verify if clear for issuance of Certificate of Compliance or Occupancy.');
-	email('ATesner@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Grading Final ' + capIDString + ' Approved', 'The Grading Final inspection for Permit ' + capIDString + ' has been Approved.<br>Inspection Comment: ' + inspComment + ' <br>Please verify if clear for issuance of Certificate of Compliance or Occupancy.');
+	email('PAC@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Grading Final ' + capIDString + ' Approved', 'The Grading Final inspection for Permit ' + capIDString + ' has been Approved.<br>Inspection Comment: ' + inspComment + ' <br>Please verify if clear for issuance of Certificate of Compliance or Occupancy.');
 }
 
 if (inspType == 'SW-FINAL' && matches(inspResult, 'Approved')) {
-	email('TGordon@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Storm Water Final ' + capIDString + ' Approved', 'The Stormwater Final inspection for Permit ' + capIDString + ' has been Approved.<br>Inspection Comment: ' + inspComment + ' <br>Please verify if clear for issuance of Certificate of Compliance or Occupancy.');
-	email('ATesner@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Storm Water Final ' + capIDString + ' Approved', 'The Stormwater Final inspection for Permit ' + capIDString + ' has been Approved.<br>Inspection Comment: ' + inspComment + ' <br>Please verify if clear for issuance of Certificate of Compliance or Occupancy.');
+	email('PAC@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Storm Water Final ' + capIDString + ' Approved', 'The Stormwater Final inspection for Permit ' + capIDString + ' has been Approved.<br>Inspection Comment: ' + inspComment + ' <br>Please verify if clear for issuance of Certificate of Compliance or Occupancy.');
 }
 
 if (inspType == 'FL-FINAL' && matches(inspResult, 'Approved')) {
-	email('TGordon@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Flood Final ' + capIDString + ' Approved', 'The Flood Plain Development Final inspection for Permit ' + capIDString + ' has been Approved.<br>Inspection Comment: ' + inspComment + ' <br>Please verify if clear for issuance of Certificate of Compliance or Occupancy.');
-	email('ATesner@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Flood Final ' + capIDString + ' Approved', 'The Flood Plain Development Final inspection for Permit ' + capIDString + ' has been Approved.<br>Inspection Comment: ' + inspComment + ' <br>Please verify if clear for issuance of Certificate of Compliance or Occupancy.');
+	email('PAC@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Flood Final ' + capIDString + ' Approved', 'The Flood Plain Development Final inspection for Permit ' + capIDString + ' has been Approved.<br>Inspection Comment: ' + inspComment + ' <br>Please verify if clear for issuance of Certificate of Compliance or Occupancy.');
 }
 
 //End 4/18/18 changes
