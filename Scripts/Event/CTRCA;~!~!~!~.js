@@ -82,7 +82,7 @@ if (appMatch('*/*/*/*')) {
 
 if (appMatch('*/*/*/Repair-Replacement')) {
 	email('MLipe@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Repair-Replace ACA Permit Created', 'The following permit, ' + capIDString + ' was just created in ACA. Please verify that it was pulled appropriately.');
-	email('SSalyer@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Repair-Replace ACA Permit Created', 'The following permit, ' + capIDString + ' was just created in ACA. Please verify that it was pulled appropriately.');
+	email('pac@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Repair-Replace ACA Permit Created', 'The following permit, ' + capIDString + ' was just created in ACA. Please verify that it was pulled appropriately.');
 }
 
 // back to PAC 6/30/2020
@@ -98,6 +98,6 @@ if (appMatch('Permits/Sign/*/*')) {
 
 if (appMatch('Permits/*/Reroof/*')) {
 	email('MLipe@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Reroof ACA Permit Created', 'The following permit, ' + capIDString + ' was just created in ACA. Please verify that it was pulled appropriately.');
-	email('SSalyer@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Reroof ACA Permit Created', 'The following permit, ' + capIDString + ' was just created in ACA. Please verify that it was pulled appropriately.');
+	email('pac@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Reroof ACA Permit Created', 'The following permit, ' + capIDString + ' was just created in ACA. Please verify that it was pulled appropriately.');
 }
 // End added emails
