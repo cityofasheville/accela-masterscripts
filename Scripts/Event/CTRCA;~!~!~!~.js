@@ -54,7 +54,7 @@ if (appMatch('*/Commercial/*/Repair-Replacement')) {
 }
 
 if (appMatch('*/Commercial/*/Repair-Replacement')) {
-	email('jpayne@ashevillenc.gov', 'noreply@ashevillenc.gov', 'ACA Permit Created', 'The following permit, ' + capIDString + ' was just created in ACA please review scope of work and update Accela');
+	email('apollard@ashevillenc.gov', 'noreply@ashevillenc.gov', 'ACA Permit Created', 'The following permit, ' + capIDString + ' was just created in ACA please review scope of work and update Accela');
 }
 // Removed when Frank switched to Stormwater
 //if (appMatch('*/*/*/Repair-Replacement')) {

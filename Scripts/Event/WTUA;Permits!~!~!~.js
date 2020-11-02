@@ -382,7 +382,7 @@ if (matches(wfStatus, 'Certificate of Occupancy')
 	)
 ) {
 	emailAboutCertOfOcc('apollard@ashevillenc.gov');
-	emailAboutCertOfOcc('jpayne@ashevillenc.gov');
+	emailAboutCertOfOcc('apollard@ashevillenc.gov');
 }
 
 // changed from smorgan to talley 05/09/18. Added smorgan back on 5/18
