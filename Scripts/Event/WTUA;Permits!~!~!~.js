@@ -808,7 +808,7 @@ if (appMatch('Permits/Residential/Home Occupation/Home Stay')
 		+ ' Visit <a href="https://services.ashevillenc.gov/citizenaccess">https://services.ashevillenc.gov/citizenaccess</a>. '
 		+ ' Register for a Citizen Access account if you have not already done so, then log in to access the permit documents. '
 		+ ' </li><li>'
-		+ ' Enter your project’s permit number in the top right <b>search box</b> and click on the green spyglass to pull up the permit record.'
+		+ ' Enter your project\'s permit number in the top right <b>search box</b> and click on the green spyglass to pull up the permit record.'
 		+ ' </li><li>'
 		+ ' Click <b><i>Record Info</i></b> to access a drop-down menu; then select  <b><i>Attachments</i></b> from the drop-down menu.'
 		+ ' </li><li>'
