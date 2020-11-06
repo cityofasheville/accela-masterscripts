@@ -788,3 +788,35 @@ if (appMatch('Permits/*/*/SFD') || appMatch('Permits/*/*/SFD Waiver')) {
 	}
 
 }
+// 11/06/2020
+// Home Stay Permit approved
+if (appMatch('Permits/Residential/Home Occupation/Home Stay') 
+&& wfTask == 'Inspections' && matches(wfStatus, 'Final Approval - Permit Ready')) {
+	var emailSubj = "Permit Approved"
+	var emailBody = '<html><head><style>ol {margin: 0;padding: 0}</style></head><body>Permit Number: ' 
+	+ capIDString + ' <br>Location: ' + CapAddress
+	+ '<br><p>'
+	+ ' Your homestay permit application or renewal has been approved. This permit is valid for one year from the date of issuance. '
+	+ '</p><p>'
+	+ ' Please visit the Citizen Access website (<a href="https://services.ashevillenc.gov/citizenaccess">https://services.ashevillenc.gov/citizenaccess</a>) '
+	+ ' to print your permit and approved plans/comments. '
+	+ '</p><p>'
+	+ ' Please note that the issued permit along with the approved plans/comments must be maintained in hard copy on site until the permit is closed. '
+	+ '</p><p>'
+	+ ' Please refer to the following steps to access your approved permit and plans/comments online in .PDF format: '
+		+ '<ol><li>'
+		+ ' Visit <a href="https://services.ashevillenc.gov/citizenaccess">https://services.ashevillenc.gov/citizenaccess</a>. '
+		+ ' Register for a Citizen Access account if you have not already done so, then log in to access the permit documents. '
+		+ ' </li><li>'
+		+ ' Enter your project’s permit number in the top right <b>search box</b> and click on the green spyglass to pull up the permit record.'
+		+ ' </li><li>'
+		+ ' Click <b><i>Record Info</i></b> to access a drop-down menu; then select  <b><i>Attachments</i></b> from the drop-down menu.'
+		+ ' </li><li>'
+		+ ' To download the 1) issued permit and 2) approved plans/comments, click the blue links next to documents labeled '
+		+ ' <b>ISSUED PERMIT</b> and/or <b>APPROVED HOMESTAY PLANS.</b>'
+		+ ' </li></ol>'
+	+ 'If you have questions, please contact homestayinspections@ashevillenc.gov or 828-259-5587 on Monday-Friday from 8:30 am - 5:00 pm. '
+	+ '</p><p>'
+	+ ' </p><hr></body></html>'
+	emailAllContacts(emailSubj, emailBody)
+}

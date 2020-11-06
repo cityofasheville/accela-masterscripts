@@ -1,0 +1,11 @@
+if (AInfo['ParcelAttribute.LANDMARK'] != null) {
+    editAppSpecific('Landmark', AInfo['ParcelAttribute.LANDMARK']);
+}
+
+
+// on inspection update:
+// The criteria are:
+// Record Type = Homestay
+// Record Status = In Compliance, Renewed
+// Expiration Date = Null (Expiration Date is a Custom Field)
+//      Update Expiration Date to equal Record Status Date + 365
