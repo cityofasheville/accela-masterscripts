@@ -820,3 +820,34 @@ if (appMatch('Permits/Residential/Home Occupation/Home Stay')
 	+ ' </p><hr></body></html>'
 	emailAllContacts(emailSubj, emailBody)
 }
+
+// 11/06/2020
+// Home Stay Permit approved pending payment
+if (appMatch('Permits/Residential/Home Occupation/Home Stay') && wfTask == 'Zoning Review' && matches(wfStatus, 'Approved - Pending Payment')) {
+	var emailSubj = "Preliminary Permit Approval -- Ready for Payment"
+	var emailBody = '<html><head><style>ol {margin: 0;padding: 0}</style></head><body>Permit Number: ' 
+	+ capIDString + ' <br>Location: ' + CapAddress
+	+ '<br><p>'
+	+ ' Hello, '
+	+ '</p><p>'
+	+ ' The City of Asheville’s Development Services Department has received your homestay permit application or renewal and is currently processing it. '
+	+ ' Follow these steps to login and pay your fees online: '
+	+ '</p><p>'
+	+ ' Please refer to the following steps to access your approved permit and plans/comments online in .PDF format: '
+		+ '<ol><li>'
+		+ ' Visit <a href="https://services.ashevillenc.gov/citizenaccess">https://services.ashevillenc.gov/citizenaccess</a> '
+		+ ' to create a Citizen Access account if necessary; then login.  '
+		+ ' </li><li>'
+		+ ' Enter your project\'s permit number in the top right <b>search box</b> and click on the green spyglass to pull up the record.'
+		+ ' </li><li>'
+		+ ' Click <b><i>Payments</i></b> to access a drop-down menu; then select  <b><i>Fees</i></b> from the drop-down menu.'
+		+ ' </li><li>'
+		+ ' Click the blue <b><i>Pay Fees</i></b> button on the right side of the screen.'
+		+ ' </li><li>'
+		+ ' After you pay the fees, you will receive an email with instructions on how to schedule your inspection.'
+		+ ' </li></ol>'
+	+ 'Please email Haley Mahoney at hmahoney@ashevillenc.gov or call 828-259-5587 with any additional questions on Monday-Friday from 8:30 am - 5:00 pm. '
+	+ '</p><p>'
+	+ ' </p><hr></body></html>'
+	emailAllContacts(emailSubj, emailBody)
+}
