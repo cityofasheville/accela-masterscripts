@@ -791,7 +791,7 @@ if (appMatch('Permits/*/*/SFD') || appMatch('Permits/*/*/SFD Waiver')) {
 // 11/06/2020
 // Home Stay Permit approved
 if (appMatch('Permits/Residential/Home Occupation/Home Stay') 
-&& wfTask == 'Inspections' && matches(wfStatus, 'In Compliance')) { // && matches(wfStatus, 'Final Approval - Permit Ready')) {
+&& wfTask == 'Inspections' && matches(wfStatus, 'Final Approval - Permit Ready')) {
 	var emailSubj = "Permit Approved"
 	var emailBody = '<html><head><style>ol {margin: 0;padding: 0}</style></head><body>Permit Number: ' 
 	+ capIDString + ' <br>Location: ' + CapAddress
