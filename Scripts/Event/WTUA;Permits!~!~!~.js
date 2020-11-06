@@ -823,7 +823,7 @@ if (appMatch('Permits/Residential/Home Occupation/Home Stay')
 
 // 11/06/2020
 // Home Stay Permit approved pending payment
-if (appMatch('Permits/Residential/Home Occupation/Home Stay') && wfTask == 'Zoning Review' && matches(wfStatus, 'Approved')) { // && matches(wfStatus, 'Approved - Pending Payment')) {
+if (appMatch('Permits/Residential/Home Occupation/Home Stay') && wfTask == 'Zoning Review' && matches(wfStatus, 'Approved - Pending Payment')) {
 	var emailSubj = "Preliminary Permit Approval -- Ready for Payment"
 	var emailBody = '<html><head><style>ol {margin: 0;padding: 0}</style></head><body>Permit Number: ' 
 	+ capIDString + ' <br>Location: ' + CapAddress
