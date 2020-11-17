@@ -41,11 +41,3 @@ if (inspType == 'ZO-HOMESTAY RENEWAL' && matches(inspResult, 'Approved') || insp
     }
   }
 }
-
-
-
-
-
-
-
-//end replaced branch: ES_IRSA_HSTAY;
