@@ -743,7 +743,7 @@ if ( (wfTask == 'Issuance' || wfTask == 'Permit Verification' || wfTask == 'Perm
 	}   
 }
 
-// 12/17/2019 
+// 12/17/2019 (also copied to IRSA;Permits!Residential!Home Occupation!Home Stay 11/17/2020)
 // HomeStay set expiration date = in compliance date + 1 year
 //////////////////////////////
 if (appMatch("*/*/*/Home Stay") 
