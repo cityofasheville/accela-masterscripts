@@ -1,3 +1,4 @@
+// WTUA:Planning/*/*/* WORKFLOWTASKUPDATEAFTER
 //start replaced branch: WORKFLOW_UA_PLANNING
 
 //start replaced branch: ES_SET_EXPIRATION_DATES
@@ -443,21 +444,13 @@ if (wfTask == 'Level I Zoning') {
 }
 
 // added 12/02/2020 to email all commercial building customers, electronic submittal or not, when a permit can be picked up online 
-if (
-	(appMatch('Planning/Development/*/*')
-	)
+if (appMatch('Planning/Development/*/*')
 	&& matches(wfStatus, 'Issue', 'Reissue')) {
-	emailByContactType('Permit Approved', 
-		'<html><head><style>ol {margin: 0;padding: 0}</style></head><body>Permit Number: ' + capIDString + ' <br>Location: ' + CapAddress + ' <br><p>Your commercial permit application has been approved. For your convenience, you may visit the Citizen Access website (<a href="https://services.ashevillenc.gov/citizenaccess">https://services.ashevillenc.gov/citizenaccess</a>) to print your permit and approved plans/comments. </p><p>Please note that the issued permit along with the approved plans/comments must be maintained in hard copy on the project site during construction until the permit is closed.</p><p>Please refer to the following steps to access your approved permit and plans/comments online in .PDF format:</p><p><ol><li>Visit <a href="https://services.ashevillenc.gov/citizenaccess">https://services.ashevillenc.gov/citizenaccess</a>. You may register for a Citizen Access account if you have not already done so, then log in to access the permit documents.</li><li>Enter your permit number in the top right <b>search box</b> and click on the green spyglass to pull up the permit record.</li><li>Click <b>Record Info</b> to access a drop-down menu; then select <b>Attachments</b> from the drop-down menu.</li><li>To download the 1) issued permit and 2) approved plans/comments, click the blue links next to documents labeled <b>ISSUED PERMIT</b> and <b>APPROVED SITE PLANS + COMMENTS</b> and/or <b>APPROVED BUILDING PLANS + COMMENTS.</b> </li></ol></p><p>If you have questions, please contact the Permit Application Center at PAC@ashevillenc.gov or 828-259-5846 on Monday-Friday from 8:30 am - 5:00 pm. </p><hr></body></html>',
-		'ALL',
-		'developmentservices@ashevillenc.gov'
-		);
 
 		email(
-			emailAddress,
+			'nobody@ashevillenc.gov',
 			'noreply@ashevillenc.gov',
 			'test',
 			'The following location ' + CapAddress + ' has been issued TEWST'
-		)
-	
+		)	
 }
