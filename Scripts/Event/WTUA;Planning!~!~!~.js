@@ -452,4 +452,12 @@ if (
 		'ALL',
 		'developmentservices@ashevillenc.gov'
 		);
+
+		email(
+			emailAddress,
+			'noreply@ashevillenc.gov',
+			'test',
+			'The following location ' + CapAddress + ' has been issued TEWST'
+		)
+	
 }
