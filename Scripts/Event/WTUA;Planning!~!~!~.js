@@ -446,5 +446,11 @@ if (wfTask == 'Level I Zoning') {
 // added 12/02/2020 to email all commercial building customers, electronic submittal or not, when a permit can be picked up online 
 if (appMatch('Planning/Development/*/*')
 	&& matches(wfStatus, 'Issue', 'Reissue')) {
-		activateTask('PZC');
+
+		email(
+			'nobody@ashevillenc.gov',
+			'noreply@ashevillenc.gov',
+			'test',
+			'The following has been issued TEST'
+		)	
 }
