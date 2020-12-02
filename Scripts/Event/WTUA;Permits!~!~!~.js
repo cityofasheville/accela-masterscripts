@@ -401,8 +401,8 @@ if (appMatch('Permits/Residential/Home Occupation/Home Stay')
 }
 
 if (appMatch('Permits/Residential/Home Occupation/Home Stay')
-	&& wfTask == 'Zoning Review'
-	&& wfStatus == 'Approved'
+	&& wfTask == 'Application Process'
+	&& wfStatus == 'Application Complete'
 ) {
 	scheduleInspectDate('ZO-HOMESTAY', dateAdd(null, 1), null, null, 'Scheduled by Script - Make contact with applicant to confirm inspection availability.');
 }
@@ -788,10 +788,10 @@ if (appMatch('Permits/*/*/SFD') || appMatch('Permits/*/*/SFD Waiver')) {
 	}
 
 }
-// 11/06/2020
+// 11/06/2020 -- moved to PROD 12/1/2020
 // Home Stay Permit approved
 if (appMatch('Permits/Residential/Home Occupation/Home Stay') 
-&& wfTask == 'Inspections' && matches(wfStatus, 'Final Approval - Permit Ready')) {
+&& wfTask == 'Zoning Review' && matches(wfStatus, 'Approved')) {
 	var emailSubj = "Permit Approved"
 	var emailBody = '<html><head><style>ol {margin: 0;padding: 0}</style></head><body>Permit Number: ' 
 	+ capIDString + ' <br>Location: ' + CapAddress
@@ -821,7 +821,7 @@ if (appMatch('Permits/Residential/Home Occupation/Home Stay')
 	emailAllContacts(emailSubj, emailBody)
 }
 
-// 11/06/2020
+// 11/06/2020 -- moved to PROD 12/1/2020
 // Home Stay Permit approved pending payment
 if (appMatch('Permits/Residential/Home Occupation/Home Stay') && wfTask == 'Zoning Review' && matches(wfStatus, 'Approved - Pending Payment')) {
 	var emailSubj = "Preliminary Permit Approval -- Ready for Payment"

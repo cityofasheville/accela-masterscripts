@@ -41,3 +41,4 @@ if (inspType == 'ZO-HOMESTAY RENEWAL' && matches(inspResult, 'Approved') || insp
     }
   }
 }
+
