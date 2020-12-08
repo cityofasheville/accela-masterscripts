@@ -19,13 +19,17 @@ if (appMatch('Services/Project Inquiry/Meeting Request/NA') && balanceDue == 0) 
  	+ ' Please click the link below to schedule your inspection: '
  	+ '</p><p>'
  	+ ' <a href="https://www.jotform.com/build/202533942220142">https://www.jotform.com/build/202533942220142</a>'
- 	+ '</p><p>'
- 	+ ' <b>The inspection must be completed within 30 days of this email or your homestay permit will be revoked.</b> '
- 	+ ' <span style="color:red;">The inspection will be held online using Google Meet.</span>'
- 	+ ' You will receive instructions for accessing this meeting in an email confirming your inspection time. '
- 	+ '</p><p>'
+	+ '</p><p>'
+	
+	+ '<b>This will be a <span style="color:red">REMOTE</span> (virtual) inspection and must be completed within '
+	+ '30 days of this email or your homestay permit will be revoked. </b>'
+	+ ' <span style="color:red;">The inspection will be held online using Google Meet.</span>'
+	+ '  You will receive instructions for accessing this meeting in an email confirming your inspection time. '
+	+ '</p><p>'
+
  	+ ' A one year homestay renewal permit will be issued once your property passes this remote inspection. '
- 	+ '</p><p>'
+	 + '</p><p>'
+	 	 
  	+ 'If you have any questions, please contact Haley Mahoney at hmahoney@ashevillenc.gov.  Thank you.'
  	+ ' </p><hr></body></html>'
  	emailAllContacts(emailSubj, emailBody)
