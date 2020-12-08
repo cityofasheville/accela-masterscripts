@@ -833,12 +833,15 @@ if (appMatch('Permits/Residential/Home Occupation/Home Stay')
 	+ 'If you have questions, please contact homestayinspections@ashevillenc.gov or 828-259-5587 on Monday-Friday from 8:30 am - 5:00 pm. '
 	+ '</p><p>'
 	+ ' </p><hr></body></html>'
-	emailAllContacts(emailSubj, emailBody)
+	// emailAllContacts(emailSubj, emailBody)
+	var emailOther = 'hmahoney@ashevillenc.gov'
+	emailContactAndOthers(emailSubj, emailBody, emailOther)
 }
 
 // 11/06/2020 -- moved to PROD 12/1/2020
 // Home Stay Permit approved pending payment
-if (appMatch('Permits/Residential/Home Occupation/Home Stay') && wfTask == 'Zoning Review' && matches(wfStatus, 'Approved - Pending Payment')) {
+if (appMatch('Permits/Residential/Home Occupation/Home Stay') 
+&& wfTask == 'Zoning Review' && matches(wfStatus, 'Approved - Pending Payment')) {
 	var emailSubj = "Preliminary Permit Approval -- Ready for Payment"
 	var emailBody = '<html><head><style>ol {margin: 0;padding: 0}</style></head><body>Permit Number: ' 
 	+ capIDString + ' <br>Location: ' + CapAddress
@@ -863,5 +866,7 @@ if (appMatch('Permits/Residential/Home Occupation/Home Stay') && wfTask == 'Zoni
 	+ 'Please email Haley Mahoney at hmahoney@ashevillenc.gov or call 828-259-5587 with any additional questions on Monday-Friday from 8:30 am - 5:00 pm. '
 	+ '</p><p>'
 	+ ' </p><hr></body></html>'
-	emailAllContacts(emailSubj, emailBody)
+	// emailAllContacts(emailSubj, emailBody)
+	var emailOther = 'hmahoney@ashevillenc.gov'
+	emailContactAndOthers(emailSubj, emailBody, emailOther)
 }
