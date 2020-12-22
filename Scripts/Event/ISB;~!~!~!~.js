@@ -122,7 +122,7 @@ if ( (appMatch("Permits/*/New Building/*") || appMatch("Permits/*/Accessory Stru
 //	}
 }		
 
-//Added 6/12/19 check for approved gr preliminary
+//Added 6/12/19 check for approved gr preliminary.
 if ((appMatch("Permits/Residential/New Building/*") || appMatch("Permits/Residential/Accessory Structure/*") || appMatch("Permits/Residential/Existing Building/Alterations w Addition")) 
 &&  !matches(inspType,"GR-PRELIMINARY")  && AInfo['GR Permit'] != 'NA') {
 	if (!checkInspectionResult("GR-PRELIMINARY","Approved") && !checkInspectionResult("GR-PRELIMINARY","Approved with Conditions") && !hasChildren('Permits/*/Site Work/*')) {
