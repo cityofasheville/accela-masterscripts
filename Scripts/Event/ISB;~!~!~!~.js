@@ -152,7 +152,7 @@ if ((appMatch('Permits/Residential/Home Occupation/Home Stay'))
 	'TCO Issued 90 Days', 'TCC Issued 30 Days', 'TCC Issued 60 Days', 'TCC Issued 90 Days', 'Renewal Received'
 	)) {
 		showMessage = true;
-		comment("<font size=small><b>Inspection NOT Scheduled.</b></font><br><br>Please contact the Development Services Department at pac@ashevillenc.gov or 828-259-5746 for assistance.<br><br>");
+		comment("<font size=small><b>Inspection is NOT Scheduled.</b></font><br><br>Please contact the Development Services Department at pac@ashevillenc.gov or 828-259-5746 for assistance.<br><br>");
 		cancel = true;
 }
 
