@@ -138,8 +138,9 @@ if ((appMatch("Permits/Residential/New Building/*") || appMatch("Permits/Residen
 	}
 }
 
-
-if ((appMatch('Permits/*/*/*') || appMatch('Planning/*/*/*')) && !matches(capStatus, 'Issued', 'Reissued', 'Partial Issued', 'TCO Issued', 'Inspections', 'TCO Reissued', 'TCC Issued', 'In Compliance', 'Renewed', 'Amended', 'TCO Issued 30 Days', 'TCO Issued 60 Days', 'TCO Issued 90 Days', 'TCC Issued 30 Days', 'TCC Issued 60 Days', 'TCC Issued 90 Days', 'Pending Inspection', 'Plan Check')) {
+// JH 1/13/21 Need to fix this for Homestays by making the below commented out statement apply only for Homestay records, and the subsequent row for all other permit types.
+// if ((appMatch('Permits/*/*/*') || appMatch('Planning/*/*/*')) && !matches(capStatus, 'Issued', 'Reissued', 'Partial Issued', 'TCO Issued', 'Inspections', 'TCO Reissued', 'TCC Issued', 'In Compliance', 'Renewed', 'Amended', 'TCO Issued 30 Days', 'TCO Issued 60 Days', 'TCO Issued 90 Days', 'TCC Issued 30 Days', 'TCC Issued 60 Days', 'TCC Issued 90 Days', 'Pending Inspection', 'Plan Check', 'Pending Applicant Action', 'Renewal Received')) {
+if ((appMatch('Permits/*/*/*') || appMatch('Planning/*/*/*')) && !matches(capStatus, 'Issued', 'Reissued', 'Partial Issued', 'TCO Issued', 'Inspections', 'TCO Reissued', 'TCC Issued', 'In Compliance', 'Renewed', 'Amended', 'TCO Issued 30 Days', 'TCO Issued 60 Days', 'TCO Issued 90 Days', 'TCC Issued 30 Days', 'TCC Issued 60 Days', 'TCC Issued 90 Days', 'Renewal Received')) {
 	showMessage = true;
 	comment("<font size=small><b>Permit NOT Issued:</b></font><br><br>Please visit the Development Services Department for re-issuance.<br><br>");
 	cancel = true;
