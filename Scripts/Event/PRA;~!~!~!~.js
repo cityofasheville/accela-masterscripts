@@ -31,7 +31,8 @@ if (appMatch('Services/Project Inquiry/Meeting Request/NA') && balanceDue == 0) 
 	 + '</p><p>'
 	 	 
  	+ 'If you have any questions, please contact Haley Mahoney at hmahoney@ashevillenc.gov.  Thank you.'
- 	+ ' </p><hr></body></html>'
- 	emailAllContacts(emailSubj, emailBody)
+	 + ' </p><hr></body></html>'
+	 var staffEmail = 'hmahoney@ashevillenc.gov'
+ 	emailAllContacts(emailSubj, emailBody, staffEmail)
  }	
 

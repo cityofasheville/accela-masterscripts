@@ -866,7 +866,6 @@ if (appMatch('Permits/Residential/Home Occupation/Home Stay')
 	+ 'Please email Haley Mahoney at hmahoney@ashevillenc.gov or call 828-259-5587 with any additional questions on Monday-Friday from 8:30 am - 5:00 pm. '
 	+ '</p><p>'
 	+ ' </p><hr></body></html>'
-	// emailAllContacts(emailSubj, emailBody)
-	var emailOther = 'hmahoney@ashevillenc.gov'
-	emailContactAndOthers(emailSubj, emailBody, emailOther)
+	var staffEmail = 'hmahoney@ashevillenc.gov'
+	emailAllContacts(emailSubj, emailBody, staffEmail)
 }
