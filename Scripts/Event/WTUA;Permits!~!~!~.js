@@ -833,9 +833,8 @@ if (appMatch('Permits/Residential/Home Occupation/Home Stay')
 	+ 'If you have questions, please contact homestayinspections@ashevillenc.gov or 828-259-5587 on Monday-Friday from 8:30 am - 5:00 pm. '
 	+ '</p><p>'
 	+ ' </p><hr></body></html>'
-	// emailAllContacts(emailSubj, emailBody)
-	var emailOther = 'hmahoney@ashevillenc.gov'
-	emailContactAndOthers(emailSubj, emailBody, emailOther)
+	var staffEmail = 'hmahoney@ashevillenc.gov'
+	emailAllContacts(emailSubj, emailBody, staffEmail)
 }
 
 // 11/06/2020 -- moved to PROD 12/1/2020
