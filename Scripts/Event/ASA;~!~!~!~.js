@@ -1,3 +1,5 @@
+// Whne record is created
+
 copyParcelGisObjects();
 
 //replaced branch(ES_GET_PARCEL_ATTRIBUTES)
@@ -161,3 +163,12 @@ if (!appMatch('Permits/*/Existing Building/Reroof') && (appMatch('Permits/*/New 
 //if (appMatch('Permits/Right of Way/Warranty/NA')) {
 //	editAppSpecific('Warranty Expiration Date',dateAdd(null,720));
 //	}
+
+// added 02/22/2022
+if (appMatch('Planning/Development/Level I/NA')) {
+    assignTask('Level I Site Plan Review', 'HMAHONEY', 'PW_DEV');
+}
+
+if (appMatch('Planning/Non Development/Alternative Compliance/*')) {
+    assignTask('Planning Review', 'HMAHONEY', 'PLN_COMM');
+}
