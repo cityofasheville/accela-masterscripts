@@ -82,7 +82,7 @@ if (wfTaskFirePreventionOrReview && wfStatusApprovedOrWithConditions) {
 				editAppSpecific('Cost of Work', '0', newChildID);
 			}
 		}
-		/* replace by above for loop
+        /* replace by above for loop
 		for (var permitListIndex = 0; permitListIndex < checkPreventionApprovedCats.length; permitListIndex++) {
 			var thisPermitCheck = checkPreventionApprovedCats[permitListIndex];
 			if (AInfo[thisPermitCheck.aInfot1 + ' Permit Required'] === 'Yes' && !hasSibling(capId, 'Permits/Fire/Construction/' + thisPermitCheck.permitCat)) {
@@ -134,7 +134,7 @@ if (wfTaskFirePreventionOrReview && wfStatusApprovedOrWithConditions) {
 				editAppSpecific('Cost of Work', '0', newChildID);
 			}
 		}
-		/* replace by above for loop
+        /* replace by above for loop
 		for (var elsePermitListIndex = 0; elsePermitListIndex < checkPreventionApprovedCats.length; elsePermitListIndex++) {
 			var thisPermitCheckElse = checkPreventionApprovedCats[elsePermitListIndex];
 			if (AInfo[thisPermitCheckElse.aInfot1 + ' Permit Required'] === 'Yes' && !hasChildren('Permits/Fire/Construction/' + thisPermitCheckElse.permitCat)) {
@@ -1000,13 +1000,12 @@ if (appMatch('Permits/*/*/SFD') || appMatch('Permits/*/*/SFD Waiver')) {
 // 11/06/2020 -- moved to PROD 12/1/2020
 // Home Stay Permit approved
 if (appMatch('Permits/Residential/Home Occupation/Home Stay')
-	&& wfTask == 'Inspections' && matches(wfStatus, 'In Compliance')) {
+	&& wfTask == 'Zoning Review' && matches(wfStatus, 'Approved')) {
 	var emailSubj = "Permit Approved"
 	var emailBody = '<html><head><style>ol {margin: 0;padding: 0}</style></head><body>Permit Number: '
 		+ capIDString + ' <br>Location: ' + CapAddress
 		+ '<br><p>'
-
-		+ ' Your homestay permit application has been approved. This permit is valid as long as there are no major changes (e.g. moving, selling, layout changes, etc.).  '
+		+ ' Your homestay permit application or renewal has been approved. This permit is valid for one year from the date of issuance. '
 		+ '</p><p>'
 		+ ' Please visit the Citizen Access website (<a href="https://services.ashevillenc.gov/citizenaccess">https://services.ashevillenc.gov/citizenaccess</a>) '
 		+ ' to print your permit and approved plans/comments. '
@@ -1015,16 +1014,18 @@ if (appMatch('Permits/Residential/Home Occupation/Home Stay')
 		+ '</p><p>'
 		+ ' Please refer to the following steps to access your approved permit and plans/comments online in .PDF format: '
 		+ '<ol><li>'
-		+ ' Visit https://services.ashevillenc.gov/citizenaccess. It is not necessary to login to pay fees or to view documents. '
+		+ ' Visit <a href="https://services.ashevillenc.gov/citizenaccess">https://services.ashevillenc.gov/citizenaccess</a>. '
+		+ ' It is not necessary to login to pay fees or to view documents. '
 		+ ' </li><li>'
-		+ ' Enter your project\'s permit number in the top right search box and click on the green spyglass to pull up the permit record. '
+		+ ' Enter your project\'s permit number in the top right <b>search box</b> and click on the green spyglass to pull up the permit record.'
 		+ ' </li><li>'
-		+ ' Click Record Info to access a drop-down menu; then select Attachments from the drop-down menu. '
+		+ ' Click <b><i>Record Info</i></b> to access a drop-down menu; then select  <b><i>Attachments</i></b> from the drop-down menu.'
 		+ ' </li><li>'
-		+ ' To download the 1) issued permit and 2) approved plans/comments, click the blue links next to documents labeled <b>ISSUED PERMIT</b> '
-		+ ' and/or <b>APPROVED HOMESTAY PLANS.</b> '
+		+ ' To download the 1) issued permit and 2) approved plans/comments, click the blue links next to documents labeled '
+		+ ' <b>ISSUED PERMIT</b> and/or <b>APPROVED HOMESTAY PLANS.</b>'
 		+ ' </li></ol>'
-		+ ' If you have questions, please contact homestayinspections@ashevillenc.gov or 828-259-5587 on Monday-Friday from 8:30 am - 5:00 pm. '
+		+ 'If you have questions, please contact homestayinspections@ashevillenc.gov or 828-259-5587 on Monday-Friday from 8:30 am - 5:00 pm. '
+		+ '</p><p>'
 		+ ' </p><hr></body></html>'
 	var staffEmail = 'hmahoney@ashevillenc.gov'
 	emailAllContacts(emailSubj, emailBody, staffEmail)
@@ -1034,29 +1035,28 @@ if (appMatch('Permits/Residential/Home Occupation/Home Stay')
 // Home Stay Permit approved pending payment
 if (appMatch('Permits/Residential/Home Occupation/Home Stay')
 	&& wfTask == 'Zoning Review' && matches(wfStatus, 'Approved - Pending Payment')) {
-	var emailSubj = "Homestay Permit -- Ready for Payment"
+	var emailSubj = "Preliminary Permit Approval -- Ready for Payment"
 	var emailBody = '<html><head><style>ol {margin: 0;padding: 0}</style></head><body>Permit Number: '
 		+ capIDString + ' <br>Location: ' + CapAddress
 		+ '<br><p>'
 		+ ' Hello, '
 		+ '</p><p>'
-
-		+ 'The City of Asheville\'s Development Services Department has tentatively approved your homestay permit application pending payment and inspection. '
-		+ 'Follow these steps to login and pay your fees online <b>(THIS PAYMENT CANNOT BE MADE ON A SMARTPHONE):</b> '
+		+ ' The City of Asheville\'s Development Services Department has received your homestay permit application or renewal and is currently processing it. '
+		+ ' Follow these steps to <b>login and pay your fees</b> online: '
+		+ '</p><p>'
 		+ '<ol><li>'
-		+ 'Visit https://services.ashevillenc.gov/citizenaccess. It is not necessary to login to pay fees or to view documents. '
+		+ ' Visit <a href="https://services.ashevillenc.gov/citizenaccess">https://services.ashevillenc.gov/citizenaccess</a>. '
+		+ ' It is not necessary to login to pay fees or to view documents. '
 		+ ' </li><li>'
-		+ 'Enter your project\'s permit number in the top right search box and click on the green spyglass to pull up the record. '
+		+ ' Enter your project\'s permit number in the top right <b>search box</b> and click on the green spyglass to pull up the record.'
 		+ ' </li><li>'
-		+ 'Click Payments to access a drop-down menu; then select Fees from the drop-down menu. '
+		+ ' Click <b><i>Payments</i></b> to access a drop-down menu; then select  <b><i>Fees</i></b> from the drop-down menu.'
 		+ ' </li><li>'
-		+ 'Click the blue Pay Fees button on the right side of the screen. '
+		+ ' Click the blue <b><i>Pay Fees</i></b> button on the right side of the screen.'
 		+ ' </li><li>'
-		+ 'After you pay the fees, you will receive an email with instructions on how to schedule your inspection. '
+		+ ' After you pay the fees, you will receive an email with instructions on how to schedule your inspection.'
 		+ ' </li></ol>'
-
 		+ 'Please email Haley Mahoney at hmahoney@ashevillenc.gov or call 828-259-5587 with any additional questions on Monday-Friday from 8:30 am - 5:00 pm. '
-
 		+ '</p><p>'
 		+ ' </p><hr></body></html>'
 	var staffEmail = 'hmahoney@ashevillenc.gov'
