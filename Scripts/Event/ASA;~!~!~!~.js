@@ -144,7 +144,7 @@ if ((appMatch('Permits/*/Existing Building/*') || appMatch('Permits/*/New Buildi
 
 //moved from ASA Planning 6/25/19
 if (!appMatch('Permits/*/Existing Building/Reroof') && (appMatch('Permits/*/New Building/*') || appMatch('Permits/*/Existing Building/*') || appMatch('*/*/Remodel/*') || appMatch('*/*/Manufactured Home/*') || appMatch('*/*/Demolition/*') || appMatch('*/*/Addition/*') || appMatch('*/*/Accessory Structure/*') || appMatch('Permits/*/New/*') || appMatch('Permits/*/Site Work/*')) && AInfo['ParcelAttribute.RIVER DISTRICT'] == 'Yes') {
-	email('svrtunski@ashevillenc.gov', 'noreply@ashevillenc.gov', 'River District Design Review Task', 'River District Design Review task assigned. ' + capIDString + ' - Please check Accela and update the record status.');
+	email('wpalmquist@ashevillenc.gov', 'noreply@ashevillenc.gov', 'River District Design Review Task', 'River District Design Review task assigned. ' + capIDString + ' - Please check Accela and update the record status.');
 }
 
 // DISABLED: ApplicationSubmitAfter:99
@@ -161,3 +161,14 @@ if (!appMatch('Permits/*/Existing Building/Reroof') && (appMatch('Permits/*/New 
 //if (appMatch('Permits/Right of Way/Warranty/NA')) {
 //	editAppSpecific('Warranty Expiration Date',dateAdd(null,720));
 //	}
+
+
+// added 2/22/2022
+if (appMatch('Planning/Development/Level I/NA')) {
+    assignTask('Level I Site Plan Review', 'HMAHONEY', 'PW_DEV');
+}
+
+if (appMatch('Planning/Non Development/Alternative Compliance/*')) {
+    assignTask('Planning Review', 'HMAHONEY', 'PLN_COMM');
+}
+
