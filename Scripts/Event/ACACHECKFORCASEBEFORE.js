@@ -128,7 +128,7 @@ showDebug = false;
 
 // if (appMatch('Permits/*/*/*')) {
 // 	AddressValidatedNumber = cap.getAddressModel().getRefAddressId();
-// 	rfArray = getRelatedCapsByAddressBefore_TPS('Permits/Fire/Construction/*');
+//	rfArray = getRelatedCapsByAddressBefore_TPS('Permits/Fire/Construction/*');
 // }
 
 // if (appMatch('Permits/*/*/*') && rfArray != null) {
@@ -183,6 +183,7 @@ if (appMatch('Permits/*/*/*') && paArray['ParcelAttribute.JURISDICTION'] != 'Ash
 	cancel = true;
 }
 
+
 // if (appMatch('Permits/*/*/*')) {
 // 	AddressValidatedNumber = cap.getAddressModel().getRefAddressId();
 // 	rfArray = getRelatedCapsByAddressBefore_TPS('Permits/Commercial/*/*');
@@ -208,6 +209,7 @@ if (appMatch('Permits/*/*/*') && paArray['ParcelAttribute.JURISDICTION'] != 'Ash
 // 	}
 // 	//end replaced branch: ES_ASB_CODE_DUP_CASES;
 // }
+
 
 // if (appMatch('Permits/*/*/*')) {
 // 	AddressValidatedNumber = cap.getAddressModel().getRefAddressId();
