@@ -23,11 +23,12 @@ if (publicUser)
 	logDebug("Skipping River District Review Check for publicUserID: "+publicUserID)
 else {
 		if ((appMatch('Permits/*/Existing Building/*') || appMatch('Permits/*/New Building/*') || appMatch('*/*/Remodel/*') || appMatch('*/*/Manufactured Home/*') || appMatch('*/*/Demolition/*') || appMatch('*/*/Addition/*') || appMatch('*/*/Accessory Structure/*') || appMatch('Permits/*/New/*') || appMatch('Permits/*/Site Work/*') || appMatch('Permits/Sign/Stand Alone/*')) && AInfo['ParcelAttribute.RIVER DISTRICT'] == 'Yes') {
-	addAdHocTask('ADHOC TASKS', 'River District Design Review', ' ', 'SVRTUNSKI');
+	addAdHocTask('ADHOC TASKS', 'River District Design Review', ' ', 'WPALMQUIST');
 }
 
+
 if (!appMatch('Permits/*/Existing Building/Reroof') && (appMatch('Permits/*/Existing Building/*') || appMatch('Permits/*/New Building/*') || appMatch('*/*/Remodel/*') || appMatch('*/*/Manufactured Home/*') || appMatch('*/*/Demolition/*') || appMatch('*/*/Addition/*') || appMatch('*/*/Accessory Structure/*') || appMatch('Permits/*/New/*') || appMatch('Permits/*/Site Work/*')) && AInfo['ParcelAttribute.DTDR OVERLAY'] == 'Yes') {
-	addAdHocTask('ADHOC TASKS', 'Downtown Design Review', ' ', 'SVRTUNSKI');
+	addAdHocTask('ADHOC TASKS', 'Downtown Design Review', ' ', 'WPALMQUIST');
 }
 
 if ((appMatch('Permits/*/Existing Building/*') || appMatch('Permits/*/New Building/*') || appMatch('*/*/Reroof/*') || appMatch('*/*/Remodel/*') || appMatch('*/*/Manufactured Home/*') || appMatch('*/*/Demolition/*') || appMatch('*/*/Addition/*') || appMatch('*/*/Accessory Structure/*') || appMatch('Permits/*/New/*') || appMatch('Permits/*/Site Work/*') || appMatch('Permits/Sign/Stand Alone/*')) && AInfo['ParcelAttribute.HRC OVERLAY'] == 'Yes') {
@@ -47,7 +48,7 @@ if ((appMatch('Permits/*/Existing Building/*') || appMatch('Permits/*/New Buildi
 }
 
 if (!appMatch('Permits/*/Existing Building/Reroof') && (appMatch('Permits/*/New Building/*') || appMatch('Permits/*/Existing Building/*') || appMatch('*/*/Remodel/*') || appMatch('*/*/Manufactured Home/*') || appMatch('*/*/Demolition/*') || appMatch('*/*/Addition/*') || appMatch('*/*/Accessory Structure/*') || appMatch('Permits/*/New/*') || appMatch('Permits/*/Site Work/*')) && AInfo['ParcelAttribute.DTDR OVERLAY'] == 'Yes') {
-	email('svrtunski@ashevillenc.gov', 'noreply@ashevillenc.gov', 'DTDR Task', 'Downtown Design Review task assigned. ' + capIDString + ' - Please check Accela and update the record status.');
+	email('wpalmquist@ashevillenc.gov', 'noreply@ashevillenc.gov', 'DTDR Task', 'Downtown Design Review task assigned. ' + capIDString + ' - Please check Accela and update the record status.');
 }
 
 if ((appMatch('Permits/*/Existing Building/*') || appMatch('Permits/*/New Building/*') || appMatch('*/*/Reroof/*') || appMatch('*/*/Remodel/*') || appMatch('*/*/Manufactured Home/*') || appMatch('*/*/Demolition/*') || appMatch('*/*/Addition/*') || appMatch('*/*/Accessory Structure/*') || appMatch('Permits/*/New/*') || appMatch('Permits/*/Construction Trailer/*') || appMatch('Permits/*/Site Work/*') || appMatch('Permits/Sign/Stand Alone/*')) && AInfo['ParcelAttribute.LANDMARK'] == 'Yes') {
@@ -59,7 +60,7 @@ if ((appMatch('Permits/*/Existing Building/*') || appMatch('Permits/*/New Buildi
 }
 
 if (!appMatch('Permits/*/Existing Building/Reroof') && (appMatch('Permits/*/New Building/*') || appMatch('Permits/*/Existing Building/*') || appMatch('*/*/Remodel/*') || appMatch('*/*/Manufactured Home/*') || appMatch('*/*/Demolition/*') || appMatch('*/*/Addition/*') || appMatch('*/*/Accessory Structure/*') || appMatch('Permits/*/New/*') || appMatch('Permits/*/Site Work/*')) && AInfo['ParcelAttribute.RIVER DISTRICT'] == 'Yes') {
-	email('svrtunski@ashevillenc.gov', 'noreply@ashevillenc.gov', 'River District Design Review Task', 'River District Design Review task assigned. ' + capIDString + ' - Please check Accela and update the record status.');
+	email('wpalmquist@ashevillenc.gov', 'noreply@ashevillenc.gov', 'River District Design Review Task', 'River District Design Review task assigned. ' + capIDString + ' - Please check Accela and update the record status.');
 }
 
 capOwnerModel = getCapOwnerByName('CITY OF ASHEVILLE');
@@ -118,11 +119,11 @@ if (capOwnerModel4) {
 	//end replaced branch: ES_OWNER_IS_CITY;
 }
 
-if ((appMatch('Permits/Commercial/Existing Building/Additions') || appMatch('Permits/Commercial/Existing Building/Alterations') || appMatch('Permits/Commercial/Existing Building/Alterations w Addition') || appMatch('Permits/Commercial/Existing Building/Landlord Improvements') || appMatch('Permits/Commercial/New Building/*'))&& AInfo['ParcelAttribute.HRC OVERLAY'] != 'Yes') {
+if ((appMatch('Permits/Commercial/Existing Building/Additions') || appMatch('Permits/Commercial/Existing Building/Alterations') || appMatch('Permits/Commercial/Trade/Plumbing') || appMatch('Permits/Commercial/Existing Building/Alterations w Addition') || appMatch('Permits/Commercial/Existing Building/Landlord Improvements') || appMatch('Permits/Commercial/New Building/*'))&& AInfo['ParcelAttribute.HRC OVERLAY'] != 'Yes') {
 	email('backflowmailbox@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Application ' + capIDString + ' created', 'Permit Application ' + capIDString + ' has been created for proposed work on a commercial building located at ' + CapAddress + ' . Please communicate Cross Connection requirements back to the PAC general mailbox. Thank you.');
 }
 
-if ((appMatch('Permits/Commercial/Existing Building/Additions') || appMatch('Permits/Commercial/Existing Building/Alterations') || appMatch('Permits/Commercial/Existing Building/Alterations w Addition') || appMatch('Permits/Commercial/Existing Building/Landlord Improvements') || appMatch('Permits/Commercial/New Building/*')) && AInfo['ParcelAttribute.HRC OVERLAY'] == 'Yes') {
+if ((appMatch('Permits/Commercial/Existing Building/Additions') || appMatch('Permits/Commercial/Existing Building/Alterations') || appMatch('Permits/Commercial/Trade/Plumbing') || appMatch('Permits/Commercial/Existing Building/Alterations w Addition') || appMatch('Permits/Commercial/Existing Building/Landlord Improvements') || appMatch('Permits/Commercial/New Building/*')) && AInfo['ParcelAttribute.HRC OVERLAY'] == 'Yes') {
 	email('backflowmailbox@ashevillenc.gov', 'noreply@ashevillenc.gov', 'HISTORIC DISTRICT Application ' + capIDString + ' created', 'Permit Application ' + capIDString + ' has been created for proposed work on a commercial building IN THE HISTORIC DISTRICT located at ' + CapAddress + ' . Please communicate Cross Connection requirements back to the PAC general mailbox. Thank you.');
 }
 
