@@ -1,0 +1,13 @@
+
+WTUA Workflow Task Update After
+
+ASB  Application Submit Before
+ASA  Application Submit After
+
+ISB  Inspection Scheduled Before
+ISA  Inspection Scheduled After
+IRSB Inspection Results Before
+IRSA Inspection Results After
+
+PRA  Payment Recieved After
+
