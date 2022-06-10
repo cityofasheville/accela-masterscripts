@@ -1,4 +1,3 @@
-
 if (ParcelValidatedNumber.length != 0 && ParcelValidatedNumber != '' && ParcelValidatedNumber != null) {
 	loadParcelAttributesTPS(AInfo);
 }
@@ -28,12 +27,12 @@ if (publicUser && appMatch('*/*/Trade/*') && AInfo['Cost of Work'] > 30000) {
 	comment('<font size=small><b>Application Denied:</b></font><br><br>Your application has been denied. Please visit our office to complete the application.<br><br>');
 	cancel = true;
 }
-
-if (!appMatch('Services/*/*/*') && !appMatch('Planning/Non Development/*/*') && AInfo['ParcelAttribute.JURISDICTION'] != 'Asheville Corporate Limits') {
-	showMessage = true;
-	comment('<font size=small><b>Outside City Limits:</b></font><br><br>This property is not in the Asheville City limits.<br><br>');
-	cancel = true;
-}
+//temporary blocking of this b/c of error 4/16
+//if (!appMatch('Services/*/*/*') && !appMatch('Planning/Non Development/*/*') && AInfo['ParcelAttribute.JURISDICTION'] != 'Asheville Corporate Limits') {
+//	showMessage = true;
+//	comment('<font size=small><b>Outside City Limits:</b></font><br><br>This property is not in the Asheville City limits.<br><br>');
+//	cancel = true;
+//}
 
 if (publicUser && appMatch('Permits/*/*/Repair-Replacement') && AInfo['Scope includes exterior work?'] == 'Y' && AInfo['ParcelAttribute.DTDR OVERLAY'] == 'Yes') {
 	showMessage = true;
