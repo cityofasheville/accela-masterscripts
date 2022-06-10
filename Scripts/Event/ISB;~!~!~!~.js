@@ -149,7 +149,7 @@ if ((appMatch('Permits/Residential/Home Occupation/Home Stay'))
 		cancel = true;
 } else if ((appMatch('Permits/*/*/*') || appMatch('Planning/*/*/*')) && !(appMatch('Permits/Residential/Home Occupation/Home Stay')) 
 	&& !matches(capStatus, 'Issued', 'Reissued', 'Partial Issued', 'TCO Issued', 'Inspections', 'TCO Reissued', 'TCC Issued', 'In Compliance', 'Renewed', 'Amended', 'TCO Issued 30 Days', 'TCO Issued 60 Days', 
-	'TCO Issued 90 Days', 'TCC Issued 30 Days', 'TCC Issued 60 Days', 'TCC Issued 90 Days', 'Renewal Received'
+	'TCO Issued 90 Days', 'TCC Issued 30 Days', 'TCC Issued 60 Days', 'TCC Issued 90 Days', 'Renewal Received', 'Temp. Cert. of Compliance'
 	)) {
 		showMessage = true;
 		comment("<font size=small><b>Inspection is NOT Scheduled.</b></font><br><br>Please contact the Development Services Department at pac@ashevillenc.gov or 828-259-5846 for assistance.<br><br>");
