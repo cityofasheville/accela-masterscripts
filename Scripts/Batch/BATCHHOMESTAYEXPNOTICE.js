@@ -25,7 +25,7 @@ var systemUserObj = aa.person.getUser("ADMIN").getOutput();
 var capId;                                                                               // Variable used to hold the Cap Id value.
 var senderEmailAddr = "noreply@ashevillenc.gov";                                           // Email address of the sender
 var emailAddress = "HMahoney@ashevillenc.gov";                                    //    Email address of the person who will receive the batch script log information
-var emailAddress2 = "jtwilson@ashevillenc.gov";                                   // CC Email address of the person who will receive the batch script log information
+// var emailAddress2 = "jtwilson@ashevillenc.gov";                                   // CC Email address of the person who will receive the batch script log information
 var emailText = "Asheville HomeStay Permits annual check-in emails sent. Expiration date extended 12 months <br>";                        // Email body
 var useAppSpecificGroupName = false;
 
@@ -66,7 +66,7 @@ if (paramsOK) {
 	logMessage("END", "End of Home Stay annual check-in Batch Job: Elapsed Time : " + elapsed() + " Seconds.");
 }
 if (emailAddress.length)
-	aa.sendMail(senderEmailAddr, emailAddress, emailAddress2, "Asheville Home Stay annual check-in", emailText);
+	aa.sendMail(senderEmailAddr, emailAddress, null, "Asheville Home Stay annual check-in", emailText);
 /*------------------------------------------------------------------------------------------------------/
 | <===========END=Main=Loop================>
 /------------------------------------------------------------------------------------------------------*/
