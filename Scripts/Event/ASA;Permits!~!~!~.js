@@ -180,7 +180,8 @@ if (appMatch('Permits/Commercial/Demolition/*') ) {
     if (CapContacts.getSuccess()) {
         var ContactOutputs = CapContacts.getOutput();
         for (contact_id in ContactOutputs) {
-            if (ContactOutputs[contact_id].getCapContactModel().getPeople().getContactType() == "Applicant") {
+            // if (ContactOutputs[contact_id].getCapContactModel().getPeople().getContactType() == "Applicant") {
+				applicant.type = ContactOutputs[contact_id].getCapContactModel().getPeople().getContactType() ;
                 applicant.email = ContactOutputs[contact_id].people.email;
                 applicant.name = ContactOutputs[contact_id].people.contactName;
                 applicant.phone = ContactOutputs[contact_id].people.contactPhoneNum;
@@ -189,7 +190,7 @@ if (appMatch('Permits/Commercial/Demolition/*') ) {
                 applicant.city = ContactOutputs[contact_id].people.compactAddress.city;
                 applicant.state = ContactOutputs[contact_id].people.compactAddress.state;
                 applicant.zip = ContactOutputs[contact_id].people.compactAddress.zip;
-            }
+            // }
         }
     }
 
@@ -203,7 +204,7 @@ if (appMatch('Permits/Commercial/Demolition/*') ) {
         + '<br>'
         + 'Applicant Point of Contact Information: ' 
         + '<br>'
-        + 'Applicant Full name: ' + applicant.name
+        + 'Applicant Full name: ' + applicant.name + ": " + applicant.type
         + '<br>'
         + 'Applicant Email: ' + applicant.email
         + '<br>'
