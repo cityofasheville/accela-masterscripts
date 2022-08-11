@@ -158,22 +158,6 @@ else {
 }
 
 // added 8/11/22 -Jon
-// showDebug = true;
-
-
-// function listObj(obj) {
-//   for (x in obj) {
-//     if (typeof (obj[x]) === "function") {
-//       aa.print(x);
-//     }
-//   }
-//   for (x in obj) {
-//     if (obj[x] && typeof (obj[x]) !== "function") {
-//       aa.print(x + " = " + obj[x]);
-//     }
-//   }
-// }
-
 if (appMatch('Permits/Commercial/Demolition/*') ) {
 	var applicant = getApplicantInfo(capId);
 
@@ -195,7 +179,7 @@ if (appMatch('Permits/Commercial/Demolition/*') ) {
         + '<br>'
         + applicant.addressLine1 
         + '<br>'
-		+ applicant.addressLine2
+		+ applicant.addressLine2&&applicant.addressLine2
         + '<br>'
 		+ applicant.city +  "," + applicant.state + " " + applicant.zip
         );
