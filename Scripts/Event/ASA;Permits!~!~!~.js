@@ -158,58 +158,45 @@ else {
 }
 
 // added 8/11/22 -Jon
-showDebug = true;
+// showDebug = true;
 
 
-function listObj(obj) {
-  for (x in obj) {
-    if (typeof (obj[x]) === "function") {
-      aa.print(x);
-    }
-  }
-  for (x in obj) {
-    if (obj[x] && typeof (obj[x]) !== "function") {
-      aa.print(x + " = " + obj[x]);
-    }
-  }
-}
+// function listObj(obj) {
+//   for (x in obj) {
+//     if (typeof (obj[x]) === "function") {
+//       aa.print(x);
+//     }
+//   }
+//   for (x in obj) {
+//     if (obj[x] && typeof (obj[x]) !== "function") {
+//       aa.print(x + " = " + obj[x]);
+//     }
+//   }
+// }
 
 if (appMatch('Permits/Commercial/Demolition/*') ) {
-    var applicant = {};
-    var CapContacts = aa.people.getCapContactByCapID(capId);
-    if (CapContacts.getSuccess()) {
-        var ContactOutputs = CapContacts.getOutput();
-        for (contact_id in ContactOutputs) {
-            var contactType = ContactOutputs[contact_id].getCapContactModel().getPeople().getContactType() + "";
-            if (contactType == "Applicant") {
-                applicant.email = ContactOutputs[contact_id].people.email;
-                applicant.name = ContactOutputs[contact_id].people.contactName;
-                applicant.phone = ContactOutputs[contact_id].people.contactPhoneNum;
-                applicant.addressLine1 = ContactOutputs[contact_id].people.compactAddress.addressLine1;
-                applicant.addressLine2 = ContactOutputs[contact_id].people.compactAddress.addressLine2;
-                applicant.city = ContactOutputs[contact_id].people.compactAddress.city;
-                applicant.state = ContactOutputs[contact_id].people.compactAddress.state;
-                applicant.zip = ContactOutputs[contact_id].people.compactAddress.zip;
-            }
-        }
-    }
-
-
-    listObj(applicant);
-
+	var applicant = getApplicantInfo(capId);
 
     email('wrogers@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Demolition Permit Notification: ' + capIDString, 
     'This email is to notify you that a new demolition permit has been submitted.' + '<br>' 
         + 'Permit number: ' + capIDString
         + '<br>'
+        + '<br>'
         + 'Applicant Point of Contact Information: ' 
         + '<br>'
-        + 'Applicant Full name: ' + applicant.name + ": " + applicant.type
+        + 'Applicant Full name: ' + applicant.name
         + '<br>'
         + 'Applicant Email: ' + applicant.email
         + '<br>'
         + 'Applicant Phone: ' + applicant.phone
         + '<br>'
-        + 'Applicant Address: ' + applicant.addressLine1 + " " + applicant.city +  "," + applicant.state + " " + applicant.zip
+        + '<br>'
+        + 'Applicant Address: '
+        + '<br>'
+        + applicant.addressLine1 
+        + '<br>'
+		+ applicant.addressLine2
+        + '<br>'
+		+ applicant.city +  "," + applicant.state + " " + applicant.zip
         );
 }
