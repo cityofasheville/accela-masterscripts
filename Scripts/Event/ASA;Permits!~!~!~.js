@@ -180,7 +180,7 @@ if (appMatch('Permits/Commercial/Demolition/*') ) {
     if (CapContacts.getSuccess()) {
         var ContactOutputs = CapContacts.getOutput();
         for (contact_id in ContactOutputs) {
-            if (ContactOutputs[contact_id].getCapContactModel().getPeople().getContactType() === "Applicant") {
+            if (ContactOutputs[contact_id].getCapContactModel().getPeople().getContactType() == "Applicant") {
                 applicant.email = ContactOutputs[contact_id].people.email;
                 applicant.name = ContactOutputs[contact_id].people.contactName;
                 applicant.phone = ContactOutputs[contact_id].people.contactPhoneNum;
@@ -196,7 +196,7 @@ if (appMatch('Permits/Commercial/Demolition/*') ) {
 
     listObj(applicant);
 
-	
+
     email('wrogers@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Demolition Permit Notification: ' + capIDString, 
     'This email is to notify you that a new demolition permit has been submitted.' + '<br>' 
         + 'Permit number: ' + capIDString
