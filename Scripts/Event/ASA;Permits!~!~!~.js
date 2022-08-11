@@ -175,8 +175,26 @@ function listObj(obj) {
 }
 
 if (appMatch('Permits/Commercial/Demolition/*') ) {
-    var theApplicant = getApplicantInfo(capId);
-    listObj(theApplicant);
+	var applicant = {};
+    var CapContacts = aa.people.getCapContactByCapID(capId);
+    if (CapContacts.getSuccess()) {
+        var ContactOutputs = CapContacts.getOutput();
+        for (contact_id in ContactOutputs) {
+            if (ContactOutputs[contact_id].getCapContactModel().getPeople().getContactType() === "Applicant") {
+                applicant.email = ContactOutputs[contact_id].people.email;
+                applicant.name = ContactOutputs[contact_id].people.contactName;
+                applicant.phone = ContactOutputs[contact_id].people.contactPhoneNum;
+                applicant.addressLine1 = ContactOutputs[contact_id].people.compactAddress.addressLine1;
+                applicant.addressLine2 = ContactOutputs[contact_id].people.compactAddress.addressLine2;
+                applicant.city = ContactOutputs[contact_id].people.compactAddress.city;
+                applicant.state = ContactOutputs[contact_id].people.compactAddress.state;
+                applicant.zip = ContactOutputs[contact_id].people.compactAddress.zip;
+            }
+        }
+    }
+
+
+    listObj(applicant);
     listObj(capId);
     email('wrogers@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Demolition Permit Notification: ' + capIDString, 
     'This email is to notify you that a new demolition permit has been submitted.' + '<br>' 
@@ -184,12 +202,12 @@ if (appMatch('Permits/Commercial/Demolition/*') ) {
         + '<br>'
         + 'Applicant Point of Contact Information: ' 
         + '<br>'
-        + 'Applicant Full name: ' + theApplicant.name
+        + 'Applicant Full name: ' + applicant.name
         + '<br>'
-        + 'Applicant Email: ' + theApplicant.email
+        + 'Applicant Email: ' + applicant.email
         + '<br>'
-        + 'Applicant Phone: ' + theApplicant.phone
+        + 'Applicant Phone: ' + applicant.phone
         + '<br>'
-        + 'Applicant Address: ' + theApplicant.addressLine1 + " " + theApplicant.city +  "," + theApplicant.state + " " + theApplicant.zip
+        + 'Applicant Address: ' + applicant.addressLine1 + " " + applicant.city +  "," + applicant.state + " " + applicant.zip
         );
 }
