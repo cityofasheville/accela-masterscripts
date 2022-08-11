@@ -1,4 +1,4 @@
-function getApplicantInfo2(capId) { // parameter is capId object: class = com.accela.aa.aamain.cap.CapIDModel,  not capIDString class = java.lang.String
+function getApplicantInfo(capId) { // parameter is capId object: class = com.accela.aa.aamain.cap.CapIDModel,  not capIDString class = java.lang.String
     var applicant = {};
     var CapContacts = aa.people.getCapContactByCapID(capId);
     if (CapContacts.getSuccess()) {
@@ -22,7 +22,7 @@ function getApplicantInfo2(capId) { // parameter is capId object: class = com.ac
 /*
 // use: 
 var capId = aa.cap.getCapID("19-00719").getOutput();
-var applicant = getApplicantInfo2(capId);
+var applicant = getApplicantInfo(capId);
 aa.print(applicant.email);
 aa.print(applicant.name);
 aa.print(applicant.phone);
