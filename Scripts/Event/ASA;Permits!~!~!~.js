@@ -175,13 +175,13 @@ function listObj(obj) {
 }
 
 if (appMatch('Permits/Commercial/Demolition/*') ) {
-	var applicant = {};
+    var applicant = {};
     var CapContacts = aa.people.getCapContactByCapID(capId);
     if (CapContacts.getSuccess()) {
         var ContactOutputs = CapContacts.getOutput();
         for (contact_id in ContactOutputs) {
-            // if (ContactOutputs[contact_id].getCapContactModel().getPeople().getContactType() == "Applicant") {
-				applicant.type = ContactOutputs[contact_id].getCapContactModel().getPeople().getContactType() ;
+            var contactType = ContactOutputs[contact_id].getCapContactModel().getPeople().getContactType() + "";
+            if (contactType == "Applicant") {
                 applicant.email = ContactOutputs[contact_id].people.email;
                 applicant.name = ContactOutputs[contact_id].people.contactName;
                 applicant.phone = ContactOutputs[contact_id].people.contactPhoneNum;
@@ -190,7 +190,7 @@ if (appMatch('Permits/Commercial/Demolition/*') ) {
                 applicant.city = ContactOutputs[contact_id].people.compactAddress.city;
                 applicant.state = ContactOutputs[contact_id].people.compactAddress.state;
                 applicant.zip = ContactOutputs[contact_id].people.compactAddress.zip;
-            // }
+            }
         }
     }
 
