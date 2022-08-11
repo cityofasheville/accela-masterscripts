@@ -4,7 +4,8 @@ function getApplicantInfo(capId) { // parameter is capId object: class = com.acc
     if (CapContacts.getSuccess()) {
         var ContactOutputs = CapContacts.getOutput();
         for (contact_id in ContactOutputs) {
-            if (ContactOutputs[contact_id].getCapContactModel().getPeople().getContactType() === "Applicant") {
+            var contactType = ContactOutputs[contact_id].getCapContactModel().getPeople().getContactType() + "";
+            if (contactType == "Applicant") {
                 applicant.email = ContactOutputs[contact_id].people.email;
                 applicant.name = ContactOutputs[contact_id].people.contactName;
                 applicant.phone = ContactOutputs[contact_id].people.contactPhoneNum;
