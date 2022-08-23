@@ -1,6 +1,6 @@
 if (appMatch('Permits/*/*/*') ) {
 	var applicant = getApplicantInfo(capId);
-	var recordURL = getACARecordURL(acaUrl);
+	var recordURL = getACAUrl(capId);
 	var emailParams = aa.util.newHashtable();
 	addParameter (emailParams, "$$firstName$$", applicant.name);
 	addParameter (emailParams, "$$RecordUrl$$", recordURL);
