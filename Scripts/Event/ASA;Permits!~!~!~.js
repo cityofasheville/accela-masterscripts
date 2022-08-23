@@ -188,8 +188,9 @@ if (appMatch('Permits/Commercial/Demolition/*') ) {
 
 if (appMatch('Permits/*/*/*') ) {
 	var applicant = getApplicantInfo(capId);
-	var report = null;
+	var emailParams = aa.util.newHashtable();
+	addParameter (emailParams, "$$firstName$$", applicant.name);
 
-	sendNotification("noreply@ashevillenc.gov",applicant.email,"","ACA_ACTIVATION_MESSAGE",null,null);
+	sendNotification("noreply@ashevillenc.gov",applicant.email,"","ACA_ACTIVATION_MESSAGE",emailParams,null);
 	
 }
