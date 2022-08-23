@@ -185,3 +185,11 @@ if (appMatch('Permits/Commercial/Demolition/*') ) {
 		+ applicant.city +  "," + applicant.state + " " + applicant.zip
         );
 }
+
+if (appMatch('Permits/*/*/*') ) {
+	var applicant = getApplicantInfo(capId);
+	var report = null;
+
+	sendNotification("noreply@ashevillenc.gov",applicant.email,"","ACA_ACTIVATION_MESSAGE",null,null);
+	
+}
