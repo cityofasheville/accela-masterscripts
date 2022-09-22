@@ -1,4 +1,3 @@
-//Invoice notification for Applicant Contact type
 if (appMatch('Permits/*/*/*') ) {
 	var applicant = getApplicantInfo(capId);
 	var recordURL = getACAUrl(capId);
@@ -9,7 +8,7 @@ if (appMatch('Permits/*/*/*') ) {
 	addParameter (emailParams, "$$CapID$$", capIDString);
 	addParameter (emailParams,"$$Address$$", CapAddress);
 
-	sendNotification("noreply@ashevillenc.gov",applicant.email,"","INVOICE_NOTIFICATION",emailParams,null);
+	sendNotification("noreply@ashevillenc.gov",applicant.email,"","PAYMENT_CONFIRMATION",emailParams,null);
 	
 }
 //Invoice notification for Architect Contact type
@@ -23,7 +22,7 @@ if (appMatch('Permits/*/*/*')) {
 	addParameter (ArchParams, "$$CapID$$", capIDString);
 	addParameter (ArchParams,"$$Address$$", CapAddress);
 
-	sendNotification("noreply@ashevillenc.gov",architect.email,"","INVOICE_NOTIFICATION",ArchParams,null);
+	sendNotification("noreply@ashevillenc.gov",architect.email,"","PAYMENT_CONFIRMATION",ArchParams,null);
 
 }
 
@@ -37,7 +36,7 @@ if (appMatch('Permits/*/*/*')) {
 	addParameter (ContrParams, "$$CapID$$", capIDString);
 	addParameter (ContrParams,"$$Address$$", CapAddress);
 
-	sendNotification("noreply@ashevillenc.gov",contractor.email,"","INVOICE_NOTIFICATION",ContrParams,null);
+	sendNotification("noreply@ashevillenc.gov",contractor.email,"","PAYMENT_CONFIRMATION",ContrParams,null);
 
 }
 
@@ -51,7 +50,7 @@ if (appMatch('Permits/*/*/*')) {
 	addParameter (CivilParams, "$$CapID$$", capIDString);
 	addParameter (CivilParams,"$$Address$$", CapAddress);
 
-	sendNotification("noreply@ashevillenc.gov",civilEngineer.email,"","INVOICE_NOTIFICATION",CivilParams,null);
+	sendNotification("noreply@ashevillenc.gov",civilEngineer.email,"","PAYMENT_CONFIRMATION",CivilParams,null);
 
 }
 
@@ -65,7 +64,7 @@ if (appMatch('Permits/*/*/*')) {
 	addParameter (SupParams, "$$CapID$$", capIDString);
 	addParameter (SupParams,"$$Address$$", CapAddress);
 
-	sendNotification("noreply@ashevillenc.gov",superintendent.email,"","INVOICE_NOTIFICATION",SupParams,null);
+	sendNotification("noreply@ashevillenc.gov",superintendent.email,"","PAYMENT_CONFIRMATION",SupParams,null);
 
 }
 
@@ -79,7 +78,7 @@ if (appMatch('Permits/*/*/*')) {
 	addParameter (ProParams, "$$CapID$$", capIDString);
 	addParameter (ProParams,"$$Address$$", CapAddress);
 
-	sendNotification("noreply@ashevillenc.gov",projectManager.email,"","INVOICE_NOTIFICATION",ProParams,null);
+	sendNotification("noreply@ashevillenc.gov",projectManager.email,"","PAYMENT_CONFIRMATION",ProParams,null);
 
 }
 
@@ -93,7 +92,7 @@ if (appMatch('Permits/*/*/*')) {
 	addParameter (OwnParams, "$$CapID$$", capIDString);
 	addParameter (OwnParams,"$$Address$$", CapAddress);
 
-	sendNotification("noreply@ashevillenc.gov",owner.email,"","INVOICE_NOTIFICATION",OwnParams,null);
+	sendNotification("noreply@ashevillenc.gov",owner.email,"","PAYMENT_CONFIRMATION",OwnParams,null);
 
 }
 
@@ -107,7 +106,7 @@ if (appMatch('Permits/*/*/*')) {
 	addParameter (OthParams, "$$CapID$$", capIDString);
 	addParameter (OthParams,"$$Address$$", CapAddress);
 
-	sendNotification("noreply@ashevillenc.gov",other.email,"","INVOICE_NOTIFICATION",OthParams,null);
+	sendNotification("noreply@ashevillenc.gov",other.email,"","PAYMENT_CONFIRMATION",OthParams,null);
 
 }
 
@@ -121,6 +120,6 @@ if (appMatch('Permits/*/*/*')) {
 	addParameter (SurParams, "$$CapID$$", capIDString);
 	addParameter (SurParams,"$$Address$$", CapAddress);
 
-	sendNotification("noreply@ashevillenc.gov",surveyor.email,"","INVOICE_NOTIFICATION",SurParams,null);
+	sendNotification("noreply@ashevillenc.gov",surveyor.email,"","PAYMENT_CONFIRMATION",SurParams,null);
 
 }
