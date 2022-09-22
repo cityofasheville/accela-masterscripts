@@ -11,10 +11,14 @@ if (appMatch('Permits/*/*/*') ) {
 }
 
 if (appMatch('Permits/*/*/*')) {
-	var ArcEmailParams = aa.util.newHashtable();
-	var architect = getContactParams4Notification(ArcEmailParams, "Architect");
+	var architect = getArchitectInfo(capId);
+	var recordURL = getACAUrl(capId);
+	var ArchParams = aa.util.newHashtable();
+	addParameter (emailParams, "$$firstName$$", architect.name);
+	addParameter (emailParams, "$$RecordUrl$$", recordURL);
+	addParameter (emailParams, "$$CapID$$", capIDString);
 
-	sendNotification("noreply@ashevillenc.gov", "$$email$$" ,"","INVOICE_NOTIFICATION",ArcEmailParams,null);
+	sendNotification("noreply@ashevillenc.gov",architect.email,"","INVOICE_NOTIFICATION",ArchParams,null);
 
 
 }
