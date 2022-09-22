@@ -10,7 +10,7 @@ if (appMatch('Permits/*/*/*') ) {
 	
 }
 
-If (appMatch('Permits/*/*/*')) {
+if (appMatch('Permits/*/*/*')) {
 	var ArcEmailParams = aa.util.newHashtable();
 	var architect = getContactParams4Notification(ArcEmailParams, Architect);
 
