@@ -14,11 +14,12 @@ if (appMatch('Permits/*/*/*')) {
 	var architect = getArchitectInfo(capId);
 	var recordURL = getACAUrl(capId);
 	var ArchParams = aa.util.newHashtable();
-	addParameter (emailParams, "$$firstName$$", architect.name);
-	addParameter (emailParams, "$$RecordUrl$$", recordURL);
-	addParameter (emailParams, "$$CapID$$", capIDString);
+	var address = getCapAddress(capId);
+	addParameter (ArchParams, "$$FirstName$$", architect.name);
+	addParameter (ArchParams, "$$RecordUrl$$", recordURL);
+	addParameter (ArchParams, "$$CapID$$", capIDString);
+	addParameter (ArchParams,"$$Address$$", address.CapAddress)
 
 	sendNotification("noreply@ashevillenc.gov",architect.email,"","INVOICE_NOTIFICATION",ArchParams,null);
-
 
 }
