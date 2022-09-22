@@ -7,9 +7,14 @@ if (appMatch('Permits/*/*/*') ) {
 	addParameter (emailParams, "$$CapID$$", capIDString);
 
 	sendNotification("noreply@ashevillenc.gov",applicant.email,"","INVOICE_NOTIFICATION",emailParams,null);
-
-	var architect = getContactParams4Notification(emailParams, "Architect")
-
-	sendNotification("noreply@ashevillenc.gov", architect.email,"","INVOICE_NOTIFICATION",emailParams,null);
 	
+}
+
+If (appMatch('Permits/*/*/*')){
+	var ArcEmailParams = aa.util.newHashtable();
+	var architect = getContactParams4Notification(ArcEmailParams, Architect)
+
+	sendNotification("noreply@ashevillenc.gov", $$email$$ ,"","INVOICE_NOTIFICATION",ArcEmailParams,null);
+
+
 }
