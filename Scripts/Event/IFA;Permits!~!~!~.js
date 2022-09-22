@@ -14,7 +14,7 @@ if (appMatch('Permits/*/*/*')) {
 	var ArcEmailParams = aa.util.newHashtable();
 	var architect = getContactParams4Notification(ArcEmailParams, "Architect");
 
-	sendNotification("noreply@ashevillenc.gov", $$email$$ ,"","INVOICE_NOTIFICATION",ArcEmailParams,null);
+	sendNotification("noreply@ashevillenc.gov", "$$email$$" ,"","INVOICE_NOTIFICATION",ArcEmailParams,null);
 
 
 }
