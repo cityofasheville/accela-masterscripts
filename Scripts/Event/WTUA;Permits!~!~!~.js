@@ -1076,7 +1076,7 @@ if (matches(wfTask, 'Building Review', 'Zoning Review', 'Grading', 'Driveway', '
 				addParameter (emailParams, "$$CapID$$", capIDString);
 				addParameter (emailParams,"$$Address$$", CapAddress);
 			
-				sendNotification("noreply@ashevillenc.gov",applicant.email,"","INVOICE_NOTIFICATION",emailParams,null);
+				sendNotification("noreply@ashevillenc.gov",applicant.email,"","APPLICANT_ACTION_NOTIFICATION",emailParams,null);
 				
 			}
 			//Invoice notification for Architect Contact type
@@ -1090,7 +1090,7 @@ if (matches(wfTask, 'Building Review', 'Zoning Review', 'Grading', 'Driveway', '
 				addParameter (ArchParams, "$$CapID$$", capIDString);
 				addParameter (ArchParams,"$$Address$$", CapAddress);
 			
-				sendNotification("noreply@ashevillenc.gov",architect.email,"","INVOICE_NOTIFICATION",ArchParams,null);
+				sendNotification("noreply@ashevillenc.gov",architect.email,"","APPLICANT_ACTION_NOTIFICATION",ArchParams,null);
 			
 			}
 			
@@ -1104,7 +1104,7 @@ if (matches(wfTask, 'Building Review', 'Zoning Review', 'Grading', 'Driveway', '
 				addParameter (ContrParams, "$$CapID$$", capIDString);
 				addParameter (ContrParams,"$$Address$$", CapAddress);
 			
-				sendNotification("noreply@ashevillenc.gov",contractor.email,"","INVOICE_NOTIFICATION",ContrParams,null);
+				sendNotification("noreply@ashevillenc.gov",contractor.email,"","APPLICANT_ACTION_NOTIFICATION",ContrParams,null);
 			
 			}
 			
@@ -1118,7 +1118,7 @@ if (matches(wfTask, 'Building Review', 'Zoning Review', 'Grading', 'Driveway', '
 				addParameter (CivilParams, "$$CapID$$", capIDString);
 				addParameter (CivilParams,"$$Address$$", CapAddress);
 			
-				sendNotification("noreply@ashevillenc.gov",civilEngineer.email,"","INVOICE_NOTIFICATION",CivilParams,null);
+				sendNotification("noreply@ashevillenc.gov",civilEngineer.email,"","APPLICANT_ACTION_NOTIFICATION",CivilParams,null);
 			
 			}
 			
@@ -1132,7 +1132,7 @@ if (matches(wfTask, 'Building Review', 'Zoning Review', 'Grading', 'Driveway', '
 				addParameter (SupParams, "$$CapID$$", capIDString);
 				addParameter (SupParams,"$$Address$$", CapAddress);
 			
-				sendNotification("noreply@ashevillenc.gov",superintendent.email,"","INVOICE_NOTIFICATION",SupParams,null);
+				sendNotification("noreply@ashevillenc.gov",superintendent.email,"","APPLICANT_ACTION_NOTIFICATION",SupParams,null);
 			
 			}
 			
@@ -1146,7 +1146,7 @@ if (matches(wfTask, 'Building Review', 'Zoning Review', 'Grading', 'Driveway', '
 				addParameter (ProParams, "$$CapID$$", capIDString);
 				addParameter (ProParams,"$$Address$$", CapAddress);
 			
-				sendNotification("noreply@ashevillenc.gov",projectManager.email,"","INVOICE_NOTIFICATION",ProParams,null);
+				sendNotification("noreply@ashevillenc.gov",projectManager.email,"","APPLICANT_ACTION_NOTIFICATION",ProParams,null);
 			
 			}
 			
@@ -1160,7 +1160,7 @@ if (matches(wfTask, 'Building Review', 'Zoning Review', 'Grading', 'Driveway', '
 				addParameter (OwnParams, "$$CapID$$", capIDString);
 				addParameter (OwnParams,"$$Address$$", CapAddress);
 			
-				sendNotification("noreply@ashevillenc.gov",owner.email,"","INVOICE_NOTIFICATION",OwnParams,null);
+				sendNotification("noreply@ashevillenc.gov",owner.email,"","APPLICANT_ACTION_NOTIFICATION",OwnParams,null);
 			
 			}
 			
@@ -1174,7 +1174,7 @@ if (matches(wfTask, 'Building Review', 'Zoning Review', 'Grading', 'Driveway', '
 				addParameter (OthParams, "$$CapID$$", capIDString);
 				addParameter (OthParams,"$$Address$$", CapAddress);
 			
-				sendNotification("noreply@ashevillenc.gov",other.email,"","INVOICE_NOTIFICATION",OthParams,null);
+				sendNotification("noreply@ashevillenc.gov",other.email,"","APPLICANT_ACTION_NOTIFICATION",OthParams,null);
 			
 			}
 			
@@ -1188,7 +1188,7 @@ if (matches(wfTask, 'Building Review', 'Zoning Review', 'Grading', 'Driveway', '
 				addParameter (SurParams, "$$CapID$$", capIDString);
 				addParameter (SurParams,"$$Address$$", CapAddress);
 			
-				sendNotification("noreply@ashevillenc.gov",surveyor.email,"","INVOICE_NOTIFICATION",SurParams,null);
+				sendNotification("noreply@ashevillenc.gov",surveyor.email,"","APPLICANT_ACTION_NOTIFICATION",SurParams,null);
 			
 			}
 
