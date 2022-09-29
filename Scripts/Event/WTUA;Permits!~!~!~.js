@@ -1095,7 +1095,7 @@ if (matches(wfTask, 'Building Review', 'Zoning Review', 'Grading', 'Driveway', '
 			}
 			
 			if (appMatch('Permits/*/*/*')) {
-				var architect = getContractorInfo(capId);
+				var contractor = getContractorInfo(capId);
 				var recordURL = getACAUrl(capId);
 				var ContrParams = aa.util.newHashtable();
 				var CapAddress = getCapAddress(capId);
