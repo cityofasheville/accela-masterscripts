@@ -1064,7 +1064,7 @@ if (appMatch('Permits/Residential/Home Occupation/Home Stay')
 }
 
 if (matches(wfTask, 'Building Review', 'Zoning Review', 'Grading', 'Driveway', 'Planning', 'Fire Review',
-		'Building', 'Electrical', 'Fire Review (Awning Only)')&& matches(wfStatus, 'Hold for Revision')){
+		'Building', 'Electrical', 'Fire Review (Awning Only)')&& matches(wfStatus, 'Hold for Revision','Hold for Revision 1st Review','Hold for Revision 2nd Review','Hold for Revision 3rd Review' )){
 
 			if (appMatch('Permits/*/*/*') ) {
 				var applicant = getApplicantInfo(capId);

@@ -5,7 +5,7 @@ function getOwnerInfo(capId) { // parameter is capId object: class = com.accela.
         var ContactOutputs = CapContacts.getOutput();
         for (contact_id in ContactOutputs) {
             var contactType = ContactOutputs[contact_id].getCapContactModel().getPeople().getContactType() + "";
-            if (contactType == "Onwer/Owner's Agent") {
+            if (contactType == "Owner/Owner's Agent") {
                 owner.email = ContactOutputs[contact_id].people.email;
                 owner.name = ContactOutputs[contact_id].people.contactName;
                 owner.phone = ContactOutputs[contact_id].people.contactPhoneNum;
