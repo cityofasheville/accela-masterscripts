@@ -170,6 +170,6 @@ if (appMatch('Permits/Commercial/Demolition/*')) {
 	addParameter (emailParams,"$$Address$$", CapAddress);
 	addParameter (emailParams,"$$Email$$", applicant.email);
 			
-	sendNotification("noreply@ashevillenc.gov","wrogers@ashevillenc.gov","","DEMO_FIRE_NOTIFICATION",emailParams,null);
+	sendNotification("noreply@ashevillenc.gov","nmiller@ashevillenc.gov","","DEMO_FIRE_NOTIFICATION",emailParams,null);
 }
 
