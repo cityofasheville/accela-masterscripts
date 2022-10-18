@@ -158,31 +158,18 @@ else {
 }
 
 // added 8/11/22 -Jon
-if (appMatch('Permits/Commercial/Demolition/*') ) {
+if (appMatch('Permits/Commercial/Demolition/*')) {
 	var applicant = getApplicantInfo(capId);
-	if(!applicant.addressLine2) { applicant.addressLine2 = "" }
-	
-    email('wrogers@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Demolition Permit Notification: ' + capIDString, 
-    'This email is to notify you that a new demolition permit has been submitted.' + '<br>' 
-        + 'Permit number: ' + capIDString
-        + '<br>'
-        + '<br>'
-        + 'Applicant Point of Contact Information: ' 
-        + '<br>'
-        + 'Applicant Full name: ' + applicant.name
-        + '<br>'
-        + 'Applicant Email: ' + applicant.email
-        + '<br>'
-        + 'Applicant Phone: ' + applicant.phone
-        + '<br>'
-        + '<br>'
-        + 'Applicant Address: '
-        + '<br>'
-        + applicant.addressLine1 
-        + '<br>'
-		+ applicant.addressLine2
-        + '<br>'
-		+ applicant.city +  "," + applicant.state + " " + applicant.zip
-        );
+	var recordURL = getACAUrl(capId);
+	var emailParams = aa.util.newHashtable();
+	var CapAddress = getCapAddress(capId);
+	addParameter (emailParams, "$$FirstName$$", applicant.name);
+	addParameter (emailParams, "$$RecordUrl$$", recordURL);
+	addParameter (emailParams, "$$CapID$$", capIDString);
+	addParameter (emailParams,"$$Phone$$", applicant.phone)
+	addParameter (emailParams,"$$Address$$", CapAddress);
+	addParameter (emailParams,"$$Email$$", applicant.email);
+			
+	sendNotification("noreply@ashevillenc.gov","nmiller@ashevillenc.gov","","DEMO_FIRE_NOTIFICATION",emailParams,null);
 }
 

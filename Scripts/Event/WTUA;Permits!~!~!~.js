@@ -736,7 +736,7 @@ if (
 	} else {
 		fromEmail = 'residentialpermits@ashevillenc.gov'
 	};
-	if (matches(wfTask, 'Building Review', 'Zoning Review', 'Grading', 'Driveway', 'Planning', 'Fire Review',
+	/*if (matches(wfTask, 'Building Review', 'Zoning Review', 'Grading', 'Driveway', 'Planning', 'Fire Review',
 		'Building', 'Electrical', 'Fire Review (Awning Only)')
 		&& matches(wfStatus, 'Hold for Revision')) {
 		emailByContactType('Action Needed On Your Permit',
@@ -744,7 +744,7 @@ if (
 			'ALL',
 			fromEmail
 		);
-	}
+	}*/
 }
 // added 2/20/2019 to email all residential customers, electronic submittal or not, when a permit can be picked up online 
 if (appMatch('Permits/Residential/*/*') && wfTask == 'Issuance' && matches(wfStatus, 'Issue', 'Reissue')) {
@@ -756,19 +756,19 @@ if (appMatch('Permits/Residential/*/*') && wfTask == 'Issuance' && matches(wfSta
 }
 
 // added 12/02/2020 to email all commercial building customers, electronic submittal or not, when a permit can be picked up online 
-if (
-	(appMatch('Permits/Commercial/Existing Building/*') ||
-		appMatch('Permits/Commercial/Accessory Structure/*') ||
-		appMatch('Permits/Sign/*/*') ||
-		appMatch('Permits/Fire/Construction/*')
-	)
-	&& matches(wfStatus, 'Issue', 'Reissue')) {
-	emailByContactType('Permit Approved',
-		'<html><head><style>ol {margin: 0;padding: 0}</style></head><body>Permit Number: ' + capIDString + ' <br>Location: ' + CapAddress + ' <br><p>Your commercial permit application has been approved. For your convenience, you may visit the Citizen Access website (<a href="https://services.ashevillenc.gov/citizenaccess">https://services.ashevillenc.gov/citizenaccess</a>) to print your permit and approved plans/comments. </p><p>Please note that the issued permit along with the approved plans/comments must be maintained in hard copy on the project site during construction until the permit is closed.</p><p>Please refer to the following steps to access your approved permit and plans/comments online in .PDF format:</p><p><ol><li>Visit <a href="https://services.ashevillenc.gov/citizenaccess">https://services.ashevillenc.gov/citizenaccess</a>. You may register for a Citizen Access account if you have not already done so, then log in to access the permit documents.</li><li>Enter your permit number in the top right <b>search box</b> and click on the green spyglass to pull up the permit record.</li><li>Click <b>Record Info</b> to access a drop-down menu; then select <b>Attachments</b> from the drop-down menu.</li><li>To download the 1) issued permit and 2) approved plans/comments, click the blue links next to documents labeled <b>ISSUED PERMIT</b> and <b>APPROVED SITE PLANS + COMMENTS</b> and/or <b>APPROVED BUILDING PLANS + COMMENTS.</b> </li></ol></p><p>If you have questions, please contact the Permit Application Center at PAC@ashevillenc.gov or 828-259-5846 on Monday-Friday from 8:30 am - 5:00 pm. </p><hr></body></html>',
-		'ALL',
-		'developmentservices@ashevillenc.gov'
-	);
-}
+//if (
+//	(appMatch('Permits/Commercial/Existing Building/*') ||
+//		appMatch('Permits/Commercial/Accessory Structure/*') ||
+//		appMatch('Permits/Sign/*/*') ||
+//		appMatch('Permits/Fire/Construction/*')
+//	)
+//	&& matches(wfStatus, 'Issue', 'Reissue')) {
+//	emailByContactType('Permit Approved',
+//		'<html><head><style>ol {margin: 0;padding: 0}</style></head><body>Permit Number: ' + capIDString + ' <br>Location: ' + CapAddress + ' <br><p>Your commercial permit application has been approved. For your convenience, you may visit the Citizen Access website (<a href="https://services.ashevillenc.gov/citizenaccess">https://services.ashevillenc.gov/citizenaccess</a>) to print your permit and approved plans/comments. </p><p>Please note that the issued permit along with the approved plans/comments must be maintained in hard copy on the project site during construction until the permit is closed.</p><p>Please refer to the following steps to access your approved permit and plans/comments online in .PDF format:</p><p><ol><li>Visit <a href="https://services.ashevillenc.gov/citizenaccess">https://services.ashevillenc.gov/citizenaccess</a>. You may register for a Citizen Access account if you have not already done so, then log in to access the permit documents.</li><li>Enter your permit number in the top right <b>search box</b> and click on the green spyglass to pull up the permit record.</li><li>Click <b>Record Info</b> to access a drop-down menu; then select <b>Attachments</b> from the drop-down menu.</li><li>To download the 1) issued permit and 2) approved plans/comments, click the blue links next to documents labeled <b>ISSUED PERMIT</b> and <b>APPROVED SITE PLANS + COMMENTS</b> and/or <b>APPROVED BUILDING PLANS + COMMENTS.</b> </li></ol></p><p>If you have questions, please contact the Permit Application Center at PAC@ashevillenc.gov or 828-259-5846 on Monday-Friday from 8:30 am - 5:00 pm. </p><hr></body></html>',
+//		'ALL',
+//		'developmentservices@ashevillenc.gov'
+//	);
+//}
 
 // To bypass Clearing House step after all review steps are complete 4/25/2019
 if (matches(wfStatus, 'Approved', 'Approved with Conditions', 'Partial Approval',
@@ -1061,4 +1061,263 @@ if (appMatch('Permits/Residential/Home Occupation/Home Stay')
 		+ ' </p><hr></body></html>'
 	var staffEmail = 'hmahoney@ashevillenc.gov'
 	emailAllContacts(emailSubj, emailBody, staffEmail)
+}
+
+if (matches(wfTask, 'Building Review', 'Zoning Review', 'Grading', 'Driveway', 'Planning', 'Fire Review',
+		'Building', 'Electrical', 'Fire Review (Awning Only)')&& matches(wfStatus, 'Hold for Revision','Hold for Revision 1st Review','Hold for Revision 2nd Review','Hold for Revision 3rd Review' )){
+
+			if (appMatch('Permits/*/*/*') ) {
+				var applicant = getApplicantInfo(capId);
+				var recordURL = getACAUrl(capId);
+				var emailParams = aa.util.newHashtable();
+				var CapAddress = getCapAddress(capId);
+				addParameter (emailParams, "$$firstName$$", applicant.name);
+				addParameter (emailParams, "$$RecordUrl$$", recordURL);
+				addParameter (emailParams, "$$CapID$$", capIDString);
+				addParameter (emailParams,"$$Address$$", CapAddress);
+			
+				sendNotification("noreply@ashevillenc.gov",applicant.email,"","APPLICANT_ACTION_NOTIFICATION",emailParams,null);
+				
+			}
+			//Invoice notification for Architect Contact type
+			if (appMatch('Permits/*/*/*')) {
+				var architect = getArchitectInfo(capId);
+				var recordURL = getACAUrl(capId);
+				var ArchParams = aa.util.newHashtable();
+				var CapAddress = getCapAddress(capId);
+				addParameter (ArchParams, "$$FirstName$$", architect.name);
+				addParameter (ArchParams, "$$RecordUrl$$", recordURL);
+				addParameter (ArchParams, "$$CapID$$", capIDString);
+				addParameter (ArchParams,"$$Address$$", CapAddress);
+			
+				sendNotification("noreply@ashevillenc.gov",architect.email,"","APPLICANT_ACTION_NOTIFICATION",ArchParams,null);
+			
+			}
+			
+			if (appMatch('Permits/*/*/*')) {
+				var contractor = getContractorInfo(capId);
+				var recordURL = getACAUrl(capId);
+				var ContrParams = aa.util.newHashtable();
+				var CapAddress = getCapAddress(capId);
+				addParameter (ContrParams, "$$FirstName$$", contractor.name);
+				addParameter (ContrParams, "$$RecordUrl$$", recordURL);
+				addParameter (ContrParams, "$$CapID$$", capIDString);
+				addParameter (ContrParams,"$$Address$$", CapAddress);
+			
+				sendNotification("noreply@ashevillenc.gov",contractor.email,"","APPLICANT_ACTION_NOTIFICATION",ContrParams,null);
+			
+			}
+			
+			if (appMatch('Permits/*/*/*')) {
+				var civilEngineer = getCivilEngineerInfo(capId);
+				var recordURL = getACAUrl(capId);
+				var CivilParams = aa.util.newHashtable();
+				var CapAddress = getCapAddress(capId);
+				addParameter (CivilParams, "$$FirstName$$", civilEngineer.name);
+				addParameter (CivilParams, "$$RecordUrl$$", recordURL);
+				addParameter (CivilParams, "$$CapID$$", capIDString);
+				addParameter (CivilParams,"$$Address$$", CapAddress);
+			
+				sendNotification("noreply@ashevillenc.gov",civilEngineer.email,"","APPLICANT_ACTION_NOTIFICATION",CivilParams,null);
+			
+			}
+			
+			if (appMatch('Permits/*/*/*')) {
+				var superintendent = getSuperintendentInfo(capId);
+				var recordURL = getACAUrl(capId);
+				var SupParams = aa.util.newHashtable();
+				var CapAddress = getCapAddress(capId);
+				addParameter (SupParams, "$$FirstName$$", superintendent.name);
+				addParameter (SupParams, "$$RecordUrl$$", recordURL);
+				addParameter (SupParams, "$$CapID$$", capIDString);
+				addParameter (SupParams,"$$Address$$", CapAddress);
+			
+				sendNotification("noreply@ashevillenc.gov",superintendent.email,"","APPLICANT_ACTION_NOTIFICATION",SupParams,null);
+			
+			}
+			
+			if (appMatch('Permits/*/*/*')) {
+				var projectManager = getProjectManagerInfo(capId);
+				var recordURL = getACAUrl(capId);
+				var ProParams = aa.util.newHashtable();
+				var CapAddress = getCapAddress(capId);
+				addParameter (ProParams, "$$FirstName$$", projectManager.name);
+				addParameter (ProParams, "$$RecordUrl$$", recordURL);
+				addParameter (ProParams, "$$CapID$$", capIDString);
+				addParameter (ProParams,"$$Address$$", CapAddress);
+			
+				sendNotification("noreply@ashevillenc.gov",projectManager.email,"","APPLICANT_ACTION_NOTIFICATION",ProParams,null);
+			
+			}
+			
+			if (appMatch('Permits/*/*/*')) {
+				var owner = getOwnerInfo(capId);
+				var recordURL = getACAUrl(capId);
+				var OwnParams = aa.util.newHashtable();
+				var CapAddress = getCapAddress(capId);
+				addParameter (OwnParams, "$$FirstName$$", owner.name);
+				addParameter (OwnParams, "$$RecordUrl$$", recordURL);
+				addParameter (OwnParams, "$$CapID$$", capIDString);
+				addParameter (OwnParams,"$$Address$$", CapAddress);
+			
+				sendNotification("noreply@ashevillenc.gov",owner.email,"","APPLICANT_ACTION_NOTIFICATION",OwnParams,null);
+			
+			}
+			
+			if (appMatch('Permits/*/*/*')) {
+				var other = getOtherInfo(capId);
+				var recordURL = getACAUrl(capId);
+				var OthParams = aa.util.newHashtable();
+				var CapAddress = getCapAddress(capId);
+				addParameter (OthParams, "$$FirstName$$", other.name);
+				addParameter (OthParams, "$$RecordUrl$$", recordURL);
+				addParameter (OthParams, "$$CapID$$", capIDString);
+				addParameter (OthParams,"$$Address$$", CapAddress);
+			
+				sendNotification("noreply@ashevillenc.gov",other.email,"","APPLICANT_ACTION_NOTIFICATION",OthParams,null);
+			
+			}
+			
+			if (appMatch('Permits/*/*/*')) {
+				var surveyor = getSurveyorInfo(capId);
+				var recordURL = getACAUrl(capId);
+				var SurParams = aa.util.newHashtable();
+				var CapAddress = getCapAddress(capId);
+				addParameter (SurParams, "$$FirstName$$", surveyor.name);
+				addParameter (SurParams, "$$RecordUrl$$", recordURL);
+				addParameter (SurParams, "$$CapID$$", capIDString);
+				addParameter (SurParams,"$$Address$$", CapAddress);
+			
+				sendNotification("noreply@ashevillenc.gov",surveyor.email,"","APPLICANT_ACTION_NOTIFICATION",SurParams,null);
+			
+			}
+
+
+		}
+if (matches(wfStatus, 'Issue')){
+	if (appMatch('Permits/*/*/*') ) {
+		var applicant = getApplicantInfo(capId);
+		var recordURL = getACAUrl(capId);
+		var emailParams = aa.util.newHashtable();
+		var CapAddress = getCapAddress(capId);
+		addParameter (emailParams, "$$firstName$$", applicant.name);
+		addParameter (emailParams, "$$RecordUrl$$", recordURL);
+		addParameter (emailParams, "$$CapID$$", capIDString);
+		addParameter (emailParams,"$$Address$$", CapAddress);
+	
+		sendNotification("noreply@ashevillenc.gov",applicant.email,"","PERMIT_ISSUED",emailParams,null);
+		
+	}
+	//Invoice notification for Architect Contact type
+	if (appMatch('Permits/*/*/*')) {
+		var architect = getArchitectInfo(capId);
+		var recordURL = getACAUrl(capId);
+		var ArchParams = aa.util.newHashtable();
+		var CapAddress = getCapAddress(capId);
+		addParameter (ArchParams, "$$FirstName$$", architect.name);
+		addParameter (ArchParams, "$$RecordUrl$$", recordURL);
+		addParameter (ArchParams, "$$CapID$$", capIDString);
+		addParameter (ArchParams,"$$Address$$", CapAddress);
+	
+		sendNotification("noreply@ashevillenc.gov",architect.email,"","PERMIT_ISSUED",ArchParams,null);
+	
+	}
+	
+	if (appMatch('Permits/*/*/*')) {
+		var contractor = getContractorInfo(capId);
+		var recordURL = getACAUrl(capId);
+		var ContrParams = aa.util.newHashtable();
+		var CapAddress = getCapAddress(capId);
+		addParameter (ContrParams, "$$FirstName$$", contractor.name);
+		addParameter (ContrParams, "$$RecordUrl$$", recordURL);
+		addParameter (ContrParams, "$$CapID$$", capIDString);
+		addParameter (ContrParams,"$$Address$$", CapAddress);
+	
+		sendNotification("noreply@ashevillenc.gov",contractor.email,"","PERMIT_ISSUED",ContrParams,null);
+	
+	}
+	
+	if (appMatch('Permits/*/*/*')) {
+		var civilEngineer = getCivilEngineerInfo(capId);
+		var recordURL = getACAUrl(capId);
+		var CivilParams = aa.util.newHashtable();
+		var CapAddress = getCapAddress(capId);
+		addParameter (CivilParams, "$$FirstName$$", civilEngineer.name);
+		addParameter (CivilParams, "$$RecordUrl$$", recordURL);
+		addParameter (CivilParams, "$$CapID$$", capIDString);
+		addParameter (CivilParams,"$$Address$$", CapAddress);
+	
+		sendNotification("noreply@ashevillenc.gov",civilEngineer.email,"","PERMIT_ISSUED",CivilParams,null);
+	
+	}
+	
+	if (appMatch('Permits/*/*/*')) {
+		var superintendent = getSuperintendentInfo(capId);
+		var recordURL = getACAUrl(capId);
+		var SupParams = aa.util.newHashtable();
+		var CapAddress = getCapAddress(capId);
+		addParameter (SupParams, "$$FirstName$$", superintendent.name);
+		addParameter (SupParams, "$$RecordUrl$$", recordURL);
+		addParameter (SupParams, "$$CapID$$", capIDString);
+		addParameter (SupParams,"$$Address$$", CapAddress);
+	
+		sendNotification("noreply@ashevillenc.gov",superintendent.email,"","PERMIT_ISSUED",SupParams,null);
+	
+	}
+	
+	if (appMatch('Permits/*/*/*')) {
+		var projectManager = getProjectManagerInfo(capId);
+		var recordURL = getACAUrl(capId);
+		var ProParams = aa.util.newHashtable();
+		var CapAddress = getCapAddress(capId);
+		addParameter (ProParams, "$$FirstName$$", projectManager.name);
+		addParameter (ProParams, "$$RecordUrl$$", recordURL);
+		addParameter (ProParams, "$$CapID$$", capIDString);
+		addParameter (ProParams,"$$Address$$", CapAddress);
+	
+		sendNotification("noreply@ashevillenc.gov",projectManager.email,"","PERMIT_ISSUED",ProParams,null);
+	
+	}
+	
+	if (appMatch('Permits/*/*/*')) {
+		var owner = getOwnerInfo(capId);
+		var recordURL = getACAUrl(capId);
+		var OwnParams = aa.util.newHashtable();
+		var CapAddress = getCapAddress(capId);
+		addParameter (OwnParams, "$$FirstName$$", owner.name);
+		addParameter (OwnParams, "$$RecordUrl$$", recordURL);
+		addParameter (OwnParams, "$$CapID$$", capIDString);
+		addParameter (OwnParams,"$$Address$$", CapAddress);
+	
+		sendNotification("noreply@ashevillenc.gov",owner.email,"","PERMIT_ISSUED",OwnParams,null);
+	
+	}
+	
+	if (appMatch('Permits/*/*/*')) {
+		var other = getOtherInfo(capId);
+		var recordURL = getACAUrl(capId);
+		var OthParams = aa.util.newHashtable();
+		var CapAddress = getCapAddress(capId);
+		addParameter (OthParams, "$$FirstName$$", other.name);
+		addParameter (OthParams, "$$RecordUrl$$", recordURL);
+		addParameter (OthParams, "$$CapID$$", capIDString);
+		addParameter (OthParams,"$$Address$$", CapAddress);
+	
+		sendNotification("noreply@ashevillenc.gov",other.email,"","PERMIT_ISSUED",OthParams,null);
+	
+	}
+	
+	if (appMatch('Permits/*/*/*')) {
+		var surveyor = getSurveyorInfo(capId);
+		var recordURL = getACAUrl(capId);
+		var SurParams = aa.util.newHashtable();
+		var CapAddress = getCapAddress(capId);
+		addParameter (SurParams, "$$FirstName$$", surveyor.name);
+		addParameter (SurParams, "$$RecordUrl$$", recordURL);
+		addParameter (SurParams, "$$CapID$$", capIDString);
+		addParameter (SurParams,"$$Address$$", CapAddress);
+	
+		sendNotification("noreply@ashevillenc.gov",surveyor.email,"","PERMIT_ISSUED",SurParams,null);
+	
+	}
 }
