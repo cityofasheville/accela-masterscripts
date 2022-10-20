@@ -895,7 +895,7 @@ if ((wfTask == 'Issuance' || wfTask == 'Permit Verification' || wfTask == 'Permi
 	} else {
 		fromAddr = 'developmentservices@ashevillenc.gov';
 	}
-	/*// Send to all licensed prof unless they are a contact
+	// Send to all licensed prof unless they are a contact
 	var licProc = getEmailsByLicenseType('ALL');
 	var contacts = getEmailsByContactType('ALL');
 	var emailAddrs = inAButNotB(licProc, contacts);
@@ -917,7 +917,9 @@ if ((wfTask == 'Issuance' || wfTask == 'Permit Verification' || wfTask == 'Permi
 
 	// 12/17/2019 
 	// Email to Applicant
-*/
+
+
+/*
 	var licprofs = getLicProfData(capId);
 	if (licprofs.length > 0) {
 		var emailContent
@@ -949,7 +951,7 @@ if ((wfTask == 'Issuance' || wfTask == 'Permit Verification' || wfTask == 'Permi
 			fromAddr, //set above for other email
 			'Permit Issued by City of Asheville - Licensed Professionals Listed Below',
 			emailContent);
-	}
+	} */
 }
 
 // 12/17/2019 (also copied to IRSA;Permits!Residential!Home Occupation!Home Stay 11/17/2020)
