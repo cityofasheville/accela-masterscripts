@@ -885,7 +885,7 @@ if (appMatch("*/*/*/Home Stay")
 	editTaskDueDate("Zoning Review", dateAdd(null, 15, 'Y'));
 }
 
-/*
+
 // 11/12/2019 - Email all lic prof when permit issued. Also email applicant that they were notified.
 if ((wfTask == 'Issuance' || wfTask == 'Permit Verification' || wfTask == 'Permit Issuance') && matches(wfStatus, 'Issue', 'Reissue')) {
 	var ownerName = getOwnerNameFromCap();
@@ -895,7 +895,7 @@ if ((wfTask == 'Issuance' || wfTask == 'Permit Verification' || wfTask == 'Permi
 	} else {
 		fromAddr = 'developmentservices@ashevillenc.gov';
 	}
-	// Send to all licensed prof unless they are a contact
+	/*// Send to all licensed prof unless they are a contact
 	var licProc = getEmailsByLicenseType('ALL');
 	var contacts = getEmailsByContactType('ALL');
 	var emailAddrs = inAButNotB(licProc, contacts);
