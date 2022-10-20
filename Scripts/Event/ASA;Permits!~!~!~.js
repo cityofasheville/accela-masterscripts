@@ -158,7 +158,7 @@ else {
 }
 
 // added 8/11/22 -Jon
-if (appMatch('Permits/Commercial/Demolition/*')) {
+if (appMatch('Permits/*/Demolition/*')) {
 	var applicant = getApplicantInfo(capId);
 	var recordURL = getACAUrl(capId);
 	var emailParams = aa.util.newHashtable();
