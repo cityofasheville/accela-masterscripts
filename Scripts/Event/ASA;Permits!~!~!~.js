@@ -165,7 +165,7 @@ if (appMatch('Permits/*/Demolition/*')) {
 	var superintendent = getSuperintendentInfo(capId);
 	var civilEngineer = getCivilEngineerInfo(capId);
 	var projectManager = getProjectManagerInfo(capId);
-	var OwnParams = aa.util.newHashtable();
+	var owner = getOwnerInfo(capId);
 	var other = getOtherInfo(capId);
 	var recordURL = getACAUrl(capId);
 	var surveyor = getSurveyorInfo(capId);
