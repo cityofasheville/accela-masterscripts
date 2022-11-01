@@ -160,16 +160,58 @@ else {
 // added 8/11/22 -Jon
 if (appMatch('Permits/*/Demolition/*')) {
 	var applicant = getApplicantInfo(capId);
+	var architect = getArchitectInfo(capId);
+	var contractor = getContractorInfo(capId);
+	var superintendent = getSuperintendentInfo(capId);
+	var civilEngineer = getCivilEngineerInfo(capId);
+	var projectManager = getProjectManagerInfo(capId);
+	var OwnParams = aa.util.newHashtable();
+	var other = getOtherInfo(capId);
 	var recordURL = getACAUrl(capId);
+	var surveyor = getSurveyorInfo(capId);
 	var emailParams = aa.util.newHashtable();
 	var CapAddress = getCapAddress(capId);
+
 	addParameter (emailParams, "$$FirstName$$", applicant.name);
 	addParameter (emailParams, "$$RecordUrl$$", recordURL);
 	addParameter (emailParams, "$$CapID$$", capIDString);
 	addParameter (emailParams,"$$Phone$$", applicant.phone)
 	addParameter (emailParams,"$$Address$$", CapAddress);
 	addParameter (emailParams,"$$Email$$", applicant.email);
+
+	addParameter (emailParams, "$$ArchFirstName$$", architect.name);
+	addParameter (emailParams,"$$ArchEmail$$", architect.email);
+	addParameter (emailParams,"$$ArchPhone$$", architect.phone);
+
+	addParameter (emailParams, "$$ContrFirstName$$", contractor.name);
+	addParameter (emailParams,"$$ContrEmail$$", contractor.email);
+	addParameter (emailParams,"$$ContrPhone$$", contractor.phone);
+
+	addParameter (emailParams, "$$CivilFirstName$$", civilEngineer.name);
+	addParameter (emailParams,"$$CivilEmail$$", civilEngineer.email);
+	addParameter (emailParams,"$$CivilPhone$$", civilEngineer.phone);
+
+	addParameter (emailParams, "$$SupFirstName$$", superintendent.name);
+	addParameter (emailParams,"$$SupEmail$$", superintendent.email);
+	addParameter (emailParams,"$$SupPhone$$", superintendent.phone);
+
+	addParameter (emailParams, "$$ProFirstName$$", projectManager.name);
+	addParameter (emailParams,"$$ProEmail$$", projectManager.email);
+	addParameter (emailParams,"$$ProPhone$$", projectManager.phone);
+
+	addParameter (emailParams, "$$OwnFirstName$$", owner.name);
+	addParameter (emailParams,"$$OwnEmail$$", owner.email);
+	addParameter (emailParams,"$$OwnPhone$$", owner.phone);
+
+	addParameter (emailParams, "$$OthFirstName$$", other.name);
+	addParameter (emailParams,"$$OthEmail$$", other.email);
+	addParameter (emailParams,"$$OthPhone$$", other.phone);
+
+	addParameter (emailParams, "$$SurFirstName$$", surveyor.name);
+	addParameter (emailParams,"$$SurEmail$$", surveyor.email);
+	addParameter (emailParams,"$$SurPhone$$", surveyor.phone);
 			
 	sendNotification("noreply@ashevillenc.gov","nmiller@ashevillenc.gov","","DEMO_FIRE_NOTIFICATION",emailParams,null);
+	
 }
 
