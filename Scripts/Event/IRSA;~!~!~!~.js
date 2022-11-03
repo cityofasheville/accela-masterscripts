@@ -740,7 +740,7 @@ if (inspResult, 'Approved','Disapproved') {
 	if (true && ProfessionalEmails != null) {
 		for (x in ProfessionalEmails)
 			if (ProfessionalEmails[x].getEmail() + '' != '');
-				sendNotification("noreply@ashevillenc.gov",ProfessionalEmails[x].getEmail(),"","INSPECTION_COMPLETE",emailParams,null);
+				sendNotification("noreply@ashevillenc.gov",ProfessionalEmails[x].forEach(getEmail()),"","INSPECTION_COMPLETE",emailParams,null);
 	}
 }
 
