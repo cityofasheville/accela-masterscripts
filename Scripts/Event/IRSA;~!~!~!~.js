@@ -738,9 +738,10 @@ if (inspResult, 'Approved','Disapproved') {
 	addParameter (emailParams, "$$CapID$$", capIDString);
 	var ProfessionalEmails = getLicenseProfessional(capId);
 	if (true && ProfessionalEmails != null) {
-		for (x in ProfessionalEmails)
+		for (x in ProfessionalEmails){
 			if (ProfessionalEmails[x].getEmail() + '' != '');
-				sendNotification("noreply@ashevillenc.gov",ProfessionalEmails.forEach.getEmail(),"","INSPECTION_COMPLETE",emailParams,null);
+				sendNotification("noreply@ashevillenc.gov",ProfessionalEmails[x].getEmail(),"","INSPECTION_COMPLETE",emailParams,null);
+		}
 	}
 }
 
