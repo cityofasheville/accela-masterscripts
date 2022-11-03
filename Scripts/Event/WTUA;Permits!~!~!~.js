@@ -1067,8 +1067,8 @@ if (appMatch('Permits/Residential/Home Occupation/Home Stay')
 
 if (appMatch('Permits/Residential/Home Occupation/Home Stay') && matches(wfStatus, 'Approved')){
 	
-	addFee('ZO-HSTAY', 'HOME STAY', 'FINAL', 1,"","" );
-	addFee('TECH', 'Home STAY', 'FINAL', 1,"","");
+	addFee('ZO-HSTAY', 'HOME STAY', 'FINAL', 1,'Y');
+	addFee('TECH', 'Home STAY', 'FINAL', 1,'Y');
 	//invoiceFee('ZO-HSTAY','FINAL');
 
  
