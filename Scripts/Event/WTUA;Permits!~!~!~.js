@@ -1083,8 +1083,6 @@ if (appMatch('Permits/Residential/Home Occupation/Home Stay') && matches(wfStatu
 	var other = getOtherInfo(capId);
 	var surveyor = getSurveyorInfo(capId);
 
-	
-
 
 
 }
