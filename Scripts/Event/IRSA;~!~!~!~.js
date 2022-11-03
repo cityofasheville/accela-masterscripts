@@ -744,7 +744,7 @@ if (inspResult, 'Approved','Disapproved') {
 	addParameter (emailParams, "$$CapID$$", capIDString);
 
 
-	sendNotification("noreply@ashevillenc.gov",ProfessionalEmails.getEmail(),"","INSPECTION_COMPLETE",emailParams,null);
+	sendNotification("noreply@ashevillenc.gov",ProfessionalEmails[x].getEmail(),"","INSPECTION_COMPLETE",emailParams,null);
 	}
 }
 
