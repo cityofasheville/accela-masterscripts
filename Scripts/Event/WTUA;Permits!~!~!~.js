@@ -1065,7 +1065,7 @@ if (appMatch('Permits/Residential/Home Occupation/Home Stay')
 	emailAllContacts(emailSubj, emailBody, staffEmail)
 }
 
-if (appMatch('Permits/Residential/Home Occupation/Home Stay') && matches(wfStatus, 'Approved - Pending Payment')){
+if (appMatch('Permits/Residential/Home Occupation/Home Stay') && matches(wfStatus, 'Approved')){
 	
 	addFee('ZO-HSTAY', 'HOME STAY', 'FINAL', 1,"","" );
 	//invoiceFee('ZO-HSTAY','FINAL');
