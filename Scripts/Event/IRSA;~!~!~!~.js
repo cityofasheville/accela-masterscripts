@@ -731,7 +731,7 @@ if (userResult.getSuccess() && inspResult == 'Cancelled') {
 if (inspResult, 'Approved','Disapproved') {
 	var inspector = getLastInspectorEmail(capId); 
 	var emailParams = aa.util.newHashtable();
-	var ElectricalCon = getLicenseProfessional(capId);
+	var ElectricalCon = getLicProfData(capId);
 	if (true && ElectricalCon != null) {
 		for (x in ElectricalCon)
 			if (ElectricalCon[x].getEmail() + '' != '')
