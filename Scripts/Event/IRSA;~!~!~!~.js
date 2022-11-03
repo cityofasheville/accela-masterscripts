@@ -731,7 +731,11 @@ if (userResult.getSuccess() && inspResult == 'Cancelled') {
 if (inspResult, 'Approved','Disapproved') {
 	var inspector = getLastInspectorEmail(capId); 
 	var emailParams = aa.util.newHashtable();
-	var ElectricalCon = getEmailsByLicenseType("ALL");
+	var ElectricalCon = getLicenseProfessional(capId);
+	if (true && ElectricalCon != null) {
+		for (x in ElectricalCon)
+			if (ElectricalCon[x].getEmail() + '' != '')
+
 	
 	getInspectionResultParams4Notification(emailParams);
 	addParameter (emailParams,"$$Address$$", CapAddress);
@@ -739,7 +743,8 @@ if (inspResult, 'Approved','Disapproved') {
 	addParameter (emailParams, "$$CapID$$", capIDString);
 
 
-	sendNotification("noreply@ashevillenc.gov",ElectricalCon,"","INSPECTION_COMPLETE",emailParams,null);
+	sendNotification("noreply@ashevillenc.gov",ElectricalCon[x].getEmail(),"","INSPECTION_COMPLETE",emailParams,null);
+	}
 }
 
 
