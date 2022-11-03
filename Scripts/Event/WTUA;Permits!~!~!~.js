@@ -1034,7 +1034,7 @@ if (appMatch('Permits/Residential/Home Occupation/Home Stay')
 
 // 11/06/2020 -- moved to PROD 12/1/2020
 // Home Stay Permit approved pending payment
-if (appMatch('Permits/Residential/Home Occupation/Home Stay')
+/*if (appMatch('Permits/Residential/Home Occupation/Home Stay')
 	&& wfTask == 'Zoning Review' && matches(wfStatus, 'Approved - Pending Payment')) {
 	var emailSubj = "Homestay Permit -- Ready for Payment"
 	var emailBody = '<html><head><style>ol {margin: 0;padding: 0}</style></head><body>Permit Number: '
@@ -1064,11 +1064,12 @@ if (appMatch('Permits/Residential/Home Occupation/Home Stay')
 	var staffEmail = 'hmahoney@ashevillenc.gov'
 	emailAllContacts(emailSubj, emailBody, staffEmail)
 }
+*/
 
 if (appMatch('Permits/Residential/Home Occupation/Home Stay') && matches(wfStatus, 'Approved')){
 	
-	addFee('ZO-HSTAY', 'HOME STAY', 'FINAL', 1,'Y');
-	addFee('TECH', 'Home STAY', 'FINAL', 1,'Y');
+	addFee('ZO-HSTAY', 'HOME STAY', 'FINAL', 1,'N');
+	addFee('TECH', 'Home STAY', 'FINAL', 1,'N');
 	//invoiceFee('ZO-HSTAY','FINAL');
 
  
