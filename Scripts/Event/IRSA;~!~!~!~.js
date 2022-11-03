@@ -729,7 +729,7 @@ if (userResult.getSuccess() && inspResult == 'Cancelled') {
 */
 
 //Communication Manager
-if (inspResult, 'Approved','Disapproved') {
+if (inspResult, 'Approved','Disapproved','Disapprove-level 1 Fee') {
 	var inspector = getLastInspectorEmail(capId); 
 	var emailParams = aa.util.newHashtable();
 	getInspectionResultParams4Notification(emailParams);
