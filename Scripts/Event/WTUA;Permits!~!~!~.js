@@ -1065,6 +1065,29 @@ if (appMatch('Permits/Residential/Home Occupation/Home Stay')
 	emailAllContacts(emailSubj, emailBody, staffEmail)
 }
 
+if (appMatch('Permits/Residential/Home Occupation/Home Stay') && matches(wfStatus, 'Approved - Pending Payment')){
+	
+	addFee('ZO-HSTAY', 'HOME STAY', 'FINAL', 1,"","" );
+	//invoiceFee('ZO-HSTAY','FINAL');
+
+ 
+	var applicant = getApplicantInfo(capId);
+	var architect = getArchitectInfo(capId);
+	var contractor = getContractorInfo(capId);
+	var superintendent = getSuperintendentInfo(capId);
+	var civilEngineer = getCivilEngineerInfo(capId);
+	var projectManager = getProjectManagerInfo(capId);
+	var owner = getOwnerInfo(capId);
+	var other = getOtherInfo(capId);
+	var surveyor = getSurveyorInfo(capId);
+
+	
+
+
+
+}
+
+
 if (matches(wfTask, 'Building Review', 'Zoning Review', 'Grading', 'Driveway', 'Planning', 'Fire Review',
 		'Building', 'Electrical', 'Fire Review (Awning Only)')&& matches(wfStatus, 'Hold for Revision','Hold for Revision 1st Review','Hold for Revision 2nd Review','Hold for Revision 3rd Review' )){
 
