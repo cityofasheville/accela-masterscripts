@@ -729,7 +729,7 @@ if (userResult.getSuccess() && inspResult == 'Cancelled') {
 */
 
 if (inspResult, 'Approved','Disapproved') {
-	var inspector = getLastInspectorEmail(CapID); 
+	var inspector = getLastInspectorEmail(capId); 
 	var emailParams = aa.util.newHashtable();
 	var ElectricalCon = getEmailsByLicenseType('Electrical Contractor')
 	
