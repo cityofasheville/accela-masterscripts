@@ -734,7 +734,7 @@ if (inspResult, 'Approved','Disapproved') {
 	var ElectricalCon = getLicenseProfessional(capId);
 	if (true && ElectricalCon != null) {
 		for (x in ElectricalCon)
-			if (ElectricalCon[x].getEmail() + '' != '')
+			if (ElectricalCon[x].getEmail() + '' != '');
 
 	
 	getInspectionResultParams4Notification(emailParams);
