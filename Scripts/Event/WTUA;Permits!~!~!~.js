@@ -1091,7 +1091,7 @@ if (appMatch('Permits/Residential/Home Occupation/Home Stay') && matches(wfStatu
 if (matches(wfTask, 'Building Review', 'Zoning Review', 'Grading', 'Driveway', 'Planning', 'Fire Review',
 		'Building', 'Electrical', 'Fire Review (Awning Only)')&& matches(wfStatus, 'Hold for Revision','Hold for Revision 1st Review','Hold for Revision 2nd Review','Hold for Revision 3rd Review' )){
 
-			if (appMatch('Permits/*/*/*')|| appMatch('Planning/*/*/*') ) {
+			if (appMatch('Permits/*/*/*') ) {
 				var applicant = getApplicantInfo(capId);
 				var recordURL = getACAUrl(capId);
 				var emailParams = aa.util.newHashtable();
@@ -1105,7 +1105,7 @@ if (matches(wfTask, 'Building Review', 'Zoning Review', 'Grading', 'Driveway', '
 				
 			}
 			//Invoice notification for Architect Contact type
-			if (appMatch('Permits/*/*/*')|| appMatch('Planning/*/*/*')) {
+			if (appMatch('Permits/*/*/*')) {
 				var architect = getArchitectInfo(capId);
 				var recordURL = getACAUrl(capId);
 				var ArchParams = aa.util.newHashtable();
@@ -1119,7 +1119,7 @@ if (matches(wfTask, 'Building Review', 'Zoning Review', 'Grading', 'Driveway', '
 			
 			}
 			
-			if (appMatch('Permits/*/*/*')|| appMatch('Planning/*/*/*')) {
+			if (appMatch('Permits/*/*/*')) {
 				var contractor = getContractorInfo(capId);
 				var recordURL = getACAUrl(capId);
 				var ContrParams = aa.util.newHashtable();
@@ -1133,7 +1133,7 @@ if (matches(wfTask, 'Building Review', 'Zoning Review', 'Grading', 'Driveway', '
 			
 			}
 			
-			if (appMatch('Permits/*/*/*')|| appMatch('Planning/*/*/*')) {
+			if (appMatch('Permits/*/*/*')) {
 				var civilEngineer = getCivilEngineerInfo(capId);
 				var recordURL = getACAUrl(capId);
 				var CivilParams = aa.util.newHashtable();
@@ -1147,7 +1147,7 @@ if (matches(wfTask, 'Building Review', 'Zoning Review', 'Grading', 'Driveway', '
 			
 			}
 			
-			if (appMatch('Permits/*/*/*')|| appMatch('Planning/*/*/*')) {
+			if (appMatch('Permits/*/*/*')) {
 				var superintendent = getSuperintendentInfo(capId);
 				var recordURL = getACAUrl(capId);
 				var SupParams = aa.util.newHashtable();
@@ -1161,7 +1161,7 @@ if (matches(wfTask, 'Building Review', 'Zoning Review', 'Grading', 'Driveway', '
 			
 			}
 			
-			if (appMatch('Permits/*/*/*')|| appMatch('Planning/*/*/*')) {
+			if (appMatch('Permits/*/*/*')) {
 				var projectManager = getProjectManagerInfo(capId);
 				var recordURL = getACAUrl(capId);
 				var ProParams = aa.util.newHashtable();
@@ -1175,7 +1175,7 @@ if (matches(wfTask, 'Building Review', 'Zoning Review', 'Grading', 'Driveway', '
 			
 			}
 			
-			if (appMatch('Permits/*/*/*')|| appMatch('Planning/*/*/*')) {
+			if (appMatch('Permits/*/*/*')) {
 				var owner = getOwnerInfo(capId);
 				var recordURL = getACAUrl(capId);
 				var OwnParams = aa.util.newHashtable();
@@ -1189,7 +1189,7 @@ if (matches(wfTask, 'Building Review', 'Zoning Review', 'Grading', 'Driveway', '
 			
 			}
 			
-			if (appMatch('Permits/*/*/*')|| appMatch('Planning/*/*/*')) {
+			if (appMatch('Permits/*/*/*')) {
 				var other = getOtherInfo(capId);
 				var recordURL = getACAUrl(capId);
 				var OthParams = aa.util.newHashtable();
@@ -1203,7 +1203,7 @@ if (matches(wfTask, 'Building Review', 'Zoning Review', 'Grading', 'Driveway', '
 			
 			}
 			
-			if (appMatch('Permits/*/*/*')|| appMatch('Planning/*/*/*')) {
+			if (appMatch('Permits/*/*/*')) {
 				var surveyor = getSurveyorInfo(capId);
 				var recordURL = getACAUrl(capId);
 				var SurParams = aa.util.newHashtable();
@@ -1220,7 +1220,7 @@ if (matches(wfTask, 'Building Review', 'Zoning Review', 'Grading', 'Driveway', '
 
 		}
 if (matches(wfStatus, 'Issue','Reissue')){
-	if (appMatch('Permits/*/*/*')|| appMatch('Planning/*/*/*') ) {
+	if (appMatch('Permits/*/*/*') ) {
 		var applicant = getApplicantInfo(capId);
 		var recordURL = getACAUrl(capId);
 		var emailParams = aa.util.newHashtable();
@@ -1234,7 +1234,7 @@ if (matches(wfStatus, 'Issue','Reissue')){
 		
 	}
 	//Invoice notification for Architect Contact type
-	if (appMatch('Permits/*/*/*')|| appMatch('Planning/*/*/*')) {
+	if (appMatch('Permits/*/*/*')) {
 		var architect = getArchitectInfo(capId);
 		var recordURL = getACAUrl(capId);
 		var ArchParams = aa.util.newHashtable();
@@ -1248,7 +1248,7 @@ if (matches(wfStatus, 'Issue','Reissue')){
 	
 	}
 	
-	if (appMatch('Permits/*/*/*')|| appMatch('Planning/*/*/*')) {
+	if (appMatch('Permits/*/*/*')) {
 		var contractor = getContractorInfo(capId);
 		var recordURL = getACAUrl(capId);
 		var ContrParams = aa.util.newHashtable();
@@ -1262,7 +1262,7 @@ if (matches(wfStatus, 'Issue','Reissue')){
 	
 	}
 	
-	if (appMatch('Permits/*/*/*')|| appMatch('Planning/*/*/*')) {
+	if (appMatch('Permits/*/*/*')) {
 		var civilEngineer = getCivilEngineerInfo(capId);
 		var recordURL = getACAUrl(capId);
 		var CivilParams = aa.util.newHashtable();
@@ -1276,7 +1276,7 @@ if (matches(wfStatus, 'Issue','Reissue')){
 	
 	}
 	
-	if (appMatch('Permits/*/*/*')|| appMatch('Planning/*/*/*')) {
+	if (appMatch('Permits/*/*/*')) {
 		var superintendent = getSuperintendentInfo(capId);
 		var recordURL = getACAUrl(capId);
 		var SupParams = aa.util.newHashtable();
@@ -1290,7 +1290,7 @@ if (matches(wfStatus, 'Issue','Reissue')){
 	
 	}
 	
-	if (appMatch('Permits/*/*/*')|| appMatch('Planning/*/*/*')) {
+	if (appMatch('Permits/*/*/*')) {
 		var projectManager = getProjectManagerInfo(capId);
 		var recordURL = getACAUrl(capId);
 		var ProParams = aa.util.newHashtable();
@@ -1304,7 +1304,7 @@ if (matches(wfStatus, 'Issue','Reissue')){
 	
 	}
 	
-	if (appMatch('Permits/*/*/*')|| appMatch('Planning/*/*/*')) {
+	if (appMatch('Permits/*/*/*')) {
 		var owner = getOwnerInfo(capId);
 		var recordURL = getACAUrl(capId);
 		var OwnParams = aa.util.newHashtable();
@@ -1318,7 +1318,7 @@ if (matches(wfStatus, 'Issue','Reissue')){
 	
 	}
 	
-	if (appMatch('Permits/*/*/*')|| appMatch('Planning/*/*/*')) {
+	if (appMatch('Permits/*/*/*')) {
 		var other = getOtherInfo(capId);
 		var recordURL = getACAUrl(capId);
 		var OthParams = aa.util.newHashtable();
@@ -1332,7 +1332,7 @@ if (matches(wfStatus, 'Issue','Reissue')){
 	
 	}
 	
-	if (appMatch('Permits/*/*/*')|| appMatch('Planning/*/*/*')) {
+	if (appMatch('Permits/*/*/*')) {
 		var surveyor = getSurveyorInfo(capId);
 		var recordURL = getACAUrl(capId);
 		var SurParams = aa.util.newHashtable();
@@ -1349,7 +1349,7 @@ if (matches(wfStatus, 'Issue','Reissue')){
 	
 }
 
-if ((appMatch('Permits/*/*/*')|| appMatch('Planning/*/*/*') && matches(wfStatus, 'Issue','Reissue'))){
+if (matches(wfStatus, 'Issue','Reissue')){
 var ProfessionalEmails = getLicenseProfessional(capId);
 	if (true && ProfessionalEmails != null) {
 		for (x in ProfessionalEmails){
