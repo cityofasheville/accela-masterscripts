@@ -746,11 +746,13 @@ if (inspResult != 'Cancelled') {
 }
 
 if (inspResult == 'Cancelled') {
-	var inspector = getLastInspectorEmail(capId); 
+	
 	var CANemailParams = aa.util.newHashtable();
+	getInspectionScheduleParams4Notification(CANemailParams);
 	getInspectionResultParams4Notification(CANemailParams);
 	addParameter (CANemailParams,"$$Address$$", CapAddress);
 	addParameter (CANemailParams, "$$CapID$$", capIDString);
+	addParameter (CANemailParams, "$$Inspector$$", capIDString);
 	var ProfessionalEmails = getLicenseProfessional(capId);
 	if (true && ProfessionalEmails != null) {
 		for (x in ProfessionalEmails){
