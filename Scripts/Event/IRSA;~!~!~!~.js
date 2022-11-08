@@ -730,7 +730,7 @@ if (inspResult == 'Cancelled') {
 
 
 //Communication Manager
-if (inspResult, 'Approved','Disapproved','Disapprove-level 1 Fee') {
+if (inspResult == 'Approved' || inspResult == 'Disapproved' || inspResult == 'Disapprove-level 1 Fee') {
 	var inspector = getLastInspectorEmail(capId); 
 	var emailParams = aa.util.newHashtable();
 	getInspectionResultParams4Notification(emailParams);
@@ -745,7 +745,7 @@ if (inspResult, 'Approved','Disapproved','Disapprove-level 1 Fee') {
 	}
 }
 
-if (inspResult, 'Cancelled') {
+if (inspResult == 'Cancelled') {
 	var inspector = getLastInspectorEmail(capId); 
 	var CANemailParams = aa.util.newHashtable();
 	getInspectionResultParams4Notification(CANemailParams);
