@@ -1351,7 +1351,8 @@ if (matches(wfStatus, 'Issue','Reissue')){
 if (matches(wfStatus, 'Issue','Reissue')){
 	if (appMatch('Permits/*/*/*')) {
 		var IemailParams = aa.util.newHashtable();
-		getInspectionResultParams4Notification(IemailParams);
+		addParameter (SurParams, "$$CapID$$", capIDString);
+		addParameter (SurParams,"$$Address$$", CapAddress);
 		var ProfessionalEmails = getLicenseProfessional(capId);
 			if (true && ProfessionalEmails != null){
 				for (x in ProfessionalEmails){
