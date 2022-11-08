@@ -692,6 +692,7 @@ if (inspType == 'ZO-EXPIRATION CHECK' && matches(inspResult, 'Expired')) {
 //	for(x in profArr) if(profArr[x].getEmail() + '' != '') email(profArr[x].getEmail(),'noreply@ashevillenc.gov','Inspection Resulted','You are a professional on permit '+capIDString+' An Inspection '+inspType+' was completed with a result of '+inspResult+'.<br>Inspection Comment: '+inspComment+'<br><br><br>Thank You.');
 //	}
 
+/*
 theUserId = getInspector(inspType);
 comment('The inspector is: ' + theUserId);
 if (true) {
@@ -725,6 +726,26 @@ if (true && profArr != null) {
 if (userResult.getSuccess() && inspResult == 'Cancelled') {
 	email('mlipe@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Inspection Cancelled -- Let Proper Inspector Know', 'Permit: ' + capIDString + '<br>Inspection: ' + inspType + '<br>At address ' + theCapAddress + '<br>On ' + inspSchedDate + ' has been Cancelled');
 }
+*/
+
+//Communication Manager
+if (inspResult, 'Approved','Disapproved','Disapprove-level 1 Fee') {
+	var inspector = getLastInspectorEmail(capId); 
+	var emailParams = aa.util.newHashtable();
+	getInspectionResultParams4Notification(emailParams);
+	addParameter (emailParams,"$$Address$$", CapAddress);
+	addParameter (emailParams, "$$CapID$$", capIDString);
+	var ProfessionalEmails = getLicenseProfessional(capId);
+	if (true && ProfessionalEmails != null) {
+		for (x in ProfessionalEmails){
+			if (ProfessionalEmails[x].getEmail() + '' != '');
+				sendNotification("noreply@ashevillenc.gov",ProfessionalEmails[x].getEmail(),"","INSPECTION_COMPLETE",emailParams,null);
+		}
+	}
+}
+
+
+
 
 // DISABLED: InspectionResultSubmitAfter:98
 //if (appMatch('Permits/Right of Way/Closures/NA') && isTaskActive('Construction')  && inspType =='SC-FINAL' && matches(inspResult,'Approved')) {

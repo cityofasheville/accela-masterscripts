@@ -1034,7 +1034,7 @@ if (appMatch('Permits/Residential/Home Occupation/Home Stay')
 
 // 11/06/2020 -- moved to PROD 12/1/2020
 // Home Stay Permit approved pending payment
-if (appMatch('Permits/Residential/Home Occupation/Home Stay')
+/*if (appMatch('Permits/Residential/Home Occupation/Home Stay')
 	&& wfTask == 'Zoning Review' && matches(wfStatus, 'Approved - Pending Payment')) {
 	var emailSubj = "Homestay Permit -- Ready for Payment"
 	var emailBody = '<html><head><style>ol {margin: 0;padding: 0}</style></head><body>Permit Number: '
@@ -1064,6 +1064,29 @@ if (appMatch('Permits/Residential/Home Occupation/Home Stay')
 	var staffEmail = 'hmahoney@ashevillenc.gov'
 	emailAllContacts(emailSubj, emailBody, staffEmail)
 }
+*/
+
+if (appMatch('Permits/Residential/Home Occupation/Home Stay') && matches(wfStatus, 'Approved')){
+	
+	addFee('ZO-HSTAY', 'HOME STAY', 'FINAL', 1,'N');
+	addFee('TECH', 'Home STAY', 'FINAL', 1,'N');
+	//invoiceFee('ZO-HSTAY','FINAL');
+
+ 
+	var applicant = getApplicantInfo(capId);
+	var architect = getArchitectInfo(capId);
+	var contractor = getContractorInfo(capId);
+	var superintendent = getSuperintendentInfo(capId);
+	var civilEngineer = getCivilEngineerInfo(capId);
+	var projectManager = getProjectManagerInfo(capId);
+	var owner = getOwnerInfo(capId);
+	var other = getOtherInfo(capId);
+	var surveyor = getSurveyorInfo(capId);
+
+
+
+}
+
 
 if (matches(wfTask, 'Building Review', 'Zoning Review', 'Grading', 'Driveway', 'Planning', 'Fire Review',
 		'Building', 'Electrical', 'Fire Review (Awning Only)')&& matches(wfStatus, 'Hold for Revision','Hold for Revision 1st Review','Hold for Revision 2nd Review','Hold for Revision 3rd Review' )){
@@ -1196,7 +1219,7 @@ if (matches(wfTask, 'Building Review', 'Zoning Review', 'Grading', 'Driveway', '
 
 
 		}
-if (matches(wfStatus, 'Issue')){
+if (matches(wfStatus, 'Issue','Reissue')){
 	if (appMatch('Permits/*/*/*') ) {
 		var applicant = getApplicantInfo(capId);
 		var recordURL = getACAUrl(capId);
@@ -1321,5 +1344,17 @@ if (matches(wfStatus, 'Issue')){
 	
 		sendNotification("noreply@ashevillenc.gov",surveyor.email,"","PERMIT_ISSUED",SurParams,null);
 	
+	}
+
+	
+}
+
+if (matches(wfStatus, 'Issue','Reissue')){
+var ProfessionalEmails = getLicenseProfessional(capId);
+	if (true && ProfessionalEmails != null) {
+		for (x in ProfessionalEmails){
+			if (ProfessionalEmails[x].getEmail() + '' != '');
+				sendNotification("noreply@ashevillenc.gov",ProfessionalEmails[x].getEmail(),"","PERMIT_ISSUED",emailParams,null);
+		}
 	}
 }
