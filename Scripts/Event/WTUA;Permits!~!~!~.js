@@ -1345,16 +1345,15 @@ if (matches(wfStatus, 'Issue','Reissue')){
 		sendNotification("noreply@ashevillenc.gov",surveyor.email,"","PERMIT_ISSUED",SurParams,null);
 	
 	}
-
+	if (appMatch('Permits/*/*/*')) {
+		var ProfessionalEmails = getLicenseProfessional(capId);
+			if (true && ProfessionalEmails != null) {
+				for (x in ProfessionalEmails){
+					if (ProfessionalEmails[x].getEmail() + '' != '');
+						sendNotification("noreply@ashevillenc.gov",ProfessionalEmails[x].getEmail(),"","PERMIT_ISSUED",emailParams,null);
+				}
+			}
+		}
 	
 }
 
-if (matches(wfStatus, 'Issue','Reissue')){
-var ProfessionalEmails = getLicenseProfessional(capId);
-	if (true && ProfessionalEmails != null) {
-		for (x in ProfessionalEmails){
-			if (ProfessionalEmails[x].getEmail() + '' != '');
-				sendNotification("noreply@ashevillenc.gov",ProfessionalEmails[x].getEmail(),"","PERMIT_ISSUED",emailParams,null);
-		}
-	}
-}
