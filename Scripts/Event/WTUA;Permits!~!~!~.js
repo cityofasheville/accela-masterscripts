@@ -1346,11 +1346,13 @@ if (matches(wfStatus, 'Issue','Reissue')){
 	
 	}
 	if (appMatch('Permits/*/*/*')) {
+		var IemailParams = aa.util.newHashtable();
+		getInspectionResultParams4Notification(IemailParams);
 		var ProfessionalEmails = getLicenseProfessional(capId);
 			if (true && ProfessionalEmails != null) {
 				for (x in ProfessionalEmails){
 					if (ProfessionalEmails[x].getEmail() + '' != '');
-						sendNotification("noreply@ashevillenc.gov",ProfessionalEmails[x].getEmail(),"","PERMIT_ISSUED",emailParams,null);
+						sendNotification("noreply@ashevillenc.gov",ProfessionalEmails[x].getEmail(),"","PERMIT_ISSUED",IemailParams,null);
 				}
 			}
 		}
