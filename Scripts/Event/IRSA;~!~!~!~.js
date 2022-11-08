@@ -734,7 +734,6 @@ if (inspResult, 'Approved','Disapproved','Disapprove-level 1 Fee') {
 	var emailParams = aa.util.newHashtable();
 	getInspectionResultParams4Notification(emailParams);
 	addParameter (emailParams,"$$Address$$", CapAddress);
-	addParameter (emailParams, "$$Inspector$$", inspector);
 	addParameter (emailParams, "$$CapID$$", capIDString);
 	var ProfessionalEmails = getLicenseProfessional(capId);
 	if (true && ProfessionalEmails != null) {
