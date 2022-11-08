@@ -724,7 +724,7 @@ if (true && profArr != null) {
 }
 */
 
-if (userResult.getSuccess() && inspResult == 'Cancelled') {
+if (inspResult == 'Cancelled') {
 	email('mlipe@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Inspection Cancelled -- Let Proper Inspector Know', 'Permit: ' + capIDString + '<br>Inspection: ' + inspType + '<br>At address ' + theCapAddress + '<br>On ' + inspSchedDate + ' has been Cancelled');
 }
 
