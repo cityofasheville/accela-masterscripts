@@ -1219,6 +1219,8 @@ if (matches(wfTask, 'Building Review', 'Zoning Review', 'Grading', 'Driveway', '
 
 
 		}
+		
+
 if (matches(wfStatus, 'Issue','Reissue')){
 	if (appMatch('Permits/*/*/*') ) {
 		var applicant = getApplicantInfo(capId);
@@ -1350,8 +1352,8 @@ if (matches(wfStatus, 'Issue','Reissue')){
 	if (appMatch('Permits/*/*/*')) {
 		var IemailParams = aa.util.newHashtable();
 		getInspectionResultParams4Notification(IemailParams);
-		var ProfessionalEmails = getLicenseProfessional(capId);
-			if (true && ProfessionalEmails != null) {
+		var ProfessionalEmails = getLicenseProfessional(capIDString);
+			if (true && ProfessionalEmails != null){
 				for (x in ProfessionalEmails){
 					if (ProfessionalEmails[x].getEmail() + '' != '');
 						sendNotification("noreply@ashevillenc.gov",ProfessionalEmails[x].getEmail(),"","PERMIT_ISSUED",IemailParams,null);
