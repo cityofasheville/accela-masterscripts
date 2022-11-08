@@ -731,11 +731,13 @@ if (inspResult == 'Cancelled') {
 
 //Communication Manager
 if (inspResult != 'Cancelled') {
-	var inspector = getLastInspectorEmail(capId); 
+	var theInspector = getLastInspector(inspType);
 	var emailParams = aa.util.newHashtable();
 	getInspectionResultParams4Notification(emailParams);
 	addParameter (emailParams,"$$Address$$", CapAddress);
 	addParameter (emailParams, "$$CapID$$", capIDString);
+	addParameter (emailParams, "$$Inspector$$", theInspector);
+	
 	var ProfessionalEmails = getLicenseProfessional(capId);
 	if (true && ProfessionalEmails != null) {
 		for (x in ProfessionalEmails){
@@ -748,11 +750,12 @@ if (inspResult != 'Cancelled') {
 if (inspResult == 'Cancelled') {
 	
 	var CANemailParams = aa.util.newHashtable();
-	getInspectionScheduleParams4Notification(CANemailParams);
+	var theInspector = getLastInspector(inspType);
 	getInspectionResultParams4Notification(CANemailParams);
 	addParameter (CANemailParams,"$$Address$$", CapAddress);
 	addParameter (CANemailParams, "$$CapID$$", capIDString);
-	addParameter (CANemailParams, "$$Inspector$$", capIDString);
+	addParameter (CANemailParams, "$$Inspector$$", theInspector);
+	
 	var ProfessionalEmails = getLicenseProfessional(capId);
 	if (true && ProfessionalEmails != null) {
 		for (x in ProfessionalEmails){
