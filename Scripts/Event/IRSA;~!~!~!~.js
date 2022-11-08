@@ -722,11 +722,12 @@ if (true && profArr != null) {
 		if (profArr[x].getEmail() + '' != '')
 			email(profArr[x].getEmail(), 'noreply@ashevillenc.gov', 'Inspection ' + inspType + ' for ' + capIDString + ' at address ' + theCapAddress + ' Resulted', 'You are a professional on permit ' + capIDString + ' An Inspection ' + inspType + ' was completed with a result of ' + inspResult + '.<br>Inspection Comment: ' + inspComment + '<br>Please go to https://services.ashevillenc.gov/CitizenAccess/ if necessary to get inspector details.<br><br>Thank you.');
 }
+*/
 
 if (userResult.getSuccess() && inspResult == 'Cancelled') {
 	email('mlipe@ashevillenc.gov', 'noreply@ashevillenc.gov', 'Inspection Cancelled -- Let Proper Inspector Know', 'Permit: ' + capIDString + '<br>Inspection: ' + inspType + '<br>At address ' + theCapAddress + '<br>On ' + inspSchedDate + ' has been Cancelled');
 }
-*/
+
 
 //Communication Manager
 if (inspResult, 'Approved','Disapproved','Disapprove-level 1 Fee') {
@@ -740,6 +741,21 @@ if (inspResult, 'Approved','Disapproved','Disapprove-level 1 Fee') {
 		for (x in ProfessionalEmails){
 			if (ProfessionalEmails[x].getEmail() + '' != '');
 				sendNotification("noreply@ashevillenc.gov",ProfessionalEmails[x].getEmail(),"","INSPECTION_COMPLETE",emailParams,null);
+		}
+	}
+}
+
+if (inspResult, 'Cancelled') {
+	var inspector = getLastInspectorEmail(capId); 
+	var CANemailParams = aa.util.newHashtable();
+	getInspectionResultParams4Notification(CANemailParams);
+	addParameter (CANemailParams,"$$Address$$", CapAddress);
+	addParameter (CANemailParams, "$$CapID$$", capIDString);
+	var ProfessionalEmails = getLicenseProfessional(capId);
+	if (true && ProfessionalEmails != null) {
+		for (x in ProfessionalEmails){
+			if (ProfessionalEmails[x].getEmail() + '' != '');
+				sendNotification("noreply@ashevillenc.gov",ProfessionalEmails[x].getEmail(),"","INSPECTION_CANCELLED",CANemailParams,null);
 		}
 	}
 }
