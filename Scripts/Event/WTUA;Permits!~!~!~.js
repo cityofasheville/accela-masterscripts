@@ -887,11 +887,11 @@ if (appMatch("*/*/*/Home Stay")
 
 
 // 11/12/2019 - Email all lic prof when permit issued. Also email applicant that they were notified.
-if ((wfTask == 'Issuance' || wfTask == 'Permit Verification' || wfTask == 'Permit Issuance') && matches(wfStatus, 'Issue', 'Reissue')) {
-	var ownerName = getOwnerNameFromCap();
-	var fromAddr;
-	if (appMatch('*/Residential/*/*')) {
-		fromAddr = 'residentialpermits@ashevillenc.gov';
+// if ((wfTask == 'Issuance' || wfTask == 'Permit Verification' || wfTask == 'Permit Issuance') && matches(wfStatus, 'Issue', 'Reissue')) {
+	//var ownerName = getOwnerNameFromCap();
+	//var fromAddr;
+	//if (appMatch('*/Residential/*/*')) {
+	/*	fromAddr = 'residentialpermits@ashevillenc.gov';
 	} else {
 		fromAddr = 'developmentservices@ashevillenc.gov';
 	}
@@ -914,7 +914,7 @@ if ((wfTask == 'Issuance' || wfTask == 'Permit Verification' || wfTask == 'Permi
 		+ ' If you should not be on this permit, please let us know at pac@ashevillenc.gov. We look forward to working with you. Thank you, '
 		+ '</p><p>'
 		+ ' City of Asheville Development Services Department</p><hr></body></html>');
-
+*/
 	// 12/17/2019 
 	// Email to Applicant
 
@@ -951,8 +951,8 @@ if ((wfTask == 'Issuance' || wfTask == 'Permit Verification' || wfTask == 'Permi
 			fromAddr, //set above for other email
 			'Permit Issued by City of Asheville - Licensed Professionals Listed Below',
 			emailContent);
-	} */
-}
+	} 
+}*/
 
 // 12/17/2019 (also copied to IRSA;Permits!Residential!Home Occupation!Home Stay 11/17/2020)
 // HomeStay set expiration date = in compliance date + 1 year
@@ -1219,6 +1219,8 @@ if (matches(wfTask, 'Building Review', 'Zoning Review', 'Grading', 'Driveway', '
 
 
 		}
+		
+
 if (matches(wfStatus, 'Issue','Reissue')){
 	if (appMatch('Permits/*/*/*') ) {
 		var applicant = getApplicantInfo(capId);
@@ -1345,16 +1347,20 @@ if (matches(wfStatus, 'Issue','Reissue')){
 		sendNotification("noreply@ashevillenc.gov",surveyor.email,"","PERMIT_ISSUED",SurParams,null);
 	
 	}
-
-	
 }
-
 if (matches(wfStatus, 'Issue','Reissue')){
-var ProfessionalEmails = getLicenseProfessional(capId);
-	if (true && ProfessionalEmails != null) {
-		for (x in ProfessionalEmails){
-			if (ProfessionalEmails[x].getEmail() + '' != '');
-				sendNotification("noreply@ashevillenc.gov",ProfessionalEmails[x].getEmail(),"","PERMIT_ISSUED",emailParams,null);
-		}
+	if (appMatch('Permits/*/*/*')) {
+		var IemailParams = aa.util.newHashtable();
+		addParameter (IemailParams, "$$CapID$$", capIDString);
+		addParameter (IemailParams,"$$Address$$", CapAddress);
+		var ProfessionalEmails = getLicenseProfessional(capId);
+			if (true && ProfessionalEmails != null){
+				for (x in ProfessionalEmails){
+					if (ProfessionalEmails[x].getEmail() + '' != '');
+						sendNotification("noreply@ashevillenc.gov",ProfessionalEmails[x].getEmail(),"","PERMIT_ISSUED",IemailParams,null);
+				}
+			}
 	}
 }
+
+
