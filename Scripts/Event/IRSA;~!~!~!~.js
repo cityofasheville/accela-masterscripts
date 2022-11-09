@@ -767,8 +767,6 @@ if (inspResult == 'Cancelled') {
 
 
 
-
-// DISABLED: InspectionResultSubmitAfter:98
 //if (appMatch('Permits/Right of Way/Closures/NA') && isTaskActive('Construction')  && inspType =='SC-FINAL' && matches(inspResult,'Approved')) {
 //	closeTask('Construction','Close','Updateed by Script');
 //	}
